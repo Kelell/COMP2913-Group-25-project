@@ -19,15 +19,8 @@ public class Home extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
 
-        out.println("<form action= servlet1 method = 'post' >");
-        out.println("First name:<br>");
-        out.println("<input type=text name= firstname>");
-        out.println("<br>");
-        out.println("Last name:<br>");
-        out.println("<input type=text name='lastname' >");
-        out.println("<br><br>");
-        out.println("<input type=submit value=Submit>");
-        out.println("</form>");
+        out.println("<h1>test</h1>");
+
 
 
 
