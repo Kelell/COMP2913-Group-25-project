@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style.css" type="text/css">
   </head>
   <body>
+<<<<<<< HEAD
 
   <div class="nav">
     <a class="active" href="index.jsp">Home</a>
@@ -30,5 +31,8 @@
   <h1>test</h1><form action="test.jsp">
     <input type="submit" value="submit">
   </form>-->
+=======
+  <a href="book">book</a>
+>>>>>>> 227e6b0eafc42a73a6aca0f5e28075901becd423
   </body>
 </html>
