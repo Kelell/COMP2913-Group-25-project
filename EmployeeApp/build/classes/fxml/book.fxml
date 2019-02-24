@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BookController">
+   <children>
+      <TextField fx:id="names" layoutX="190.0" layoutY="274.0" prefHeight="25.0" prefWidth="297.0" />
+      <TextArea fx:id="address" layoutX="190.0" layoutY="323.0" prefHeight="74.0" prefWidth="297.0" />
+      <Text layoutX="67.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="66.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Address">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Button fx:id="saveButton" layoutX="352.0" layoutY="458.0" mnemonicParsing="false" text="Save and Print Receipt" />
+      <DatePicker fx:id="start" layoutX="124.0" layoutY="215.0" prefHeight="25.0" prefWidth="160.0" />
+      <DatePicker fx:id="to" layoutX="338.0" layoutY="215.0" prefHeight="25.0" prefWidth="151.0" />
+      <Text layoutX="306.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="67.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <FlowPane alignment="CENTER" layoutX="-4.0" prefHeight="57.0" prefWidth="579.0" style="-fx-background-color: #336699;">
+         <children>
+            <Text fill="#ebe8e8" strokeType="OUTSIDE" strokeWidth="0.0" text="BOOK BIKE">
+               <font>
+                  <Font name="Century" size="24.0" />
+               </font>
+            </Text>
+         </children>
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+      </FlowPane>
+      <Text layoutX="66.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ticket ID:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fx:id="ticket_id" fill="#1099ae" layoutX="155.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fx:id="bike_id" fill="#1099ae" layoutX="155.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="66.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIKE ID:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fx:id="price" fill="#1099ae" layoutX="267.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="215.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PRICE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>
