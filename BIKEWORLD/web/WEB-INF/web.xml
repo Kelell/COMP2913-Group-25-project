@@ -4,15 +4,6 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <servlet>
-        <servlet-name>Home</servlet-name>
-        <servlet-class>mypack.Home</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Home</servlet-name>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>Submit</servlet-name>
@@ -21,7 +12,7 @@
 
     <servlet-mapping>
         <servlet-name>Submit</servlet-name>
-        <url-pattern>/servlet1</url-pattern>
+        <url-pattern>/submit</url-pattern>
     </servlet-mapping>
 
     <servlet>

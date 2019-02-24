@@ -15,12 +15,10 @@
 
   <div class="nav">
     <a class="active" href="index.jsp">Home</a>
-    <a href="test.jsp">TestPage</a>
-    <a href="LogIn.jsp">LogIn/SignUp</a>
     <a href="book">Book A Bike</a>
-    <a href="ContactUs.jsp">Contact Us</a>
-    <a href="SalesCon.jsp">Sales Confirmation</a>
     <a href="AboutUs.jsp">About Us</a>
+    <a href="ContactUs.jsp">Contact Us</a>
+    <a>Log out</a>
 
   </div>
 

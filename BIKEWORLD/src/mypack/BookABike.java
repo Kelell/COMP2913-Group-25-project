@@ -40,15 +40,13 @@ public class BookABike extends HttpServlet {
         out.println(
                 "<div class=nav>"+
                 "<a  href=index.jsp>Home</a>"+
-                "<a href=test.jsp>TestPage</a>"+
-                "<a href=LogIn.jsp>LogIn/SignUp</a>" +
                 "<a class=active href=book>Book A Bike</a>" +
-                "<a href=ContactUs.jsp>Contact Us</a>"+
-                "<a href=SalesCon.jsp>Sales Confirmation</a>" +
                 "<a href=AboutUs.jsp>About Us</a>"+
+                        "<a href=ContactUs.jsp>Contact Us</a>"+
+                        "<a>Log out</a>" +
                 "</div>"
         );
-        out.println("<form action= servlet1 method = 'post' >" +
+        out.println("<form action= submit method = 'post' >" +
                 "<p>Select a Location</p>" + "\n" +
                 "<select name = Location >" +
                 "<option value=0>0</option>" +
@@ -78,7 +76,7 @@ public class BookABike extends HttpServlet {
                 "<option value=2>48 hours</option>"+
                 "<option value=3>72 hours</option>"+
                 "</select>"+ "\n" +
-                "<input type=submit value=Submit>" +
+                "<input type=submit value=Submit>" + "\n" +
                 "</form>"
         );
     }
