@@ -30,6 +30,24 @@ public class BookABike extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
+
+
+        out.println("<head>" +
+                        "<title>$Title$</title>" +
+                        "<link rel=stylesheet href=style.css type=text/css>" +
+                    "</head>"
+        );
+        out.println(
+                "<div class=nav>"+
+                "<a  href=index.jsp>Home</a>"+
+                "<a href=test.jsp>TestPage</a>"+
+                "<a href=LogIn.jsp>LogIn/SignUp</a>" +
+                "<a class=active href=book>Book A Bike</a>" +
+                "<a href=ContactUs.jsp>Contact Us</a>"+
+                "<a href=SalesCon.jsp>Sales Confirmation</a>" +
+                "<a href=AboutUs.jsp>About Us</a>"+
+                "</div>"
+        );
         out.println("<form action= servlet1 method = 'post' >" +
                 "<p>Select a Location</p>" + "\n" +
                 "<select name = Location >" +
@@ -47,7 +65,15 @@ public class BookABike extends HttpServlet {
                 "<option value=3>3</option>"+
                 "<option value=4>4</option>"+
                 "</select>"+ "\n" +
+                "<p>Select number of bikes</p>" + "\n" +
+                "<input name = quantity type=range min=0 max=5 value=1>" + "\n" +
                 "<input type=submit value=Submit>" +
+                "<p>Select your duration</p>" + "\n" +
+                "<select name = Duration >" +
+                "<option value=1>24 hours</option>" +
+                "<option value=2>48 hours</option>"+
+                "<option value=3>72 hours</option>"+
+                "</select>"+ "\n" +
                 "</form>"
         );
     }
