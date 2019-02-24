@@ -1,3 +1,9 @@
+
+body{
+    background-color: lightgrey;
+}
+
+
 h1{
     color: red;
 }
@@ -16,11 +22,12 @@ h1{
     color: black;
 }
 .nav a.active {
-    background-color: #4CAF50;
+    background-color: black;
     color: white;
 }
 
 .nav {
     overflow: hidden;
-    background-color: #333;
+    background-color: #4f5051;
 }
+
