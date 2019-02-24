@@ -9,8 +9,16 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
+<div class="nav">
+    <a href="index.jsp">Home</a>
+    <a href="book">Book A Bike</a>
+    <a class="active" href="AboutUs.jsp">About Us</a>
+    <a href="ContactUs.jsp">Contact Us</a>
+    <a>Log out</a>
 
+</div>
 </body>
 </html>
