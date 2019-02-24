@@ -24,11 +24,11 @@ public class Bike {
     return bikeID;
     }
     
-    public final Integer getBikeID() {
+    public final int getBikeID() {
         return bikeIDProperty().get();
     }
     
-    public final void setBikeID(Integer bikeID) {
+    public final void setBikeID(int bikeID) {
         bikeIDProperty().set(bikeID);
     }
     
@@ -37,11 +37,11 @@ public class Bike {
     return status;
     }
     
-    public final Integer getStatus() {
+    public final int getStatus() {
         return statusProperty().get();
     }
     
-    public final void setStatus(Integer status) {
+    public final void setStatus(int status) {
         statusProperty().set(status);
     }
     
@@ -58,7 +58,7 @@ public class Bike {
     
     public Bike() {}
 
-    public Bike(Integer bikeID, Integer status, String location) {
+    public Bike(int bikeID, int status, String location) {
         setBikeID(bikeID);
         setStatus(status);
         setLocation(location);
