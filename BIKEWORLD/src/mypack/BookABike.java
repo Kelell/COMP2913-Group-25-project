@@ -66,14 +66,19 @@ public class BookABike extends HttpServlet {
                 "<option value=4>4</option>"+
                 "</select>"+ "\n" +
                 "<p>Select number of bikes</p>" + "\n" +
-                "<input name = quantity type=range min=0 max=5 value=1>" + "\n" +
-                "<input type=submit value=Submit>" +
+                "<select name = quantity >" +
+                "<option value=1>1</option>"+
+                "<option value=2>2</option>"+
+                "<option value=3>3</option>"+
+                "<option value=4>4</option>"+
+                "</select>"+ "\n" +
                 "<p>Select your duration</p>" + "\n" +
                 "<select name = Duration >" +
                 "<option value=1>24 hours</option>" +
                 "<option value=2>48 hours</option>"+
                 "<option value=3>72 hours</option>"+
                 "</select>"+ "\n" +
+                "<input type=submit value=Submit>" +
                 "</form>"
         );
     }

@@ -15,9 +15,21 @@ public class Submit extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
 
-        String fname = request.getParameter("Location");
+        String loc = request.getParameter("Location");
 
-        out.println("<h1>Location is " + fname + "</h1>");
+        String mod = request.getParameter("Model");
+
+        String qu = request.getParameter("quantity");
+
+        String dur = request.getParameter("Duration");
+
+        out.println("<h1>Location is " + loc + "</h1>");
+
+        out.println("<h1>Model is " + mod + "</h1>");
+
+        out.println("<h1>" + qu + " bikes</h1>");
+
+        out.println("<h1>For " + dur + " days long</h1>");
 
 
     }
