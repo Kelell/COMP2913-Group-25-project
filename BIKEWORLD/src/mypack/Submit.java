@@ -15,15 +15,10 @@ public class Submit extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
 
+        String fname = request.getParameter("Location");
 
-        String fname = request.getParameter("firstname");
+        out.println("<h1>Location is " + fname + "</h1>");
 
-        String lname = request.getParameter("lastname");
-
-
-        out.println("<h1>Name is : " + fname + "</h1>");
-
-        out.println("<h1>Last name is : " + lname + "</h1>");
 
     }
 
