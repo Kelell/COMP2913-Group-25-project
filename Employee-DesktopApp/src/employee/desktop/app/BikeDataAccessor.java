@@ -22,6 +22,7 @@ public class BikeDataAccessor {
     public BikeDataAccessor(String driverClassName, String dbURL, String user, String password) throws SQLException, ClassNotFoundException  {
         Class.forName(driverClassName);
         connection = DriverManager.getConnection(dbURL, user, password);
+        
 
     }
     
