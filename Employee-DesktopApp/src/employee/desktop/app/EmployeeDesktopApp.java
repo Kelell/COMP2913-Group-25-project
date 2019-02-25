@@ -30,8 +30,6 @@ public class EmployeeDesktopApp extends Application {
 
         initUI(stage);
     }
-    
-
 
     private void initUI(Stage stage) throws Exception {
 
@@ -39,15 +37,11 @@ public class EmployeeDesktopApp extends Application {
 
         TabPane tabPane = new TabPane();
         
-        
-        
-        
-        
         //content comes from fxml file
         Parent clickme = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
 
         Tab tab1 = new Tab();
-        tab1.setText("Click Here!");
+        tab1.setText("Book a Bike");
         tab1.setContent(clickme); //content of tab set
         
         Tab tab2 = new Tab();
@@ -63,7 +57,7 @@ public class EmployeeDesktopApp extends Application {
         
         root.getChildren().add(tabPane);
 
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 500, 400);
 
         stage.setTitle("TabPane");
         stage.setScene(scene);

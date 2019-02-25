@@ -5,10 +5,13 @@
  */
 package employee.desktop.app;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
@@ -19,6 +22,9 @@ import javafx.scene.layout.BorderPane ;
 import javafx.scene.Scene ;
 
 import java.sql.SQLException;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 /**
  *
@@ -37,7 +43,6 @@ public class FXMLDocumentController implements Initializable {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
         
-        
     }
         
     private BikeDataAccessor dataAccessor ;
@@ -48,10 +53,9 @@ public class FXMLDocumentController implements Initializable {
         
         try {
             dataAccessor = new BikeDataAccessor("com.mysql.jdbc.Driver","jdbc:mysql://localhost:3306/testImport","root","ib1133729304"); // provide driverName, dbURL, user, password...
-
         }
         catch(ClassNotFoundException | SQLException e){
-            System.out.print(e.toString() + "fuck");
+            System.out.print(e.toString());
         }
 
         TableColumn<Bike, Integer> bikeIDCol = new TableColumn<>("Bike ID");
@@ -64,7 +68,7 @@ public class FXMLDocumentController implements Initializable {
         bikeTable.getColumns().addAll(bikeIDCol, statusCol, locationCol);
 
         try{
-             bikeTable.getItems().addAll(dataAccessor.getBikeList());
+             bikeTable.getItems().addAll(dataAccessor.getFreeBikeList());
 
         }
         catch(SQLException e){

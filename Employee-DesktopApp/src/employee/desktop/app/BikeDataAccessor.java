@@ -19,10 +19,10 @@ import java.util.ArrayList ;
 public class BikeDataAccessor {
     private Connection connection;
     
+    
     public BikeDataAccessor(String driverClassName, String dbURL, String user, String password) throws SQLException, ClassNotFoundException  {
         Class.forName(driverClassName);
         connection = DriverManager.getConnection(dbURL, user, password);
-        
 
     }
     
@@ -32,10 +32,11 @@ public class BikeDataAccessor {
         }
     }
     
-    public List<Bike> getBikeList() throws SQLException {
+    //copies all bike table date into bike list
+    public List<Bike> getFreeBikeList() throws SQLException {
         try (
             Statement stmnt = connection.createStatement();
-            ResultSet rs = stmnt.executeQuery("select * from BIKES");
+            ResultSet rs = stmnt.executeQuery("select * from BIKES where STATUS='0'");
         ){
             List<Bike> bikeList = new ArrayList<>();
             while (rs.next()) {
