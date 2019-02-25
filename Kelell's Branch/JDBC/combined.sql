@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS `combined`
-USE `combined`;
-
 CREATE TABLE IF NOT EXISTS `admin` (
   `username` varchar(50) DEFAULT NULL,
   `password` text,
