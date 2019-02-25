@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.*;
+
+
 
 @WebServlet(name = "BookABike")
 public class BookABike extends HttpServlet {
@@ -31,6 +34,37 @@ public class BookABike extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
 
+        jdbc test = new jdbc();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(test.DB_URL);
+
+            Statement stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT BIKE_ID, STATUS, LOCATION FROM BIKES";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while(rs.next()){
+                //Retrieve by column name
+                int id  = rs.getInt("BIKE_ID");
+                int status = rs.getInt("STATUS");
+                String location = rs.getString("LOCATION");
+
+                //Display values
+                out.println("ID: " + id + "<br>");
+                out.println(", Age: " + status + "<br>");
+                out.println(", First: " + location + "<br>");
+            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }  catch(SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch(Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
 
         out.println("<head>" +
                         "<title>$Title$</title>" +
