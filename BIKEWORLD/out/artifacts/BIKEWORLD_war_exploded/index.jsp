@@ -21,9 +21,7 @@
     <a>Log out</a>
   </div>
 
-  <div class = "container">
 
-  </div>
 
 
   </body>
