@@ -31,6 +31,8 @@ public class Submit extends HttpServlet {
 
         out.println("<h1>For " + dur + " days long</h1>");
 
+        out.println("<a href=book>Return to bike page</a>");//return link (for testing purposes)
+
 
     }
 
