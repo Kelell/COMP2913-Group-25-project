@@ -52,9 +52,12 @@ public class BookABike extends HttpServlet {
 
                 //Display values
                 out.println("ID: " + id + "<br>");
-                out.println(", Age: " + status + "<br>");
-                out.println(", First: " + location + "<br>");
+                out.println(", Status: " + status + "<br>");
+                out.println(", Location: " + location + "<br>");
             }
+            rs.close();
+            stmt.close();
+            conn.close();
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -65,6 +68,7 @@ public class BookABike extends HttpServlet {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
+        
 
         out.println("<head>" +
                         "<title>$Title$</title>" +
