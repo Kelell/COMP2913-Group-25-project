@@ -47,7 +47,7 @@ public class EmployeeDesktopApp extends Application {
 
         }
         catch(ClassNotFoundException | SQLException e){
-            System.out.print(e.toString() + "fuck");
+            System.out.print(e.toString());
         }
         
         //_bikeID.setCellValueFactory(new PropertyValueFactory<>("bikeID"));
