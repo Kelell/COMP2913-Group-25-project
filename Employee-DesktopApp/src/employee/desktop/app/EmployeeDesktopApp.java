@@ -31,7 +31,6 @@ public class EmployeeDesktopApp extends Application {
         initUI(stage);
     }
     
-    private BikeDataAccessor dataAccessor ;
 
 
     private void initUI(Stage stage) throws Exception {
@@ -42,48 +41,6 @@ public class EmployeeDesktopApp extends Application {
         
         
         
-        try {
-            dataAccessor = new BikeDataAccessor("com.mysql.jdbc.Driver","jdbc:mysql://localhost:3306/testImport","root","ib1133729304"); // provide driverName, dbURL, user, password...
-
-        }
-        catch(ClassNotFoundException | SQLException e){
-            System.out.print(e.toString());
-        }
-        
-        //_bikeID.setCellValueFactory(new PropertyValueFactory<>("bikeID"));
-        //_status.setCellValueFactory(new PropertyValueFactory<>("status"));
-        //_location.setCellValueFactory(new PropertyValueFactory<>("location"));
-        
-        //bikeTable.getColumns().addAll(_bikeID, _status, _location);
-
-        
-
-
-
-
-        TableView<Bike> bikeTable = new TableView<>();
-        TableColumn<Bike, Integer> bikeIDCol = new TableColumn<>("Bike ID");
-        bikeIDCol.setCellValueFactory(new PropertyValueFactory<>("bikeID"));
-        TableColumn<Bike, Integer> statusCol = new TableColumn<>("Status");
-        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-        TableColumn<Bike, String> locationCol = new TableColumn<>("Location");
-        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-
-        bikeTable.getColumns().addAll(bikeIDCol, statusCol, locationCol);
-
-        try{
-             bikeTable.getItems().addAll(dataAccessor.getBikeList());
-
-        }
-        catch(SQLException e){
-            
-        }
-        
-        BorderPane table = new BorderPane();
-        table.setCenter(bikeTable);
-        //Scene scene = new Scene(root, 600, 400);
-
-        
         
         
         //content comes from fxml file
@@ -91,7 +48,7 @@ public class EmployeeDesktopApp extends Application {
 
         Tab tab1 = new Tab();
         tab1.setText("Click Here!");
-        tab1.setContent(bikeTable); //content of tab set
+        tab1.setContent(clickme); //content of tab set
         
         Tab tab2 = new Tab();
         tab2.setText("Line");

@@ -30,16 +30,46 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     
     @FXML
+    private TableView bikeTable;
+    
+    @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
         
         
     }
-    
+        
+    private BikeDataAccessor dataAccessor ;
+
+        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        try {
+            dataAccessor = new BikeDataAccessor("com.mysql.jdbc.Driver","jdbc:mysql://localhost:3306/testImport","root","ib1133729304"); // provide driverName, dbURL, user, password...
+
+        }
+        catch(ClassNotFoundException | SQLException e){
+            System.out.print(e.toString() + "fuck");
+        }
+
+        TableColumn<Bike, Integer> bikeIDCol = new TableColumn<>("Bike ID");
+        bikeIDCol.setCellValueFactory(new PropertyValueFactory<>("bikeID"));
+        TableColumn<Bike, Integer> statusCol = new TableColumn<>("Status");
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        TableColumn<Bike, String> locationCol = new TableColumn<>("Location");
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+
+        bikeTable.getColumns().addAll(bikeIDCol, statusCol, locationCol);
+
+        try{
+             bikeTable.getItems().addAll(dataAccessor.getBikeList());
+
+        }
+        catch(SQLException e){
+            
+        }
     }    
     
 }
