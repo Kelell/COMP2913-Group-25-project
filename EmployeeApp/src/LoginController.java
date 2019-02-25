@@ -1,4 +1,3 @@
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -43,7 +42,6 @@ public class LoginController {
 
     private static final int ITERATIONS = 2;
 
-
     public void loginButtonHandler() {
         Parent root = null;
 
@@ -79,13 +77,10 @@ public class LoginController {
                     status.setText("Invalid Username or Password");
                 }
             }
-
-
+			
         }catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     public static String decryptedPassword(String value, String salt)
@@ -113,7 +108,4 @@ public class LoginController {
         // key = keyFactory.generateSecret(new DESKeySpec(keyValue));
         return key;
     }
-
-
-
 }
