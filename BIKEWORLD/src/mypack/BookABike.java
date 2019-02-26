@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.util.*;
 
 
 
@@ -35,6 +36,9 @@ public class BookABike extends HttpServlet {
         response.setContentType("text/html");
 
         jdbc test = new jdbc();
+
+
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(test.DB_URL);
@@ -59,63 +63,62 @@ public class BookABike extends HttpServlet {
             stmt.close();
             conn.close();
 
+            out.println("<head>" +
+                    "<title>$Title$</title>" +
+                    "<link rel=stylesheet href=style.css type=text/css>" +
+                    "</head>"
+            );
+            out.println("<body>");
+            out.println(
+                    "<div class=nav>"+
+                            "<a  href=index.jsp>Home</a>"+
+                            "<a class=active href=book>Book A Bike</a>" +
+                            "<a href=AboutUs.jsp>About Us</a>"+
+                            "<a href=ContactUs.jsp>Contact Us</a>"+
+                            "<a>Log out</a>" +
+                            "</div>"
+            );
+
+            out.println("<form action= submit method = 'post' >" +
+                    "<p>Select a Location</p>" + "\n" +
+                    "<select name = Location >" +
+                    "<option value=0>0</option>" +
+                    "<option value=1>1</option>"+
+                    "<option value=2>2</option>"+
+                    "<option value=3>3</option>"+
+                    "<option value=4>4</option>"+
+                    "</select>"+ "\n" +
+                    "<p>Select a Bike model</p>" + "\n" +
+                    "<select name = Model >" +
+                    "<option value=0>0</option>" +
+                    "<option value=1>1</option>"+
+                    "<option value=2>2</option>"+
+                    "<option value=3>3</option>"+
+                    "<option value=4>4</option>"+
+                    "</select>"+ "\n" +
+                    "<p>Select number of bikes</p>" + "\n" +
+                    "<select name = quantity >" +
+                    "<option value=1>1</option>"+
+                    "<option value=2>2</option>"+
+                    "<option value=3>3</option>"+
+                    "<option value=4>4</option>"+
+                    "</select>"+ "\n" +
+                    "<p>Select your duration</p>" + "\n" +
+                    "<select name = Duration >" +
+                    "<option value=1>24 hours</option>" +
+                    "<option value=2>48 hours</option>"+
+                    "<option value=3>72 hours</option>"+
+                    "</select>"+ "\n" +
+                    "<input type=submit value=Submit>" + "\n" +
+                    "</form>"
+            );
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }  catch(SQLException se) {
-            //Handle errors for JDBC
-            se.printStackTrace();
-        } catch(Exception e) {
-            //Handle errors for Class.forName
+            out.println("Fyck");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-
-        out.println("<head>" +
-                        "<title>$Title$</title>" +
-                        "<link rel=stylesheet href=style.css type=text/css>" +
-                    "</head>"
-        );
-        out.println(
-                "<div class=nav>"+
-                "<a  href=index.jsp>Home</a>"+
-                "<a class=active href=book>Book A Bike</a>" +
-                "<a href=AboutUs.jsp>About Us</a>"+
-                        "<a href=ContactUs.jsp>Contact Us</a>"+
-                        "<a>Log out</a>" +
-                "</div>"
-        );
-        out.println("<form action= submit method = 'post' >" +
-                "<p>Select a Location</p>" + "\n" +
-                "<select name = Location >" +
-                "<option value=0>0</option>" +
-                "<option value=1>1</option>"+
-                "<option value=2>2</option>"+
-                "<option value=3>3</option>"+
-                "<option value=4>4</option>"+
-                "</select>"+ "\n" +
-                "<p>Select a Bike model</p>" + "\n" +
-                "<select name = Model >" +
-                "<option value=0>0</option>" +
-                "<option value=1>1</option>"+
-                "<option value=2>2</option>"+
-                "<option value=3>3</option>"+
-                "<option value=4>4</option>"+
-                "</select>"+ "\n" +
-                "<p>Select number of bikes</p>" + "\n" +
-                "<select name = quantity >" +
-                "<option value=1>1</option>"+
-                "<option value=2>2</option>"+
-                "<option value=3>3</option>"+
-                "<option value=4>4</option>"+
-                "</select>"+ "\n" +
-                "<p>Select your duration</p>" + "\n" +
-                "<select name = Duration >" +
-                "<option value=1>24 hours</option>" +
-                "<option value=2>48 hours</option>"+
-                "<option value=3>72 hours</option>"+
-                "</select>"+ "\n" +
-                "<input type=submit value=Submit>" + "\n" +
-                "</form>"
-        );
+        out.println("</body>");
     }
 }
