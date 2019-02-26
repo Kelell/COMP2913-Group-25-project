@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.*;
-
 
 
 @WebServlet(name = "BookABike")
@@ -38,9 +36,10 @@ public class BookABike extends HttpServlet {
         jdbc test = new jdbc();
 
 
+        String driver = "com.mysql.cj.jdbc.Driver";
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+           Class.forName(driver);
             Connection conn = DriverManager.getConnection(test.DB_URL);
 
             Statement stmt = conn.createStatement();
@@ -118,6 +117,7 @@ public class BookABike extends HttpServlet {
             out.println("Fyck");
         } catch (SQLException e) {
             e.printStackTrace();
+            out.println("Fk");
         }
         out.println("</body>");
     }
