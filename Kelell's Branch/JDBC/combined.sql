@@ -1,14 +1,58 @@
-CREATE TABLE BIKES(
-	BIKE_ID INT PRIMARY KEY NOT NULL,
-	STATUS SMALLINT, 
-	LOCATION CHAR(30)
-);
+CREATE TABLE IF NOT EXISTS `admin` (
+  `username` varchar(50) DEFAULT NULL,
+  `password` text,
+  `salt` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE CUSTOMERS(
-	CUSTOMER_ID INT PRIMARY KEY NOT NULL,
-	CUSTOMER_NAME CHAR(30),
-	CUSTOMER_ADDRESS CHAR(30)
-);
+INSERT INTO `admin` (`username`, `password`, `salt`) VALUES
+	('admin', 'admin', NULL);
+
+CREATE TABLE IF NOT EXISTS `bike` (
+  `BIKE_ID` int(11) NOT NULL,
+  `STATUS` smallint(6) DEFAULT NULL,
+  `LOCATION` char(30) DEFAULT NULL,
+  `price` double DEFAULT '0',
+  PRIMARY KEY (`BIKE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `customer` (
+  `CUSTOMER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CUSTOMER_NAME` char(30) DEFAULT NULL,
+  `CUSTOMER_ADDRESS` char(30) DEFAULT NULL,
+  PRIMARY KEY (`CUSTOMER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+INSERT INTO `customer` (`CUSTOMER_ID`, `CUSTOMER_NAME`, `CUSTOMER_ADDRESS`) VALUES
+	(1, 'Eden Hood', '179 Kings Road EXETER EX32 9IB'),
+	(2, 'Vanessa Summers', '459 King Street ENFIELD EN61 4'),
+	(3, 'Zakaria Sanchez', '220 Alexander Road NORTH WEST'),
+	(4, 'Alexander Holden', '7801 School Lane ROCHESTER ME3'),
+	(5, 'Iona Moran', '422 York Road DORCHESTER DT88'),
+	(6, 'Xander Warren', '7801 School Lane ROCHESTER ME3'),
+	(7, 'Sonny Long', '9677 Windsor Road HARROW HA81'),
+	(8, 'Aysha Stein', '8472 High Street HUDDERSFIELD');
+
+INSERT INTO `bike` (`BIKE_ID`, `STATUS`, `LOCATION`, `price`) VALUES
+	(1, 2, 'Alnmouth', 36.79),
+	(2, 2, 'Bernslkey Interchange', 28.51),
+	(3, 2, 'Beverly', 32.17),
+	(4, 1, 'Bradford Interchange', 25.31),
+	(5, 1, 'Halifax', 30.07),
+	(6, 2, 'Harrogate', 24.4),
+	(7, 2, 'Hebden Bridge', 31.81),
+	(8, 1, 'Hexam', 35.87),
+	(9, 1, 'Leeds', 33.92),
+	(10, 1, 'Rotherham', 12.01),
+	(11, 2, 'Shipley', 8.28),
+	(12, 1, 'TodModen', 5.38),
+	(13, 1, 'Manchester', 2.07),
+	(14, 1, 'Bristol', 44.19),
+	(15, 1, 'West Ham', 14.77),
+	(16, 2, 'Bournemouth', 41.29),
+	(17, 1, 'Crystal', 12.14),
+	(18, 1, 'Burkinham', 36.83),
+	(19, 1, 'Almouth', 47.72),
+	(20, 1, 'Beverly', 28.13);
 
 CREATE TABLE HIRES(
 	HIRE_ID INT PRIMARY KEY NOT NULL,
@@ -17,58 +61,13 @@ CREATE TABLE HIRES(
 	START_DATE DATE,
 	END_DATE DATE,
 
-	FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID),
-	FOREIGN KEY (BIKE_ID) REFERENCES BIKES(BIKE_ID)
+	FOREIGN KEY (CUSTOMER_ID) REFERENCES customer(CUSTOMER_ID),
+	FOREIGN KEY (BIKE_ID) REFERENCES bike(BIKE_ID)
 );
 
-
-INSERT INTO BIKES VALUES
-	(1, 2, 'District 1'), 
-	(2, 2, 'District 1'), 
-	(3, 2, 'District 1'), 
-	(4, 1, 'District 1'), 
-	(5, 1, 'District 1'), 
-	(6, 2, 'District 2'), 
-	(7, 2, 'District 2'), 
-	(8, 1, 'District 2'), 
-	(9, 1, 'District 2'), 
-	(10, 1, 'District 2'),
-	(11, 2, 'District 3'),
-	(12, 1, 'District 3'),
-	(13, 1, 'District 3'),
-	(14, 1, 'District 3'),
-	(15, 1, 'District 3'),
-	(16, 2, 'District 4'),
-	(17, 1, 'District 4'),
-	(18, 1, 'District 4'),
-	(19, 1, 'District 4'),
-	(20, 1, 'District 4');
-
-INSERT INTO CUSTOMERS VALUES
-	(1,'Eden Hood' , 'District 1'),
-	(2,'Vanessa Summers' , 'District 4'),
-	(3,'Zakaria Sanchez' , 'District 1'),
-	(4,'Alexander Holden' , 'District 3'),
-	(5,'Iona Moran' , 'District 2'),
-	(6,'Xander Warren' , 'District 2'),
-	(7,'Sonny Long' , 'District 1'),
-	(8,'Aysha Stein' , 'District 3');
-
 INSERT INTO HIRES VALUES
-	('1', '1', '8', '2018-12-20', '2018-12-23'),
-	('2', '3', '9', '2018-10-13', '2018-10-15'),
-	('3', '5', '12', '2018-05-07', '2018-05-09'),
-	('4', '8', '15', '2019-01-10', '2019-01-11'),
-	('5', '7', '19', '2019-02-01', '2019-02-02');
-
-
-
-
-
-
-
-
-
-
-
-
+  ('1', '1', '8', '2018-12-20', '2018-12-23'),
+  ('2', '3', '9', '2018-10-13', '2018-10-15'),
+  ('3', '5', '12', '2018-05-07', '2018-05-09'),
+  ('4', '8', '15', '2019-01-10', '2019-01-11'),
+  ('5', '7', '19', '2019-02-01', '2019-02-02');
