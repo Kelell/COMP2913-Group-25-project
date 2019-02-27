@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Employee-DesktopApp.jar" size="7152" download="eager" />
+    <jar href="Employee-DesktopApp.jar" size="7154" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="employee.desktop.app.EmployeeDesktopApp"  name="Employee-DesktopApp" />
   <update check="always"/>

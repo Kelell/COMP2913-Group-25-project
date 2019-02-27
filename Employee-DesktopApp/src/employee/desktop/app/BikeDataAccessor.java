@@ -36,7 +36,7 @@ public class BikeDataAccessor {
     public List<Bike> getFreeBikeList() throws SQLException {
         try (
             Statement stmnt = connection.createStatement();
-            ResultSet rs = stmnt.executeQuery("select * from BIKES where STATUS='0'");
+            ResultSet rs = stmnt.executeQuery("select * from BIKES where STATUS='1'");
         ){
             List<Bike> bikeList = new ArrayList<>();
             while (rs.next()) {

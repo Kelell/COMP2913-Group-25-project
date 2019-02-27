@@ -42,7 +42,6 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
-        
     }
         
     private BikeDataAccessor dataAccessor ;
@@ -52,7 +51,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
-            dataAccessor = new BikeDataAccessor("com.mysql.jdbc.Driver","jdbc:mysql://localhost:3306/testImport","root","ib1133729304"); // provide driverName, dbURL, user, password...
+            dataAccessor = new BikeDataAccessor("com.mysql.cj.jdbc.Driver","jdbc:mysql://remotemysql.com:3306/EEsET82tG5","EEsET82tG5","UhgQalxiVw"); // provide driverName, dbURL, user, password...
         }
         catch(ClassNotFoundException | SQLException e){
             System.out.print(e.toString());
