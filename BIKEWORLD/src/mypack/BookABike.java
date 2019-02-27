@@ -12,7 +12,7 @@ import java.sql.*;
 
 @WebServlet(name = "BookABike")
 public class BookABike extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, String loca) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         out.println("<form action= servlet1 method = 'post' >" +
@@ -53,12 +53,13 @@ public class BookABike extends HttpServlet {
                 int status = rs.getInt("STATUS");
                 String location = rs.getString("LOCATION");
                 float price = rs.getFloat("price");
-
-                //Display values
-                out.println("ID : " + id + "<br>");
-                out.println("Status : " + status + "<br>");
-                out.println("Location : " + location + "<br>");
-                out.println("Price : " + price + "<br>");
+                if (status == 1) {
+                    //Display values
+                    out.println("ID : " + id + "<br>");
+                    out.println("Status : " + status + "<br>");
+                    out.println("Location : " + location + "<br>");
+                    out.println("Price : " + price + "<br>");
+                }
             }
             rs.close();
             stmt.close();
@@ -81,17 +82,17 @@ public class BookABike extends HttpServlet {
             );
 
             out.println("<form action= submit method = 'post' >" +
-                    "<p>Select a Location</p>" + "\n" +
-                    "<select name = Location >" +
-                    "<option value=0>0</option>" +
-                    "<option value=1>1</option>"+
+                    "<p>Select a Location </p>" + "\n" +
+                    "<select name = Location onchange= myFunction()>" +
+                    "<option value= Please select>Please select</option>" +
+                    "<option value= Alnmouth>Alnmouth</option>" +
+                    "<option value=Beverley>1</option>"+
                     "<option value=2>2</option>"+
                     "<option value=3>3</option>"+
                     "<option value=4>4</option>"+
                     "</select>"+ "\n" +
                     "<p>Select a Bike model</p>" + "\n" +
                     "<select name = Model >" +
-                    
                     "<option value=0>0</option>" +
                     "<option value=1>1</option>"+
                     "<option value=2>2</option>"+
@@ -112,7 +113,12 @@ public class BookABike extends HttpServlet {
                     "<option value=3>72 hours</option>"+
                     "</select>"+ "\n" +
                     "<input type=submit value=Submit>" + "\n" +
-                    "</form>"
+                    "</form>" +
+                    "<script>\n" +
+                    "function myFunction() {" + "\n" +
+                    "doPost(request, response, Alnmouth)" + "\n" +
+                    "}\n" +
+                    "</script>"
             );
 
         } catch (ClassNotFoundException e) {
