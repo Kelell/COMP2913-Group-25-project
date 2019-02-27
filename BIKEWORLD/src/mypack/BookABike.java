@@ -89,6 +89,7 @@ public class BookABike extends HttpServlet {
                     "</select>"+ "\n" +
                     "<p>Select a Bike model</p>" + "\n" +
                     "<select name = Model >" +
+                    
                     "<option value=0>0</option>" +
                     "<option value=1>1</option>"+
                     "<option value=2>2</option>"+
