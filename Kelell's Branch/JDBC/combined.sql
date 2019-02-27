@@ -15,6 +15,23 @@ CREATE TABLE IF NOT EXISTS `bike` (
   PRIMARY KEY (`BIKE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `customer` (
+  `CUSTOMER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `CUSTOMER_NAME` char(30) DEFAULT NULL,
+  `CUSTOMER_ADDRESS` char(30) DEFAULT NULL,
+  PRIMARY KEY (`CUSTOMER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+INSERT INTO `customer` (`CUSTOMER_ID`, `CUSTOMER_NAME`, `CUSTOMER_ADDRESS`) VALUES
+	(1, 'Eden Hood', '179 Kings Road EXETER EX32 9IB'),
+	(2, 'Vanessa Summers', '459 King Street ENFIELD EN61 4'),
+	(3, 'Zakaria Sanchez', '220 Alexander Road NORTH WEST'),
+	(4, 'Alexander Holden', '7801 School Lane ROCHESTER ME3'),
+	(5, 'Iona Moran', '422 York Road DORCHESTER DT88'),
+	(6, 'Xander Warren', '7801 School Lane ROCHESTER ME3'),
+	(7, 'Sonny Long', '9677 Windsor Road HARROW HA81'),
+	(8, 'Aysha Stein', '8472 High Street HUDDERSFIELD');
+
 INSERT INTO `bike` (`BIKE_ID`, `STATUS`, `LOCATION`, `price`) VALUES
 	(1, 2, 'Alnmouth', 36.79),
 	(2, 2, 'Bernslkey Interchange', 28.51),
@@ -44,8 +61,8 @@ CREATE TABLE HIRES(
 	START_DATE DATE,
 	END_DATE DATE,
 
-	FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID),
-	FOREIGN KEY (BIKE_ID) REFERENCES BIKES(BIKE_ID)
+	FOREIGN KEY (CUSTOMER_ID) REFERENCES customer(CUSTOMER_ID),
+	FOREIGN KEY (BIKE_ID) REFERENCES bike(BIKE_ID)
 );
 
 INSERT INTO HIRES VALUES
@@ -54,33 +71,3 @@ INSERT INTO HIRES VALUES
   ('3', '5', '12', '2018-05-07', '2018-05-09'),
   ('4', '8', '15', '2019-01-10', '2019-01-11'),
   ('5', '7', '19', '2019-02-01', '2019-02-02');
-
-CREATE TABLE IF NOT EXISTS `customer` (
-  `CUSTOMER_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `CUSTOMER_NAME` char(30) DEFAULT NULL,
-  `CUSTOMER_ADDRESS` char(30) DEFAULT NULL,
-  PRIMARY KEY (`CUSTOMER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
-
-INSERT INTO `customer` (`CUSTOMER_ID`, `CUSTOMER_NAME`, `CUSTOMER_ADDRESS`) VALUES
-	(1, 'Eden Hood', '179 Kings Road EXETER EX32 9IB'),
-	(2, 'Vanessa Summers', '459 King Street ENFIELD EN61 4'),
-	(3, 'Zakaria Sanchez', '220 Alexander Road NORTH WEST'),
-	(4, 'Alexander Holden', '7801 School Lane ROCHESTER ME3'),
-	(5, 'Iona Moran', '422 York Road DORCHESTER DT88'),
-	(6, 'Xander Warren', '7801 School Lane ROCHESTER ME3'),
-	(7, 'Sonny Long', '9677 Windsor Road HARROW HA81'),
-	(8, 'Aysha Stein', '8472 High Street HUDDERSFIELD');
-
-CREATE TABLE IF NOT EXISTS `ticket` (
-  `ticket_id` varchar(50) NOT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `bike_id` int(11) DEFAULT NULL,
-  `START_DATE` date DEFAULT NULL,
-  `END_DATE` date DEFAULT NULL,
-  PRIMARY KEY (`ticket_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-INSERT INTO `ticket` (`ticket_id`, `customer_id`, `bike_id`, `START_DATE`, `END_DATE`) VALUES
-	('#20147082', 4, 14, '2019-02-25', '2019-02-25'),
-	('#374537245', 1, 1, '2019-02-24', '2019-02-26');
