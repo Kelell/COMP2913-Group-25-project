@@ -40,11 +40,11 @@ public class BookABike extends HttpServlet {
 
         try {
            Class.forName(driver);
-            Connection conn = DriverManager.getConnection(test.DB_URL);
+            Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
 
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "SELECT BIKE_ID, STATUS, LOCATION FROM BIKES";
+            sql = "SELECT BIKE_ID, STATUS, LOCATION, price FROM bike";
             ResultSet rs = stmt.executeQuery(sql);
 
             while(rs.next()){
@@ -52,11 +52,13 @@ public class BookABike extends HttpServlet {
                 int id  = rs.getInt("BIKE_ID");
                 int status = rs.getInt("STATUS");
                 String location = rs.getString("LOCATION");
+                float price = rs.getFloat("price");
 
                 //Display values
-                out.println("ID: " + id + "<br>");
-                out.println(", Status: " + status + "<br>");
-                out.println(", Location: " + location + "<br>");
+                out.println("ID : " + id + "<br>");
+                out.println("Status : " + status + "<br>");
+                out.println("Location : " + location + "<br>");
+                out.println("Price : " + price + "<br>");
             }
             rs.close();
             stmt.close();
