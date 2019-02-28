@@ -53,6 +53,9 @@ INSERT INTO `bike` (`BIKE_ID`, `STATUS`, `LOCATION`, `price`) VALUES
 	(18, 1, 'Burkinham', 36.83),
 	(19, 1, 'Alnmouth', 47.72),
 	(20, 1, 'Beverly', 28.13);
+	(21, 1, 'Beverly', 28.13);
+	(22, 1, 'Beverly', 28.13);
+	(23, 1, 'Hexam', 35.87)
 
 CREATE TABLE HIRES(
 	HIRE_ID INT PRIMARY KEY NOT NULL,
