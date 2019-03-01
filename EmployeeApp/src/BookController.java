@@ -1,7 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
@@ -9,10 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 import javax.swing.*;
-import java.net.URL;
 import java.sql.*;
 import java.util.Random;
-import java.util.ResourceBundle;
 
 /**
  * @author Zahoor
@@ -39,6 +36,8 @@ public class BookController {
     }
 
     public void loadData(){
+
+        con = DbConnect.getDbConnect();
 
         String b_id = bikeDetails.idProperty().getValue().toString();
         String pric = bikeDetails.priceProperty().getValue().toString();
@@ -86,6 +85,7 @@ public class BookController {
                con.rollback();
             }
 
+
         } catch (Exception e) {
             try {
                 con.rollback(); //Rollback
@@ -107,7 +107,7 @@ public class BookController {
 
     public void saveTicket(String t_id, String b_id, int customer_id){
 
-        String SQL1 = "INSERT INTO `ticket` VALUES(?,?,?,?,?)";
+        String SQL1 = "INSERT INTO `hires` VALUES(?,?,?,?,?)";
 
         try {
 
@@ -115,7 +115,7 @@ public class BookController {
             con.setAutoCommit(false); //
 
             PreparedStatement preparedStatement1 = new DbConnect().getDbConnect().prepareStatement(SQL1);
-            preparedStatement1.setString(1, t_id);
+            preparedStatement1.setString(1, null);
             preparedStatement1.setString(2, b_id);
             preparedStatement1.setInt(3, customer_id);
             preparedStatement1.setString(4, start.getValue().toString());
@@ -137,7 +137,7 @@ public class BookController {
             e.printStackTrace();
         }finally {
             try {
-                con.setAutoCommit(true); //Set Autocommit to true
+                con.setAutoCommit(true); //Set Autocomit to true
             } catch (SQLException e) {
                 e.printStackTrace();
             }
