@@ -96,7 +96,7 @@ public class BookController {
 
         }finally {
             try {
-                con.setAutoCommit(true); //Set Autocomit to true
+                con.setAutoCommit(true); //Set Autocommit to true
             } catch (SQLException e) {
                 e.printStackTrace();
             }
