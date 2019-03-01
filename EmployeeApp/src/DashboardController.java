@@ -15,6 +15,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+
 public class DashboardController implements Initializable {
 
     private static Connection con;
@@ -27,6 +28,7 @@ public class DashboardController implements Initializable {
     @FXML private TableColumn idColumn;
     @FXML private TableColumn nameColumn;
     @FXML private TableColumn addressColumn;
+    @FXML private TableColumn printColumn;
     @FXML private TextField searchField;
     @FXML private ComboBox<String> searchCombo;
 
@@ -66,6 +68,7 @@ public class DashboardController implements Initializable {
 
     private SortedList<BikeModel> sortedData;
 
+
    @Override
 
     public void initialize(URL url, ResourceBundle rb) {
@@ -95,6 +98,7 @@ public class DashboardController implements Initializable {
             idColumn.setCellValueFactory(new PropertyValueFactory("id"));
             nameColumn.setCellValueFactory(new PropertyValueFactory("name"));
             addressColumn.setCellValueFactory(new PropertyValueFactory("address"));
+
 
             // 1. Wrap the ObservableList in a FilteredList (initially display all customerData).
             FilteredList<CustomerModel> filteredData = new FilteredList<>(customerData, p -> true);
@@ -138,6 +142,7 @@ public class DashboardController implements Initializable {
                 });
             });
 
+
             // 3. Wrap the FilteredList in a SortedList.
             SortedList<CustomerModel> sortedData = new SortedList<>(filteredData);
             // 4. Bind the SortedList comparator to the TableView comparator.
@@ -153,6 +158,7 @@ public class DashboardController implements Initializable {
             System.out.println("Error on Building Data");
         }
     }
+
 
     /*
       Handles All Bikes Data and displays in a table
@@ -183,6 +189,8 @@ public class DashboardController implements Initializable {
                 return b;
             }));
             bookColumn.setText("");
+			
+
 
             // 1. Wrap the ObservableList in a FilteredList (initially display all bikeData).
             FilteredList<BikeModel> filteredData = new FilteredList<>(bikeData, p -> true);
@@ -226,6 +234,7 @@ public class DashboardController implements Initializable {
                 });
             });
 
+
             // 3. Wrap the FilteredList in a SortedList.
             sortedData = new SortedList<>(filteredData);
             // 4. Bind the SortedList comparator to the TableView comparator.
@@ -262,6 +271,8 @@ public class DashboardController implements Initializable {
                 }
             });
 
+
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
@@ -279,10 +290,10 @@ public class DashboardController implements Initializable {
 
             con = new DbConnect().getDbConnect();
             ticketData = FXCollections.observableArrayList();
-            ResultSet rs1 = con.createStatement().executeQuery("SELECT * from ticket LEFT JOIN bike ON ticket.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = ticket.customer_id");
+            ResultSet rs1 = con.createStatement().executeQuery("SELECT * from hires LEFT JOIN bike ON hires.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = hires.customer_id");
 
             while (rs1.next()) {
-                ticketData.add(new TicketModel(rs1.getString("ticket_id"),rs1.getString("customer_id"), rs1.getString("bike_id"),
+                ticketData.add(new TicketModel(rs1.getString("hire_id"),rs1.getString("customer_id"), rs1.getString("bike_id"),
                                                  rs1.getString("CUSTOMER_NAME"),rs1.getString("START_DATE"), rs1.getString("END_DATE"),
                                                  rs1.getString("price"),rs1.getString("price")));
             }
@@ -295,6 +306,11 @@ public class DashboardController implements Initializable {
             endDateColumn.setCellValueFactory(new PropertyValueFactory("endDate"));
             t_priceColumn.setCellValueFactory(new PropertyValueFactory("price"));
             totalColumn.setCellValueFactory(new PropertyValueFactory("total"));
+
+            printColumn.setCellFactory(PrintButtonCell.<TicketModel>forTableColumn("Print Ticket", (TicketModel t) -> {
+                return t;
+            }));
+
 
             // 1. Wrap the ObservableList in a FilteredList (initially display all ticket Data).
             FilteredList<TicketModel> filteredData = new FilteredList<>(ticketData, p -> true);
@@ -318,7 +334,7 @@ public class DashboardController implements Initializable {
                             break;
                         case "BY CUSTOMER NAME":
                             if (ticket.customerNameProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                                return true; // Filter matches Address
+                                return true; // Filter matches Address.
                             }
                             break;
                         case "BY BIKE ID":
@@ -343,6 +359,7 @@ public class DashboardController implements Initializable {
                 });
             });
 
+			
             // 3. Wrap the FilteredList in a SortedList.
             SortedList<TicketModel> sortedData = new SortedList<>(filteredData);
             // 4. Bind the SortedList comparator to the TableView comparator.
@@ -358,6 +375,7 @@ public class DashboardController implements Initializable {
             System.out.println("Error on Building Data");
         }
     }
+
 
     public  void reload() {
         customerPaneBuild();
