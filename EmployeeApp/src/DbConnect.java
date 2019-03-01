@@ -9,13 +9,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DbConnect {
-
+    
     //Connection method (dbconnect())
     public static Connection getDbConnect() {
-        String url = "jdbc:mysql://localhost:3306/";
+        String url = "jdbc:mysql://remotemysql.com:3306/";
 
-        String user = "root";
-        String password = "";
+        String user = "EEsET82tG5";
+        String password = "UhgQalxiVw";
 
         Connection conn = null;
         try {
@@ -25,7 +25,7 @@ public class DbConnect {
             conn.setAutoCommit(false);
 
             Statement stt=conn.createStatement();
-            stt.executeUpdate("USE combined");
+            stt.executeUpdate("USE EEsET82tG5");
 
             conn.commit(); //Commit the changes if everything is OK
 
