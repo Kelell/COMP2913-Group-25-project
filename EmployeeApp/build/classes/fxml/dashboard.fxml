@@ -121,6 +121,7 @@
                               <TableColumn fx:id="startDateColumn" minWidth="0.0" prefWidth="196.0" text="START DATE" />
                               <TableColumn fx:id="endDateColumn" minWidth="0.0" prefWidth="196.0" text="END DATE" />
                               <TableColumn fx:id="totalColumn" minWidth="0.0" prefWidth="213.0" text="TOTAL DUE" />
+                              <TableColumn fx:id="printColumn" minWidth="0.0" prefWidth="213.0" text="Print" />
                            </columns>
                         </TableView>
                      </children>
