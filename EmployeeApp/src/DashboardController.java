@@ -334,7 +334,7 @@ public class DashboardController implements Initializable {
                             break;
                         case "BY CUSTOMER NAME":
                             if (ticket.customerNameProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                                return true; // Filter matches Address.
+                                return true; // Filter matches Address
                             }
                             break;
                         case "BY BIKE ID":
