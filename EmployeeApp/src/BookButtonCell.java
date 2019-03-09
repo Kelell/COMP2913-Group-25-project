@@ -1,8 +1,6 @@
 /**
  * @author Zahoor
  */
-import java.io.IOException;
-import java.util.function.Function;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -15,27 +13,37 @@ import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
+
+/**
+ * This class handles all functions when Book Button is clicked
+ * @param <S>
+ */
 public class BookButtonCell<S> extends TableCell<S, Button> {
 
-    private final Button actionButton;
+    private final Button bookButton;
     private static Stage primaryStage;
 
 
-    public BookButtonCell(String label, Function< S, S> function) {
+    public BookButtonCell() {
+
         this.getStyleClass().add("action-button-table-cell");
 
-        this.actionButton = new Button(label);
-        this.actionButton.setOnAction((ActionEvent e) -> {
-            function.apply(getCurrentItem());
-        });
-        this.actionButton.setMaxWidth(100.0);
-        this.actionButton.setAlignment(Pos.BASELINE_CENTER);
+        //initialise the button
+        this.bookButton = new Button("Book Bike");
 
-        this.actionButton.setOnAction(new EventHandler<ActionEvent>() {
+        this.bookButton.setMaxWidth(100.0);
+        this.bookButton.setAlignment(Pos.BASELINE_CENTER);
+
+         //Perform an action when the button is clicked
+        this.bookButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
 
+                //close the dashboard
+                new LoginController().close();
 
+                //Load the Booking Screen
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/book.fxml"));
 
                 Parent root2 = null;
@@ -50,6 +58,7 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
                     primaryStage = new Stage();
                     primaryStage.setScene(scene);
                     primaryStage.show();
+                    
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -63,9 +72,10 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
         return (S) getTableView().getItems().get(getIndex());
     }
 
-    public static <S> Callback<TableColumn<S, Button>, TableCell<S, Button>> forTableColumn(String label, Function< S, S> function) {
-        return param -> new BookButtonCell<>(label, function);
+    public static <S> Callback<TableColumn<S, Button>, TableCell<S, Button>> forTableColumn() {
+        return param -> new BookButtonCell<>();
     }
+
 
     @Override
     public void updateItem(Button item, boolean empty) {
@@ -77,7 +87,7 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
             BikeModel bikeModel = (BikeModel)getCurrentItem();
             String status = bikeModel.statusProperty().getValue().toString();
             if(status.equals("Free")){
-                setGraphic(actionButton);
+                setGraphic(bookButton);
             }else{
                 setGraphic(null);
             }
