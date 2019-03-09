@@ -1,10 +1,12 @@
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
  * @author Zahoor
+ */
+
+/**
+ * Bike Model holds the structure of a bike object to display in the bike table, constructor initializes the objuect and getters to retrieve the data
  */
 public  class BikeModel {
 
@@ -13,6 +15,13 @@ public  class BikeModel {
     private StringProperty location;
     private StringProperty price;
 
+    /***
+     * Bike Model holds the properties of a bike, initialises using contructor and getters to retrieve the values
+     * @param id
+     * @param status
+     * @param location
+     * @param price
+     */
     public BikeModel(String id, String status, String location, String price) {
 
         this.bike_id = new SimpleStringProperty(id);
