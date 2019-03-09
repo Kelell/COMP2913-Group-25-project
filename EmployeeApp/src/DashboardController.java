@@ -9,16 +9,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 
 public class DashboardController implements Initializable {
 
     private static Connection con;
+
+    @FXML VBox vBox;
 
     /*
       Customer Tab
@@ -75,6 +81,7 @@ public class DashboardController implements Initializable {
        customerPaneBuild();
        bikePaneBuild();
        ticketPaneBuild();
+
     }
 
     /*
@@ -82,19 +89,28 @@ public class DashboardController implements Initializable {
      */
     private  void customerPaneBuild() {
 
+        //initialise the combo box with items
         searchCombo.getItems().setAll("BY NAME","BY ADDRESS","BY ID");
+
+        //Let first item be selected at start
         searchCombo.getSelectionModel().selectFirst();
 
         try {
 
             con = new DbConnect().getDbConnect();
+
+            //Initialises a list to hold table data
             customerData = FXCollections.observableArrayList();
+
+            //Retrieves the customer data from the database
             ResultSet rs1 = con.createStatement().executeQuery("SELECT * FROM `customer`");
 
+            //Populates the data from the database to the list to display on the customer table
             while (rs1.next()) {
                     customerData.add(new CustomerModel(rs1.getString("CUSTOMER_ID"),rs1.getString("CUSTOMER_NAME"), rs1.getString("CUSTOMER_ADDRESS")));
             }
 
+            //initialises the customer table columns
             idColumn.setCellValueFactory(new PropertyValueFactory("id"));
             nameColumn.setCellValueFactory(new PropertyValueFactory("name"));
             addressColumn.setCellValueFactory(new PropertyValueFactory("address"));
@@ -153,10 +169,13 @@ public class DashboardController implements Initializable {
             customerTable.setItems(sortedData);
 
 
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
+		
+		
     }
 
 
@@ -165,6 +184,7 @@ public class DashboardController implements Initializable {
      */
     private void bikePaneBuild() {
 
+        //Initialise the combo box with list items
         searchCombo_b.getItems().setAll("BY BIKE ID","BY LOCATION","BY PRICE");
         searchCombo_b.getSelectionModel().selectFirst();
         statusCombo.getItems().setAll("ALL","FREE","HIRED");
@@ -172,25 +192,56 @@ public class DashboardController implements Initializable {
 
         try {
 
+            //get DB Object
             con = new DbConnect().getDbConnect();
+
+            //create a list to store bike data
             bikeData = FXCollections.observableArrayList();
+
+            //Fetches data from the bike database
             ResultSet rs1 = con.createStatement().executeQuery("SELECT * FROM `bike`");
 
+            //Populates the data from the database to the list to display on the bike table
             while (rs1.next()) {
                 bikeData.add(new BikeModel(rs1.getString("BIKE_ID"),rs1.getString("STATUS"), rs1.getString("LOCATION"), rs1.getString("PRICE")));
             }
 
+            //initilase the bike table columns
             bike_idColumn.setCellValueFactory(new PropertyValueFactory("id"));
             statusColumn.setCellValueFactory(new PropertyValueFactory("status"));
             locationColumn.setCellValueFactory(new PropertyValueFactory("location"));
             priceColumn.setCellValueFactory(new PropertyValueFactory("price"));
 
-            bookColumn.setCellFactory(BookButtonCell.<BikeModel>forTableColumn("BOOK BIKE", (BikeModel b) -> {
-                return b;
-            }));
-            bookColumn.setText("");
-			
+            // Table cell coloring
+            statusColumn.setCellFactory(new Callback<TableColumn<String, String>, TableCell<String, String>>() {
+                @Override
+                public TableCell<String, String> call(TableColumn<String, String> param) {
+                    return new TableCell<String, String>() {
 
+                        @Override
+                        public void updateItem(String item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (!isEmpty()) {
+
+                                // Get fancy and change color based on data
+                                if(item.equals("Hired")){
+                                    this.setTextFill(Color.RED);
+                                }else{
+                                    this.setTextFill(Color.GREEN);
+                                }
+                                setText(item);
+
+                            }
+                        }
+
+                    };
+                }
+            });
+
+            //Book column needs a custom class BookButtonCell to be able to display a button on the column
+            bookColumn.setCellFactory(BookButtonCell.<BikeModel>forTableColumn());
+
+            bookColumn.setText("");
 
             // 1. Wrap the ObservableList in a FilteredList (initially display all bikeData).
             FilteredList<BikeModel> filteredData = new FilteredList<>(bikeData, p -> true);
@@ -277,27 +328,35 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
+
     }
     /*
       Handles All Ticket Data and displays in a table
      */
     private void ticketPaneBuild() {
 
+        //initiliase the combo box on the ticket panel
         searchCombo_t.getItems().setAll("BY TICKET ID","BY CUSTOMER NAME","BY BIKE ID","BY CUSTOMER ID");
         searchCombo_t.getSelectionModel().selectFirst();
 
         try {
 
             con = new DbConnect().getDbConnect();
-            ticketData = FXCollections.observableArrayList();
-            ResultSet rs1 = con.createStatement().executeQuery("SELECT * from hires LEFT JOIN bike ON hires.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = hires.customer_id");
 
+            // A list to store ticket data fromm DB and display on the table
+            ticketData = FXCollections.observableArrayList();
+
+            //Retreives data from the ticket table
+            ResultSet rs1 = con.createStatement().executeQuery("SELECT *,TRUNCATE((days * price),2)  as total from hires LEFT JOIN bike ON hires.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = hires.customer_id");
+
+            //Populates the data from the database to the list to display on the ticket table
             while (rs1.next()) {
                 ticketData.add(new TicketModel(rs1.getString("hire_id"),rs1.getString("customer_id"), rs1.getString("bike_id"),
                                                  rs1.getString("CUSTOMER_NAME"),rs1.getString("START_DATE"), rs1.getString("END_DATE"),
-                                                 rs1.getString("price"),rs1.getString("price")));
+                                                 rs1.getString("price"),rs1.getString("total")));
             }
 
+            //Initialise the columns on the ticket table
             ticket_idColumn.setCellValueFactory(new PropertyValueFactory("id"));
             customerID.setCellValueFactory(new PropertyValueFactory("customer_id"));
             t_bike_idColumn.setCellValueFactory(new PropertyValueFactory("bike_id"));
@@ -307,9 +366,8 @@ public class DashboardController implements Initializable {
             t_priceColumn.setCellValueFactory(new PropertyValueFactory("price"));
             totalColumn.setCellValueFactory(new PropertyValueFactory("total"));
 
-            printColumn.setCellFactory(PrintButtonCell.<TicketModel>forTableColumn("Print Ticket", (TicketModel t) -> {
-                return t;
-            }));
+            //Print Column has a button, needs a custom class to allow that
+            printColumn.setCellFactory(PrintButtonCell.<TicketModel>forTableColumn());
 
 
             // 1. Wrap the ObservableList in a FilteredList (initially display all ticket Data).
@@ -323,7 +381,7 @@ public class DashboardController implements Initializable {
                         return true;
                     }
 
-                    // Compare value of every ticket with filter text.
+                    // Compare value of every ticket  with filter text.
                     String lowerCaseFilter = newValue.toLowerCase();
 
                     switch(searchCombo_t.getSelectionModel().getSelectedItem()) {
@@ -334,7 +392,7 @@ public class DashboardController implements Initializable {
                             break;
                         case "BY CUSTOMER NAME":
                             if (ticket.customerNameProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                                return true; // Filter matches Address
+                                return true; // Filter matches Address.
                             }
                             break;
                         case "BY BIKE ID":
@@ -359,7 +417,7 @@ public class DashboardController implements Initializable {
                 });
             });
 
-			
+
             // 3. Wrap the FilteredList in a SortedList.
             SortedList<TicketModel> sortedData = new SortedList<>(filteredData);
             // 4. Bind the SortedList comparator to the TableView comparator.
@@ -374,12 +432,7 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
+
     }
 
-
-    public  void reload() {
-        customerPaneBuild();
-        bikePaneBuild();
-        ticketPaneBuild();
-    }
 }
