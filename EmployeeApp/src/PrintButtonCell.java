@@ -1,5 +1,5 @@
 /**
- * Created by Zahoor on 2/23/2019.
+ * @author Zahoor
  */
 
 import javafx.application.Platform;
@@ -9,7 +9,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -23,28 +22,28 @@ import net.sf.jasperreports.view.JRViewer;
 import javax.swing.*;
 import java.io.File;
 import java.sql.Connection;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.function.Function;
 
+/**
+ * This class sets up the actions when print button is clicked
+ * @param <S>
+ */
 public class PrintButtonCell<S> extends TableCell<S, Button> {
 
-    private final Button actionButton;
-    private static Stage primaryStage;
+    private final Button printButton;
 
 
-    public PrintButtonCell(String label, Function< S, S> function) {
+    public PrintButtonCell() {
         this.getStyleClass().add("action-button-table-cell");
 
-        this.actionButton = new Button(label);
-        this.actionButton.setOnAction((ActionEvent e) -> {
-            function.apply(getCurrentItem());
-        });
-        this.actionButton.setMaxWidth(100.0);
-        this.actionButton.setAlignment(Pos.BASELINE_CENTER);
+        //initialises the print button
+        this.printButton = new Button("Print Ticket");
 
-        this.actionButton.setOnAction(new EventHandler<ActionEvent>() {
+        this.printButton.setMaxWidth(100.0);
+        this.printButton.setAlignment(Pos.BASELINE_CENTER);
+
+        //When clicked prints pdf using jasper reports
+        this.printButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
 
@@ -54,31 +53,28 @@ public class PrintButtonCell<S> extends TableCell<S, Button> {
                     @Override
                     public void run() {
 
-                        DateFormat dfmt = new SimpleDateFormat("yyyy-MM-dd");
-                        java.util.Date dt = new java.util.Date();
-                        String date = dfmt.format(dt);
-                        DateFormat tfmt = new SimpleDateFormat("hh:mm:ss");
-                        java.util.Date tm = new java.util.Date();
-                        String time = tfmt.format(tm);
 
                         try {
 
+                            //Jasper reports loads the xml
                             JasperDesign jd = JRXmlLoader.load(new File("").getAbsolutePath()+"/src/posreceipt.jrxml");
-
                             HashMap params = new HashMap();
-                            //params.put("phone", "9123456789");
 
+                            //Gets the bike id
                             String id = ticketModel.bike_idProperty().getValue().toString();
 
                             Connection con = DbConnect.getDbConnect();
 
+                            //Generates receipt from the database and passes to jasper reports
                             JRDesignQuery newQuery = new JRDesignQuery();
-                            newQuery.setText("SELECT *,  DATE_FORMAT(start_date, \"%d %M %Y\") as start,DATE_FORMAT(end_date, \"%d %M %Y\") as end from hires LEFT JOIN bike ON hires.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = hires.customer_id where hires.BIKE_ID = "+id+";");
+                            newQuery.setText("SELECT *, concat(\"£ \",price) as f_price ,   concat(\"£ \",TRUNCATE((days * price),2))  as total, concat(\"£ \",TRUNCATE((cash  - (days * price)),2))  as changec,concat(\"£ \",cash) as cash_c, DATE_FORMAT(start_date, \"%d %M %Y\") as start,DATE_FORMAT(end_date, \"%d %M %Y\") as end from hires LEFT JOIN bike ON hires.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = hires.customer_id where hires.BIKE_ID = "+id+";");
                             jd.setQuery(newQuery);
 
+                            //Compiles the jasper report
                             JasperReport jr = JasperCompileManager.compileReport(jd);
                             JasperPrint jp = JasperFillManager.fillReport(jr,params, con);
 
+                            //Displays the pdf on the window
                             JFrame frame = new JFrame("Print");
                             frame.getContentPane().add(new JRViewer(jp));
                             frame.setSize(600,450);
@@ -88,18 +84,6 @@ public class PrintButtonCell<S> extends TableCell<S, Button> {
                             e.printStackTrace();
                         }
 
-                      /*  try {
-
-                            InputStream stream = getClass().getResourceAsStream("posreceipt.jrxml");
-
-                            JasperDesign jd = JRXmlLoader.load(stream);
-                            JasperReport jr = JasperCompileManager.compileReport(jd);
-                            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
-
-                            JasperPrintManager.printReport(jp, false);
-                        } catch (JRException e1) {
-                            e1.printStackTrace();
-                        }*/
                     }
                 });
 
@@ -114,8 +98,8 @@ public class PrintButtonCell<S> extends TableCell<S, Button> {
         return (S) getTableView().getItems().get(getIndex());
     }
 
-    public static <S> Callback<TableColumn<S, Button>, TableCell<S, Button>> forTableColumn(String label, Function< S, S> function) {
-        return param -> new PrintButtonCell<>(label, function);
+    public static <S> Callback<TableColumn<S, Button>, TableCell<S, Button>> forTableColumn() {
+        return param -> new PrintButtonCell<>();
     }
 
     @Override
@@ -125,11 +109,8 @@ public class PrintButtonCell<S> extends TableCell<S, Button> {
         if (empty) {
             setGraphic(null);
         } else {
-            setGraphic(actionButton);
+            setGraphic(printButton);
         }
     }
 
-    public static void close(){
-        primaryStage.close();
-    }
 }
