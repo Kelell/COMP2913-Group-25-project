@@ -4,6 +4,10 @@ import javafx.beans.property.StringProperty;
 /**
  * @author Zahoor
  */
+
+/**
+ * Ticket Model holds the structure of a ticket object to display in the ticket table, constructor initializes the object and getters to retrieve the data
+ */
 public  class TicketModel {
 
     private StringProperty id;
@@ -15,6 +19,17 @@ public  class TicketModel {
     private StringProperty price;
     private StringProperty total;
 
+    /**
+     * Contructor initiliases the ticket object
+     * @param id
+     * @param customer_id
+     * @param bike_id
+     * @param customerName
+     * @param startDate
+     * @param endDate
+     * @param price
+     * @param total
+     */
     public TicketModel(String id, String customer_id, String bike_id, String customerName, String startDate, String endDate, String price, String total) {
         this.id = new SimpleStringProperty(id);
         this.customer_id = new SimpleStringProperty(customer_id);
