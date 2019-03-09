@@ -4,12 +4,22 @@ import javafx.beans.property.StringProperty;
 /**
  * @author Zahoor
  */
+
+/**
+ * Customer Model holds the structure of a customer object to display in the customer table, constructor initializes the objuect and getters to retrieve the data
+ */
 public  class CustomerModel {
 
     private StringProperty id;
     private StringProperty name;
     private StringProperty address;
 
+    /**
+     * Construtor initialises the Customer Model
+     * @param id
+     * @param name - name of customer
+     * @param address
+     */
     public CustomerModel(String id, String name, String address) {
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
@@ -27,5 +37,5 @@ public  class CustomerModel {
     public StringProperty addressProperty() {
         return address;
     }
-    
+	
 }
