@@ -1,3 +1,4 @@
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +13,7 @@ import java.sql.ResultSet;
 
 public class LoginController {
 
-    Stage primaryStage;
+    private static Stage primaryStage;
     @FXML
        TextField usernameField;
      @FXML
@@ -22,29 +23,36 @@ public class LoginController {
 
     private static Connection con;
 
-    
+    /**
+     * Login Controller handles login operations
+     */
     public void loginButtonHandler() {
         Parent root = null;
 
         try {
 
+            //Get database conenction
             con = new DbConnect().getDbConnect();
 
             String username  = usernameField.getText();
 
+            //check if user exist
             ResultSet rs1 = con.createStatement().executeQuery("select * from admin  WHERE `username` ='"+username+"' ");
 
             if(rs1.next()){
 
-                String encryped_password =  rs1.getString("password");
-                String salt =  rs1.getString("salt");
-               // String password = decryptedPassword(encryped_password,salt);
                 String password = rs1.getString("password");
 
+                //If password is correct
                 if(passwordField.getText().equals(password)){
+
+                    //reset the status
                     status.setText("NOT LOGGED IN");
 
-                        try {
+                    /**
+                     * Proceed to dashboard
+                     */
+                    try {
                             root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
                             primaryStage = new Stage();
                             primaryStage.setScene(new Scene(root, 993, 561));
@@ -55,12 +63,24 @@ public class LoginController {
                         }
 
                 }else{
+                    //If password is incorrect
                     status.setText("Invalid Username or Password");
                 }
             }
 
+
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
+
+
+    public void close(){
+        primaryStage.close();
+    }
+
+
+
 }
