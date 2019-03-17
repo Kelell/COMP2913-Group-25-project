@@ -55,7 +55,7 @@
       <file leaf-file-name="bike.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/bike.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
+            <state relative-caret-position="630">
               <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
             </state>
           </provider>
@@ -346,12 +346,12 @@
       <workItem from="1551287121723" duration="1525000" />
       <workItem from="1551288911419" duration="1892000" />
       <workItem from="1551292853699" duration="25000" />
-      <workItem from="1551292900452" duration="5499000" />
+      <workItem from="1551292900452" duration="5639000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55795000" />
+    <option name="totallyTimeSpent" value="55935000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
@@ -376,7 +376,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="7" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.3281412" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4953125" weight="0.3281412" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8033058" visible="true" weight="0.25" />
       <window_info id="Web" order="2" sideWeight="0.19669421" side_tool="true" weight="0.25" />
@@ -626,7 +626,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/bike.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
+        <state relative-caret-position="630">
           <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
         </state>
       </provider>
