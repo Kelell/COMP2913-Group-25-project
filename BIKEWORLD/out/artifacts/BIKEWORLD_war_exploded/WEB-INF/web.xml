@@ -45,4 +45,14 @@
         <url-pattern>/Register</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Available</servlet-name>
+        <servlet-class>mypack.AvailableBikes</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Available</servlet-name>
+        <url-pattern>/Available</url-pattern>
+    </servlet-mapping>
+
 </web-app>
