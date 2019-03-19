@@ -26,7 +26,7 @@ public class BookABike extends HttpServlet {
         String driver = "com.mysql.cj.jdbc.Driver";
 
         try {
-           Class.forName(driver);
+            Class.forName(driver);
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
             String sql;
@@ -73,31 +73,33 @@ public class BookABike extends HttpServlet {
             );
             out.println(
                     "<form action= book method = 'post' >" +
-                    "<p>Select a Location</p>" + "\n" +
-                    "<select name = Location required = 'required'>" +
-                    "<option value=Alnmouth>Alnmouth</option>" +
-                    "<option value=Beverly>Beverly</option>"+
-                    "<option value=Crystal>Crystal</option>"+
-                    "<option value=Hexam>Hexam</option>"+
-                    "</select>"+ "\n" +
-                    "<p>How long would you like the bike</p> "   + "\n" +
-                    "<select id = 'myDur' name = Dur required = 'required' onchange=\"myFunction()\"> " +
-                    "<option value=4>4 hours</option>"  +
-                    "<option value=3>3 hours</option>"  +
-                    "<option value=2>2 hours</option>"  +
-                    "<option value=1>1 hours</option>" +
-                    "<option value=0.5>30 mins</option>" +
-                    "</select>" + "\n" +
-                    "<input type=submit value=Submit>" + "\n" +
-                    "</form>" + "\n" +
-                    "<script>"  + "\n" +
-                    "function myFunction() {"   + "\n" +
-                        "var x = document.getElementById('myDur').value;"   + "\n" +
-                        "if (x == 3){"    + "\n" +
-                            "document.getElementById('myDur').style.display = 'none';" + "\n" +
-                        "}" + "\n" +
-                    "} " + "\n" +
-                    "</script>"
+                            "<p name = Location >Select a Location</p>" + "\n" +
+                            "<select name = Location required = 'required' onchange=\"myFunction()\" >" +
+                            "<option selected value= 'Please select'>Please select</option>" +
+                            "<option value=Alnmouth>Alnmouth</option>" +
+                            "<option value=Beverly>Beverly</option>"+
+                            "<option value=Crystal>Crystal</option>"+
+                            "<option value=Hexam>Hexam</option>"+
+                            "</select>"+ "\n" +
+                            "<p style=\"display:none;\" name = Dur >How long would you like the bike</p> "   + "\n" +
+                            "<select style=\"display:none;\" name = Dur required = 'required' onchange=\"myFunction2()\"> " +
+                            "<option selected value= 0>Please select</option>" +
+                            "<option value=4>4 hours</option>"  +
+                            "<option value=3>3 hours</option>"  +
+                            "<option value=2>2 hours</option>"  +
+                            "<option value=1>1 hours</option>" +
+                            "<option value=0.5>30 mins</option>" +
+                            "</select>" + "\n" +
+                            "<input style=\"display:none;\" type=submit value=Submit>" + "\n" +
+                            "</form>" + "\n" +
+                            "<script>"  + "\n" +
+                            "function myFunction() {"   + "\n" +
+                            "var x = document.getElementsByName('myDur')"   + "\n" +
+                            "if (x.value !=  'Please select'){" + "\n" +
+                            "x.style.display = 'block';" + "\n" +
+                            "}" + "\n" +
+                            "} " + "\n" +
+                            "</script>"
             );
 
         } catch (ClassNotFoundException e) {
