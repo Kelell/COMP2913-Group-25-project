@@ -11,6 +11,11 @@
     <title>LogIn</title>
 </head>
 <body>
-
+<form action="LogIn" method="post">
+    User name : <input type="text" name="user" required="required">
+    Password : <input type="password" name="password" required="required">
+    <input type="submit" value="Login">
+    Don't have an account?<a href="registration.jsp">Register</a>
+</form>
 </body>
 </html>

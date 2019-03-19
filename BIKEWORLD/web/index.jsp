@@ -18,6 +18,7 @@
     <a href="book">Book A Bike</a>
     <a href="AboutUs.jsp">About Us</a>
     <a href="ContactUs.jsp">Contact Us</a>
+    <a href="LogIn.jsp">LogIn</a>
     <a href="registration.jsp">Register</a>
     <a href="AvailableBikes.jsp">See bikes</a>
     <a>Log out</a>
