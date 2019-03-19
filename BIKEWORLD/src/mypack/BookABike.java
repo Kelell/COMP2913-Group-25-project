@@ -103,8 +103,8 @@ public class BookABike extends HttpServlet {
                             "<p style=\"display:none;\" name = Time1 >Select a Time to book</p>" + "\n" +
                             "<select onclick =\"myFunction4()\" style=\"display:none;\" name = Time1 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
-                            "<option value= \"8-9\" >8 am to 9 am</option>" + "\n" +
-                            "<option value= \"9-10\" >9 am to 10 am</option>" + "\n" +
+                            "<option value= \"08-09\" >8 am to 9 am</option>" + "\n" +
+                            "<option value= \"09-10\" >9 am to 10 am</option>" + "\n" +
                             "<option value= \"10-11\" >10 am to 11 am</option>" + "\n" +
                             "<option value= \"11-12\" >11 am to 12 pm</option>" + "\n" +
                             "<option value= \"12-13\" >12 pm to 1 pm</option>" + "\n" +
@@ -120,8 +120,8 @@ public class BookABike extends HttpServlet {
                             "<p style=\"display:none;\" name = Time2 >Select a Time to book</p>" + "\n" +
                             "<select onclick =\"myFunction4()\" style=\"display:none;\" name = Time2 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
-                            "<option value= \"8-10\" >8 am to 10 am</option>" + "\n" +
-                            "<option value= \"9-11\" >9 am to 11 am</option>" + "\n" +
+                            "<option value= \"08-10\" >8 am to 10 am</option>" + "\n" +
+                            "<option value= \"09-11\" >9 am to 11 am</option>" + "\n" +
                             "<option value= \"10-12\" >10 am to 12 pm</option>" + "\n" +
                             "<option value= \"11-13\" >11 am to 1 pm</option>" + "\n" +
                             "<option value= \"12-14\" >12 pm to 2 pm</option>" + "\n" +
@@ -136,8 +136,8 @@ public class BookABike extends HttpServlet {
                             "<p style=\"display:none;\" name = Time3 >Select a Time to book</p>" + "\n" +
                             "<select onclick=\"myFunction4()\" style=\"display:none;\" name = Time3 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
-                            "<option value= \"8-11\" >8 am to 11 am</option>" + "\n" +
-                            "<option value= \"9-12\" >9 am to 12 pm</option>" + "\n" +
+                            "<option value= \"08-11\" >8 am to 11 am</option>" + "\n" +
+                            "<option value= \"09-12\" >9 am to 12 pm</option>" + "\n" +
                             "<option value= \"10-13\" >10 am to 1 pm</option>" + "\n" +
                             "<option value= \"11-14\" >11 am to 2 pm</option>" + "\n" +
                             "<option value= \"12-15\" >12 pm to 3 pm</option>" + "\n" +
@@ -151,8 +151,8 @@ public class BookABike extends HttpServlet {
                             "<p style=\"display:none;\" name = Time4 >Select a Time to book</p>" + "\n" +
                             "<select onclick=\"myFunction4()\" style=\"display:none;\" name = Time4 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
-                            "<option value= \"8-12\" >8 am to 12 pm</option>" + "\n" +
-                            "<option value= \"9-13\" >9 am to 1 pm</option>" + "\n" +
+                            "<option value= \"08-12\" >8 am to 12 pm</option>" + "\n" +
+                            "<option value= \"09-13\" >9 am to 1 pm</option>" + "\n" +
                             "<option value= \"10-14\" >10 am to 2 pm</option>" + "\n" +
                             "<option value= \"11-15\" >11 am to 3 pm</option>" + "\n" +
                             "<option value= \"12-16\" >12 pm to 4 pm</option>" + "\n" +
@@ -165,6 +165,8 @@ public class BookABike extends HttpServlet {
 
 
                             "<p style=\"display:none;color:red;\" id =\"error2\"> tooo lattee</p>" +
+
+                            "<p style=\"display:none;color:red;\" id =\"error3\"> No more bookings today</p>" +
 
 
 
@@ -395,10 +397,25 @@ public class BookABike extends HttpServlet {
                             "var f = document.getElementsByName('Time3')"   + "\n" +
                             "var g = document.getElementsByName('Time4')"   + "\n" +
                             "var x = document.getElementById('path')"   + "\n" +
+                            "var y = document.getElementById('error2')"   + "\n" +
+                            "var y2 = document.getElementById('error3')"   + "\n" +
                             "var z = document.getElementById('submit')"   + "\n" +
-                            "var btime = x.value.substring(0,1)"   + "\n" +
-                            "if (x.value != 0){" + "\n" +
+                            "var btime = parseInt(x.value.substring(0,2))"   + "\n" +
+                            "var today = new Date();" +
+                            "var time = today.getHours();" +
+                            "y.style.display = 'none'; " +
+                            "y2.style.display = 'none'; " +
+                            "if (x.value != 0 ){" + "\n" +
+                            "if (btime < time + 1 && time < 20){" + "\n" +
+                            "y.style.display = 'block'; " +
+                            "} " + "\n" +
+                            "if (time >= 20){" + "\n" +
+                            "y2.style.display = 'block'; " +
+                            "} " + "\n" +
+                            "else{" +
+                            "a[0].innerHTML = btime;" +
                             "z.style.display = 'block' " +
+                            "} " + "\n" +
                             "} " + "\n" +
                             "} " + "\n" +
 
