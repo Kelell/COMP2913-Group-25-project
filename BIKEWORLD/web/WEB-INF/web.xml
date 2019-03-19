@@ -25,15 +25,6 @@
         <url-pattern>/book</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>1</servlet-name>
-        <servlet-class>mypack.Book1</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>1</servlet-name>
-        <url-pattern>/book1</url-pattern>
-    </servlet-mapping>
 
 
     <servlet>
