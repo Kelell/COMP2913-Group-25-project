@@ -286,6 +286,14 @@ public class BookABike extends HttpServlet {
                             "var e = document.getElementsByName('Time2')"   + "\n" +
                             "var f = document.getElementsByName('Time3')"   + "\n" +
                             "var g = document.getElementsByName('Time4')"   + "\n" +
+                            "var today = new Date();" +
+                            "var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();" +
+                            "var currentyear = parseInt(today.getFullYear());"+
+                            "var currentmonth = parseInt((today.getMonth()+1));"+
+                            "var currentday = parseInt(today.getDate());"+
+                            "var inputyear = parseInt(c[1].value.substring(0,4));"+
+                            "var inputmonth = parseInt(c[1].value.substring(5,7));"+
+                            "var inputdate = parseInt(c[1].value.substring(8,10));"+
                             "if (c[1].value !=  '0000-00-00'){" + "\n" +
                             "if (b[1].value == 4){" + "\n" +
                             "if (g[1].style.display == 'none'){" + "\n" +
@@ -325,19 +333,23 @@ public class BookABike extends HttpServlet {
                             "}" + "\n" +
                             "}" + "\n" +
                             "if (c[1].value == '0000-00-00'){" + "\n" +
-                            "d[0].style.display = 'block';" + "\n" +
-                            "d[1].style.display = 'block';" + "\n" +
-                            "e[0].style.display = 'block';" + "\n" +
-                            "e[1].style.display = 'block';" + "\n" +
-                            "f[0].style.display = 'block';" + "\n" +
-                            "f[1].style.display = 'block';" + "\n" +
-                            "g[0].style.display = 'block';" + "\n" +
-                            "g[1].style.display = 'block';" + "\n" +
+                            "d[0].style.display = 'none';" + "\n" +
+                            "d[1].style.display = 'none';" + "\n" +
+                            "e[0].style.display = 'none';" + "\n" +
+                            "e[1].style.display = 'none';" + "\n" +
+                            "f[0].style.display = 'none';" + "\n" +
+                            "f[1].style.display = 'none';" + "\n" +
+                            "g[0].style.display = 'none';" + "\n" +
+                            "g[1].style.display = 'none';" + "\n" +
                             "}" + "\n" +
+
+                            "if ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate >= currentday)){" + "\n" +
+                            
                             "} " + "\n" +
-
-
-
+                            "else{" + "\n" +
+                            "a[0].innerHTML = -1;" + "\n" +
+                            "} " + "\n" +
+                            "} " + "\n" +
                             "</script>"
 
             );
