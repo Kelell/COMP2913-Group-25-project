@@ -96,12 +96,12 @@ public class BookABike extends HttpServlet {
                             "<p style=\"display:none;\" name=\"date\" >Enter Date: </p> " + "\n" +
                             "<input onchange=\"myFunction3()\" required = 'required' style=\"display:none;\"  type=\"date\" name=\"date\" required=\"required\">" + "\n" +
 
-                            "<p style=\"display:none;color:red;\" name=\"error\"> Error buddy</p>" +
+                            "<p style=\"display:none;color:red;\" id =\"error\"> Error buddy</p>" +
 
 
 
                             "<p style=\"display:none;\" name = Time1 >Select a Time to book</p>" + "\n" +
-                            "<select style=\"display:none;\" name = Time1 required = \"required\" >" + "\n" +
+                            "<select onclick =\"myFunction4()\" style=\"display:none;\" name = Time1 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
                             "<option value= \"8-9\" >8 am to 9 am</option>" + "\n" +
                             "<option value= \"9-10\" >9 am to 10 am</option>" + "\n" +
@@ -118,7 +118,7 @@ public class BookABike extends HttpServlet {
                             "</select>" + "\n" +
 
                             "<p style=\"display:none;\" name = Time2 >Select a Time to book</p>" + "\n" +
-                            "<select style=\"display:none;\" name = Time2 required = \"required\" >" + "\n" +
+                            "<select onclick =\"myFunction4()\" style=\"display:none;\" name = Time2 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
                             "<option value= \"8-10\" >8 am to 10 am</option>" + "\n" +
                             "<option value= \"9-11\" >9 am to 11 am</option>" + "\n" +
@@ -134,7 +134,7 @@ public class BookABike extends HttpServlet {
                             "</select>" + "\n" +
 
                             "<p style=\"display:none;\" name = Time3 >Select a Time to book</p>" + "\n" +
-                            "<select style=\"display:none;\" name = Time3 required = \"required\" >" + "\n" +
+                            "<select onclick=\"myFunction4()\" style=\"display:none;\" name = Time3 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
                             "<option value= \"8-11\" >8 am to 11 am</option>" + "\n" +
                             "<option value= \"9-12\" >9 am to 12 pm</option>" + "\n" +
@@ -149,7 +149,7 @@ public class BookABike extends HttpServlet {
                             "</select>" + "\n" +
 
                             "<p style=\"display:none;\" name = Time4 >Select a Time to book</p>" + "\n" +
-                            "<select style=\"display:none;\" name = Time4 required = \"required\" >" + "\n" +
+                            "<select onclick=\"myFunction4()\" style=\"display:none;\" name = Time4 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
                             "<option value= \"8-12\" >8 am to 12 pm</option>" + "\n" +
                             "<option value= \"9-13\" >9 am to 1 pm</option>" + "\n" +
@@ -161,7 +161,15 @@ public class BookABike extends HttpServlet {
                             "<option value= \"15-19\" >3 pm to 7 pm</option>" + "\n" +
                             "<option value= \"16-20\" >4 pm to 8 pm</option>" + "\n" +
                             "</select>" + "\n" +
-                            "<input style=\"display:none;\" type=submit value=Submit>" + "\n" +
+
+
+
+                            "<p style=\"display:none;color:red;\" id =\"error2\"> tooo lattee</p>" +
+
+
+
+                            "<br><br>" +
+                            "<input id = \"submit\" style=\"display:none;\" type=submit value=Submit>" + "\n" +
                             "</form>" + "\n" +
                             "<script>"  + "\n" +
 
@@ -286,6 +294,8 @@ public class BookABike extends HttpServlet {
                             "var e = document.getElementsByName('Time2')"   + "\n" +
                             "var f = document.getElementsByName('Time3')"   + "\n" +
                             "var g = document.getElementsByName('Time4')"   + "\n" +
+                            "var h = document.getElementById('error')"   + "\n" +
+                            "h.style.display = 'none';"   + "\n" +
                             "var today = new Date();" +
                             "var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();" +
                             "var currentyear = parseInt(today.getFullYear());"+
@@ -294,11 +304,16 @@ public class BookABike extends HttpServlet {
                             "var inputyear = parseInt(c[1].value.substring(0,4));"+
                             "var inputmonth = parseInt(c[1].value.substring(5,7));"+
                             "var inputdate = parseInt(c[1].value.substring(8,10));"+
+                            "if ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate >= currentday)){" + "\n" +
                             "if (c[1].value !=  '0000-00-00'){" + "\n" +
                             "if (b[1].value == 4){" + "\n" +
                             "if (g[1].style.display == 'none'){" + "\n" +
                             "g[0].style.display = 'block';" + "\n" +
                             "g[1].style.display = 'block';" + "\n" +
+                            "g[1].setAttribute(\"id\", \"path\");" +
+                            "f[1].removeAttribute('id');" +
+                            "e[1].removeAttribute('id');" +
+                            "d[1].removeAttribute('id');" +
                             "}" + "\n" +
                             "if (g[1].style.display == 'block'){" + "\n" +
                             "g[1].value = 0;" + "\n" +
@@ -308,6 +323,10 @@ public class BookABike extends HttpServlet {
                             "if (f[1].style.display == 'none'){" + "\n" +
                             "f[0].style.display = 'block';" + "\n" +
                             "f[1].style.display = 'block';" + "\n" +
+                            "g[1].removeAttribute('id');" +
+                            "f[1].setAttribute(\"id\", \"path\");" +
+                            "e[1].removeAttribute('id');" +
+                            "d[1].removeAttribute('id');" +
                             "}" + "\n" +
                             "if (f[1].style.display == 'block'){" + "\n" +
                             "f[1].value = 0;" + "\n" +
@@ -317,6 +336,10 @@ public class BookABike extends HttpServlet {
                             "if (e[1].style.display == 'none'){" + "\n" +
                             "e[0].style.display = 'block';" + "\n" +
                             "e[1].style.display = 'block';" + "\n" +
+                            "g[1].removeAttribute('id');" +
+                            "f[1].removeAttribute('id');" +
+                            "e[1].setAttribute(\"id\", \"path\");" +
+                            "d[1].removeAttribute('id');" +
                             "}" + "\n" +
                             "if (e[1].style.display == 'block'){" + "\n" +
                             "e[1].value = 0;" + "\n" +
@@ -326,6 +349,10 @@ public class BookABike extends HttpServlet {
                             "if (d[1].style.display == 'none'){" + "\n" +
                             "d[0].style.display = 'block';" + "\n" +
                             "d[1].style.display = 'block';" + "\n" +
+                            "g[1].removeAttribute('id');" +
+                            "f[1].removeAttribute('id');" +
+                            "e[1].removeAttribute('id');" +
+                            "d[1].setAttribute(\"id\", \"path\");" +
                             "}" + "\n" +
                             "if (d[1].style.display == 'block'){" + "\n" +
                             "d[1].value = 0;" + "\n" +
@@ -342,14 +369,40 @@ public class BookABike extends HttpServlet {
                             "g[0].style.display = 'none';" + "\n" +
                             "g[1].style.display = 'none';" + "\n" +
                             "}" + "\n" +
-
-                            "if ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate >= currentday)){" + "\n" +
-                            
                             "} " + "\n" +
                             "else{" + "\n" +
-                            "a[0].innerHTML = -1;" + "\n" +
+                            "d[0].style.display = 'none';" + "\n" +
+                            "d[1].style.display = 'none';" + "\n" +
+                            "e[0].style.display = 'none';" + "\n" +
+                            "e[1].style.display = 'none';" + "\n" +
+                            "f[0].style.display = 'none';" + "\n" +
+                            "f[1].style.display = 'none';" + "\n" +
+                            "g[0].style.display = 'none';" + "\n" +
+                            "g[1].style.display = 'none';" + "\n" +
+                            "c[1].value = '0000-00-00'" + "\n" +
+                            "h.style.display = 'block';"   + "\n" +
+
                             "} " + "\n" +
                             "} " + "\n" +
+
+
+                            "function myFunction4() {"   + "\n" +
+                            "var a = document.getElementsByName('Location')"   + "\n" +
+                            "var b = document.getElementsByName('Dur')"   + "\n" +
+                            "var c = document.getElementsByName('date')"   + "\n" +
+                            "var d = document.getElementsByName('Time1')"   + "\n" +
+                            "var e = document.getElementsByName('Time2')"   + "\n" +
+                            "var f = document.getElementsByName('Time3')"   + "\n" +
+                            "var g = document.getElementsByName('Time4')"   + "\n" +
+                            "var x = document.getElementById('path')"   + "\n" +
+                            "var z = document.getElementById('submit')"   + "\n" +
+                            "var btime = x.value.substring(0,1)"   + "\n" +
+                            "if (x.value != 0){" + "\n" +
+                            "z.style.display = 'block' " +
+                            "} " + "\n" +
+                            "} " + "\n" +
+
+
                             "</script>"
 
             );

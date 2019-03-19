@@ -43,8 +43,8 @@
       <file leaf-file-name="BookABike.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="346" column="28" selection-start-line="346" selection-start-column="28" selection-end-line="346" selection-end-column="28" />
+            <state relative-caret-position="307">
+              <caret line="166" column="93" selection-start-line="166" selection-start-column="93" selection-end-line="166" selection-end-column="93" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1249#1258#0" expanded="true" />
@@ -356,15 +356,16 @@
       <workItem from="1552942353818" duration="9575000" />
       <workItem from="1552963523744" duration="91000" />
       <workItem from="1552963639124" duration="12516000" />
-      <workItem from="1552987881686" duration="1955000" />
+      <workItem from="1552987881686" duration="2018000" />
+      <workItem from="1552990467234" duration="2682000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106895000" />
+    <option name="totallyTimeSpent" value="109640000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="28" width="1600" height="1138" extended-state="6" />
+    <frame x="0" y="28" width="1920" height="1018" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -386,7 +387,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.32810968" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.32741398" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7933884" weight="0.25" />
       <window_info id="Web" order="6" sideWeight="0.20661157" side_tool="true" weight="0.25" />
@@ -418,19 +419,19 @@
       <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.49791667" weight="0.32852387" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7933884" visible="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Maven Projects" order="8" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7933884" visible="true" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Database" order="5" weight="0.3296875" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Web" order="6" sideWeight="0.20661157" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
     </layout-to-restore>
@@ -625,8 +626,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="346" column="28" selection-start-line="346" selection-start-column="28" selection-end-line="346" selection-end-column="28" />
+        <state relative-caret-position="307">
+          <caret line="166" column="93" selection-start-line="166" selection-start-column="93" selection-end-line="166" selection-end-column="93" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1249#1258#0" expanded="true" />
