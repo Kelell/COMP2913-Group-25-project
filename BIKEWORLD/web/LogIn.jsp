@@ -11,6 +11,10 @@
     <title>LogIn</title>
 </head>
 <body>
-
+<form action="Register" method="post">
+    User name : <input type="text" name="user" required="required">
+    Password : <input type="password" name="password" required="required">
+    <input type="submit" value="Register">
+</form>
 </body>
 </html>
