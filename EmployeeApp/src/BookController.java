@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -6,14 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,11 +39,16 @@ public class BookController {
     @FXML Button saveButton;
     @FXML Text totalText;
     @FXML Text changeText;
+    @FXML ComboBox<String> customerCombo;
+    @FXML Button cancelBtn;
 
     private double total = 0;
+    private long days_p,days_p2;
 
     //Database connection
     private static Connection con;
+    private String currentId = null;
+    private static Stage primaryStage;
 
     //Initialises the BikeModel from the dashboard Bike Table
     public void setBikeDetails(BikeModel bikeDetails) {
@@ -63,6 +67,37 @@ public class BookController {
         bike_id.setText(b_id);
         price.setText(pric);
 
+        // force the field to be numeric only
+        cashField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    cashField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
+        cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                BookButtonCell.close();
+                close();
+
+                //After updating launches the dasboard with updated information
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                primaryStage = new Stage();
+                primaryStage.setScene(new Scene(root, 1200, 561));
+                primaryStage.centerOnScreen();
+                primaryStage.show();
+            }
+        });
 
         //When User clicks save button
         saveButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -73,7 +108,6 @@ public class BookController {
                 if(!changeText.getText().equals("")){
                     saveCustomer(b_id);
                 }
-
             }
         });
 
@@ -90,7 +124,7 @@ public class BookController {
                     //cast the text from the user to double value
                     double cash = Double.parseDouble(newValue);
 
-                    //if the total value of hire is greater than 0, means that duration and price has been set
+                    //if the total value of hire is greater than 0, means duration and price has been set
                     if(total > 0){
 
                         //Calculate change
@@ -100,12 +134,46 @@ public class BookController {
                         changeText.setText("£ "+change);
                     }
                 }
-
-
             }
         });
 
+        //Retrieves the customer data from the database
+        ResultSet rs1 = null;
+        try {
+            rs1 = con.createStatement().executeQuery("SELECT * FROM `customer`");
 
+            customerCombo.getItems().add(" | New Customer");
+            //Let first item be selected at start
+            customerCombo.getSelectionModel().selectFirst();
+
+            //Populates the data from the database to the list to display on the customer table
+            while (rs1.next()) {
+                customerCombo.getItems().add(rs1.getString("CUSTOMER_ID")+" | "+ rs1.getString("CUSTOMER_NAME"));
+            }
+
+            customerCombo.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+
+                    String selectedItem = customerCombo.getSelectionModel().getSelectedItem().toString();
+                    String [] arr = selectedItem.split(" | ");
+                    String id = arr[0];
+
+                    if(id.trim().equals("")){
+                        currentId = null;
+                        System.out.println("new customer");
+                        names.setText(" ");
+                        address.setText(" ");
+                    }else{
+                        currentId = id;
+                        getCustomer(id);
+                    }
+                }
+            });
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -128,13 +196,27 @@ public class BookController {
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
 
+            Date currentDate = new Date();
+
             Date firstDate = null;
             try {
-
                 firstDate = sdf.parse(start.getValue().toString());
                 java.util.Date secondDate = sdf.parse(to.getValue().toString());
 
-                //Get the value of the difference between dates
+                long diff = Math.abs(currentDate.getTime() - firstDate.getTime());
+                long diff2 = Math.abs(currentDate.getTime() - secondDate.getTime());
+
+                 days_p = (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) - 59) * -1;
+                 days_p2 = (TimeUnit.DAYS.convert(diff2, TimeUnit.MILLISECONDS) -59) * -1;
+
+                System.out.println(days_p);
+                System.out.println(days_p2);
+
+                if(days_p < 0 || days_p2 < 0){
+                    JOptionPane.showMessageDialog(null, "Cannot set date in the past !");
+                }
+
+                //Get the value of the diff between dates
                 long diffInMillies = Math.abs(secondDate.getTime() - firstDate.getTime());
 
                 //The number of days difference
@@ -156,7 +238,6 @@ public class BookController {
                 e.printStackTrace();
             }
         }
-
     }
 
     /**
@@ -172,7 +253,7 @@ public class BookController {
         String name = names.getText();
 
         //Query to insert data
-        String SQL1 = "INSERT INTO `customer` VALUES(NULL,?,?)";
+        String SQL1 = "INSERT INTO `customer` VALUES(?,?,?)";
 
         try {
 
@@ -180,10 +261,26 @@ public class BookController {
             con = new DbConnect().getDbConnect();
             con.setAutoCommit(false); //
 
+            ResultSet rs2 = con.createStatement().executeQuery("SELECT * FROM `customer` WHERE CUSTOMER_ID = '"+currentId+"'");
+            if (rs2.next()) {
+                if(days_p < 0 || days_p2 < 0){
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            JOptionPane.showMessageDialog(null, "Cannot set date in the past !");
+                        }
+                    });
+                }else{
+                    saveHire(b_id,Integer.parseInt(currentId));
+                }
+                return;
+            }
+
             //Execute the SQL
             PreparedStatement preparedStatement1 = new DbConnect().getDbConnect().prepareStatement(SQL1, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement1.setString(1, name);
-            preparedStatement1.setString(2, addr);
+            preparedStatement1.setString(1, currentId);
+            preparedStatement1.setString(2, name);
+            preparedStatement1.setString(3, addr);
             preparedStatement1.executeUpdate();
 
             //Get the id of the customer
@@ -215,13 +312,10 @@ public class BookController {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
     /**
-     * S
      * @param b_id
      * @param customer_id
      */
@@ -235,8 +329,13 @@ public class BookController {
             con = new DbConnect().getDbConnect();
             con.setAutoCommit(false); //
 
+
             //retrieves cash from cash field
             double cash = Double.parseDouble(cashField.getText().toString());
+            if(Double.parseDouble(changeText.getText().toString().trim().replace("£ ","")) < 0){
+                JOptionPane.showMessageDialog(null,"You need to add more money to proceed !");
+                return;
+            }
 
             //Calculates the dates difference
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
@@ -268,13 +367,13 @@ public class BookController {
             con.commit();
 
              JOptionPane.showMessageDialog(null, "Successfully Saved Ticket ! ","Book",JOptionPane.PLAIN_MESSAGE);
-			 //new DashboardController().reload();
              BookButtonCell.close();
+			 close();
 
             //After updating launches the dasboard with updated information
             Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
-            Stage primaryStage = new Stage();
-            primaryStage.setScene(new Scene(root, 993, 561));
+             primaryStage = new Stage();
+            primaryStage.setScene(new Scene(root, 1200, 561));
             primaryStage.centerOnScreen();
             primaryStage.show();
 
@@ -285,13 +384,39 @@ public class BookController {
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-            e.printStackTrace();
+			
         }finally {
             try {
                 con.setAutoCommit(true); //Set Autocommit to true
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void getCustomer(String id){
+        //Retrieves the customer data from the database
+        ResultSet rs1 = null;
+        try {
+            rs1 = con.createStatement().executeQuery("SELECT * FROM `customer` WHERE CUSTOMER_ID = '"+id+"'");
+            //Populates the data from the database to the list to display on the customer table
+            if (rs1.next()) {
+                String name = rs1.getString("CUSTOMER_NAME");
+                String addr = rs1.getString("CUSTOMER_ADDRESS");
+
+                //Set customer details
+                names.setText(name);
+                address.setText(addr);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void close(){
+        if(primaryStage != null){
+            primaryStage.close();
         }
     }
 }
