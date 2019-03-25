@@ -32,7 +32,6 @@ public class PrintButtonCell<S> extends TableCell<S, Button> {
 
     private final Button printButton;
 
-
     public PrintButtonCell() {
         this.getStyleClass().add("action-button-table-cell");
 
@@ -52,7 +51,6 @@ public class PrintButtonCell<S> extends TableCell<S, Button> {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-
 
                         try {
 
@@ -83,14 +81,11 @@ public class PrintButtonCell<S> extends TableCell<S, Button> {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
                     }
                 });
-
-
-
+				
             }
-
+			
         });
     }
 
@@ -112,5 +107,4 @@ public class PrintButtonCell<S> extends TableCell<S, Button> {
             setGraphic(printButton);
         }
     }
-
 }
