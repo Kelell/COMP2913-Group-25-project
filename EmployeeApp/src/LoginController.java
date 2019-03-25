@@ -1,4 +1,3 @@
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +10,10 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 
+/**
+ * @author Zahoor
+ */
+ 
 public class LoginController {
 
     private static Stage primaryStage;
@@ -36,7 +39,7 @@ public class LoginController {
 
             String username  = usernameField.getText();
 
-            //check if user exist
+            //check if user exists
             ResultSet rs1 = con.createStatement().executeQuery("select * from admin  WHERE `username` ='"+username+"' ");
 
             if(rs1.next()){
@@ -55,7 +58,7 @@ public class LoginController {
                     try {
                             root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
                             primaryStage = new Stage();
-                            primaryStage.setScene(new Scene(root, 993, 561));
+                            primaryStage.setScene(new Scene(root, 1200, 561));
                             new Main().close();
                             primaryStage.show();
                         } catch (IOException e) {
@@ -67,20 +70,14 @@ public class LoginController {
                     status.setText("Invalid Username or Password");
                 }
             }
-
-
+			
         }catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
-
 
     public void close(){
-        primaryStage.close();
+        if(primaryStage != null)
+          primaryStage.close();
     }
-
-
-
 }
