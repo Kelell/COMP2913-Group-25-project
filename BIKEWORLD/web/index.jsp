@@ -21,6 +21,7 @@
     <a href="LogIn.jsp">LogIn</a>
     <a href="registration.jsp">Register</a>
     <a href="AvailableBikes.jsp">See bikes</a>
+    <a href="Payment.jsp">Payment</a> <!--Temp button so payment page can be accessed for testing before the book a bike is complete-->
     <a>Log out</a>
   </div>
 

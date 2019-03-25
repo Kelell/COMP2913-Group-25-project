@@ -46,4 +46,15 @@
         <url-pattern>/Available</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Payment</servlet-name>
+        <servlet-class>mypack.Payment</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Payment</servlet-name>
+        <url-pattern>/Payment</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
