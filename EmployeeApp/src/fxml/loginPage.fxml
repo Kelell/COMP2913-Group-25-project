@@ -11,7 +11,7 @@
    <children>
       <Pane prefHeight="63.0" prefWidth="738.0" style="-fx-background-color: #336699;" stylesheets="@../CSS/background.css">
          <children>
-            <Text fill="#ebe8e8" layoutX="266.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIKE  BOOKING ">
+            <Text fill="#ebe8e8" layoutX="266.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIKE BOOKING ">
                <font>
                   <Font size="33.0" />
                </font>
