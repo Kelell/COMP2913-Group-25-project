@@ -122,12 +122,12 @@
                               <TableColumn fx:id="ticket_idColumn" prefWidth="179.0" text="TICKET ID" />
                               <TableColumn fx:id="customerID" minWidth="-1.0" prefWidth="-1.0" text="CUSTOMER ID" />
                               <TableColumn fx:id="customerName" minWidth="210.0" prefWidth="270.0" text="CUSTOMER NAMES" />
-                              <TableColumn fx:id="t_bike_idColumn" minWidth="0.0" prefWidth="156.0" text="BIKEID" />
+                              <TableColumn fx:id="t_bike_idColumn" minWidth="0.0" prefWidth="156.0" text="BIKE ID" />
                               <TableColumn fx:id="t_priceColumn" minWidth="0.0" prefWidth="224.0" text="BIKE PRICE" />
                               <TableColumn fx:id="startDateColumn" minWidth="0.0" prefWidth="196.0" text="START DATE" />
                               <TableColumn fx:id="endDateColumn" minWidth="0.0" prefWidth="196.0" text="END DATE" />
                               <TableColumn fx:id="totalColumn" minWidth="0.0" prefWidth="213.0" text="TOTAL DUE" />
-                              <TableColumn fx:id="printColumn" minWidth="0.0" prefWidth="213.0" text="Print" />
+                              <TableColumn fx:id="printColumn" minWidth="0.0" prefWidth="213.0" text="PRINT" />
                            </columns>
                         </TableView>
                      </children>
