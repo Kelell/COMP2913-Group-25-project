@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox id="imageBackground" fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="993.0" stylesheets="@../CSS/background.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardController">
+<VBox id="imageBackground" fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="1200.0" stylesheets="@../CSS/background.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardController">
    <children>
       <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         <tabs>
@@ -30,7 +36,7 @@
                         <ToolBar id="imageBackground" prefWidth="1159.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
                            <items>
                               <TextField fx:id="searchField" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
-                              <ComboBox fx:id="searchCombo" prefHeight="25.0" prefWidth="196.0" promptText="SEARCH" />
+                              <ComboBox fx:id="searchCombo" prefHeight="25.0" prefWidth="232.0" promptText="SEARCH" />
                            </items>
                         </ToolBar>
                         <TableView fx:id="customerTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
@@ -38,9 +44,9 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                            <columns>
-                              <TableColumn fx:id="idColumn" minWidth="100.0" prefWidth="114.0" text="CUSTOMER ID" />
-                              <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="CUSTOMER NAME" />
-                              <TableColumn fx:id="addressColumn" maxWidth="746.0" minWidth="500.0" prefWidth="746.0" text="CUSTOMER ADDRESS" />
+                              <TableColumn fx:id="idColumn" minWidth="180.0" prefWidth="234.40002137422562" text="CUSTOMER ID" />
+                              <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" prefWidth="537.6000518798828" text="CUSTOMER NAME" />
+                              <TableColumn fx:id="addressColumn" maxWidth="746.0" minWidth="406.39984130859375" prefWidth="487.99993896484375" text="CUSTOMER ADDRESS" />
                            </columns>
                         </TableView>
                      </children>
@@ -49,7 +55,7 @@
           </Tab>
             <Tab fx:id="bikeTab" text="Bikes">
                <content>
-                  <VBox prefHeight="238.0" prefWidth="993.0">
+                  <VBox prefHeight="238.0" prefWidth="1200.0">
                      <children>
                         <FlowPane alignment="CENTER" prefHeight="57.0" prefWidth="1159.0" style="-fx-background-color: #336699;">
                            <children>
@@ -66,8 +72,8 @@
                         <ToolBar id="imageBackground" prefHeight="55.0" prefWidth="1159.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
                            <items>
                               <TextField fx:id="searchField_b" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
-                              <ComboBox fx:id="searchCombo_b" prefHeight="25.0" prefWidth="196.0" promptText="SEARCH" />
-                              <ComboBox fx:id="statusCombo" layoutX="261.0" layoutY="17.0" prefHeight="25.0" prefWidth="196.0" promptText="FILTER" />
+                              <ComboBox fx:id="searchCombo_b" prefHeight="26.0" prefWidth="381.0" promptText="SEARCH" />
+                              <ComboBox fx:id="statusCombo" layoutX="261.0" layoutY="17.0" prefHeight="26.0" prefWidth="313.0" promptText="FILTER" />
                            </items>
                         </ToolBar>
                         <TableView fx:id="bikeTable" prefHeight="438.0" prefWidth="1159.0" VBox.vgrow="ALWAYS">
@@ -75,11 +81,11 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                            <columns>
-                              <TableColumn fx:id="bike_idColumn" prefWidth="100.0" text="BIKE ID" />
-                              <TableColumn fx:id="statusColumn" prefWidth="167.0" text="STATUS" />
-                              <TableColumn fx:id="locationColumn" minWidth="150.0" prefWidth="208.0" text="LOCATION" />
-                              <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="129.0" text="PRICE" />
-                              <TableColumn fx:id="bookColumn" minWidth="0.0" prefWidth="124.0" text="BOOK BIKE" />
+                              <TableColumn fx:id="bike_idColumn" minWidth="100.0" prefWidth="179.19997864961624" resizable="false" text="BIKE ID" />
+                              <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="241.6000518798828" resizable="false" text="STATUS" />
+                              <TableColumn fx:id="locationColumn" minWidth="160.00001525878906" prefWidth="412.7999572753906" resizable="false" text="LOCATION" />
+                              <TableColumn fx:id="priceColumn" minWidth="80.0" prefWidth="238.40008544921875" resizable="false" text="PRICE" />
+                              <TableColumn fx:id="bookColumn" minWidth="40.0" prefWidth="132.0" resizable="false" text="BOOK BIKE" />
                            </columns>
                         </TableView>
                      </children>
@@ -105,7 +111,7 @@
                         <ToolBar id="imageBackground" prefHeight="55.0" prefWidth="1159.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
                            <items>
                               <TextField fx:id="searchField_t" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
-                              <ComboBox fx:id="searchCombo_t" prefHeight="25.0" prefWidth="196.0" promptText="SEARCH" />
+                              <ComboBox fx:id="searchCombo_t" prefHeight="25.0" prefWidth="280.0" promptText="SEARCH" />
                            </items>
                         </ToolBar>
                         <TableView fx:id="ticketTable" prefHeight="438.0" prefWidth="1159.0" VBox.vgrow="ALWAYS">
@@ -116,7 +122,7 @@
                               <TableColumn fx:id="ticket_idColumn" prefWidth="179.0" text="TICKET ID" />
                               <TableColumn fx:id="customerID" minWidth="-1.0" prefWidth="-1.0" text="CUSTOMER ID" />
                               <TableColumn fx:id="customerName" minWidth="210.0" prefWidth="270.0" text="CUSTOMER NAMES" />
-                              <TableColumn fx:id="t_bike_idColumn" minWidth="0.0" prefWidth="156.0" text="BIKE_ID" />
+                              <TableColumn fx:id="t_bike_idColumn" minWidth="0.0" prefWidth="156.0" text="BIKEID" />
                               <TableColumn fx:id="t_priceColumn" minWidth="0.0" prefWidth="224.0" text="BIKE PRICE" />
                               <TableColumn fx:id="startDateColumn" minWidth="0.0" prefWidth="196.0" text="START DATE" />
                               <TableColumn fx:id="endDateColumn" minWidth="0.0" prefWidth="196.0" text="END DATE" />
