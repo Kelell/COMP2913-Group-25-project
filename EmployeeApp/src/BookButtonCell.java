@@ -24,7 +24,6 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
     private final Button bookButton;
     private static Stage primaryStage;
 
-
     public BookButtonCell() {
 
         this.getStyleClass().add("action-button-table-cell");
@@ -44,7 +43,7 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
                 new LoginController().close();
 
                 //Load the Booking Screen
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/book.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/books.fxml"));
 
                 Parent root2 = null;
                 try {
@@ -62,9 +61,7 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
-
         });
     }
 
@@ -75,7 +72,6 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
     public static <S> Callback<TableColumn<S, Button>, TableCell<S, Button>> forTableColumn() {
         return param -> new BookButtonCell<>();
     }
-
 
     @Override
     public void updateItem(Button item, boolean empty) {
@@ -91,11 +87,11 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
             }else{
                 setGraphic(null);
             }
-
         }
     }
 
     public static void close(){
-        primaryStage.close();
+        if(primaryStage!= null)
+           primaryStage.close();
     }
 }
