@@ -37,5 +37,4 @@ public  class CustomerModel {
     public StringProperty addressProperty() {
         return address;
     }
-	
 }
