@@ -1,3 +1,5 @@
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -5,8 +7,10 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
@@ -14,11 +18,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
+/**
+ * @author Zahoor
+ */
 
 public class DashboardController implements Initializable {
 
@@ -70,7 +78,7 @@ public class DashboardController implements Initializable {
 
     private  static  int firstTime = 0;
     private Parent root;
-    private Stage primaryStage;
+    protected static Stage primaryStage;
 
     private SortedList<BikeModel> sortedData;
 
@@ -81,7 +89,7 @@ public class DashboardController implements Initializable {
        customerPaneBuild();
        bikePaneBuild();
        ticketPaneBuild();
-
+	   
     }
 
     /*
@@ -114,7 +122,6 @@ public class DashboardController implements Initializable {
             idColumn.setCellValueFactory(new PropertyValueFactory("id"));
             nameColumn.setCellValueFactory(new PropertyValueFactory("name"));
             addressColumn.setCellValueFactory(new PropertyValueFactory("address"));
-
 
             // 1. Wrap the ObservableList in a FilteredList (initially display all customerData).
             FilteredList<CustomerModel> filteredData = new FilteredList<>(customerData, p -> true);
@@ -151,13 +158,11 @@ public class DashboardController implements Initializable {
                                return true; // Filter matches Name
                            }
                            break;
-
                    }
 
                     return false; // Does not match.
                 });
             });
-
 
             // 3. Wrap the FilteredList in a SortedList.
             SortedList<CustomerModel> sortedData = new SortedList<>(filteredData);
@@ -168,16 +173,44 @@ public class DashboardController implements Initializable {
             // 5. Add sorted (and filtered) customerData to the table.
             customerTable.setItems(sortedData);
 
+            customerTable.setRowFactory( tv -> {
+                TableRow<CustomerModel> row = new TableRow<>();
+                row.setOnMouseClicked(event -> {
+                    if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                        CustomerModel customer = row.getItem();
 
+                        String id = customer.idProperty().getValue().toString();
+                        String names =  customer.nameProperty().getValue().toString();
+                        String address =  customer.addressProperty().getValue().toString();
+
+                        //close the dashboard
+                        new LoginController().close();
+                        new UpdateCustomerController().close();
+
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/updateDetails.fxml"));
+
+                        Parent root2 = null;
+                        try {
+                            root2 = (Parent)fxmlLoader.load();
+                            UpdateCustomerController controller = fxmlLoader.<UpdateCustomerController>getController();
+                            controller.setData(id,names,address);
+                            Scene scene = new Scene(root2);
+                            primaryStage = new Stage();
+                            primaryStage.setScene(scene);
+                            primaryStage.show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                return row ;
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
-		
-		
     }
-
 
     /*
       Handles All Bikes Data and displays in a table
@@ -231,9 +264,10 @@ public class DashboardController implements Initializable {
                                 }
                                 setText(item);
 
+                            }else{
+                                setText("");
                             }
                         }
-
                     };
                 }
             });
@@ -278,13 +312,11 @@ public class DashboardController implements Initializable {
                                 return true; // Filter matches Bike ID.
                             }
                             break;
-
                     }
 
                     return false; // Does not match.
                 });
             });
-
 
             // 3. Wrap the FilteredList in a SortedList.
             sortedData = new SortedList<>(filteredData);
@@ -298,19 +330,26 @@ public class DashboardController implements Initializable {
             statusCombo.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+
                     String currentStatus = statusCombo.getSelectionModel().getSelectedItem().toString();
                     FilteredList<BikeModel> filteredData = new FilteredList<>(sortedData, p -> true);
                     filteredData.setPredicate(bike -> {
-                        // If filter text is empty, display all bikes.
+                        
+						// If filter text is empty, display all bikes.
 
-                        if(currentStatus.equals("ALL")){
-                            return true;
-                        }else if (currentStatus.toLowerCase().equals(bike.statusProperty().getValue().toLowerCase().toString())) {
-                            return true;
+                        if(bike.idProperty().getValue().trim().equals("")){
+                            return false;
+                        }else{
+                            if(currentStatus.equals("ALL")){
+                                return true;
+                            }else if (currentStatus.toLowerCase().equals(bike.statusProperty().getValue().toLowerCase().toString()) ) {
+                                return true;
+                            }
                         }
-
+						
                         return false;
                     });
+
                     // 3. Wrap the FilteredList in a SortedList.
                     SortedList<BikeModel> sortedData = new SortedList<>(filteredData);
                     // 4. Bind the SortedList comparator to the TableView comparator.
@@ -318,17 +357,13 @@ public class DashboardController implements Initializable {
                     sortedData.comparatorProperty().bind(bikeTable.comparatorProperty());
                     // 5. Add sorted (and filtered) bikeData to the table.
                     bikeTable.setItems(sortedData);
-
                 }
             });
-
-
-
+			
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
-
     }
     /*
       Handles All Ticket Data and displays in a table
@@ -380,7 +415,7 @@ public class DashboardController implements Initializable {
                     if (newValue == null || newValue.isEmpty()) {
                         return true;
                     }
-
+					
                     // Compare value of every ticket  with filter text.
                     String lowerCaseFilter = newValue.toLowerCase();
 
@@ -410,13 +445,11 @@ public class DashboardController implements Initializable {
                                 return true; // Filter matches Ticket ID
                             }
                             break;
-
                     }
 
                     return false; // Does not match.
                 });
             });
-
 
             // 3. Wrap the FilteredList in a SortedList.
             SortedList<TicketModel> sortedData = new SortedList<>(filteredData);
@@ -427,12 +460,12 @@ public class DashboardController implements Initializable {
             // 5. Add sorted (and filtered) customerData to the table.
             ticketTable.setItems(sortedData);
 
-
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
-
     }
-
+    public void close(){
+        primaryStage.close();
+    }
 }
