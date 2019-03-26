@@ -61,7 +61,7 @@ public class UpdateCustomerController {
                         PreparedStatement pst1=con.prepareStatement(sq11);
                         pst1.executeUpdate();
                         con.commit();//Commit the changes
-                        JOptionPane.showMessageDialog(null, "Record Updated successfully", "Success!", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Record Updated Successfully", "Success!", JOptionPane.PLAIN_MESSAGE);
 
                         //close the update window
                         new DashboardController().close();
@@ -69,7 +69,7 @@ public class UpdateCustomerController {
                         //After updating launches the dashboard with updated information
                         Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
                         primaryStage = new Stage();
-                        primaryStage.setScene(new Scene(root, 993, 561));
+                        primaryStage.setScene(new Scene(root, 1200, 561));
                         primaryStage.centerOnScreen();
                         primaryStage.show();
 

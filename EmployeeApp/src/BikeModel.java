@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
  */
 
 /**
- * Bike Model holds the structure of a bike object to display in the bike table, constructor initializes the object and getters to retrieve the data
+ * Bike Model holds the structure of a bike object to display in the bike table, constructor initialises the object and getters to retrieve the data
  */
 public  class BikeModel {
 
