@@ -7,7 +7,7 @@ import javafx.beans.property.StringProperty;
 
 
 /**
- * Customer Model holds the structure of a customer object to display in the customer table, constructor initializes the object and getters to retrieve the data
+ * Customer Model holds the structure of a customer object to display in the customer table, constructor initialises the object and getters to retrieve the data
  */
 public  class CustomerModel {
 
