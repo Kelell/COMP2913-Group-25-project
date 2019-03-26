@@ -22,8 +22,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/loginPage.fxml"));
         primaryStage.setScene(new Scene(root, 738, 508));
 
-       /* Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
-        primaryStage.setScene(new Scene(root, 993, 561));*/
+		//Displays App Name 
         primaryStage.setTitle("Bike App");
         mainStage = primaryStage;
         mainStage.centerOnScreen();
