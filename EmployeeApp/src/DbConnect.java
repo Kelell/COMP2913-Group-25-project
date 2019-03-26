@@ -10,11 +10,6 @@ import java.sql.Statement;
 
 public class DbConnect {
     
-    
-  /* public static void main(String args[]){
-        DbConnect.getDbConnect();
-    }*/
-
     //Connection method (dbconnect())
     public static Connection getDbConnect() {
           String url = "jdbc:mysql://remotemysql.com:3306?useSSL=false";
@@ -32,7 +27,7 @@ public class DbConnect {
 
             Statement stt=conn.createStatement();
 
-            //specifies which DB to use
+            //Specifies which DB to use
             stt.executeUpdate("USE EEsET82tG5");
 
             conn.commit(); //Commit the changes if everything is OK
@@ -49,12 +44,12 @@ public class DbConnect {
             e.printStackTrace();
         }finally {
             try {
-                conn.setAutoCommit(true); //Set Autocomit to true
+                conn.setAutoCommit(true); //Set Autocommit to true
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-
+		
         return conn;
     }
 }
