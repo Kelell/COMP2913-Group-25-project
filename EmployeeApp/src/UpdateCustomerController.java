@@ -63,7 +63,7 @@ public class UpdateCustomerController {
                         con.commit();//Commit the changes
                         JOptionPane.showMessageDialog(null, "Record Updated Successfully", "Success!", JOptionPane.PLAIN_MESSAGE);
 
-                        //close the update window
+                        //Close the update window
                         new DashboardController().close();
 
                         //After updating launches the dashboard with updated information
