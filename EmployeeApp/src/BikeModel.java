@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
  */
 
 /**
- * Bike Model holds the structure of a bike object to display in the bike table, constructor initializes the objuect and getters to retrieve the data
+ * Bike Model holds the structure of a bike object to display in the bike table, constructor initializes the object and getters to retrieve the data
  */
 public  class BikeModel {
 
@@ -16,7 +16,7 @@ public  class BikeModel {
     private StringProperty price;
 
     /***
-     * Bike Model holds the properties of a bike, initialises using contructor and getters to retrieve the values
+     * Bike Model holds the properties of a bike, initialises using constructor and getters to retrieve the values
      * @param id
      * @param status
      * @param location
