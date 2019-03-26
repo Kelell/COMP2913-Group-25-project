@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
  */
 
 /**
- * Ticket Model holds the structure of a ticket object to display in the ticket table, constructor initializes the object and getters to retrieve the data
+ * Ticket Model holds the structure of a ticket object to display in the ticket table, constructor initialises the object and getters to retrieve the data
  */
 public  class TicketModel {
 
