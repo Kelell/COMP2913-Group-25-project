@@ -5,8 +5,9 @@ import javafx.beans.property.StringProperty;
  * @author Zahoor
  */
 
+
 /**
- * Customer Model holds the structure of a customer object to display in the customer table, constructor initializes the objuect and getters to retrieve the data
+ * Customer Model holds the structure of a customer object to display in the customer table, constructor initializes the object and getters to retrieve the data
  */
 public  class CustomerModel {
 
@@ -15,7 +16,7 @@ public  class CustomerModel {
     private StringProperty address;
 
     /**
-     * Construtor initialises the Customer Model
+     * Constructor initialises the Customer Model
      * @param id
      * @param name - name of customer
      * @param address
@@ -37,4 +38,5 @@ public  class CustomerModel {
     public StringProperty addressProperty() {
         return address;
     }
+
 }
