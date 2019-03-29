@@ -14,12 +14,10 @@
 <body>
 <div class="nav"><!--Nav bar from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_topnav (TEST ONLY)-->
     <a href="index.jsp">Home</a>
-    <a href="book">Book A Bike</a>
     <a href="AboutUs.jsp">About Us</a>
     <a class="active" href="ContactUs.jsp">Contact Us</a>
     <a href="LogIn.jsp">LogIn</a>
     <a href="registration.jsp">Register</a>
-    <a href="AvailableBikes.jsp">See bikes</a>
     <a>Log out</a>
 
 </div>
