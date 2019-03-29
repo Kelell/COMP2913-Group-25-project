@@ -85,6 +85,7 @@ public class AvailableBikes extends HttpServlet {
             ArrayList<Integer> stats = new ArrayList<Integer>();;
             ArrayList<String> loca = new ArrayList<String>();
             ArrayList<Float> cost = new ArrayList<Float>();
+            String loc = request.getParameter("Location");
 
 
             while(rs.next()){
@@ -93,10 +94,13 @@ public class AvailableBikes extends HttpServlet {
                 int status = rs.getInt("STATUS");
                 String location = rs.getString("LOCATION");
                 float price = rs.getFloat("price");
-                bike_ids.add(id);
-                stats.add(status);
-                loca.add(location);
-                cost.add(price);
+                if (location.equals(loc) ){
+                    bike_ids.add(id);
+                    stats.add(status);
+                    loca.add(location);
+                    cost.add(price);
+                }
+
             }
             rs.close();
             stmt.close();
@@ -110,8 +114,7 @@ public class AvailableBikes extends HttpServlet {
                     "<link rel=stylesheet href=style.css type=text/css>" +
                     "</head>"
             );
-            String loc = request.getParameter("Location");
-            out.println(loc);
+
             out.println(
                     "<div class=nav>"+
                             "<a  href=index.jsp>Home</a>"+
@@ -123,6 +126,20 @@ public class AvailableBikes extends HttpServlet {
                             "</div>"
             );
             out.println(
+                    "<p>There are(is) "+ listsize +" bike(s) in this location.</p>" );
+            for (int i = 0; i < listsize; i++)
+            {
+                out.println(
+                        "<div class = \"bike\">\n" +
+                                "\t<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                "    <p>price: "+ cost.get(i) +"</p>\n" +
+                                "    <p>id: "+ bike_ids.get(i)+"</p>\n" +
+                                "\n" +
+                                "</div>"
+                );
+            }
+            out.println(
+
                     "<form id = 'form1' action= book method = 'post' >" +
 
                             "</form>" + "\n" +
@@ -134,10 +151,7 @@ public class AvailableBikes extends HttpServlet {
                             "location.reload();" +
                             "}" + "\n" +
 
-
-
                             "</script>"
-
             );
 
         } catch (ClassNotFoundException e) {

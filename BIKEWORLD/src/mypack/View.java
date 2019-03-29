@@ -173,7 +173,7 @@ public class View extends HttpServlet {
                             "<h1 name = Location >Select a Location</h1>" + "\n" +
                             "<div class=\"row\"  style = \"\">\n" +
                             "  <div class=\"column\">\n" +
-                            "    <div class=\"container\" onclick=\"myFunction(\"this\")\" >"+
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
                             "       <img src= \" https://i.pinimg.com/474x/de/2e/9d/de2e9d4d049c7032056149762f313f88--wales-england.jpg\" alt=\"Alnmouth\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Alnmouth</div>" +
                             "    </div>"+
