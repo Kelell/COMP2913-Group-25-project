@@ -112,6 +112,29 @@ public class AvailableBikes extends HttpServlet {
             out.println("<head onload=\"openFunction()\" >" +
                     "<title id = prick >$Title$</title>" +
                     "<link rel=stylesheet href=style.css type=text/css>" +
+                    "<style>" +
+                    ".section {\n" +
+                    "  list-style-type: none;\n" +
+                    "  margin: 0;\n" +
+                    "  padding: 0;\n" +
+                    "  overflow: hidden;\n" +
+                    "  background-color: white;\n" +
+                    "  height: 300px;\n" +
+                    "}\n" +
+                    "\n" +
+                    ".bike {\n" +
+                    "  float: left;\n" +
+                    "  display: block\n" +
+                    "border-right: 1px solid black;"+
+                    "}\n" +
+                    "\n" +
+                    ".info {\n" +
+                    "  float: left;\n" +
+                    "  display: block\n" +
+                    "  height: 300px;\n" +
+
+                    "}" +
+                    "</style>" +
                     "</head>"
             );
 
@@ -129,15 +152,28 @@ public class AvailableBikes extends HttpServlet {
             for (int i = 0; i < listsize; i++)
             {
                 out.println(
-                        "<div class = \"bike\">\n" +
+                        "<div class = \"section\">\n" +
+                        "<div  class = \"bike\">\n" +
                                 "\t<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                "    <p>price: "+ cost.get(i) +"</p>\n" +
-                                "    <p>id: "+ bike_ids.get(i)+"</p>\n" +
+
                                 "\n" +
-                                "</div>"
+                                "</div>" +
+                                "<div class = \"info\">\n" +
+                                "    <p>price per hour : "+ cost.get(i) +"</p>\n" +
+                                "    <p>id: "+ bike_ids.get(i)+"</p>\n" +
+                                " <button type=\"button\" onclick=\"alert('Simulation of booking')\">Book</button>"+
+                                "</div>" +
+                                "</div>"+
+                                "<br>"+
+                                "<br>"
                 );
             }
             out.println(
+
+                    " <button type=\"button\" onclick=\"myfunction0()\">Availabillity by time</button>"+
+                    "<p style=\"display:none;\" name=\"date\" >Enter Date: </p> " + "\n" +
+                    "<input onchange=\"myFunction3()\" required = 'required' style=\"display:none;\"  type=\"date\" name=\"date\" required=\"required\">" + "\n" +
+                    "<p style=\"display:none;color:red;\" id =\"error\"> Error buddy</p>" +
 
                     "<form id = 'form1' action= book method = 'post' >" +
 
@@ -149,6 +185,47 @@ public class AvailableBikes extends HttpServlet {
                             "document.getElementById(\"form1\").reset();" +
                             "location.reload();" +
                             "}" + "\n" +
+
+                            "function myFunction0() {"   + "\n" +
+                            "document.getElementsByName('date').style.display = 'none';" +
+                            "location.reload();" +
+                            "}" + "\n" +
+
+                            "function myFunction1() {"   + "\n" +
+                            "var c = document.getElementsByName('date');"   + "\n" +
+                            "var d = document.getElementsByName('Time');"   + "\n" +
+                            "var h = document.getElementById('error');"   + "\n" +
+                            "h.style.display = 'none';"   + "\n" +
+                            "var today = new Date();" +
+                            "var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();" +
+                            "var currentyear = parseInt(today.getFullYear());"+
+                            "var currentmonth = parseInt((today.getMonth()+1));"+
+                            "var currentday = parseInt(today.getDate());"+
+                            "var inputyear = parseInt(c[1].value.substring(0,4));"+
+                            "var inputmonth = parseInt(c[1].value.substring(5,7));"+
+                            "var inputdate = parseInt(c[1].value.substring(8,10));"+
+                            "if ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate >= currentday)){" + "\n" +
+                            "if (c[1].value !=  '0000-00-00'){" + "\n" +
+                            "}" +
+                            "if (c[1].value == '0000-00-00'){" + "\n" +
+                            "d[0].style.display = 'none';" + "\n" +
+                            "d[1].style.display = 'none';" + "\n" +
+                            "}" + "\n" +
+                            "} " + "\n" +
+                            "else{" + "\n" +
+                            "d[0].style.display = 'none';" + "\n" +
+                            "d[1].style.display = 'none';" + "\n" +
+                            "e[0].style.display = 'none';" + "\n" +
+                            "e[1].style.display = 'none';" + "\n" +
+                            "f[0].style.display = 'none';" + "\n" +
+                            "f[1].style.display = 'none';" + "\n" +
+                            "g[0].style.display = 'none';" + "\n" +
+                            "g[1].style.display = 'none';" + "\n" +
+                            "c[1].value = '0000-00-00'" + "\n" +
+                            "h.style.display = 'block';"   + "\n" +
+
+                            "} " + "\n" +
+                            "} " + "\n" +
 
                             "</script>"
             );
