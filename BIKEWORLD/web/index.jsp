@@ -21,7 +21,6 @@
     <a href="ContactUs.jsp">Contact Us</a>
     <a href="LogIn.jsp">LogIn</a>
     <a href="registration.jsp">Register</a>
-    <a href="AvailableBikes.jsp">See bikes</a>
     <a>Log out</a>
   </div>
 

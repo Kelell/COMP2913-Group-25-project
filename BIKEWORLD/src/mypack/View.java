@@ -162,7 +162,7 @@ public class View extends HttpServlet {
                             "<option value=Halifax>Halifax</option>"+
                             "<option value=Harrogate>Harrogate</option>"+
                             "<option value=Hebden>Hebden</option>"+
-                            "<option value=Hexam>Hexam</option>"+
+                            "<option value=Hexham>Hexham</option>"+
                             "<option value=Leeds>Leeds</option>"+
                             "<option value=Manchester>Manchester</option>"+
                             "<option value=Rotherham>Rotherham</option>"+
@@ -241,7 +241,7 @@ public class View extends HttpServlet {
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
                             "       <img src= \"https://images.snaptrip.com/uploads/image/file/4809608/hero_304527.jpg\" alt=\"Hexam\" width=\"390\" height=\"300\">\n" +
-                            "       <div id=\"imgtext\">Hexam</div>" +
+                            "       <div id=\"imgtext\">Hexham</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +

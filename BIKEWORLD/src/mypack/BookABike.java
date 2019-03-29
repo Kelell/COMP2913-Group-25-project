@@ -16,6 +16,56 @@ public class BookABike extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
+        jdbc test = new jdbc();
+        String driver = "com.mysql.cj.jdbc.Driver";
+        try {
+            Class.forName(driver);
+            Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
+            Statement stmt = conn.createStatement();
+            String sql2;
+            sql2 = "SELECT TIME_ID, Date_, Time_, EndTime, BIKE_ID FROM time";
+            ResultSet rs2 = stmt.executeQuery(sql2);
+            ArrayList<Integer> time_ids = new ArrayList<Integer>();
+            ArrayList<Integer> bike_id = new ArrayList<Integer>();;
+            ArrayList<String> date = new ArrayList<String>();
+            ArrayList<String> time = new ArrayList<String>();
+            ArrayList<String> timend = new ArrayList<String>();
+
+            while(rs2.next()){
+                //Retrieve by column name
+                int id  = rs2.getInt("TIME_ID");
+                String fe = rs2.getString("Date_");
+                String ef = rs2.getString("Time_");
+                String location = rs2.getString("EndTime");
+                int status = rs2.getInt("BIKE_ID");
+                time_ids.add(id);
+                bike_id.add(status);
+                date.add(fe);
+                time.add(ef);
+                timend.add(location);
+            }
+            rs2.close();
+            stmt.close();
+            conn.close();
+
+            String d = request.getParameter("date");
+            String t = request.getParameter("time");
+
+            out.println("Test");
+            out.println("<h1>" + t + "</h1>");
+            out.println(d);
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            out.println("Testing error 1- Failed");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            out.println("Testing error 2- Failed");
+        }
+        out.println("</body>");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -406,15 +456,15 @@ public class BookABike extends HttpServlet {
                             "var time = today.getHours();" +
                             "y.style.display = 'none'; " +
                             "y2.style.display = 'none'; " +
+                            "var inputdate = parseInt(c[1].value.substring(8,10));"+
                             "if (x.value != 0 ){" + "\n" +
-                            "if (btime < time + 1 && time < 20){" + "\n" +
+                            "if (btime < time + 1 && time < 20 && inputdate === today.getDate()){" + "\n" +
                             "y.style.display = 'block'; " +
                             "} " + "\n" +
                             "if (time >= 20){" + "\n" +
                             "y2.style.display = 'block'; " +
                             "} " + "\n" +
                             "else{" +
-                            "a[0].innerHTML = btime;" +
                             "z.style.display = 'block' " +
                             "} " + "\n" +
                             "} " + "\n" +
