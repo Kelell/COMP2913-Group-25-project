@@ -20,6 +20,14 @@ public class BookABike extends HttpServlet {
         response.setContentType("text/html");
         jdbc test = new jdbc();
         String driver = "com.mysql.cj.jdbc.Driver";
+        String d = request.getParameter("date");
+        String t = request.getParameter("time0");
+        String rt = request.getParameter(t);
+        String l = request.getParameter("Location");
+        String du = request.getParameter("Dur");
+
+
+
         try {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
@@ -31,34 +39,6 @@ public class BookABike extends HttpServlet {
             ArrayList<Integer> stats = new ArrayList<Integer>();;
             ArrayList<String> loca = new ArrayList<String>();
             ArrayList<Float> cost = new ArrayList<Float>();
-            String sql2;
-            sql2 = "SELECT TIME_ID, Date_, Time_, EndTime, BIKE_ID FROM time";
-            ResultSet rs2 = stmt.executeQuery(sql2);
-            ArrayList<Integer> time_ids = new ArrayList<Integer>();
-            ArrayList<Integer> bike_id = new ArrayList<Integer>();;
-            ArrayList<String> date = new ArrayList<String>();
-            ArrayList<Integer> time = new ArrayList<Integer>();
-            ArrayList<Integer> timend = new ArrayList<Integer>();
-
-            String d = request.getParameter("date");
-            String t = request.getParameter("time0");
-            String rt = request.getParameter(t);
-            String l = request.getParameter("Location");
-            String du = request.getParameter("Dur");
-
-            while(rs2.next()){
-                //Retrieve by column name
-                int id  = rs2.getInt("TIME_ID");
-                String fe = rs2.getString("Date_");
-                int ef = rs2.getInt("Time_");
-                int location = rs2.getInt("EndTime");
-                int status = rs2.getInt("BIKE_ID");
-                time_ids.add(id);
-                bike_id.add(status);
-                date.add(fe);
-                time.add(ef);
-                timend.add(location);
-            }
 
             while(rs.next()){
                 //Retrieve by column name
@@ -76,9 +56,67 @@ public class BookABike extends HttpServlet {
             }
 
             rs.close();
+
+
+
+            String sql2;
+            sql2 = "SELECT TIME_ID, Date_, Time_, EndTime, BIKE_ID FROM time";
+            ResultSet rs2 = stmt.executeQuery(sql2);
+            ArrayList<Integer> time_ids = new ArrayList<Integer>();
+            ArrayList<Integer> bike_id = new ArrayList<Integer>();;
+            ArrayList<String> date = new ArrayList<String>();
+            ArrayList<Integer> time = new ArrayList<Integer>();
+            ArrayList<Integer> timend = new ArrayList<Integer>();
+
+
+            while(rs2.next()){
+                //Retrieve by column name
+                int id  = rs2.getInt("TIME_ID");
+                String fe = rs2.getString("Date_");
+                int ef = rs2.getInt("Time_");
+                int location = rs2.getInt("EndTime");
+                int status = rs2.getInt("BIKE_ID");
+                time_ids.add(id);
+                bike_id.add(status);
+                date.add(fe);
+                time.add(ef);
+                timend.add(location);
+            }
             rs2.close();
             stmt.close();
             conn.close();
+
+            int listsize = bike_ids.size();
+            String size = Integer.toString(listsize);
+
+            out.println("<head onload=\"openFunction()\" >" +
+                    "<title id = prick >$Title$</title>" +
+                    "<link rel=stylesheet href=style.css type=text/css>" +
+                    "</head>"
+            );
+            out.println("<body  >");
+            out.println(
+                    "<div class=nav>"+
+                            "<a  href=index.jsp>Home</a>"+
+                            "<a class=active href=book>Book A Bike</a>" +
+                            "<a href=\"Views\">View bikes</a>" +
+                            "<a href=AboutUs.jsp>About Us</a>"+
+                            "<a href=ContactUs.jsp>Contact Us</a>"+
+                            "<a>Log out</a>" +
+                            "</div>"
+            );
+
+            for (int i = 0; i < listsize; i++)
+            {
+                out.println(
+                        "<div class = \"bike\">\n" +
+                                "\t<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                "    <p>price: "+ cost.get(i) +"</p>\n" +
+                                "    <p>id: "+ bike_ids.get(i)+"</p>\n" +
+                                "\n" +
+                                "</div>"
+                );
+            }
 
 
 
