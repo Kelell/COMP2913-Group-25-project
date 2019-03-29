@@ -66,6 +66,7 @@ public class BookABike extends HttpServlet {
                     "<div class=nav>"+
                             "<a  href=index.jsp>Home</a>"+
                             "<a class=active href=book>Book A Bike</a>" +
+                            "<a href=\"Views\">View bikes</a>" +
                             "<a href=AboutUs.jsp>About Us</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+
                             "<a>Log out</a>" +

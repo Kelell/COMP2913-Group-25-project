@@ -58,45 +58,234 @@ public class View extends HttpServlet {
             int listsize = bike_ids.size();
             String size = Integer.toString(listsize);
 
-            File file = new File("/home/csunix/sc16bmt/thingsTHISYEAR/SEPROJECT/comp2913-group-25-project/BIKEWORLD/web/loca/alnmouth.jpg");
-            URL url = file.toURI().toURL();
-            URI uri = file.toURI();
-
             out.println("<head onload=\"openFunction()\" >" +
                     "<title id = prick >$Title$</title>" +
                     "<link rel=stylesheet href=style.css type=text/css>" +
                     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"+
+                    "<style>\n" +
+                    "* {\n" +
+                    "  box-sizing: border-box;\n" +
+                    "}\n" +
+                    "\n" +
+                    "body {\n" +
+                    "  margin: 0;\n" +
+                    "  font-family: Arial;\n" +
+                    "  background-color: white;" +
+                    "}\n" +
+                    "\n" +
+                    "/* The grid: Four equal columns that floats next to each other */\n" +
+                    ".column {\n" +
+                    "  float: left;\n" +
+                    "  width: 25%;\n" +
+                    "  padding: 10px;\n" +
+                    "}\n" +
+                    "\n" +
+                    "/* Style the images inside the grid */\n" +
+                    ".column img {\n" +
+                    "  opacity: 0.8; \n" +
+                    "  cursor: pointer; \n" +
+                    "}\n" +
+                    "\n" +
+                    ".column img:hover {\n" +
+                    "  opacity: 1;\n" +
+                    "}\n" +
+                    "\n" +
+                    "/* Clear floats after the columns */\n" +
+                    ".row:after {\n" +
+                    "  content: \"\";\n" +
+                    "  display: table;\n" +
+                    "  clear: both;\n" +
+                    "}\n" +
+                    "\n" +
+                    "#imgtext {\n" +
+                    "  position: absolute;\n" +
+                    "  top: 50%;\n" +
+                    "  left: 50%;\n" +
+                    "  transform: translate(-50%, -50%);\n" +
+                    "  -ms-transform: translate(-50%, -50%);\n" +
+                    "  background-color: #555;\n" +
+                    "  color: white;\n" +
+                    "  font-size: 16px;\n" +
+                    "  padding: 12px 24px;\n" +
+                    "  border: none;\n" +
+                    "  cursor: pointer;\n" +
+                    "  border-radius: 5px;\n" +
+                    "  text-align: center;" +
+                    "  font-size: 20px;\n" +
+                    "}\n" +
+                    "\n" +
+                    ".container {\n" +
+                    "  position: relative;\n" +
+                    "  width: 100%;\n" +
+                    "  max-width: 400px;\n" +
+                    "}"+
+                    "/* Closable button inside the expanded image */\n" +
+                    ".closebtn {\n" +
+                    "  position: absolute;\n" +
+                    "  top: 10px;\n" +
+                    "  right: 15px;\n" +
+                    "  color: white;\n" +
+                    "  font-size: 35px;\n" +
+                    "  cursor: pointer;\n" +
+                    "}\n" +
+                    "img {\n" +
+                    "  border-radius: 10%;\n" +
+                    "}"+
+                    "</style>"+
                     "</head>"
             );
             out.println("<body  >");
             out.println(
                     "<div class=nav>"+
                             "<a  href=index.jsp>Home</a>"+
-                            "<a class=active href=book>Book A Bike</a>" +
+                            "<a href=book>Book A Bike</a>" +
+                            "<a class=active href=\"Views\">View bikes</a>" +
                             "<a href=AboutUs.jsp>About Us</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+
                             "<a>Log out</a>" +
                             "</div>"
             );
             out.println(
-                    "<form id = 'form1' action= book method = 'post' >" +
+                    "<form id = 'form2' action= Available method = 'post' >" +
+
+                            "<p style = \"display: none\" >Select a Location</p>" + "\n" +
+                            "<select  id = \"Loca\" style = \"display: none\" name = Location >" +
+                            "<option selected value= 'Please select'>Please select</option>" +
+                            "<option value=Alnmouth>Alnmouth</option>" +
+                            "<option value=Barnsley Interchange>Barnsley Interchange</option>"+
+                            "<option value=Beverly>Beverly</option>"+
+                            "<option value=Bournemouth>Bournemouth</option>"+
+                            "<option value=Bradford Interchange>Bradford Interchange</option>"+
+                            "<option value=Bristol>Bristol</option>"+
+                            "<option value=Buckingham>Buckingham</option>"+
+                            "<option value=Crystal>Crystal</option>"+
+                            "<option value=Halifax>Halifax</option>"+
+                            "<option value=Harrogate>Harrogate</option>"+
+                            "<option value=Hebden Bridge>Hebden Bridge</option>"+
+                            "<option value=Hexam>Hexam</option>"+
+                            "<option value=Leeds>Leeds</option>"+
+                            "<option value=Manchester>Manchester</option>"+
+                            "<option value=Rotherham>Rotherham</option>"+
+                            "<option value=Shipley>Shipley</option>"+
+                            "</select>"+ "\n" +
 
 
-                            "<p name = Location >Select a Location</p>" + "\n" +
-                            "<div class=\"row\">\n" +
+                            "<h1 name = Location >Select a Location</h1>" + "\n" +
+                            "<div class=\"row\"  style = \"\">\n" +
                             "  <div class=\"column\">\n" +
-                            "    <img src= \""+ url + "\" alt=\"alnmouth\" width=\"400\" height=\"300\">\n" +
-                            "    <div id=\"alnmousth\"></div>" +
+                            "    <div class=\"container\" onclick=\"myFunction(\"this\")\" >"+
+                            "       <img src= \" https://i.pinimg.com/474x/de/2e/9d/de2e9d4d049c7032056149762f313f88--wales-england.jpg\" alt=\"Alnmouth\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Alnmouth</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"http://blackwoodcontracts.co.uk/public/images/images/1476785212.9959.jpg\" alt=\"Barnsley Interchange\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Barnsley Interchange</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://odis.homeaway.com/odis/listing/6e43f6f7-ca87-4df4-b68d-06e1d0199fb7.c6.jpg\" alt=\"Beverly\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Beverly</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://odis.homeaway.com/odis/listing/837a55f6-e395-4443-9abd-3b486af23e90.c6.jpg\" alt=\"Bournemouth\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Bournemouth</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://imgs.nestimg.com/2_bedroom_flat_110858279168491148.jpg\" alt=\"Bradford Interchange\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Bradford Interchange</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://imgc.allpostersimages.com/img/print/u-g-P1H1SK0.jpg?w=400&h=300\" alt=\"Bristol\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Bristol</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img  src= \"https://t1.ftcdn.net/jpg/01/84/33/50/400_F_184335035_sqCKtkB9su1fGseg1NhRIsFmBlC5b1mJ.jpg\" alt=\"Buckingham\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Buckingham</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://res.cloudinary.com/travelodgeuk/image/upload/w_400/hotels/GB0727_Croydon_Central_EXTERIOR_2208.jpg\" alt=\"Crystal\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Crystal</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"http://www.visitoruk.com/images/franchises/Halifax/1290959401_1homeslider_halifax2.jpg\" alt=\"Halifax\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Halifax</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"http://www.visitoruk.com/images/franchises/Harrogate/1290959182_1homeslider_harrogate2.jpg\" alt=\"Harrogate\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Harrogate</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://www.britainexpress.com/images/accommodation/cottages/SY/SY930177_19.jpg\" alt=\"Hebden\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Hebden</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://images.snaptrip.com/uploads/image/file/4809608/hero_304527.jpg\" alt=\"Hexam\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Hexam</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"http://www.europeanrailguide.com/images/itour/182.jpg\" alt=\"Leeds\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Leeds</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\"onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://i.pinimg.com/originals/be/e8/ec/bee8ec97008567e59dab790d58ab6836.jpg\" alt=\"Manchester\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Manchester</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://3.bp.blogspot.com/-8yGySJG5cas/WIdzaDKG1CI/AAAAAAAAT-Y/MicdItwRdDkkzRT7xEgY2J0ECSTeCe_FwCLcB/s400/rothbiz+rotherham+interchange.jpg\" alt=\"Rotherham\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Rotherham</div>" +
+                            "    </div>"+
+                            "  </div>\n" +
+                            "  <div class=\"column\">\n" +
+                            "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
+                            "       <img src= \"https://imgs.nestimg.com/1_bedroom_flat_for_sale_110499546788616634.jpg\" alt=\"Shipley\" width=\"390\" height=\"300\">\n" +
+                            "       <div id=\"imgtext\">Shipley</div>" +
+                            "    </div>"+
                             "  </div>\n" +
                             "</div>" +
-
-                            "<input id = \"submit\" style=\"display:none;\" type=submit value=Submit>" + "\n" +
                             "</form>" + "\n" +
                             "<script>"  + "\n" +
                             "function openFunction() {"   + "\n" +
                             "document.getElementById(\"form1\").reset();" +
                             "location.reload();" +
                             "}" +
+                            "function myFunction(cont) {\n" +
+                            "  var tag = cont.lastElementChild; " +
+                            "  var val = document.getElementById(\"Loca\");" +
+                            "  var i;\n" +
+                            "  for (i = 1; i < val.options.length; i++) {\n" +
+                            "    if (val.options[i].text === tag.innerHTML){" +
+                            "       val.selectIndex = i;"+
+                            "    }"+
+                            "  }"+
+                            "  var x = document.getElementById('form2').submit();" +
+                            "}"+
 
                             "</script>"
 
