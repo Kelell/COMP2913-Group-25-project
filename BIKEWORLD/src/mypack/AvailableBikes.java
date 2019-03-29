@@ -134,6 +134,18 @@ public class AvailableBikes extends HttpServlet {
                     "  height: 300px;\n" +
 
                     "}" +
+                    ".grid-container {\n" +
+                    "  display: grid;\n" +
+                    "  grid-template-columns: auto auto auto auto auto auto auto auto;\n" +
+                    "  grid-gap: 10px;\n" +
+                    "  background-color: #2196F3;\n" +
+                    "  padding: 10px;\n" +
+                    "}"+
+                    ".grid-container > div {\n" +
+                    "  text-align: center;\n" +
+                    "  padding: 20px 0;\n" +
+                    "  font-size: 30px;\n" +
+                    "}" +
                     "</style>" +
                     "</head>"
             );
@@ -170,10 +182,24 @@ public class AvailableBikes extends HttpServlet {
             }
             out.println(
 
-                    " <button type=\"button\" onclick=\"myfunction0()\">Availabillity by time</button>"+
+                    "<button type=\"button\" onclick=\"myFunction0()\">Availabillity by time</button>"+
                     "<p style=\"display:none;\" name=\"date\" >Enter Date: </p> " + "\n" +
-                    "<input onchange=\"myFunction3()\" required = 'required' style=\"display:none;\"  type=\"date\" name=\"date\" required=\"required\">" + "\n" +
+                    "<input onchange=\"myFunction1()\" required = 'required' style=\"display:none;\"  type=\"date\" name=\"date\" required=\"required\">" + "\n" +
                     "<p style=\"display:none;color:red;\" id =\"error\"> Error buddy</p>" +
+                            "<dive class = \"grid-container\" style=\"display:none;\"  name = \"Time\" >" +
+                            "<div>8</div>\n" +
+                            "  <div>9</div>\n" +
+                            "  <div>10</div>  \n" +
+                            "  <div>11</div>\n" +
+                            "  <div>12</div>\n" +
+                            "  <div>13</div>  \n" +
+                            "  <div>14</div>\n" +
+                            "  <div>15</div>\n" +
+                            "  <div>16</div>\n" +
+                            "  <div>17</div>  \n" +
+                            "  <div>18</div>\n" +
+                            "  <div>19</div>" +
+                            "</div>"+
 
                     "<form id = 'form1' action= book method = 'post' >" +
 
@@ -187,8 +213,8 @@ public class AvailableBikes extends HttpServlet {
                             "}" + "\n" +
 
                             "function myFunction0() {"   + "\n" +
-                            "document.getElementsByName('date').style.display = 'none';" +
-                            "location.reload();" +
+                            "document.getElementsByName('date')[0].style.display = 'block';" +
+                            "document.getElementsByName('date')[1].style.display = 'block';" +
                             "}" + "\n" +
 
                             "function myFunction1() {"   + "\n" +
@@ -206,26 +232,21 @@ public class AvailableBikes extends HttpServlet {
                             "var inputdate = parseInt(c[1].value.substring(8,10));"+
                             "if ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate >= currentday)){" + "\n" +
                             "if (c[1].value !=  '0000-00-00'){" + "\n" +
+                            "d[0].style.display = 'grid';" + "\n" +
                             "}" +
                             "if (c[1].value == '0000-00-00'){" + "\n" +
                             "d[0].style.display = 'none';" + "\n" +
-                            "d[1].style.display = 'none';" + "\n" +
                             "}" + "\n" +
                             "} " + "\n" +
                             "else{" + "\n" +
                             "d[0].style.display = 'none';" + "\n" +
-                            "d[1].style.display = 'none';" + "\n" +
-                            "e[0].style.display = 'none';" + "\n" +
-                            "e[1].style.display = 'none';" + "\n" +
-                            "f[0].style.display = 'none';" + "\n" +
-                            "f[1].style.display = 'none';" + "\n" +
-                            "g[0].style.display = 'none';" + "\n" +
-                            "g[1].style.display = 'none';" + "\n" +
                             "c[1].value = '0000-00-00'" + "\n" +
                             "h.style.display = 'block';"   + "\n" +
 
                             "} " + "\n" +
                             "} " + "\n" +
+
+
 
                             "</script>"
             );
