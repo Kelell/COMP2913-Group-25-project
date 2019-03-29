@@ -46,4 +46,14 @@
         <url-pattern>/Available</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>View</servlet-name>
+        <servlet-class>mypack.View</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>View</servlet-name>
+        <url-pattern>/Views</url-pattern>
+    </servlet-mapping>
+
 </web-app>
