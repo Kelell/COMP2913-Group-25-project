@@ -146,22 +146,22 @@ public class View extends HttpServlet {
                             "</div>"
             );
             out.println(
-                    "<form id = 'form2' action= Available method = 'post' >" +
+                    "<form id = 'form2' action= Available method = 'get' >" +
 
                             "<p style = \"display: none\" >Select a Location</p>" + "\n" +
                             "<select  id = \"Loca\" style = \"display: none\" name = Location >" +
                             "<option selected value= 'Please select'>Please select</option>" +
                             "<option value=Alnmouth>Alnmouth</option>" +
-                            "<option value=Barnsley Interchange>Barnsley Interchange</option>"+
+                            "<option value=Barnsley>Barnsley</option>"+
                             "<option value=Beverly>Beverly</option>"+
                             "<option value=Bournemouth>Bournemouth</option>"+
-                            "<option value=Bradford Interchange>Bradford Interchange</option>"+
+                            "<option value=Bradford>Bradford</option>"+
                             "<option value=Bristol>Bristol</option>"+
                             "<option value=Buckingham>Buckingham</option>"+
                             "<option value=Crystal>Crystal</option>"+
                             "<option value=Halifax>Halifax</option>"+
                             "<option value=Harrogate>Harrogate</option>"+
-                            "<option value=Hebden Bridge>Hebden Bridge</option>"+
+                            "<option value=Hebden>Hebden</option>"+
                             "<option value=Hexam>Hexam</option>"+
                             "<option value=Leeds>Leeds</option>"+
                             "<option value=Manchester>Manchester</option>"+
@@ -181,7 +181,7 @@ public class View extends HttpServlet {
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
                             "       <img src= \"http://blackwoodcontracts.co.uk/public/images/images/1476785212.9959.jpg\" alt=\"Barnsley Interchange\" width=\"390\" height=\"300\">\n" +
-                            "       <div id=\"imgtext\">Barnsley Interchange</div>" +
+                            "       <div id=\"imgtext\">Barnsley</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
@@ -199,7 +199,7 @@ public class View extends HttpServlet {
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
                             "       <img src= \"https://imgs.nestimg.com/2_bedroom_flat_110858279168491148.jpg\" alt=\"Bradford Interchange\" width=\"390\" height=\"300\">\n" +
-                            "       <div id=\"imgtext\">Bradford Interchange</div>" +
+                            "       <div id=\"imgtext\">Bradford</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
@@ -280,8 +280,8 @@ public class View extends HttpServlet {
                             "  var val = document.getElementById(\"Loca\");" +
                             "  var i;\n" +
                             "  for (i = 1; i < val.options.length; i++) {\n" +
-                            "    if (val.options[i].text === tag.innerHTML){" +
-                            "       val.selectIndex = i;"+
+                            "    if (val.options[i].innerHTML === tag.innerHTML){" +
+                            "       val.value = tag.innerHTML;"+
                             "    }"+
                             "  }"+
                             "  var x = document.getElementById('form2').submit();" +
