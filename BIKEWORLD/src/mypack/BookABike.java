@@ -24,21 +24,34 @@ public class BookABike extends HttpServlet {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT BIKE_ID, STATUS, LOCATION, price FROM bike";
+            ResultSet rs = stmt.executeQuery(sql);
+            ArrayList<Integer> bike_ids = new ArrayList<Integer>();
+            ArrayList<Integer> stats = new ArrayList<Integer>();;
+            ArrayList<String> loca = new ArrayList<String>();
+            ArrayList<Float> cost = new ArrayList<Float>();
             String sql2;
             sql2 = "SELECT TIME_ID, Date_, Time_, EndTime, BIKE_ID FROM time";
             ResultSet rs2 = stmt.executeQuery(sql2);
             ArrayList<Integer> time_ids = new ArrayList<Integer>();
             ArrayList<Integer> bike_id = new ArrayList<Integer>();;
             ArrayList<String> date = new ArrayList<String>();
-            ArrayList<String> time = new ArrayList<String>();
-            ArrayList<String> timend = new ArrayList<String>();
+            ArrayList<Integer> time = new ArrayList<Integer>();
+            ArrayList<Integer> timend = new ArrayList<Integer>();
+
+            String d = request.getParameter("date");
+            String t = request.getParameter("time0");
+            String rt = request.getParameter(t);
+            String l = request.getParameter("Location");
+            String du = request.getParameter("Dur");
 
             while(rs2.next()){
                 //Retrieve by column name
                 int id  = rs2.getInt("TIME_ID");
                 String fe = rs2.getString("Date_");
-                String ef = rs2.getString("Time_");
-                String location = rs2.getString("EndTime");
+                int ef = rs2.getInt("Time_");
+                int location = rs2.getInt("EndTime");
                 int status = rs2.getInt("BIKE_ID");
                 time_ids.add(id);
                 bike_id.add(status);
@@ -46,16 +59,30 @@ public class BookABike extends HttpServlet {
                 time.add(ef);
                 timend.add(location);
             }
+
+            while(rs.next()){
+                //Retrieve by column name
+                int id  = rs.getInt("BIKE_ID");
+                int status = rs.getInt("STATUS");
+                String location = rs.getString("LOCATION");
+                float price = rs.getFloat("price");
+                if (location.equals(l))
+                {
+                    bike_ids.add(id);
+                    loca.add(location);
+                    cost.add(price);
+                }
+
+            }
+
+            rs.close();
             rs2.close();
             stmt.close();
             conn.close();
 
-            String d = request.getParameter("date");
-            String t = request.getParameter("time");
 
-            out.println("Test");
-            out.println("<h1>" + t + "</h1>");
-            out.println(d);
+
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -152,7 +179,7 @@ public class BookABike extends HttpServlet {
 
 
                             "<p style=\"display:none;\" name = Time1 >Select a Time to book</p>" + "\n" +
-                            "<select onclick =\"myFunction4()\" style=\"display:none;\" name = Time1 required = \"required\" >" + "\n" +
+                            "<select onclick =\"myFunction4(this)\" style=\"display:none;\" name = Time1 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
                             "<option value= \"08-09\" >8 am to 9 am</option>" + "\n" +
                             "<option value= \"09-10\" >9 am to 10 am</option>" + "\n" +
@@ -169,7 +196,7 @@ public class BookABike extends HttpServlet {
                             "</select>" + "\n" +
 
                             "<p style=\"display:none;\" name = Time2 >Select a Time to book</p>" + "\n" +
-                            "<select onclick =\"myFunction4()\" style=\"display:none;\" name = Time2 required = \"required\" >" + "\n" +
+                            "<select onclick =\"myFunction4(this)\" style=\"display:none;\" name = Time2 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
                             "<option value= \"08-10\" >8 am to 10 am</option>" + "\n" +
                             "<option value= \"09-11\" >9 am to 11 am</option>" + "\n" +
@@ -185,7 +212,7 @@ public class BookABike extends HttpServlet {
                             "</select>" + "\n" +
 
                             "<p style=\"display:none;\" name = Time3 >Select a Time to book</p>" + "\n" +
-                            "<select onclick=\"myFunction4()\" style=\"display:none;\" name = Time3 required = \"required\" >" + "\n" +
+                            "<select onclick=\"myFunction4(this)\" style=\"display:none;\" name = Time3 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
                             "<option value= \"08-11\" >8 am to 11 am</option>" + "\n" +
                             "<option value= \"09-12\" >9 am to 12 pm</option>" + "\n" +
@@ -200,7 +227,7 @@ public class BookABike extends HttpServlet {
                             "</select>" + "\n" +
 
                             "<p style=\"display:none;\" name = Time4 >Select a Time to book</p>" + "\n" +
-                            "<select onclick=\"myFunction4()\" style=\"display:none;\" name = Time4 required = \"required\" >" + "\n" +
+                            "<select onclick=\"myFunction4(this)\" style=\"display:none;\" name = Time4 required = \"required\" >" + "\n" +
                             "<option value= 0>Please select</option>" + "\n" +
                             "<option value= \"08-12\" >8 am to 12 pm</option>" + "\n" +
                             "<option value= \"09-13\" >9 am to 1 pm</option>" + "\n" +
@@ -219,6 +246,13 @@ public class BookABike extends HttpServlet {
 
                             "<p style=\"display:none;color:red;\" id =\"error3\"> No more bookings today</p>" +
 
+                            "<select id = tyme style=\"display:none;\" name = time0 required = \"required\" >" + "\n" +
+                            "<option value= Time1>Time1</option>" + "\n" +
+                            "<option value= Time2>Time2</option>" + "\n" +
+                            "<option value= Time3>Time3</option>" + "\n" +
+                            "<option value= Time4>Time4</option>" + "\n" +
+                            "</select>" + "\n" +
+
 
 
                             "<br><br>" +
@@ -234,13 +268,15 @@ public class BookABike extends HttpServlet {
 
 
                             "function myFunction() {"   + "\n" +
-                            "var a = document.getElementsByName('Location')"   + "\n" +
-                            "var b = document.getElementsByName('Dur')"   + "\n" +
-                            "var c = document.getElementsByName('date')"   + "\n" +
-                            "var d = document.getElementsByName('Time1')"   + "\n" +
-                            "var e = document.getElementsByName('Time2')"   + "\n" +
-                            "var f = document.getElementsByName('Time3')"   + "\n" +
-                            "var g = document.getElementsByName('Time4')"   + "\n" +
+                            "var a = document.getElementsByName('Location');"   + "\n" +
+                            "var b = document.getElementsByName('Dur');"   + "\n" +
+                            "var c = document.getElementsByName('date');"   + "\n" +
+                            "var d = document.getElementsByName('Time1');"   + "\n" +
+                            "var e = document.getElementsByName('Time2');"   + "\n" +
+                            "var f = document.getElementsByName('Time3');"   + "\n" +
+                            "var g = document.getElementsByName('Time4');"   + "\n" +
+                            "var z = document.getElementById('submit');"   + "\n" +
+                            "z.style.display = 'none'; " +
                             "if (a[1].value !=  'Please select'){" + "\n" +
                             "if (b[1].style.display ==  'none'){" + "\n" +
                             "b[0].style.display = 'block';" + "\n" +
@@ -288,13 +324,15 @@ public class BookABike extends HttpServlet {
 
 
                             "function myFunction2() {"   + "\n" +
-                            "var a = document.getElementsByName('Location')"   + "\n" +
-                            "var b = document.getElementsByName('Dur')"   + "\n" +
-                            "var c = document.getElementsByName('date')"   + "\n" +
-                            "var d = document.getElementsByName('Time1')"   + "\n" +
-                            "var e = document.getElementsByName('Time2')"   + "\n" +
-                            "var f = document.getElementsByName('Time3')"   + "\n" +
-                            "var g = document.getElementsByName('Time4')"   + "\n" +
+                            "var a = document.getElementsByName('Location');"   + "\n" +
+                            "var b = document.getElementsByName('Dur');"   + "\n" +
+                            "var c = document.getElementsByName('date');"   + "\n" +
+                            "var d = document.getElementsByName('Time1');"   + "\n" +
+                            "var e = document.getElementsByName('Time2');"   + "\n" +
+                            "var f = document.getElementsByName('Time3');"   + "\n" +
+                            "var g = document.getElementsByName('Time4');"   + "\n" +
+                            "var z = document.getElementById('submit');"   + "\n" +
+                            "z.style.display = 'none'; " +
                             "if (b[1].value !=  0){" + "\n" +
                             "if (c[1].style.display ==  'none'){" + "\n" +
                             "c[0].style.display = 'block';" + "\n" +
@@ -340,14 +378,16 @@ public class BookABike extends HttpServlet {
 
 
                             "function myFunction3() {"   + "\n" +
-                            "var a = document.getElementsByName('Location')"   + "\n" +
-                            "var b = document.getElementsByName('Dur')"   + "\n" +
-                            "var c = document.getElementsByName('date')"   + "\n" +
-                            "var d = document.getElementsByName('Time1')"   + "\n" +
-                            "var e = document.getElementsByName('Time2')"   + "\n" +
-                            "var f = document.getElementsByName('Time3')"   + "\n" +
-                            "var g = document.getElementsByName('Time4')"   + "\n" +
-                            "var h = document.getElementById('error')"   + "\n" +
+                            "var a = document.getElementsByName('Location');"   + "\n" +
+                            "var b = document.getElementsByName('Dur');"   + "\n" +
+                            "var c = document.getElementsByName('date');"   + "\n" +
+                            "var d = document.getElementsByName('Time1');"   + "\n" +
+                            "var e = document.getElementsByName('Time2');"   + "\n" +
+                            "var f = document.getElementsByName('Time3');"   + "\n" +
+                            "var g = document.getElementsByName('Time4');"   + "\n" +
+                            "var h = document.getElementById('error');"   + "\n" +
+                            "var z = document.getElementById('submit');"   + "\n" +
+                            "z.style.display = 'none'; " +
                             "h.style.display = 'none';"   + "\n" +
                             "var today = new Date();" +
                             "var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();" +
@@ -439,19 +479,22 @@ public class BookABike extends HttpServlet {
                             "} " + "\n" +
 
 
-                            "function myFunction4() {"   + "\n" +
-                            "var a = document.getElementsByName('Location')"   + "\n" +
-                            "var b = document.getElementsByName('Dur')"   + "\n" +
-                            "var c = document.getElementsByName('date')"   + "\n" +
-                            "var d = document.getElementsByName('Time1')"   + "\n" +
-                            "var e = document.getElementsByName('Time2')"   + "\n" +
-                            "var f = document.getElementsByName('Time3')"   + "\n" +
-                            "var g = document.getElementsByName('Time4')"   + "\n" +
-                            "var x = document.getElementById('path')"   + "\n" +
-                            "var y = document.getElementById('error2')"   + "\n" +
-                            "var y2 = document.getElementById('error3')"   + "\n" +
-                            "var z = document.getElementById('submit')"   + "\n" +
-                            "var btime = parseInt(x.value.substring(0,2))"   + "\n" +
+                            "function myFunction4(obj) {"   + "\n" +
+                            "var a = document.getElementsByName('Location');"   + "\n" +
+                            "var b = document.getElementsByName('Dur');"   + "\n" +
+                            "var c = document.getElementsByName('date');"   + "\n" +
+                            "var d = document.getElementsByName('Time1');"   + "\n" +
+                            "var e = document.getElementsByName('Time2');"   + "\n" +
+                            "var f = document.getElementsByName('Time3');"   + "\n" +
+                            "var g = document.getElementsByName('Time4');"   + "\n" +
+                            "var val = document.getElementById(\"tyme\");" +
+                            "var x = document.getElementById('path');"   + "\n" +
+                            "var y = document.getElementById('error2');"   + "\n" +
+                            "var y2 = document.getElementById('error3');"   + "\n" +
+                            "var z = document.getElementById('submit');"   + "\n" +
+                            "z.style.display = 'none'; " +
+                            "val.value = obj.name ;" +
+                            "var btime = parseInt(x.value.substring(0,2));"   + "\n" +
                             "var today = new Date();" +
                             "var time = today.getHours();" +
                             "y.style.display = 'none'; " +
@@ -460,12 +503,14 @@ public class BookABike extends HttpServlet {
                             "if (x.value != 0 ){" + "\n" +
                             "if (btime < time + 1 && time < 20 && inputdate === today.getDate()){" + "\n" +
                             "y.style.display = 'block'; " +
+                            "z.style.display = 'none'; " +
                             "} " + "\n" +
-                            "if (time >= 20){" + "\n" +
+                            "else if (time >= 20){" + "\n" +
                             "y2.style.display = 'block'; " +
+                            "z.style.display = 'none'; " +
                             "} " + "\n" +
                             "else{" +
-                            "z.style.display = 'block' " +
+                            "z.style.display = 'block'; " +
                             "} " + "\n" +
                             "} " + "\n" +
                             "} " + "\n" +
