@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Register</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 <div class="nav"><!--Nav bar from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_topnav (TEST ONLY)-->
