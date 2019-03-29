@@ -15,7 +15,6 @@
 
   <div class="nav"><!--Nav bar from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_topnav (TEST ONLY)-->
     <a class="active" href="index.jsp">Home</a>
-    <a href="Views">View bikes</a>
     <a href="AboutUs.jsp">About Us</a>
     <a href="ContactUs.jsp">Contact Us</a>
     <a href="LogIn.jsp">LogIn</a>

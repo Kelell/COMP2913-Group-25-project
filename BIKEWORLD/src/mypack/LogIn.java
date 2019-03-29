@@ -34,6 +34,7 @@ public class LogIn extends HttpServlet {
             }
             if(name.equals(Uname)&&password.equals(Upass)){
                 out.println("Successful LogIn");
+                
             }else{
                 //response.sendRedirect("login.jsp");
                 RequestDispatcher rd = request.getRequestDispatcher("LogIn.jsp");
