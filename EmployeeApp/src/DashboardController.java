@@ -1,5 +1,3 @@
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -82,14 +80,12 @@ public class DashboardController implements Initializable {
 
     private SortedList<BikeModel> sortedData;
 
-
    @Override
 
     public void initialize(URL url, ResourceBundle rb) {
        customerPaneBuild();
        bikePaneBuild();
        ticketPaneBuild();
-	   
     }
 
     /*
@@ -236,7 +232,7 @@ public class DashboardController implements Initializable {
 
             //Populates the data from the database to the list to display on the bike table
             while (rs1.next()) {
-                bikeData.add(new BikeModel(rs1.getString("BIKE_ID"),rs1.getString("STATUS"), rs1.getString("LOCATION"), rs1.getString("PRICE")));
+                bikeData.add(new BikeModel(rs1.getString("BIKE_ID"),rs1.getString("STATUS"), rs1.getString("LOCATION"), String.format("%.2f",rs1.getDouble("PRICE"))));
             }
 
             //initilase the bike table columns
@@ -312,6 +308,7 @@ public class DashboardController implements Initializable {
                                 return true; // Filter matches Bike ID.
                             }
                             break;
+
                     }
 
                     return false; // Does not match.
@@ -334,8 +331,7 @@ public class DashboardController implements Initializable {
                     String currentStatus = statusCombo.getSelectionModel().getSelectedItem().toString();
                     FilteredList<BikeModel> filteredData = new FilteredList<>(sortedData, p -> true);
                     filteredData.setPredicate(bike -> {
-                        
-						// If filter text is empty, display all bikes.
+                        // If filter text is empty, display all bikes.
 
                         if(bike.idProperty().getValue().trim().equals("")){
                             return false;
@@ -346,7 +342,6 @@ public class DashboardController implements Initializable {
                                 return true;
                             }
                         }
-						
                         return false;
                     });
 
@@ -357,9 +352,9 @@ public class DashboardController implements Initializable {
                     sortedData.comparatorProperty().bind(bikeTable.comparatorProperty());
                     // 5. Add sorted (and filtered) bikeData to the table.
                     bikeTable.setItems(sortedData);
+
                 }
             });
-			
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
@@ -382,13 +377,13 @@ public class DashboardController implements Initializable {
             ticketData = FXCollections.observableArrayList();
 
             //Retreives data from the ticket table
-            ResultSet rs1 = con.createStatement().executeQuery("SELECT *,TRUNCATE((days * price),2)  as total from hires LEFT JOIN bike ON hires.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = hires.customer_id");
+            ResultSet rs1 = con.createStatement().executeQuery("SELECT *,TRUNCATE((days * price),2)  as total, DATE_FORMAT(start_date, '%d/%m/%Y') as start, DATE_FORMAT(end_date, '%d/%m/%Y') as end from hires LEFT JOIN bike ON hires.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = hires.customer_id");
 
             //Populates the data from the database to the list to display on the ticket table
             while (rs1.next()) {
                 ticketData.add(new TicketModel(rs1.getString("hire_id"),rs1.getString("customer_id"), rs1.getString("bike_id"),
-                                                 rs1.getString("CUSTOMER_NAME"),rs1.getString("START_DATE"), rs1.getString("END_DATE"),
-                                                 rs1.getString("price"),rs1.getString("total")));
+                                                 rs1.getString("CUSTOMER_NAME"),rs1.getString("start"), rs1.getString("end"),
+                        String.format("%.2f",rs1.getDouble("price")),String.format("%.2f",rs1.getDouble("total"))));
             }
 
             //Initialise the columns on the ticket table
@@ -404,7 +399,6 @@ public class DashboardController implements Initializable {
             //Print Column has a button, needs a custom class to allow that
             printColumn.setCellFactory(PrintButtonCell.<TicketModel>forTableColumn());
 
-
             // 1. Wrap the ObservableList in a FilteredList (initially display all ticket Data).
             FilteredList<TicketModel> filteredData = new FilteredList<>(ticketData, p -> true);
 
@@ -415,7 +409,6 @@ public class DashboardController implements Initializable {
                     if (newValue == null || newValue.isEmpty()) {
                         return true;
                     }
-					
                     // Compare value of every ticket  with filter text.
                     String lowerCaseFilter = newValue.toLowerCase();
 
