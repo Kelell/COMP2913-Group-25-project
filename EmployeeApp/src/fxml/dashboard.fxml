@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox id="imageBackground" fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="1200.0" stylesheets="@../CSS/background.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardController">
    <children>
@@ -84,7 +78,7 @@
                               <TableColumn fx:id="bike_idColumn" minWidth="100.0" prefWidth="179.19997864961624" resizable="false" text="BIKE ID" />
                               <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="241.6000518798828" resizable="false" text="STATUS" />
                               <TableColumn fx:id="locationColumn" minWidth="160.00001525878906" prefWidth="412.7999572753906" resizable="false" text="LOCATION" />
-                              <TableColumn fx:id="priceColumn" minWidth="80.0" prefWidth="238.40008544921875" resizable="false" text="PRICE" />
+                              <TableColumn fx:id="priceColumn" minWidth="80.0" prefWidth="238.40008544921875" resizable="false" text="PRICE PER DAY" />
                               <TableColumn fx:id="bookColumn" minWidth="40.0" prefWidth="132.0" resizable="false" text="BOOK BIKE" />
                            </columns>
                         </TableView>
