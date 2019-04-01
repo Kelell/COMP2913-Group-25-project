@@ -155,7 +155,7 @@ public class DashboardController implements Initializable {
                            }
                            break;
                    }
-
+				   
                     return false; // Does not match.
                 });
             });
@@ -224,7 +224,7 @@ public class DashboardController implements Initializable {
             //get DB Object
             con = new DbConnect().getDbConnect();
 
-            //create a list to store bike data
+            //Create a list to store bike data
             bikeData = FXCollections.observableArrayList();
 
             //Fetches data from the bike database
@@ -235,7 +235,7 @@ public class DashboardController implements Initializable {
                 bikeData.add(new BikeModel(rs1.getString("BIKE_ID"),rs1.getString("STATUS"), rs1.getString("LOCATION"), String.format("%.2f",rs1.getDouble("PRICE"))));
             }
 
-            //initilase the bike table columns
+            //initilise the bike table columns
             bike_idColumn.setCellValueFactory(new PropertyValueFactory("id"));
             statusColumn.setCellValueFactory(new PropertyValueFactory("status"));
             locationColumn.setCellValueFactory(new PropertyValueFactory("location"));
