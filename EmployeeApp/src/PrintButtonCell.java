@@ -65,7 +65,7 @@ public class PrintButtonCell<S> extends TableCell<S, Button> {
 
                             //Generates receipt from the database and passes to jasper reports
                             JRDesignQuery newQuery = new JRDesignQuery();
-                            newQuery.setText("SELECT *, concat(\"£ \",price) as f_price ,   concat(\"£ \",TRUNCATE((days * price),2))  as total, concat(\"£ \",TRUNCATE((cash  - (days * price)),2))  as changec,concat(\"£ \",cash) as cash_c, DATE_FORMAT(start_date, \"%d %M %Y\") as start,DATE_FORMAT(end_date, \"%d %M %Y\") as end from hires LEFT JOIN bike ON hires.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = hires.customer_id where hires.BIKE_ID = "+id+";");
+                            newQuery.setText("SELECT *, concat(\"£ \",TRUNCATE(price,2)) as f_price ,   concat(\"£ \",TRUNCATE((days * price),2))  as total, concat(\"£ \",TRUNCATE((cash  - (days * price)),2))  as changec, concat(\"£ \",TRUNCATE(cash,2)) as cash_c, DATE_FORMAT(start_date, \"%d %M %Y\") as start,DATE_FORMAT(end_date, \"%d %M %Y\") as end from hires LEFT JOIN bike ON hires.bike_id = bike.BIKE_ID LEFT JOIN customer ON customer.CUSTOMER_ID = hires.customer_id where hires.BIKE_ID = "+id+";");
                             jd.setQuery(newQuery);
 
                             //Compiles the jasper report
