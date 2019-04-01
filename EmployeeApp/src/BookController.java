@@ -14,8 +14,9 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
 import java.sql.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
@@ -49,9 +50,11 @@ public class BookController {
     private static Connection con;
     private String currentId = null;
     private static Stage primaryStage;
+    private static Stage stage;
 
     //Initialises the BikeModel from the dashboard Bike Table
     public void setBikeDetails(BikeModel bikeDetails) {
+
         this.bikeDetails = bikeDetails;
         initStuff();
     }
@@ -78,6 +81,14 @@ public class BookController {
             }
         });
 
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                stage = (Stage) cashField.getScene().getWindow();
+
+            }
+        });
+
         cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -96,6 +107,7 @@ public class BookController {
                 primaryStage.setScene(new Scene(root, 1200, 561));
                 primaryStage.centerOnScreen();
                 primaryStage.show();
+
             }
         });
 
@@ -108,6 +120,7 @@ public class BookController {
                 if(!changeText.getText().equals("")){
                     saveCustomer(b_id);
                 }
+
             }
         });
 
@@ -124,7 +137,7 @@ public class BookController {
                     //cast the text from the user to double value
                     double cash = Double.parseDouble(newValue);
 
-                    //if the total value of hire is greater than 0, means duration and price has been set
+                    //if the total value of hire is greater than 0, it means duration and price has been set
                     if(total > 0){
 
                         //Calculate change
@@ -194,26 +207,42 @@ public class BookController {
              * Now we calculate the time diffrence between the dates
              */
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd", Locale.ENGLISH);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 
             Date currentDate = new Date();
 
             Date firstDate = null;
             try {
-                firstDate = sdf.parse(start.getValue().toString());
-                java.util.Date secondDate = sdf.parse(to.getValue().toString());
 
-                long diff = Math.abs(currentDate.getTime() - firstDate.getTime());
-                long diff2 = Math.abs(currentDate.getTime() - secondDate.getTime());
+                LocalDate sld = start.getValue();
+                Calendar c1 = Calendar.getInstance();
 
-                 days_p = (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) - 59) * -1;
-                 days_p2 = (TimeUnit.DAYS.convert(diff2, TimeUnit.MILLISECONDS) -59) * -1;
+                c1.set(sld.getYear(), sld.getMonthValue() -1,sld.getDayOfMonth());
+                firstDate = c1.getTime();
 
-                System.out.println(days_p);
-                System.out.println(days_p2);
+                LocalDate seld = to.getValue();
+                Calendar c2 = Calendar.getInstance();
+                c2.set(seld.getYear(), seld.getMonthValue() -1,seld.getDayOfMonth());
+
+                java.util.Date secondDate = c2.getTime();
+
+                long diff = (firstDate.getTime() - currentDate.getTime());
+                long diff2 = (secondDate.getTime() - currentDate.getTime());
+
+                 days_p = (TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS) ) ;
+                 days_p2 = (TimeUnit.DAYS.convert(diff2, TimeUnit.MILLISECONDS)) ;
+
+                System.out.println("diff first "+days_p);
+                System.out.println("diff second "+days_p2);
 
                 if(days_p < 0 || days_p2 < 0){
-                    JOptionPane.showMessageDialog(null, "Cannot set date in the past !");
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Invalid Date");
+                    alert.setContentText("Cannot set date in the past !");
+                    alert.show();
+
                 }
 
                 //Get the value of the diff between dates
@@ -232,9 +261,9 @@ public class BookController {
                 total = raw_price * days;
 
                 //display the total in the Text
-                totalText.setText("£ "+(total));
+                totalText.setText("£ "+ String.format("%.2f",total));
 
-            } catch (ParseException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -264,12 +293,13 @@ public class BookController {
             ResultSet rs2 = con.createStatement().executeQuery("SELECT * FROM `customer` WHERE CUSTOMER_ID = '"+currentId+"'");
             if (rs2.next()) {
                 if(days_p < 0 || days_p2 < 0){
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            JOptionPane.showMessageDialog(null, "Cannot set date in the past !");
-                        }
-                    });
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Invalid Date");
+                    alert.setContentText("Cannot set date in the past  !");
+                    alert.show();
+
                 }else{
                     saveHire(b_id,Integer.parseInt(currentId));
                 }
@@ -329,11 +359,16 @@ public class BookController {
             con = new DbConnect().getDbConnect();
             con.setAutoCommit(false); //
 
-
-            //retrieves cash from cash field
+            //Retrieves cash from cash field
             double cash = Double.parseDouble(cashField.getText().toString());
             if(Double.parseDouble(changeText.getText().toString().trim().replace("£ ","")) < 0){
-                JOptionPane.showMessageDialog(null,"You need to add more money to proceed !");
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setTitle("Insufficient Funds");
+                alert.setContentText("You need to add more money to proceed !");
+                alert.show();
+
                 return;
             }
 
@@ -366,9 +401,9 @@ public class BookController {
             con.prepareStatement("UPDATE bike SET `status` = 2 WHERE bike_id = "+b_id).executeUpdate();
             con.commit();
 
-             JOptionPane.showMessageDialog(null, "Successfully Saved Ticket ! ","Book",JOptionPane.PLAIN_MESSAGE);
-             BookButtonCell.close();
-			 close();
+            JOptionPane.showMessageDialog(null, "Successfully Saved Ticket ! ","Book",JOptionPane.PLAIN_MESSAGE);
+			BookButtonCell.close();
+            close();
 
             //After updating launches the dasboard with updated information
             Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
@@ -377,15 +412,15 @@ public class BookController {
             primaryStage.centerOnScreen();
             primaryStage.show();
 
-            //Catch any errors you get
+          //Catch any errors you get
         } catch (Exception e) {
             try {
                 con.rollback(); //Rollback
             } catch (SQLException e1) {
                 e1.printStackTrace();
             }
-			
-        }finally {
+
+        } finally {
             try {
                 con.setAutoCommit(true); //Set Autocommit to true
             } catch (SQLException e) {
