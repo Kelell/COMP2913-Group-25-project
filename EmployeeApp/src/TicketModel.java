@@ -20,7 +20,7 @@ public  class TicketModel {
     private StringProperty total;
 
     /**
-     * Contructor initiliases the ticket object
+     * Constructor initialises the ticket object
      * @param id
      * @param customer_id
      * @param bike_id
