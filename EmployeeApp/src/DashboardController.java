@@ -80,20 +80,20 @@ public class DashboardController implements Initializable {
 
     private SortedList<BikeModel> sortedData;
 
-   @Override
+    @Override
 
     public void initialize(URL url, ResourceBundle rb) {
        customerPaneBuild();
        bikePaneBuild();
        ticketPaneBuild();
     }
-
+    
     /*
       Handles All Customer Data and displays in a table
      */
     private  void customerPaneBuild() {
 
-        //initialise the combo box with items
+        //Initialise the combo box with items
         searchCombo.getItems().setAll("BY NAME","BY ADDRESS","BY ID");
 
         //Let first item be selected at start
@@ -154,8 +154,8 @@ public class DashboardController implements Initializable {
                                return true; // Filter matches Name
                            }
                            break;
+
                    }
-				   
                     return false; // Does not match.
                 });
             });
@@ -180,6 +180,8 @@ public class DashboardController implements Initializable {
                         String address =  customer.addressProperty().getValue().toString();
 
                         //close the dashboard
+                        BookButtonCell.close();
+                        close();
                         new LoginController().close();
                         new UpdateCustomerController().close();
 
@@ -207,7 +209,7 @@ public class DashboardController implements Initializable {
             System.out.println("Error on Building Data");
         }
     }
-
+    
     /*
       Handles All Bikes Data and displays in a table
      */
@@ -235,7 +237,7 @@ public class DashboardController implements Initializable {
                 bikeData.add(new BikeModel(rs1.getString("BIKE_ID"),rs1.getString("STATUS"), rs1.getString("LOCATION"), String.format("%.2f",rs1.getDouble("PRICE"))));
             }
 
-            //initilise the bike table columns
+            //initialise the bike table columns
             bike_idColumn.setCellValueFactory(new PropertyValueFactory("id"));
             statusColumn.setCellValueFactory(new PropertyValueFactory("status"));
             locationColumn.setCellValueFactory(new PropertyValueFactory("location"));
@@ -331,8 +333,8 @@ public class DashboardController implements Initializable {
                     String currentStatus = statusCombo.getSelectionModel().getSelectedItem().toString();
                     FilteredList<BikeModel> filteredData = new FilteredList<>(sortedData, p -> true);
                     filteredData.setPredicate(bike -> {
-                        // If filter text is empty, display all bikes.
-
+                        
+						// If filter text is empty, display all bikes
                         if(bike.idProperty().getValue().trim().equals("")){
                             return false;
                         }else{
@@ -342,6 +344,7 @@ public class DashboardController implements Initializable {
                                 return true;
                             }
                         }
+
                         return false;
                     });
 
@@ -352,6 +355,8 @@ public class DashboardController implements Initializable {
                     sortedData.comparatorProperty().bind(bikeTable.comparatorProperty());
                     // 5. Add sorted (and filtered) bikeData to the table.
                     bikeTable.setItems(sortedData);
+
+
 
                 }
             });
@@ -447,7 +452,7 @@ public class DashboardController implements Initializable {
             // 3. Wrap the FilteredList in a SortedList.
             SortedList<TicketModel> sortedData = new SortedList<>(filteredData);
             // 4. Bind the SortedList comparator to the TableView comparator.
-            // 	  Otherwise, sorting the TableView would have no effect.
+            // 	  Otherwise, sorting the TableView would have no affect.
             sortedData.comparatorProperty().bind(ticketTable.comparatorProperty());
 
             // 5. Add sorted (and filtered) customerData to the table.
@@ -459,6 +464,8 @@ public class DashboardController implements Initializable {
         }
     }
     public void close(){
-        primaryStage.close();
+        if(primaryStage!= null){
+            primaryStage.close();
+        }
     }
 }
