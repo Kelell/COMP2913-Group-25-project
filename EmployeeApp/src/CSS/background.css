@@ -11,7 +11,7 @@
 }
 #topFrame{
 
-  -fx-background-color:linear-gradient(white,#336699 );
+ -fx-background-color:linear-gradient(white,#336699 );
  -fx-background-size: 626,313;
 }
 
@@ -19,14 +19,8 @@
     -fx-background-radius: 30, 30, 29, 28;
     -fx-padding: 3px 10px 3px 10px;
 
-
 }
-#image{
 
- -fx-background-image:url("thumbnail.png");
- -fx-background-size: 314,236;
-
-}
 #imageBackground{
 
 -fx-background-image:url("crisp.png");
@@ -34,13 +28,7 @@
  -fx-background-radius: 30, 30, 29, 28;
 
 }
-#imageBackground2{
 
--fx-background-image:url("neutral.png");
- -fx-background-size: 683,63;
-
-
-}
 searchField{
 
 }
