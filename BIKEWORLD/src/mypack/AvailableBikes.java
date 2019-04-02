@@ -157,6 +157,7 @@ public class AvailableBikes extends HttpServlet {
                     "<div class=nav>"+
                             "<a  href=index.jsp>Home</a>"+
                             "<a class=active href=\"Views\">View bikes</a>" +
+                            "<a href=\"book\">Book a bike</a>"+
                             "<a href=AboutUs.jsp>About Us</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+
                             "<a>Log out</a>" +
@@ -176,7 +177,7 @@ public class AvailableBikes extends HttpServlet {
                                 "<div class = \"info\">\n" +
                                 "    <p>price per hour : "+ cost.get(i) +"</p>\n" +
                                 "    <p>id: "+ bike_ids.get(i)+"</p>\n" +
-                                " <button type=\"button\" onclick=\"alert('Simulation of booking')\">Book</button>"+
+                                " <button style=\"display:none;\" type=\"button\" onclick=\"alert('Simulation of booking')\">Book</button>"+
                                 "</div>" +
                                 "</div>"+
                                 "<br>"+
