@@ -24,7 +24,6 @@ public class DbConnect {
 
             conn.setAutoCommit(false);
 
-
             Statement stt=conn.createStatement();
 
             //Specifies which DB to use
