@@ -63,15 +63,6 @@ public class View extends HttpServlet {
                     "<link rel=stylesheet href=style.css type=text/css>" +
                     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"+
                     "<style>\n" +
-                    "* {\n" +
-                    "  box-sizing: border-box;\n" +
-                    "}\n" +
-                    "\n" +
-                    "body {\n" +
-                    "  margin: 0;\n" +
-                    "  font-family: Arial;\n" +
-                    "  background-color: white;" +
-                    "}\n" +
                     "\n" +
                     "/* The grid: Four equal columns that floats next to each other */\n" +
                     ".column {\n" +
@@ -136,10 +127,14 @@ public class View extends HttpServlet {
             );
             out.println("<body  >");
             out.println(
+                    "<div class = \"Title\">\n" +
+                            "    B!KEWORLD\n" +
+                            "  </div>"+
                     "<div class=nav>"+
                             "<a  href=index.jsp>Home</a>"+
                             "<a class=active href=\"Views\">View bikes</a>" +
                             "<a href=AboutUs.jsp>About Us</a>"+
+                            "<a href=Book>book</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+
                             "<a>Log out</a>" +
                             "</div>"

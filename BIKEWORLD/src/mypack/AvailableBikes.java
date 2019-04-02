@@ -136,7 +136,7 @@ public class AvailableBikes extends HttpServlet {
                     "}" +
                     ".grid-container {\n" +
                     "  display: grid;\n" +
-                    "  grid-template-columns: auto auto auto auto auto auto auto auto;\n" +
+                    "  grid-template-columns: auto auto auto auto auto auto ;\n" +
                     "  grid-gap: 10px;\n" +
                     "  background-color: #2196F3;\n" +
                     "  padding: 10px;\n" +
@@ -151,6 +151,9 @@ public class AvailableBikes extends HttpServlet {
             );
 
             out.println(
+                    "<div class = \"Title\">\n" +
+                            "    B!KEWORLD\n" +
+                            "  </div>"+
                     "<div class=nav>"+
                             "<a  href=index.jsp>Home</a>"+
                             "<a class=active href=\"Views\">View bikes</a>" +

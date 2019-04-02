@@ -1,33 +1,44 @@
 
 body{
-    background-color: lightgrey;
+    background-color: white;
+    font-family: "Arial";
+    color: goldenrod;
 }
 
+.Title{
+    width : 100%;
+    text-align: left;
+    font-family: "Lucida Console";
+    font-size: 32px;
+    border-bottom: 5px solid goldenrod;
+}
 
-h1{
-    color: red;
+* {
+  box-sizing: border-box;
 }
 
 .nav a {
     float: left;
-    color: #f2f2f2;
+    color: goldenrod;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
+    border-radius: 5px;
 }
 
 .nav a:hover {
-    background-color: #ddd;
+    background-color: khaki;
     color: black;
 }
 .nav a.active {
-    background-color: black;
-    color: white;
+    color: crimson;
 }
 
 .nav {
     overflow: hidden;
-    background-color: #4f5051;
+    background-color: white;
+    float: right;
+
 }
 
