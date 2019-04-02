@@ -80,7 +80,6 @@ public class UpdateCustomerController {
                         e.printStackTrace();
                     }
                     break;
-
             }
         }
     }
