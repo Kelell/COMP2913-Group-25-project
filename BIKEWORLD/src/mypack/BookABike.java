@@ -219,7 +219,7 @@ public class BookABike extends HttpServlet {
                             "</select>" + "\n" +
 
                             "<p style=\"display:none;\" name = Daydur >How long would you like the bike</p> "   + "\n" +
-                            "<select style=\"display:none;\" name = Daydur required = 'required' onchange=\"myFunction2()\"> " +
+                            "<select style=\"display:none;\" name = Daydur required = 'required' onchange=\"myFunction6()\"> " +
                             "<option selected value= 0>Please select</option>" +
                             "<option value=5>1 Week</option>"  +
                             "<option value=4>4 days</option>"  +
@@ -230,6 +230,9 @@ public class BookABike extends HttpServlet {
 
                             "<p style=\"display:none;\" name=\"date\" >Enter Date: </p> " + "\n" +
                             "<input onchange=\"myFunction3()\" required = 'required' style=\"display:none;\"  type=\"date\" name=\"date\" required=\"required\">" + "\n" +
+
+                            "<p style=\"display:none;\" name=\"date2\" >Enter Date: </p> " + "\n" +
+                            "<input onchange=\"myFunction7()\" required = 'required' style=\"display:none;\"  type=\"date\" name=\"date2\" required=\"required\">" + "\n" +
 
                             "<p style=\"display:none;color:red;\" id =\"error\"> Error buddy</p>" +
 
@@ -334,6 +337,7 @@ public class BookABike extends HttpServlet {
                             "var g = document.getElementsByName('Time4');"   + "\n" +
                             "var h = document.getElementsByName('term');"   + "\n" +
                             "var i = document.getElementsByName('Daydur');"   + "\n" +
+                            "var j = document.getElementsByName('date2');"   + "\n" +
                             "var w = document.getElementById('error');"   + "\n" +
                             "w.style.display = 'none';"   + "\n" +
                             "var x = document.getElementById('error2');"   + "\n" +
@@ -360,6 +364,8 @@ public class BookABike extends HttpServlet {
                             "h[1].style.display = 'block';" + "\n" +
                             "i[0].style.display = 'none';" + "\n" +
                             "i[1].style.display = 'none';" + "\n" +
+                            "j[0].style.display = 'none';" + "\n" +
+                            "j[1].style.display = 'none';" + "\n" +
                             "}" +
                             "if (h[1].style.display ==  'block'){" + "\n" +
                             "h[1].value = 0;" + "\n" +
@@ -377,6 +383,8 @@ public class BookABike extends HttpServlet {
                             "g[1].style.display = 'none';" + "\n" +
                             "i[0].style.display = 'none';" + "\n" +
                             "i[1].style.display = 'none';" + "\n" +
+                            "j[0].style.display = 'none';" + "\n" +
+                            "j[1].style.display = 'none';" + "\n" +
                             "}" +
                             "}" + "\n" +
                             "if (a[1].value ==  'Please select'){" + "\n" +
@@ -396,6 +404,8 @@ public class BookABike extends HttpServlet {
                             "h[1].style.display = 'none';" + "\n" +
                             "i[0].style.display = 'none';" + "\n" +
                             "i[1].style.display = 'none';" + "\n" +
+                            "j[0].style.display = 'none';" + "\n" +
+                            "j[1].style.display = 'none';" + "\n" +
                             "} " + "\n" +
                             "} " + "\n" +
 
@@ -408,6 +418,7 @@ public class BookABike extends HttpServlet {
                             "var e = document.getElementsByName('Time2');"   + "\n" +
                             "var f = document.getElementsByName('Time3');"   + "\n" +
                             "var g = document.getElementsByName('Time4');"   + "\n" +
+                            "var j = document.getElementsByName('date2');"   + "\n" +
                             "var w = document.getElementById('error');"   + "\n" +
                             "w.style.display = 'none';"   + "\n" +
                             "var x = document.getElementById('error2');"   + "\n" +
@@ -613,6 +624,7 @@ public class BookABike extends HttpServlet {
                             "var g = document.getElementsByName('Time4');"   + "\n" +
                             "var h = document.getElementsByName('term');"   + "\n" +
                             "var i = document.getElementsByName('Daydur');"   + "\n" +
+                            "var j = document.getElementsByName('date2');"+
                             "var w = document.getElementById('error');"   + "\n" +
                             "w.style.display = 'none';"   + "\n" +
                             "var x = document.getElementById('error2');"   + "\n" +
@@ -635,6 +647,8 @@ public class BookABike extends HttpServlet {
                             "f[1].style.display = 'none';" + "\n" +
                             "g[0].style.display = 'none';" + "\n" +
                             "g[1].style.display = 'none';" + "\n" +
+                            "j[0].style.display = 'none';" + "\n" +
+                            "j[1].style.display = 'none';" + "\n" +
                             "i[0].style.display = 'block';" + "\n" +
                             "i[1].style.display = 'block';" + "\n" +
                             "}" +
@@ -654,6 +668,8 @@ public class BookABike extends HttpServlet {
                             "g[1].style.display = 'none';" + "\n" +
                             "i[0].style.display = 'none';" + "\n" +
                             "i[1].style.display = 'none';" + "\n" +
+                            "j[0].style.display = 'none';" + "\n" +
+                            "j[1].style.display = 'none';" + "\n" +
                             "}" +
                             "}" + "\n" +
                             "if (h[1].value ==  '0'){" + "\n" +
@@ -671,7 +687,73 @@ public class BookABike extends HttpServlet {
                             "g[1].style.display = 'none';" + "\n" +
                             "i[0].style.display = 'none';" + "\n" +
                             "i[1].style.display = 'none';" + "\n" +
+                            "j[0].style.display = 'none';" + "\n" +
+                            "j[1].style.display = 'none';" + "\n" +
                             "} " + "\n" +
+                            "} " + "\n" +
+                            "function myFunction6() {"   + "\n" +
+                            "var a = document.getElementsByName('Location');"   + "\n" +
+                            "var b = document.getElementsByName('Dur');"   + "\n" +
+                            "var c = document.getElementsByName('date');"   + "\n" +
+                            "var d = document.getElementsByName('Time1');"   + "\n" +
+                            "var e = document.getElementsByName('Time2');"   + "\n" +
+                            "var f = document.getElementsByName('Time3');"   + "\n" +
+                            "var g = document.getElementsByName('Time4');"   + "\n" +
+                            "var i = document.getElementsByName('Daydur');"   + "\n" +
+                            "var j = document.getElementsByName('date2');"   + "\n" +
+                            "var w = document.getElementById('error');"   + "\n" +
+                            "w.style.display = 'none';"   + "\n" +
+                            "var x = document.getElementById('error2');"   + "\n" +
+                            "x.style.display = 'none';" +
+                            "var y = document.getElementById('error3');"   + "\n" +
+                            "y.style.display = 'none';" +
+                            "var z = document.getElementById('submit');"   + "\n" +
+                            "z.style.display = 'none'; " +
+                            "if (i[1].value !=  0){" + "\n" +
+                            "if (j[1].style.display ==  'none'){" + "\n" +
+                            "j[0].style.display = 'block';" + "\n" +
+                            "j[1].style.display = 'block';" + "\n" +
+                            "b[0].style.display = 'none';" + "\n" +
+                            "b[1].style.display = 'none';" + "\n" +
+                            "c[0].style.display = 'none';" + "\n" +
+                            "c[1].style.display = 'none';" + "\n" +
+                            "d[0].style.display = 'none';" + "\n" +
+                            "d[1].style.display = 'none';" + "\n" +
+                            "e[0].style.display = 'none';" + "\n" +
+                            "e[1].style.display = 'none';" + "\n" +
+                            "f[0].style.display = 'none';" + "\n" +
+                            "f[1].style.display = 'none';" + "\n" +
+                            "g[0].style.display = 'none';" + "\n" +
+                            "g[1].style.display = 'none';" + "\n" +
+                            "}" +
+                            "if (j[1].style.display ==  'block'){" + "\n" +
+                            "j[1].value = 0000-00-00;" + "\n" +
+                            "d[0].style.display = 'none';" + "\n" +
+                            "d[1].style.display = 'none';" + "\n" +
+                            "e[0].style.display = 'none';" + "\n" +
+                            "e[1].style.display = 'none';" + "\n" +
+                            "f[0].style.display = 'none';" + "\n" +
+                            "f[1].style.display = 'none';" + "\n" +
+                            "g[0].style.display = 'none';" + "\n" +
+                            "g[1].style.display = 'none';" + "\n" +
+                            "}" +
+                            "}" + "\n" +
+                            "if (i[1].value ==  0){" + "\n" +
+                            "j[0].style.display = 'none';" + "\n" +
+                            "j[1].style.display = 'none';" + "\n" +
+                            "b[0].style.display = 'none';" + "\n" +
+                            "b[1].style.display = 'none';" + "\n" +
+                            "c[0].style.display = 'none';" + "\n" +
+                            "c[1].style.display = 'none';" + "\n" +
+                            "d[0].style.display = 'none';" + "\n" +
+                            "d[1].style.display = 'none';" + "\n" +
+                            "e[0].style.display = 'none';" + "\n" +
+                            "e[1].style.display = 'none';" + "\n" +
+                            "f[0].style.display = 'none';" + "\n" +
+                            "f[1].style.display = 'none';" + "\n" +
+                            "g[0].style.display = 'none';" + "\n" +
+                            "g[1].style.display = 'none';" + "\n" +
+                            "}" + "\n" +
                             "} " + "\n" +
 
 
