@@ -332,7 +332,9 @@ public class DashboardController implements Initializable {
 
             // 5. Add sorted (and filtered) bikeData to the table.
             bikeTable.setItems(sortedData);
-
+            
+            
+            //Date Constraints
             statusCombo.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -355,11 +357,6 @@ public class DashboardController implements Initializable {
                         return false;
                     });
                     
-                
-                    
-                    
-                    
-                    
 
                     // 3. Wrap the FilteredList in a SortedList.
                     SortedList<BikeModel> sortedData = new SortedList<>(filteredData);
@@ -368,15 +365,9 @@ public class DashboardController implements Initializable {
                     sortedData.comparatorProperty().bind(bikeTable.comparatorProperty());
                     // 5. Add sorted (and filtered) bikeData to the table.
                     bikeTable.setItems(sortedData);
-                    
-                    
-
 
                 }
-                
-                //Date Constraints
-                
-            
+
             });
             
             
@@ -387,17 +378,13 @@ public class DashboardController implements Initializable {
                 bikeBookedData = FXCollections.observableArrayList();
                 
                 //query which gets bikes within a time frame
-                //SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE (START_DATE <= ('2019-03-10') AND END_DATE >= ('2019-03-10')) OR (START_DATE <= ('2019-03-20') AND END_DATE >= ('2019-03-20'))
-                
-                //return
-                
                 String dateConstrainedQuery = "SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE (START_DATE <= ('" + startDate.getValue() + "') AND END_DATE >= ('" + startDate.getValue() + "')) OR (START_DATE <= ('" + endDate.getValue() + "') AND END_DATE >= ('" + endDate.getValue() + "'))";
                 System.err.println("Selected date: " + dateConstrainedQuery);
                         
                 try {
                    bikesBooked = con.createStatement().executeQuery(dateConstrainedQuery);
-                   //sortedData = new SortedList<BikeModel>(bikesBooked);
-                            
+                    
+                   //populate list with sql data
                     while (bikesBooked.next()) {
                     bikeBookedData.add(new BikeModel(bikesBooked.getString("BIKE_ID"),bikesBooked.getString("STATUS"), bikesBooked.getString("LOCATION"), String.format("%.2f",bikesBooked.getDouble("PRICE"))));
                     }
@@ -406,10 +393,10 @@ public class DashboardController implements Initializable {
                        Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
+                //if the booked bike is in the current (active) data set then filter it out
+
                 filteredData.setPredicate(bike -> {
                         
-			// If the list of free bikes contains the value of a bike from the filtered data then it is a valid bike i.e. selects all free bikes for a given date
-     
                         for (BikeModel bikes : bikeBookedData){
                             if( bike.idProperty().getValue().equals(bikes.idProperty().getValue())){
                                 return false;
