@@ -353,6 +353,23 @@ public class DashboardController implements Initializable {
 
                         return false;
                     });
+                    
+                    endDate.setOnAction((ActionEvent myEvent) -> {
+                        LocalDate date = endDate.getValue();
+
+
+                        String dateConstrainedQuery = "SELECT BIKE_ID FROM hires WHERE START_DATE > '" + endDate.getValue() + "' OR END_DATE < '" + startDate.getValue()+"'";
+                        System.err.println("Selected date: " + dateConstrainedQuery);
+
+                         try {
+                            ResultSet bikesBooked = con.createStatement().executeQuery(dateConstrainedQuery);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                
+                    });
+                    
+                    
 
                     // 3. Wrap the FilteredList in a SortedList.
                     SortedList<BikeModel> sortedData = new SortedList<>(filteredData);
@@ -371,20 +388,7 @@ public class DashboardController implements Initializable {
              //gets bikes which are occupied within a given date
             //ResultSet bikesBooked = con.createStatement().executeQuery("SELECT BIKE_ID FROM hires WHERE START_DATE >= '2019-03-15' AND END_DATE <= '2019-03-20'");
             
-            endDate.setOnAction((ActionEvent event) -> {
-                LocalDate date = endDate.getValue();
-                
-                
-                String dateConstrainedQuery = "SELECT BIKE_ID FROM hires WHERE START_DATE >= '" + startDate.getValue() + "' AND END_DATE <= '" + endDate.getValue()+"'";
-                System.err.println("Selected date: " + dateConstrainedQuery);
-                
-                try {
-                    ResultSet bikesBooked = con.createStatement().executeQuery(dateConstrainedQuery);
-                } catch (SQLException ex) {
-                    Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-            });
+           
             
             
         } catch (Exception e) {
