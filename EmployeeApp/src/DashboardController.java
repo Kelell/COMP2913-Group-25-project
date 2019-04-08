@@ -389,7 +389,9 @@ public class DashboardController implements Initializable {
                 //query which gets bikes within a time frame
                 //SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE (START_DATE <= ('2019-03-10') AND END_DATE >= ('2019-03-10')) OR (START_DATE <= ('2019-03-20') AND END_DATE >= ('2019-03-20'))
                 
-                String dateConstrainedQuery = "SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE NOT START_DATE > '" + endDate.getValue() + "' OR END_DATE < '" + startDate.getValue()+"'";
+                //return
+                
+                String dateConstrainedQuery = "SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE (START_DATE <= ('" + startDate.getValue() + "') AND END_DATE >= ('" + startDate.getValue() + "')) OR (START_DATE <= ('" + endDate.getValue() + "') AND END_DATE >= ('" + endDate.getValue() + "'))";
                 System.err.println("Selected date: " + dateConstrainedQuery);
                         
                 try {
@@ -407,11 +409,13 @@ public class DashboardController implements Initializable {
                 filteredData.setPredicate(bike -> {
                         
 			// If the list of free bikes contains the value of a bike from the filtered data then it is a valid bike i.e. selects all free bikes for a given date
-                        if(bikeBookedData.contains(bike)){
-                            return true;
-                        }else{
-                            return false;
+     
+                        for (BikeModel bikes : bikeBookedData){
+                            if( bike.idProperty().getValue().equals(bikes.idProperty().getValue())){
+                                return false;
+                            }
                         }
+                    return true;
                         
                     });
                 
