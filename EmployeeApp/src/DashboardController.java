@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.event.Event;
 
 /**
  * @author Zahoor
@@ -57,7 +59,8 @@ public class DashboardController implements Initializable {
     @FXML private TextField searchField_b;
     @FXML private ComboBox<String> searchCombo_b;
     @FXML private ComboBox<String> statusCombo;
-
+    @FXML private DatePicker startDate;
+    @FXML private DatePicker endDate;
     /*
       Ticket Tab
     */
@@ -231,7 +234,7 @@ public class DashboardController implements Initializable {
 
             //Fetches data from the bike database
             ResultSet rs1 = con.createStatement().executeQuery("SELECT * FROM `bike`");
-
+            
             //Populates the data from the database to the list to display on the bike table
             while (rs1.next()) {
                 bikeData.add(new BikeModel(rs1.getString("BIKE_ID"),rs1.getString("STATUS"), rs1.getString("LOCATION"), String.format("%.2f",rs1.getDouble("PRICE"))));
@@ -355,11 +358,23 @@ public class DashboardController implements Initializable {
                     sortedData.comparatorProperty().bind(bikeTable.comparatorProperty());
                     // 5. Add sorted (and filtered) bikeData to the table.
                     bikeTable.setItems(sortedData);
-
+                    
+                    
 
 
                 }
             });
+            
+             //gets bikes which are occupied within a given date
+            //ResultSet bikesBooked = con.createStatement().executeQuery("SELECT BIKE_ID FROM hires WHERE START_DATE >= '2019-03-15' AND END_DATE <= '2019-03-20'");
+            
+            endDate.setOnAction((ActionEvent event) -> {
+                endDate.setValue(LocalDate.of(1998, 10, 8));
+                LocalDate date = endDate.getValue();
+                System.err.println("Selected date: " + date);
+            });
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");

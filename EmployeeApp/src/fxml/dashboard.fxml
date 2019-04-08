@@ -75,8 +75,8 @@
                               <TextField fx:id="searchField_b" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
                               <ComboBox fx:id="searchCombo_b" prefHeight="27.0" prefWidth="128.0" promptText="SEARCH" />
                               <ComboBox fx:id="statusCombo" layoutX="261.0" layoutY="17.0" prefHeight="27.0" prefWidth="120.0" promptText="FILTER" />
-                              <DatePicker promptText="Select start date" />
-                              <DatePicker promptText="Select end date" />
+                              <DatePicker fx:id="startDate" promptText="Select start date" />
+                              <DatePicker fx:id="endDate" promptText="Select end date" />
                            </items>
                         </ToolBar>
                         <TableView fx:id="bikeTable" prefHeight="438.0" prefWidth="1159.0" VBox.vgrow="ALWAYS">
