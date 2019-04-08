@@ -20,8 +20,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.Event;
 
 /**
@@ -369,9 +372,18 @@ public class DashboardController implements Initializable {
             //ResultSet bikesBooked = con.createStatement().executeQuery("SELECT BIKE_ID FROM hires WHERE START_DATE >= '2019-03-15' AND END_DATE <= '2019-03-20'");
             
             endDate.setOnAction((ActionEvent event) -> {
-                endDate.setValue(LocalDate.of(1998, 10, 8));
                 LocalDate date = endDate.getValue();
-                System.err.println("Selected date: " + date);
+                
+                
+                String dateConstrainedQuery = "SELECT BIKE_ID FROM hires WHERE START_DATE >= '" + startDate.getValue() + "' AND END_DATE <= '" + endDate.getValue()+"'";
+                System.err.println("Selected date: " + dateConstrainedQuery);
+                
+                try {
+                    ResultSet bikesBooked = con.createStatement().executeQuery(dateConstrainedQuery);
+                } catch (SQLException ex) {
+                    Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             });
             
             
