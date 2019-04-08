@@ -53,6 +53,7 @@ public class DashboardController implements Initializable {
       Bike Tab
      */
     private ObservableList<BikeModel> bikeData;
+    private ObservableList<BikeModel> bikeBookedData;
     @FXML private TableView bikeTable;
     @FXML private TableColumn bike_idColumn;
     @FXML private TableColumn statusColumn;
@@ -354,20 +355,9 @@ public class DashboardController implements Initializable {
                         return false;
                     });
                     
-                    endDate.setOnAction((ActionEvent myEvent) -> {
-                        LocalDate date = endDate.getValue();
-
-
-                        String dateConstrainedQuery = "SELECT BIKE_ID FROM hires WHERE START_DATE > '" + endDate.getValue() + "' OR END_DATE < '" + startDate.getValue()+"'";
-                        System.err.println("Selected date: " + dateConstrainedQuery);
-
-                         try {
-                            ResultSet bikesBooked = con.createStatement().executeQuery(dateConstrainedQuery);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
                 
-                    });
+                    
+                    
                     
                     
 
@@ -383,6 +373,58 @@ public class DashboardController implements Initializable {
 
 
                 }
+                
+                //Date Constraints
+                
+            
+            });
+            
+            
+            endDate.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                ResultSet bikesBooked;
+                bikeBookedData = FXCollections.observableArrayList();
+                
+                //query which gets bikes within a time frame
+                //SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE (START_DATE <= ('2019-03-10') AND END_DATE >= ('2019-03-10')) OR (START_DATE <= ('2019-03-20') AND END_DATE >= ('2019-03-20'))
+                
+                String dateConstrainedQuery = "SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE NOT START_DATE > '" + endDate.getValue() + "' OR END_DATE < '" + startDate.getValue()+"'";
+                System.err.println("Selected date: " + dateConstrainedQuery);
+                        
+                try {
+                   bikesBooked = con.createStatement().executeQuery(dateConstrainedQuery);
+                   //sortedData = new SortedList<BikeModel>(bikesBooked);
+                            
+                    while (bikesBooked.next()) {
+                    bikeBookedData.add(new BikeModel(bikesBooked.getString("BIKE_ID"),bikesBooked.getString("STATUS"), bikesBooked.getString("LOCATION"), String.format("%.2f",bikesBooked.getDouble("PRICE"))));
+                    }
+                            
+                } catch (SQLException ex) {
+                       Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                filteredData.setPredicate(bike -> {
+                        
+			// If the list of free bikes contains the value of a bike from the filtered data then it is a valid bike i.e. selects all free bikes for a given date
+                        if(bikeBookedData.contains(bike)){
+                            return true;
+                        }else{
+                            return false;
+                        }
+                        
+                    });
+                
+                    // 3. Wrap the FilteredList in a SortedList.
+                    SortedList<BikeModel> sortedData = new SortedList<>(filteredData);
+                    // 4. Bind the SortedList comparator to the TableView comparator.
+                    // 	  Otherwise, sorting the TableView would have no effect.
+                    sortedData.comparatorProperty().bind(bikeTable.comparatorProperty());
+                    // 5. Add sorted (and filtered) bikeData to the table.
+                    bikeTable.setItems(sortedData);
+       
+                }                         
+                        
             });
             
              //gets bikes which are occupied within a given date
