@@ -21,11 +21,9 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.Event;
 
 /**
  * @author Zahoor
@@ -81,8 +79,6 @@ public class DashboardController implements Initializable {
     @FXML private TextField searchField_t;
     @FXML private ComboBox<String> searchCombo_t;
 
-    private  static  int firstTime = 0;
-    private Parent root;
     protected static Stage primaryStage;
 
     private SortedList<BikeModel> sortedData;
@@ -142,22 +138,22 @@ public class DashboardController implements Initializable {
 
                    switch(searchCombo.getSelectionModel().getSelectedItem()) {
                        case "BY NAME":
-                           if (customer.nameProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                           if (customer.nameProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                return true; // Filter matches Name.
                            }
                            break;
                        case "BY ADDRESS":
-                           if (customer.addressProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                           if (customer.addressProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                return true; // Filter matches Address.
                            }
                            break;
                        case "BY ID":
-                           if (customer.idProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                           if (customer.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                return true; // Filter matches ID
                            }
                            break;
                        default:
-                           if (customer.nameProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                           if (customer.nameProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                return true; // Filter matches Name
                            }
                            break;
@@ -182,9 +178,9 @@ public class DashboardController implements Initializable {
                     if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                         CustomerModel customer = row.getItem();
 
-                        String id = customer.idProperty().getValue().toString();
-                        String names =  customer.nameProperty().getValue().toString();
-                        String address =  customer.addressProperty().getValue().toString();
+                        String id = customer.idProperty().getValue();
+                        String names =  customer.nameProperty().getValue();
+                        String address =  customer.addressProperty().getValue();
 
                         //close the dashboard
                         BookButtonCell.close();
@@ -211,7 +207,7 @@ public class DashboardController implements Initializable {
                 return row ;
             });
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
@@ -298,22 +294,22 @@ public class DashboardController implements Initializable {
 
                     switch(searchCombo_b.getSelectionModel().getSelectedItem()) {
                         case "BY BIKE ID":
-                            if (bike.idProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            if (bike.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Bike ID
                             }
                             break;
                         case "BY STATUS":
-                            if (bike.statusProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            if (bike.statusProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Status
                             }
                             break;
                         case "BY LOCATION":
-                            if (bike.locationProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            if (bike.locationProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Location.
                             }
                             break;
                         default:
-                            if (bike.idProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            if (bike.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Bike ID.
                             }
                             break;
@@ -339,7 +335,7 @@ public class DashboardController implements Initializable {
                 @Override
                 public void handle(ActionEvent event) {
 
-                    String currentStatus = statusCombo.getSelectionModel().getSelectedItem().toString();
+                    String currentStatus = statusCombo.getSelectionModel().getSelectedItem();
                     FilteredList<BikeModel> filteredData = new FilteredList<>(sortedData, p -> true);
                     filteredData.setPredicate(bike -> {
                         
@@ -349,7 +345,7 @@ public class DashboardController implements Initializable {
                         }else{
                             if(currentStatus.equals("ALL")){
                                 return true;
-                            }else if (currentStatus.toLowerCase().equals(bike.statusProperty().getValue().toLowerCase().toString()) ) {
+                            }else if (currentStatus.toLowerCase().equals(bike.statusProperty().getValue().toLowerCase()) ) {
                                 return true;
                             }
                         }
@@ -377,33 +373,32 @@ public class DashboardController implements Initializable {
                 ResultSet bikesBooked;
                 bikeBookedData = FXCollections.observableArrayList();
                 
-                //query which gets bikes within a time frame
+                //query which gets bikes which are occupied within a given time frame
                 String dateConstrainedQuery = "SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE (START_DATE <= ('" + startDate.getValue() + "') AND END_DATE >= ('" + startDate.getValue() + "')) OR (START_DATE <= ('" + endDate.getValue() + "') AND END_DATE >= ('" + endDate.getValue() + "'))";
                 System.err.println("Selected date: " + dateConstrainedQuery);
                         
                 try {
                    bikesBooked = con.createStatement().executeQuery(dateConstrainedQuery);
                     
-                   //populate list with sql data
+                    //populate list with sql data
                     while (bikesBooked.next()) {
                     bikeBookedData.add(new BikeModel(bikesBooked.getString("BIKE_ID"),bikesBooked.getString("STATUS"), bikesBooked.getString("LOCATION"), String.format("%.2f",bikesBooked.getDouble("PRICE"))));
                     }
-                            
+                
                 } catch (SQLException ex) {
                        Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 //if the booked bike is in the current (active) data set then filter it out
-
+                
                 filteredData.setPredicate(bike -> {
-                        
                         for (BikeModel bikes : bikeBookedData){
                             if( bike.idProperty().getValue().equals(bikes.idProperty().getValue())){
                                 return false;
                             }
                         }
                     return true;
-                        
+                    
                     });
                 
                     // 3. Wrap the FilteredList in a SortedList.
@@ -417,11 +412,6 @@ public class DashboardController implements Initializable {
                 }                         
                         
             });
-            
-             //gets bikes which are occupied within a given date
-            //ResultSet bikesBooked = con.createStatement().executeQuery("SELECT BIKE_ID FROM hires WHERE START_DATE >= '2019-03-15' AND END_DATE <= '2019-03-20'");
-            
-           
             
             
         } catch (Exception e) {
@@ -483,27 +473,27 @@ public class DashboardController implements Initializable {
 
                     switch(searchCombo_t.getSelectionModel().getSelectedItem()) {
                         case "BY TICKET ID":
-                            if (ticket.idProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            if (ticket.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter Ticket ID
                             }
                             break;
                         case "BY CUSTOMER NAME":
-                            if (ticket.customerNameProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            if (ticket.customerNameProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Address.
                             }
                             break;
                         case "BY BIKE ID":
-                            if (ticket.bike_idProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            if (ticket.bike_idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches ID
                             }
                             break;
                         case "BY CUSTOMER ID":
-                            if (ticket.customer_idProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            if (ticket.customer_idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches ID
                             }
                             break;
                         default:
-                            if (ticket.idProperty().toString().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            if (ticket.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Ticket ID
                             }
                             break;
@@ -522,7 +512,7 @@ public class DashboardController implements Initializable {
             // 5. Add sorted (and filtered) customerData to the table.
             ticketTable.setItems(sortedData);
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
