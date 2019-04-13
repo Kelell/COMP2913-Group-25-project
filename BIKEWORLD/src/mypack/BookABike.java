@@ -148,10 +148,12 @@ public class BookABike extends HttpServlet {
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "SELECT BIKE_ID, STATUS, LOCATION, price FROM bike";
+            String sql2;
+            sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
+            sql2 = "SELECT hire_id, START_DATE, END_DATE, Start_Time, End_Time FROM hires";
+
             ResultSet rs = stmt.executeQuery(sql);
-            ArrayList<Integer> bike_ids = new ArrayList<Integer>();
-            ArrayList<Integer> stats = new ArrayList<Integer>();;
+            ArrayList<Integer> bikes = new ArrayList<Integer>();
             ArrayList<String> loca = new ArrayList<String>();
             ArrayList<Float> cost = new ArrayList<Float>();
 
@@ -159,19 +161,20 @@ public class BookABike extends HttpServlet {
             while(rs.next()){
                 //Retrieve by column name
                 int id  = rs.getInt("BIKE_ID");
-                int status = rs.getInt("STATUS");
                 String location = rs.getString("LOCATION");
                 float price = rs.getFloat("price");
-                bike_ids.add(id);
-                stats.add(status);
+                bikes.add(id);
                 loca.add(location);
                 cost.add(price);
             }
+
+            rs = stmt.executeQuery(sql2);
+
             rs.close();
             stmt.close();
             conn.close();
 
-            int listsize = bike_ids.size();
+            int listsize = bikes.size();
             String size = Integer.toString(listsize);
 
             out.println("<head onload=\"openFunction()\" >" +
@@ -208,7 +211,7 @@ public class BookABike extends HttpServlet {
                             "<p style='display:none;' name = 'term' >Would you like the bike for short term or long term?</p>\n" +
                             "<select style='display:none;' name = 'term' required onchange='myFunction5()'>\n" +
                             "<option selected value= 0>Please select</option>\n" +
-                            "<option value=2>Long term</option>\n" +
+                            "<option value=2>Long term (Discount)</option>\n" +
                             "<option value=1>Short term</option>\n" +
                             "</select>\n" +
                             "\n" +

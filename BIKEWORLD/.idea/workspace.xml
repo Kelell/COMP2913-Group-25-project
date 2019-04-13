@@ -64,8 +64,8 @@
       <file leaf-file-name="BookABike.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="904" lean-forward="true" selection-start-line="904" selection-end-line="904" />
+            <state relative-caret-position="467">
+              <caret line="171" column="41" selection-start-line="171" selection-start-column="41" selection-end-line="171" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1389#1398#0" expanded="true" />
@@ -394,14 +394,15 @@
       <workItem from="1554226912419" duration="11431000" />
       <workItem from="1554653335241" duration="4475000" />
       <workItem from="1555162670376" duration="3228000" />
+      <workItem from="1555186371400" duration="1532000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172432000" />
+    <option name="totallyTimeSpent" value="173964000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="1920" y="28" width="1920" height="1018" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -423,9 +424,9 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.3109691" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.31014824" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7862069" visible="true" weight="0.26923078" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7862069" visible="true" weight="0.2724359" />
       <window_info id="Web" order="6" sideWeight="0.2137931" side_tool="true" weight="0.25714287" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="5" side_tool="true" />
@@ -620,17 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="193" column="35" lean-forward="true" selection-start-line="193" selection-start-column="35" selection-end-line="193" selection-end-column="35" />
-          <folding>
-            <element signature="e#1139#1148#0" expanded="true" />
-            <element signature="e#1208#1217#0" expanded="true" />
-            <element signature="e#1272#1280#0" expanded="true" />
-            <element signature="e#1334#1342#0" expanded="true" />
-            <element signature="e#1398#1406#0" expanded="true" />
-            <element signature="e#3234#3243#0" expanded="true" />
-            <element signature="e#3299#3308#0" expanded="true" />
-            <element signature="e#3363#3371#0" expanded="true" />
-            <element signature="e#3424#3431#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -646,8 +636,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="904" lean-forward="true" selection-start-line="904" selection-end-line="904" />
+        <state relative-caret-position="467">
+          <caret line="171" column="41" selection-start-line="171" selection-start-column="41" selection-end-line="171" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1389#1398#0" expanded="true" />
