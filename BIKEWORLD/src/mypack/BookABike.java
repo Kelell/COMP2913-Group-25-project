@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 
 @WebServlet(name = "BookABike")
@@ -22,73 +23,62 @@ public class BookABike extends HttpServlet {
         String driver = "com.mysql.cj.jdbc.Driver";
 
         String d = request.getParameter("date");
-        out.println(d);
         String t = request.getParameter("time0");
         String rt = request.getParameter(t);
         String l = request.getParameter("Location");
         String du = request.getParameter("Dur");
-
-
+        String term = request.getParameter("term");
 
         try {
             Class.forName(driver);
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "SELECT BIKE_ID, STATUS, LOCATION, price FROM bike";
+            String sql2;
+            sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
+            sql2 = "SELECT hire_id, START_DATE, END_DATE, Start_Time, End_Time FROM hires";
+
             ResultSet rs = stmt.executeQuery(sql);
-            ArrayList<Integer> bike_ids = new ArrayList<Integer>();
-            ArrayList<Integer> stats = new ArrayList<Integer>();;
+            ArrayList<Integer> bikes = new ArrayList<Integer>();
             ArrayList<String> loca = new ArrayList<String>();
             ArrayList<Float> cost = new ArrayList<Float>();
+            ArrayList<Integer> hires = new ArrayList<Integer>();
+            ArrayList<Date>  startd = new ArrayList<Date>();
+            ArrayList<Date>  endd = new ArrayList<Date>();
+            ArrayList<Time>  startt = new ArrayList<Time>();
+            ArrayList<Time>  endt = new ArrayList<Time>();
+
 
             while(rs.next()){
                 //Retrieve by column name
                 int id  = rs.getInt("BIKE_ID");
-                int status = rs.getInt("STATUS");
                 String location = rs.getString("LOCATION");
                 float price = rs.getFloat("price");
-                if (location.equals(l))
-                {
-                    bike_ids.add(id);
-                    loca.add(location);
-                    cost.add(price);
-                }
-
+                bikes.add(id);
+                loca.add(location);
+                cost.add(price);
             }
-
             rs.close();
 
-
-
-            String sql2;
-            sql2 = "SELECT TIME_ID, Date_, Time_, EndTime, BIKE_ID FROM time";
             ResultSet rs2 = stmt.executeQuery(sql2);
-            ArrayList<Integer> time_ids = new ArrayList<Integer>();
-            ArrayList<Integer> bike_id = new ArrayList<Integer>();;
-            ArrayList<String> date = new ArrayList<String>();
-            ArrayList<Integer> time = new ArrayList<Integer>();
-            ArrayList<Integer> timend = new ArrayList<Integer>();
-
-
             while(rs2.next()){
                 //Retrieve by column name
-                int id  = rs2.getInt("TIME_ID");
-                String fe = rs2.getString("Date_");
-                int ef = rs2.getInt("Time_");
-                int location = rs2.getInt("EndTime");
-                int status = rs2.getInt("BIKE_ID");
-                time_ids.add(id);
-                bike_id.add(status);
-                date.add(fe);
-                time.add(ef);
-                timend.add(location);
+                int h  = rs2.getInt("hires_id");
+                Date s = rs2.getDate("START_DATE");
+                Date e = rs2.getDate("END_DATE");
+                Time st = rs2.getTime("Start_Time");
+                Time et = rs2.getTime("End_Time");
+                hires.add(h);
+                startd.add(s);
+                endd.add(e);
+                startt.add(st);
+                endt.add(et);
             }
-            rs2.close();
+
             stmt.close();
             conn.close();
 
-            int listsize = bike_ids.size();
+            int listsize = bikes.size();
             String size = Integer.toString(listsize);
 
             out.println("<head onload=\"openFunction()\" >" +
@@ -115,13 +105,13 @@ public class BookABike extends HttpServlet {
                         "<div class = \"bike\">\n" +
                                 "\t<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
                                 "    <p>price: "+ cost.get(i) +"</p>\n" +
-                                "    <p>id: "+ bike_ids.get(i)+"</p>\n" +
+                                "    <p>id: "+ bikes.get(i)+"</p>\n" +
                                 "\n" +
                                 "</div>"
                 );
             }
 
-
+            out.println("</body>");
 
 
 
@@ -132,7 +122,7 @@ public class BookABike extends HttpServlet {
             e.printStackTrace();
             out.println("Testing error 2- Failed");
         }
-        out.println("</body>");
+
 
     }
 
@@ -148,9 +138,7 @@ public class BookABike extends HttpServlet {
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
             String sql;
-            String sql2;
             sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
-            sql2 = "SELECT hire_id, START_DATE, END_DATE, Start_Time, End_Time FROM hires";
 
             ResultSet rs = stmt.executeQuery(sql);
             ArrayList<Integer> bikes = new ArrayList<Integer>();
@@ -167,8 +155,6 @@ public class BookABike extends HttpServlet {
                 loca.add(location);
                 cost.add(price);
             }
-
-            rs = stmt.executeQuery(sql2);
 
             rs.close();
             stmt.close();

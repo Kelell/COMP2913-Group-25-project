@@ -64,21 +64,19 @@
       <file leaf-file-name="BookABike.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="171" column="41" selection-start-line="171" selection-start-column="41" selection-end-line="171" selection-end-column="41" />
+            <state relative-caret-position="405">
+              <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1389#1398#0" expanded="true" />
-                <element signature="e#1454#1463#0" expanded="true" />
-                <element signature="e#1518#1526#0" expanded="true" />
-                <element signature="e#1579#1586#0" expanded="true" />
-                <element signature="e#2319#2328#0" expanded="true" />
-                <element signature="e#2386#2395#0" expanded="true" />
-                <element signature="e#2450#2458#0" expanded="true" />
-                <element signature="e#2513#2522#0" expanded="true" />
-                <element signature="e#2579#2588#0" expanded="true" />
+                <element signature="e#1611#1620#0" expanded="true" />
+                <element signature="e#1674#1682#0" expanded="true" />
+                <element signature="e#1735#1742#0" expanded="true" />
+                <element signature="e#1798#1807#0" expanded="true" />
+                <element signature="e#1862#1868#0" expanded="true" />
+                <element signature="e#1921#1927#0" expanded="true" />
+                <element signature="e#1982#1988#0" expanded="true" />
+                <element signature="e#2041#2047#0" expanded="true" />
                 <element signature="e#5720#5729#0" expanded="true" />
-                <element signature="e#5785#5794#0" expanded="true" />
                 <element signature="e#5849#5857#0" expanded="true" />
                 <element signature="e#5910#5917#0" expanded="true" />
               </folding>
@@ -394,12 +392,12 @@
       <workItem from="1554226912419" duration="11431000" />
       <workItem from="1554653335241" duration="4475000" />
       <workItem from="1555162670376" duration="3228000" />
-      <workItem from="1555186371400" duration="1532000" />
+      <workItem from="1555186371400" duration="2610000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173964000" />
+    <option name="totallyTimeSpent" value="175042000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="28" width="1920" height="1018" extended-state="6" />
@@ -636,21 +634,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="171" column="41" selection-start-line="171" selection-start-column="41" selection-end-line="171" selection-end-column="41" />
+        <state relative-caret-position="405">
+          <caret line="79" column="24" selection-start-line="79" selection-start-column="24" selection-end-line="79" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1389#1398#0" expanded="true" />
-            <element signature="e#1454#1463#0" expanded="true" />
-            <element signature="e#1518#1526#0" expanded="true" />
-            <element signature="e#1579#1586#0" expanded="true" />
-            <element signature="e#2319#2328#0" expanded="true" />
-            <element signature="e#2386#2395#0" expanded="true" />
-            <element signature="e#2450#2458#0" expanded="true" />
-            <element signature="e#2513#2522#0" expanded="true" />
-            <element signature="e#2579#2588#0" expanded="true" />
+            <element signature="e#1611#1620#0" expanded="true" />
+            <element signature="e#1674#1682#0" expanded="true" />
+            <element signature="e#1735#1742#0" expanded="true" />
+            <element signature="e#1798#1807#0" expanded="true" />
+            <element signature="e#1862#1868#0" expanded="true" />
+            <element signature="e#1921#1927#0" expanded="true" />
+            <element signature="e#1982#1988#0" expanded="true" />
+            <element signature="e#2041#2047#0" expanded="true" />
             <element signature="e#5720#5729#0" expanded="true" />
-            <element signature="e#5785#5794#0" expanded="true" />
             <element signature="e#5849#5857#0" expanded="true" />
             <element signature="e#5910#5917#0" expanded="true" />
           </folding>
