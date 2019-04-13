@@ -1,0 +1,708 @@
+<form id = 'form1' action= 'book' method = 'post' >
+
+
+<p name = 'Location' >Select a Location</p>
+<select name = 'Location' required onclick='myFunction()' >
+<option selected value= 'Please select'>Please select</option>
+<option value='Alnmouth'>Alnmouth</option>
+<option value='Beverly'>Beverly</option>
+<option value='Crystal'>Crystal</option>
+<option value='Hexam'>Hexam</option>
+</select>
+
+<p style='display:none;' name = 'term' >Would you like the bike for short term or long term?</p>
+<select style='display:none;' name = 'term' required onchange='myFunction5()'>
+<option selected value= 0>Please select</option>
+<option value=2>Long term</option>
+<option value=1>Short term</option>
+</select>
+
+<p style='display:none;' name = 'Dur' >How long would you like the bike</p>
+<select style='display:none;' name = 'Dur' required onchange='myFunction2()'>
+<option selected value= 0>Please select</option>
+<option value=4>4 hours</option>
+<option value=3>3 hours</option>
+<option value=2>2 hours</option>
+<option value=1>1 hours</option>
+</select>
+
+<p style='display:none;' name = 'Daydur' >How long would you like the bike</p>
+<select style='display:none;' name = 'Daydur' required onchange='myFunction6()'>
+<option selected value= 0>Please select</option>
+<option value=5>1 Week</option>
+<option value=4>4 days</option>
+<option value=3>3 days</option>
+<option value=2>2 days</option>
+<option value=1>1 day</option>
+</select>
+
+<p style='display:none;' name='date' >Enter Date: </p>
+<input onchange='myFunction3()' required style='display:none;'  type='date' name='date'>
+
+<p style='display:none;color:red;' id ='error'> Error buddy</p>
+
+
+
+<p style='display:none;' name = Time1 >Select a Time to book</p>
+<select onclick ='myFunction4(this)' style='display:none;' name = Time1 required >
+<option value= 0>Please select</option>
+<option value= '08-09' >8 am to 9 am</option>
+<option value= '09-10' >9 am to 10 am</option>
+<option value= '10-11' >10 am to 11 am</option>
+<option value= '11-12' >11 am to 12 pm</option>
+<option value= '12-13' >12 pm to 1 pm</option>
+<option value= '13-14' >1 pm to 2 pm</option>
+<option value= '14-15' >2 pm to 3 pm</option>
+<option value= '15-16' >3 pm to 4 pm</option>
+<option value= '16-17' >4 pm to 5 pm</option>
+<option value= '17-18' >5 pm to 6 pm</option>
+<option value= '18-19' >6 pm to 7 pm</option>
+<option value= '19-20' >7 pm to 8 pm</option>
+</select>
+
+<p style='display:none;' name = Time2 >Select a Time to book</p>
+<select onclick ='myFunction4(this)' style='display:none;' name = Time2 required >
+<option value= 0>Please select</option>
+<option value= '08-10' >8 am to 10 am</option>
+<option value= '09-11' >9 am to 11 am</option>
+<option value= '10-12' >10 am to 12 pm</option>
+<option value= '11-13' >11 am to 1 pm</option>
+<option value= '12-14' >12 pm to 2 pm</option>
+<option value= '13-15' >1 pm to 3 pm</option>
+<option value= '14-16' >2 pm to 4 pm</option>
+<option value= '15-17' >3 pm to 5 pm</option>
+<option value= '16-18' >4 pm to 6 pm</option>
+<option value= '17-19' >5 pm to 7 pm</option>
+<option value= '18-20' >6 pm to 8 pm</option>
+</select>
+
+<p style='display:none;' name = Time3 >Select a Time to book</p>
+<select onclick='myFunction4(this)' style='display:none;' name = Time3 required >
+<option value= 0>Please select</option>
+<option value= '08-11' >8 am to 11 am</option>
+<option value= '09-12' >9 am to 12 pm</option>
+<option value= '10-13' >10 am to 1 pm</option>
+<option value= '11-14' >11 am to 2 pm</option>
+<option value= '12-15' >12 pm to 3 pm</option>
+<option value= '13-16' >1 pm to 4 pm</option>
+<option value= '14-17' >2 pm to 5 pm</option>
+<option value= '15-18' >3 pm to 6 pm</option>
+<option value= '16-19' >4 pm to 7 pm</option>
+<option value= '17-20' >5 pm to 8 pm</option>
+</select>
+
+<p style='display:none;' name = Time4 >Select a Time to book</p>
+<select onclick='myFunction4(this)' style='display:none;' name = Time4 required >
+<option value= 0>Please select</option>
+<option value= '08-12' >8 am to 12 pm</option>
+<option value= '09-13' >9 am to 1 pm</option>
+<option value= '10-14' >10 am to 2 pm</option>
+<option value= '11-15' >11 am to 3 pm</option>
+<option value= '12-16' >12 pm to 4 pm</option>
+<option value= '13-17' >1 pm to 5 pm</option>
+<option value= '14-18' >2 pm to 6 pm</option>
+<option value= '15-19' >3 pm to 7 pm</option>
+<option value= '16-20' >4 pm to 8 pm</option>
+</select>
+
+
+
+<p style='display:none;color:red;' id ='error2'> tooo lattee</p>
+
+<p style='display:none;color:red;' id ='error3'> No more bookings today</p>
+
+<select id = tyme style='display:none;' name = time0 required >
+<option value= Time1>Time1</option>
+<option value= Time2>Time2</option>
+<option value= Time3>Time3</option>
+<option value= Time4>Time4</option>
+</select>
+
+
+<br><br>
+<input id = 'submit' style='display:none;' type=submit value= submit >
+</form>
+<script>
+function openFunction() {
+document.getElementById('form1').reset();
+location.reload();
+}
+
+
+function myFunction() {
+var a = document.getElementsByName('Location');
+var b = document.getElementsByName('Dur');
+var c = document.getElementsByName('date');
+var d = document.getElementsByName('Time1');
+var e = document.getElementsByName('Time2');
+var f = document.getElementsByName('Time3');
+var g = document.getElementsByName('Time4');
+var h = document.getElementsByName('term');
+var i = document.getElementsByName('Daydur');
+var j = document.getElementsByName('secondate');
+var w = document.getElementById('error');
+w.style.display = 'none';
+var x = document.getElementById('error2');
+x.style.display = 'none';
+var y = document.getElementById('error3');
+y.style.display = 'none';
+var z = document.getElementById('submit');
+z.style.display = 'none';
+if (a[1].value !=  'Please select'){
+if (h[1].style.display ==  'none'){
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+h[0].style.display = 'block';
+h[1].style.display = 'block';
+i[0].style.display = 'none';
+i[1].style.display = 'none';
+j[0].style.display = 'none';
+j[1].style.display = 'none';
+}
+if (h[1].style.display ==  'block'){
+h[1].value = 0;
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+i[0].style.display = 'none';
+i[1].style.display = 'none';
+j[0].style.display = 'none';
+j[1].style.display = 'none';
+}
+}
+if (a[1].value ==  'Please select'){
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+h[0].style.display = 'none';
+h[1].style.display = 'none';
+i[0].style.display = 'none';
+i[1].style.display = 'none';
+j[0].style.display = 'none';
+j[1].style.display = 'none';
+}
+}
+
+
+function myFunctionx() {
+var a = document.getElementsByName('Location');
+var b = document.getElementsByName('Dur');
+var c = document.getElementsByName('date');
+var d = document.getElementsByName('Time1');
+var e = document.getElementsByName('Time2');
+var f = document.getElementsByName('Time3');
+var g = document.getElementsByName('Time4');
+var h = document.getElementsByName('term');
+var i = document.getElementsByName('Daydur');
+var j = document.getElementsByName('secondate');
+var w = document.getElementById('error');
+w.style.display = 'none';
+var x = document.getElementById('error2');
+x.style.display = 'none';
+var y = document.getElementById('error3');
+y.style.display = 'none';
+var z = document.getElementById('submit');
+z.style.display = 'none';
+if (a[1].value !=  'Please select'){
+if (b[1].style.display ==  'none'){
+b[0].style.display = 'block';
+b[1].style.display = 'block';
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+h[0].style.display = 'none';
+h[1].style.display = 'none';
+i[0].style.display = 'none';
+i[1].style.display = 'none';
+j[0].style.display = 'none';
+j[1].style.display = 'none';
+}
+if (b[1].style.display ==  'block'){
+b[1].value = 0;
+h[0].style.display = 'none';
+h[1].style.display = 'none';
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+i[0].style.display = 'none';
+i[1].style.display = 'none';
+j[0].style.display = 'none';
+j[1].style.display = 'none';
+}
+}
+if (a[1].value ==  'Please select'){
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+h[0].style.display = 'none';
+h[1].style.display = 'none';
+i[0].style.display = 'none';
+i[1].style.display = 'none';
+j[0].style.display = 'none';
+j[1].style.display = 'none';
+}
+}
+
+
+function myFunction2() {
+var a = document.getElementsByName('Location');
+var b = document.getElementsByName('Dur');
+var c = document.getElementsByName('date');
+var d = document.getElementsByName('Time1');
+var e = document.getElementsByName('Time2');
+var f = document.getElementsByName('Time3');
+var g = document.getElementsByName('Time4');
+var j = document.getElementsByName('secondate');
+var w = document.getElementById('error');
+w.style.display = 'none';
+var x = document.getElementById('error2');
+x.style.display = 'none';
+var y = document.getElementById('error3');
+y.style.display = 'none';
+var z = document.getElementById('submit');
+z.style.display = 'none';
+if (b[1].value !=  0){
+if (c[1].style.display ==  'none'){
+c[0].style.display = 'block';
+c[1].style.display = 'block';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+}
+if (c[1].style.display ==  'block'){
+c[1].value = '0000-00-00';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+}
+}
+if (b[1].value ==  0){
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+}
+}
+
+
+function myFunction3() {
+var t = document.getElementsByName('term');
+if (t[1].value == 2)
+{
+var a = document.getElementsByName('Location');
+var b = document.getElementsByName('Dur');
+var c = document.getElementsByName('date');
+var d = document.getElementsByName('Time1');
+var e = document.getElementsByName('Time2');
+var f = document.getElementsByName('Time3');
+var g = document.getElementsByName('Time4');
+var h = document.getElementById('error');
+h.style.display = 'none';
+var x = document.getElementById('error2');
+x.style.display = 'none';
+var y = document.getElementById('error3');
+y.style.display = 'none';
+var z = document.getElementById('submit');
+z.style.display = 'none';
+h.style.display = 'none';
+var i = document.getElementsByName('Daydur');
+var today = new Date();
+var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' +today.getDate();
+var currentyear = parseInt(today.getFullYear());
+var currentmonth = parseInt((today.getMonth() + 1));
+var currentday = parseInt(today.getDate());
+var inputyear = parseInt(c[1].value.substring(0,4));
+var inputmonth = parseInt(c[1].value.substring(5,7));
+var inputdate = parseInt(c[1].value.substring(8,10));
+if ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate >= currentday)){
+if (c[1].value !=  '0000-00-00'){
+z.style.display = 'block';
+h.style.display = 'none';
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+}
+if (c[1].value == '0000-00-00'){
+z.style.display = 'none';
+h.style.display = 'none';
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+}
+}
+else{
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+c[1].value = '0000-00-00';
+h.style.display = 'block';
+}
+}
+else if (t[1].value == 1)
+{
+var a = document.getElementsByName('Location');
+var b = document.getElementsByName('Dur');
+var c = document.getElementsByName('date');
+var d = document.getElementsByName('Time1');
+var e = document.getElementsByName('Time2');
+var f = document.getElementsByName('Time3');
+var g = document.getElementsByName('Time4');
+var h = document.getElementById('error');
+h.style.display = 'none';
+var x = document.getElementById('error2');
+x.style.display = 'none';
+var y = document.getElementById('error3');
+y.style.display = 'none';
+var z = document.getElementById('submit');
+z.style.display = 'none';
+h.style.display = 'none';
+var today = new Date();
+var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+var currentyear = parseInt(today.getFullYear());
+var currentmonth = parseInt((today.getMonth() + 1));
+var currentday = parseInt(today.getDate());
+var inputyear = parseInt(c[1].value.substring(0,4));
+var inputmonth = parseInt(c[1].value.substring(5,7));
+var inputdate = parseInt(c[1].value.substring(8,10));
+if ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate >= currentday)){
+if (c[1].value !=  '0000-00-00'){
+if (b[1].value == 4){
+if (g[1].style.display == 'none'){
+g[0].style.display = 'block';
+g[1].style.display = 'block';
+g[1].setAttribute('id','path');
+f[1].removeAttribute('id');
+e[1].removeAttribute('id');
+d[1].removeAttribute('id');
+}
+if (g[1].style.display == 'block'){
+g[1].value = 0;
+}
+}
+if (b[1].value == 3){
+if (f[1].style.display == 'none'){
+f[0].style.display = 'block';
+f[1].style.display = 'block';
+g[1].removeAttribute('id');
+f[1].setAttribute('id', 'path');
+e[1].removeAttribute('id');
+d[1].removeAttribute('id');
+}
+if (f[1].style.display == 'block'){
+f[1].value = 0;
+}
+}
+if (b[1].value == 2){
+if (e[1].style.display == 'none'){
+e[0].style.display = 'block';
+e[1].style.display = 'block';
+g[1].removeAttribute('id');
+f[1].removeAttribute('id');
+e[1].setAttribute('id', 'path');
+d[1].removeAttribute('id');
+}
+if (e[1].style.display == 'block'){
+e[1].value = 0;
+}
+}
+if (b[1].value == 1){
+if (d[1].style.display == 'none'){
+d[0].style.display = 'block';
+d[1].style.display = 'block';
+g[1].removeAttribute('id');
+f[1].removeAttribute('id');
+e[1].removeAttribute('id');
+d[1].setAttribute('id', 'path');
+}
+if (d[1].style.display == 'block'){
+d[1].value = 0;
+}
+}
+}
+if (c[1].value == '0000-00-00'){
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+}
+}
+else{
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+c[1].value = '0000-00-00';
+h.style.display = 'block';
+}
+}
+}
+
+
+function myFunction4(obj) {
+var a = document.getElementsByName('Location');
+var b = document.getElementsByName('Dur');
+var c = document.getElementsByName('date');
+var d = document.getElementsByName('Time1');
+var e = document.getElementsByName('Time2');
+var f = document.getElementsByName('Time3');
+var g = document.getElementsByName('Time4');
+var val = document.getElementById('tyme');
+var x = document.getElementById('path');
+var y = document.getElementById('error2');
+var y2 = document.getElementById('error3');
+var z = document.getElementById('submit');
+z.style.display = 'none';
+val.value = obj.name ;
+var btime = parseInt(x.value.substring(0,2));
+var today = new Date();
+var time = today.getHours();
+y.style.display = 'none';
+y2.style.display = 'none';
+var inputdate = parseInt(c[1].value.substring(8,10));
+if (x.value != 0 ){
+if (btime < time + 1 && time < 20 && inputdate === today.getDate()){
+y.style.display = 'block';
+z.style.display = 'none';
+}
+if (time >= 20 && inputdate === today.getDate()){
+y2.style.display = 'block';
+z.style.display = 'none';
+}
+else{
+z.style.display = 'block';
+}
+}
+}
+
+function myFunction5() {
+var a = document.getElementsByName('Location');
+var b = document.getElementsByName('Dur');
+var c = document.getElementsByName('date');
+var d = document.getElementsByName('Time1');
+var e = document.getElementsByName('Time2');
+var f = document.getElementsByName('Time3');
+var g = document.getElementsByName('Time4');
+var h = document.getElementsByName('term');
+var i = document.getElementsByName('Daydur');
+var w = document.getElementById('error');
+w.style.display = 'none';
+var x = document.getElementById('error2');
+x.style.display = 'none';
+var y = document.getElementById('error3');
+y.style.display = 'none';
+var z = document.getElementById('submit');
+z.style.display = 'none';
+if (h[1].value !=  0){
+if (h[1].value == 2){
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+b[1].value = 0;
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+c[1].value = '0000-00-00';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+d[1].value = 0;
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+e[1].value = 0;
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+f[1].value = 0;
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+g[1].value = 0;
+i[0].style.display = 'block';
+i[1].style.display = 'block';
+}
+if (h[1].value == 1){
+i[1].value = 0;
+b[0].style.display = 'block';
+b[1].style.display = 'block';
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+i[0].style.display = 'none';
+i[1].style.display = 'none';
+}
+}
+if (h[1].value ==  0){
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+i[0].style.display = 'none';
+i[1].style.display = 'none';
+}
+}
+
+function myFunction6() {
+var a = document.getElementsByName('Location');
+var b = document.getElementsByName('Dur');
+var c = document.getElementsByName('date');
+var d = document.getElementsByName('Time1');
+var e = document.getElementsByName('Time2');
+var f = document.getElementsByName('Time3');
+var g = document.getElementsByName('Time4');
+var i = document.getElementsByName('Daydur');
+var w = document.getElementById('error');
+w.style.display = 'none';
+var x = document.getElementById('error2');
+x.style.display = 'none';
+var y = document.getElementById('error3');
+y.style.display = 'none';
+var z = document.getElementById('submit');
+z.style.display = 'none';
+if (i[1].value !=  0){
+if (c[1].style.display ==  'none'){
+c[0].style.display = 'block';
+c[1].style.display = 'block';
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+}
+if (c[1].style.display ==  'block'){
+c[1].value = '0000-00-00';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+}
+}
+if (i[1].value ==  0){
+b[0].style.display = 'none';
+b[1].style.display = 'none';
+c[0].style.display = 'none';
+c[1].style.display = 'none';
+d[0].style.display = 'none';
+d[1].style.display = 'none';
+e[0].style.display = 'none';
+e[1].style.display = 'none';
+f[0].style.display = 'none';
+f[1].style.display = 'none';
+g[0].style.display = 'none';
+g[1].style.display = 'none';
+}
+}
+
+</script>
