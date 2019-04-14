@@ -79,10 +79,9 @@ public class AvailableBikes extends HttpServlet {
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "SELECT BIKE_ID, STATUS, LOCATION, price FROM bike";
+            sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
             ResultSet rs = stmt.executeQuery(sql);
             ArrayList<Integer> bike_ids = new ArrayList<Integer>();
-            ArrayList<Integer> stats = new ArrayList<Integer>();;
             ArrayList<String> loca = new ArrayList<String>();
             ArrayList<Float> cost = new ArrayList<Float>();
             String loc = request.getParameter("Location");
@@ -91,12 +90,10 @@ public class AvailableBikes extends HttpServlet {
             while(rs.next()){
                 //Retrieve by column name
                 int id  = rs.getInt("BIKE_ID");
-                int status = rs.getInt("STATUS");
                 String location = rs.getString("LOCATION");
                 float price = rs.getFloat("price");
                 if (location.equals(loc) ){
                     bike_ids.add(id);
-                    stats.add(status);
                     loca.add(location);
                     cost.add(price);
                 }

@@ -22,6 +22,7 @@
     <a class="active" href="index.jsp">Home</a>
     <a href="Views">View bikes</a>
     <a href="book">Book a bike</a>
+    <a href="bookbikes">Book</a>
     <a href="AboutUs.jsp">About Us</a>
     <a href="ContactUs.jsp">Contact Us</a>
     <a href="LogIn.jsp">LogIn</a>
