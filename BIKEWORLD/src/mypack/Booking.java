@@ -65,9 +65,9 @@ public class Booking extends HttpServlet {
             out.println("<body  >");
 
             out.println(
-                    "<p name = 'Location' >Select a Location</p>\n" +
-                            "<select name = 'Location' required onclick='myFunction()' >\n" +
-                            "<option selected value= 'Please select'>Please select</option>\n" +
+                    "<p name = 'location' >Select a Location</p>\n" +
+                            "<select name = 'location' required onclick='locationFunction()' >\n" +
+                            "<option selected value= 0>Please select</option>\n" +
                             "<option value='Alnmouth'>Alnmouth</option>\n" +
                             "<option value='Beverly'>Beverly</option>\n" +
                             "<option value='Crystal'>Crystal</option>\n" +
@@ -104,9 +104,10 @@ public class Booking extends HttpServlet {
                             "}\n" +
                             "\n" +
                                     
-                            "function myFunction(){\n" +
+                            "function theFunction(){\n" +
                                     "  var bikes = document.getElementsByClassName('section');\n" +
-                                    "  var location = document.getElementsByName('Location');\n" +
+                                    "  var location = document.getElementsByName('location');\n" +
+                                    "  var term = document.getElementsByName('term');\n" +
                                     "  var i ;\n" +
                                     "  for (i = 0; i < bikes.length; i ++){\n" +
                                     "    if (location[1].value  == bikes[i].getAttribute(\"name\")){ \n" +

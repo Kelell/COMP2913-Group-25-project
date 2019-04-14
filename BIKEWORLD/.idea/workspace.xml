@@ -34,7 +34,7 @@
       <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
+            <state relative-caret-position="360">
               <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
             </state>
           </provider>
@@ -43,7 +43,7 @@
       <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-234">
+            <state relative-caret-position="435">
               <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
             </state>
           </provider>
@@ -52,13 +52,13 @@
       <file leaf-file-name="Booking.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mypack/Booking.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-172">
-              <caret line="80" column="73" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
+            <state relative-caret-position="135">
+              <caret line="106" column="41" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1319#1328#0" expanded="true" />
-                <element signature="e#1382#1390#0" expanded="true" />
-                <element signature="e#1443#1450#0" expanded="true" />
+                <element signature="e#1303#1312#0" expanded="true" />
+                <element signature="e#1366#1374#0" expanded="true" />
+                <element signature="e#1427#1434#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,7 +67,7 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="255">
               <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
             </state>
           </provider>
@@ -76,7 +76,7 @@
       <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2138">
+            <state relative-caret-position="465">
               <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -88,31 +88,10 @@
       <file leaf-file-name="BookABike.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-10673">
-              <caret line="323" column="12" selection-start-line="323" selection-start-column="12" selection-end-line="328" selection-end-column="36" />
+            <state relative-caret-position="-2655">
+              <caret line="352" column="43" lean-forward="true" selection-start-line="352" selection-start-column="43" selection-end-line="352" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1706#1715#0" expanded="true" />
-                <element signature="e#1773#1781#0" expanded="true" />
-                <element signature="e#1838#1845#0" expanded="true" />
-                <element signature="e#1905#1914#0" expanded="true" />
-                <element signature="e#1975#1984#0" expanded="true" />
-                <element signature="e#2043#2049#0" expanded="true" />
-                <element signature="e#2106#2112#0" expanded="true" />
-                <element signature="e#2171#2177#0" expanded="true" />
-                <element signature="e#2234#2240#0" expanded="true" />
-                <element signature="e#3162#3171#0" expanded="true" />
-                <element signature="e#8476#8485#0" expanded="true" />
-                <element signature="e#8543#8551#0" expanded="true" />
-                <element signature="e#8608#8615#0" expanded="true" />
-                <element signature="e#8675#8684#0" expanded="true" />
-                <element signature="e#8743#8749#0" expanded="true" />
-                <element signature="e#8806#8812#0" expanded="true" />
-                <element signature="e#8871#8877#0" expanded="true" />
-                <element signature="e#8934#8940#0" expanded="true" />
-                <element signature="e#12779#12788#0" expanded="true" />
-                <element signature="e#12842#12850#0" expanded="true" />
-                <element signature="e#12903#12910#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,7 +100,7 @@
       <file leaf-file-name="AvailableBikes.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
+            <state relative-caret-position="1455">
               <caret line="105" column="12" selection-start-line="105" selection-start-column="12" selection-end-line="106" selection-end-column="53" />
             </state>
           </provider>
@@ -131,7 +110,7 @@
         <entry file="file://$PROJECT_DIR$/src/mypack/Search.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -184,12 +163,12 @@
         <option value="$PROJECT_DIR$/web/Verified.jsp" />
         <option value="$PROJECT_DIR$/web/LogIn.jsp" />
         <option value="$PROJECT_DIR$/web/style.css" />
-        <option value="$PROJECT_DIR$/src/mypack/BookABike.java" />
         <option value="$PROJECT_DIR$/src/mypack/View.java" />
         <option value="$PROJECT_DIR$/src/mypack/AvailableBikes.java" />
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/mypack/Booking.java" />
+        <option value="$PROJECT_DIR$/src/mypack/BookABike.java" />
       </list>
     </option>
   </component>
@@ -219,6 +198,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -253,8 +234,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -459,11 +438,12 @@
       <workItem from="1555162670376" duration="3228000" />
       <workItem from="1555186371400" duration="12832000" />
       <workItem from="1555249431528" duration="5663000" />
+      <workItem from="1555263758273" duration="1382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190927000" />
+    <option name="totallyTimeSpent" value="192309000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1920" height="1018" extended-state="6" />
@@ -490,8 +470,8 @@
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
       <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.31014824" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.78347105" visible="true" weight="0.27564102" />
-      <window_info id="Web" order="6" sideWeight="0.21652892" side_tool="true" visible="true" weight="0.27564102" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7818182" visible="true" weight="0.27884614" />
+      <window_info id="Web" order="6" sideWeight="0.21818182" side_tool="true" visible="true" weight="0.27884614" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -654,21 +634,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="360">
           <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="255">
           <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
+        <state relative-caret-position="435">
           <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="37" />
         </state>
       </provider>
@@ -676,20 +656,20 @@
     <entry file="file://$PROJECT_DIR$/src/mypack/Search.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
+        <state relative-caret-position="1455">
           <caret line="105" column="12" selection-start-line="105" selection-start-column="12" selection-end-line="106" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2138">
+        <state relative-caret-position="465">
           <caret line="43" column="47" selection-start-line="43" selection-start-column="47" selection-end-line="43" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -699,44 +679,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10673">
-          <caret line="323" column="12" selection-start-line="323" selection-start-column="12" selection-end-line="328" selection-end-column="36" />
+        <state relative-caret-position="-2655">
+          <caret line="352" column="43" lean-forward="true" selection-start-line="352" selection-start-column="43" selection-end-line="352" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1706#1715#0" expanded="true" />
-            <element signature="e#1773#1781#0" expanded="true" />
-            <element signature="e#1838#1845#0" expanded="true" />
-            <element signature="e#1905#1914#0" expanded="true" />
-            <element signature="e#1975#1984#0" expanded="true" />
-            <element signature="e#2043#2049#0" expanded="true" />
-            <element signature="e#2106#2112#0" expanded="true" />
-            <element signature="e#2171#2177#0" expanded="true" />
-            <element signature="e#2234#2240#0" expanded="true" />
-            <element signature="e#3162#3171#0" expanded="true" />
-            <element signature="e#8476#8485#0" expanded="true" />
-            <element signature="e#8543#8551#0" expanded="true" />
-            <element signature="e#8608#8615#0" expanded="true" />
-            <element signature="e#8675#8684#0" expanded="true" />
-            <element signature="e#8743#8749#0" expanded="true" />
-            <element signature="e#8806#8812#0" expanded="true" />
-            <element signature="e#8871#8877#0" expanded="true" />
-            <element signature="e#8934#8940#0" expanded="true" />
-            <element signature="e#12779#12788#0" expanded="true" />
-            <element signature="e#12842#12850#0" expanded="true" />
-            <element signature="e#12903#12910#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/Booking.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-172">
-          <caret line="80" column="73" selection-start-line="80" selection-start-column="73" selection-end-line="80" selection-end-column="73" />
+        <state relative-caret-position="135">
+          <caret line="106" column="41" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1319#1328#0" expanded="true" />
-            <element signature="e#1382#1390#0" expanded="true" />
-            <element signature="e#1443#1450#0" expanded="true" />
+            <element signature="e#1303#1312#0" expanded="true" />
+            <element signature="e#1366#1374#0" expanded="true" />
+            <element signature="e#1427#1434#0" expanded="true" />
           </folding>
         </state>
       </provider>
