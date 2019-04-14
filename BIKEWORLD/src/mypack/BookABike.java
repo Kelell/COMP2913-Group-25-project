@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
+import java.text.*;
+import java.text.ParseException;
 
 
 @WebServlet(name = "BookABike")
@@ -22,105 +24,261 @@ public class BookABike extends HttpServlet {
         jdbc test = new jdbc();
         String driver = "com.mysql.cj.jdbc.Driver";
 
-        String d = request.getParameter("date");
-        String t = request.getParameter("time0");
-        String rt = request.getParameter(t);
-        String l = request.getParameter("Location");
-        String du = request.getParameter("Dur");
         String term = request.getParameter("term");
-
-        try {
-            Class.forName(driver);
-            Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
-            Statement stmt = conn.createStatement();
-            String sql;
-            String sql2;
-            sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
-            sql2 = "SELECT hire_id, START_DATE, END_DATE, Start_Time, End_Time FROM hires";
-
-            ResultSet rs = stmt.executeQuery(sql);
-            ArrayList<Integer> bikes = new ArrayList<Integer>();
-            ArrayList<String> loca = new ArrayList<String>();
-            ArrayList<Float> cost = new ArrayList<Float>();
-            ArrayList<Integer> hires = new ArrayList<Integer>();
-            ArrayList<Date>  startd = new ArrayList<Date>();
-            ArrayList<Date>  endd = new ArrayList<Date>();
-            ArrayList<Time>  startt = new ArrayList<Time>();
-            ArrayList<Time>  endt = new ArrayList<Time>();
+        if (Integer.parseInt(term) == 2)
+        {
+            String date = request.getParameter("date");
+            String duration = request.getParameter("Daydur");
+            String location = request.getParameter("Location");
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date ddate = format.parse(date);
+                Class.forName(driver);
+                Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
+                Statement stmt = conn.createStatement();
+                String sql;
+                String sql2;
+                sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
+                sql2 = "SELECT hire_id, BIKE_ID, START_DATE, END_DATE, Start_Time, End_Time FROM hires";
 
 
-            while(rs.next()){
-                //Retrieve by column name
-                int id  = rs.getInt("BIKE_ID");
-                String location = rs.getString("LOCATION");
-                float price = rs.getFloat("price");
-                bikes.add(id);
-                loca.add(location);
-                cost.add(price);
-            }
-            rs.close();
+                ArrayList<Integer> bikes = new ArrayList<Integer>();
+                ArrayList<String> loca = new ArrayList<String>();
+                ArrayList<Float> cost = new ArrayList<Float>();
+                ArrayList<Integer> hires = new ArrayList<Integer>();
+                ArrayList<Integer> bikes2 = new ArrayList<Integer>();
+                ArrayList<Date>  startd = new ArrayList<Date>();
+                ArrayList<Date>  endd = new ArrayList<Date>();
+                ArrayList<Time>  startt = new ArrayList<Time>();
+                ArrayList<Time>  endt = new ArrayList<Time>();
 
-            ResultSet rs2 = stmt.executeQuery(sql2);
-            while(rs2.next()){
-                //Retrieve by column name
-                int h  = rs2.getInt("hires_id");
-                Date s = rs2.getDate("START_DATE");
-                Date e = rs2.getDate("END_DATE");
-                Time st = rs2.getTime("Start_Time");
-                Time et = rs2.getTime("End_Time");
-                hires.add(h);
-                startd.add(s);
-                endd.add(e);
-                startt.add(st);
-                endt.add(et);
-            }
+                ResultSet rs2 = stmt.executeQuery(sql2);
+                while(rs2.next()){
+                    //Retrieve by column name
+                    int h  = rs2.getInt("hire_id");
+                    int b  = rs2.getInt("BIKE_ID");
+                    Date s = rs2.getDate("START_DATE");
+                    Date e = rs2.getDate("END_DATE");
+                    Time st = rs2.getTime("Start_Time");
+                    Time et = rs2.getTime("End_Time");
+                    hires.add(h);
+                    bikes2.add(b);
+                    startd.add(s);
+                    endd.add(e);
+                    startt.add(st);
+                    endt.add(et);
+                }
+                rs2.close();
 
-            stmt.close();
-            conn.close();
+                int booking_size =  bikes2.size();
+                ResultSet rs = stmt.executeQuery(sql);
+                boolean bookable = true;
+                List<Integer> count = new ArrayList<Integer>();
+                while(rs.next()){
+                    bookable = true;
+                    //Retrieve by column name
+                    int id  = rs.getInt("BIKE_ID");
+                    String l = rs.getString("LOCATION");
+                    float price = rs.getFloat("price");
+                    for (int i = 0; i < booking_size; i++ )
+                    {
+                        if (id == bikes2.get(i))
+                        {
+                            Calendar reqdate = Calendar.getInstance();
+                            reqdate.setTime(ddate);
+                            Calendar reqdatedur = Calendar.getInstance();
+                            reqdatedur.setTime(ddate);
+                            int reqdur = Integer.parseInt(duration);
+                            reqdatedur.add(Calendar.DAY_OF_MONTH, reqdur);
+                            Calendar std = Calendar.getInstance();
+                            std.setTime(startd.get(i));
+                            Calendar edd = Calendar.getInstance();
+                            edd.setTime(endd.get(i));
+                            if ( reqdate == std)
+                            {
+                                bookable = false;
+                            }
+                            else if (reqdate.before(edd) && reqdate.after(std))
+                            {
+                                bookable = false;
+                            }
+                            else if (reqdatedur.before(edd) && reqdatedur.after(std))
+                            {
+                                bookable = false;
+                            }
+                            else if (reqdate.before(std) && reqdatedur.after(edd))
+                            {
+                                bookable = false;
+                            }
+                            else if (reqdate.after(std) && reqdatedur.before(edd))
+                            {
+                                bookable = false;
+                            }
+                            if ( reqdate == edd)
+                            {
+                                bookable =true;
+                            }
+                        }
+                    }
+                    if (bookable == true && l.equals(location))
+                    {
+                        bikes.add(id);
+                        loca.add(l);
+                        cost.add(price);
+                    }
 
-            int listsize = bikes.size();
-            String size = Integer.toString(listsize);
 
-            out.println("<head onload=\"openFunction()\" >" +
-                    "<title id = prick >$Title$</title>" +
-                    "<link rel=stylesheet href=style.css type=text/css>" +
-                    "</head>"
-            );
-            out.println("<body  >");
-            out.println("<div class = \"Title\"> B!KEWORLD </div>");
-            out.println(
-                    "<div class=nav>"+
-                            "<a  href=index.jsp>Home</a>"+
-                            "<a class=active href=book>Book A Bike</a>" +
-                            "<a href=\"Views\">View bikes</a>" +
-                            "<a href=AboutUs.jsp>About Us</a>"+
-                            "<a href=ContactUs.jsp>Contact Us</a>"+
-                            "<a>Log out</a>" +
-                            "</div>"
-            );
 
-            for (int i = 0; i < listsize; i++)
-            {
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+
+                int listsize = bikes.size();
+                String size = Integer.toString(listsize);
+
+                out.println("<head onload=\"openFunction()\" >" +
+                        "<title id = prick >$Title$</title>" +
+                        "<link rel=stylesheet href=style.css type=text/css>" +
+                        "</head>"
+                );
+                out.println("<body  >");
+                out.println("<div class = \"Title\"> B!KEWORLD </div>");
                 out.println(
-                        "<div class = \"bike\">\n" +
-                                "\t<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                "    <p>price: "+ cost.get(i) +"</p>\n" +
-                                "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                "\n" +
+                        "<div class=nav>"+
+                                "<a  href=index.jsp>Home</a>"+
+                                "<a class=active href=book>Book A Bike</a>" +
+                                "<a href=\"Views\">View bikes</a>" +
+                                "<a href=AboutUs.jsp>About Us</a>"+
+                                "<a href=ContactUs.jsp>Contact Us</a>"+
+                                "<a>Log out</a>" +
                                 "</div>"
                 );
+
+                for (int i = 0; i < listsize; i++)
+                {
+                    out.println(
+                            "<div class = \"bike\">\n" +
+                                    "\t<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                    "    <p>price: "+ cost.get(i) +"</p>\n" +
+                                    "    <p>id: "+ bikes.get(i)+"</p>\n" +
+                                    "\n" +
+                                    "</div>"
+                    );
+                }
+
+                out.println("</body>");
+
+
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                out.println("Testing error 1- Failed");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                out.println("Testing error 2- Failed");
+            }  catch (ParseException e){
+                e.printStackTrace();
             }
+        }
+        else
+        {
+            String date = request.getParameter("date");
+            String duration = request.getParameter("Dur");
+            String time = request.getParameter("time0");
+            try {
+                Class.forName(driver);
+                Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
+                Statement stmt = conn.createStatement();
+                String sql;
+                String sql2;
+                sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
+                sql2 = "SELECT hire_id, START_DATE, END_DATE, Start_Time, End_Time FROM hires";
 
-            out.println("</body>");
+
+                ArrayList<Integer> bikes = new ArrayList<Integer>();
+                ArrayList<String> loca = new ArrayList<String>();
+                ArrayList<Float> cost = new ArrayList<Float>();
+                ArrayList<Integer> hires = new ArrayList<Integer>();
+                ArrayList<Date>  startd = new ArrayList<Date>();
+                ArrayList<Date>  endd = new ArrayList<Date>();
+                ArrayList<Time>  startt = new ArrayList<Time>();
+                ArrayList<Time>  endt = new ArrayList<Time>();
+
+                ResultSet rs2 = stmt.executeQuery(sql2);
+                while(rs2.next()){
+                    //Retrieve by column name
+                    int h  = rs2.getInt("hires_id");
+                    Date s = rs2.getDate("START_DATE");
+                    Date e = rs2.getDate("END_DATE");
+                    Time st = rs2.getTime("Start_Time");
+                    Time et = rs2.getTime("End_Time");
+                    hires.add(h);
+                    startd.add(s);
+                    endd.add(e);
+                    startt.add(st);
+                    endt.add(et);
+                }
+                rs2.close();
+
+                ResultSet rs = stmt.executeQuery(sql);
+                while(rs.next()){
+                    //Retrieve by column name
+                    int id  = rs.getInt("BIKE_ID");
+                    String l = rs.getString("LOCATION");
+                    float price = rs.getFloat("price");
+                    bikes.add(id);
+                    loca.add(l);
+                    cost.add(price);
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+
+                int listsize = bikes.size();
+                String size = Integer.toString(listsize);
+
+                out.println("<head onload=\"openFunction()\" >" +
+                        "<title id = prick >$Title$</title>" +
+                        "<link rel=stylesheet href=style.css type=text/css>" +
+                        "</head>"
+                );
+                out.println("<body  >");
+                out.println("<div class = \"Title\"> B!KEWORLD </div>");
+                out.println(
+                        "<div class=nav>"+
+                                "<a  href=index.jsp>Home</a>"+
+                                "<a class=active href=book>Book A Bike</a>" +
+                                "<a href=\"Views\">View bikes</a>" +
+                                "<a href=AboutUs.jsp>About Us</a>"+
+                                "<a href=ContactUs.jsp>Contact Us</a>"+
+                                "<a>Log out</a>" +
+                                "</div>"
+                );
+
+                for (int i = 0; i < listsize; i++)
+                {
+                    out.println(
+                            "<div class = \"bike\">\n" +
+                                    "\t<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                    "    <p>price: "+ cost.get(i) +"</p>\n" +
+                                    "    <p>id: "+ bikes.get(i)+"</p>\n" +
+                                    "\n" +
+                                    "</div>"
+                    );
+                }
+
+                out.println("</body>");
 
 
 
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            out.println("Testing error 1- Failed");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            out.println("Testing error 2- Failed");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                out.println("Testing error 1- Failed");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                out.println("Testing error 2- Failed");
+            }
         }
 
 
@@ -213,7 +371,7 @@ public class BookABike extends HttpServlet {
                             "<p style='display:none;' name = 'Daydur' >How long would you like the bike</p>\n" +
                             "<select style='display:none;' name = 'Daydur' required onchange='myFunction6()'>\n" +
                             "<option selected value= 0>Please select</option>\n" +
-                            "<option value=5>1 Week</option>\n" +
+                            "<option value=7>1 Week</option>\n" +
                             "<option value=4>4 days</option>\n" +
                             "<option value=3>3 days</option>\n" +
                             "<option value=2>2 days</option>\n" +
