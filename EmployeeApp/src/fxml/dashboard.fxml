@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Tab?>
@@ -77,6 +79,14 @@
                               <ComboBox fx:id="statusCombo" layoutX="261.0" layoutY="17.0" prefHeight="27.0" prefWidth="120.0" promptText="FILTER" />
                               <DatePicker fx:id="startDate" promptText="Select start date" />
                               <DatePicker fx:id="endDate" promptText="Select end date" />
+                              <Button fx:id="manageBikesBtn" mnemonicParsing="false" text="Manage Bikes" textFill="#2900f5">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
                            </items>
                         </ToolBar>
                         <TableView fx:id="bikeTable" prefHeight="438.0" prefWidth="1159.0" VBox.vgrow="ALWAYS">

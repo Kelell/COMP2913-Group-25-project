@@ -63,6 +63,8 @@ public class DashboardController implements Initializable {
     @FXML private ComboBox<String> statusCombo;
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
+    @FXML private Button manageBikesBtn;
+
     /*
       Ticket Tab
     */
@@ -223,6 +225,27 @@ public class DashboardController implements Initializable {
         searchCombo_b.getSelectionModel().selectFirst();
         statusCombo.getItems().setAll("ALL","FREE","HIRED");
         statusCombo.getSelectionModel().selectFirst();
+        
+        manageBikesBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                BookButtonCell.close();
+                close();
+
+                //Launches bike manager
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("fxml/bikeManager.fxml"));
+                } catch (IOException e) {
+                }
+                primaryStage = new Stage();
+                primaryStage.setScene(new Scene(root, 545, 285));
+                primaryStage.centerOnScreen();
+                primaryStage.show();
+
+            }
+        });
 
         try {
 
