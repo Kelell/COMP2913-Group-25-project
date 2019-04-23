@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import javafx.scene.control.Alert;
 
 /**
  * @author Zahoor
@@ -34,18 +35,18 @@ public class LoginController {
 
         try {
 
-            //Get database conenction
+            //Get database connection
             con = new DbConnect().getDbConnect();
 
             String username  = usernameField.getText();
-
+            
             //check if user exists
             ResultSet rs1 = con.createStatement().executeQuery("select * from admin  WHERE `username` ='"+username+"' ");
 
             if(rs1.next()){
-
-                String password = rs1.getString("password");
-
+                
+                String password = rs1.getString("password");                
+                String user=rs1.getString("username");
                 //If password is correct
                 if(passwordField.getText().equals(password)){
 
@@ -66,13 +67,26 @@ public class LoginController {
                         }
 
                 }else{
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Error");
+                    alert.setContentText("Invalid Username or Password!");
+                    alert.show();
                     //If password is incorrect
                     status.setText("Invalid Username or Password");
                 }
+            }else{
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Error");
+                    alert.setContentText("The username does not exist!");
+                    alert.show();
             }
 			
         }catch (Exception e) {
             e.printStackTrace();
+           
         }
     }
 
