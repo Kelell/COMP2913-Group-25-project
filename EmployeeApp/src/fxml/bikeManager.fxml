@@ -19,7 +19,7 @@
             </Text>
          </children>
       </FlowPane>
-      <ComboBox layoutX="88.0" layoutY="121.0" prefWidth="150.0" promptText="Select bike" />
+      <ComboBox fx:id="bikeCombo" layoutX="88.0" layoutY="121.0" prefWidth="150.0" promptText="Select bike" />
       <ComboBox layoutX="273.0" layoutY="121.0" prefWidth="150.0" promptText="Select Status" />
       <Button layoutX="341.0" layoutY="222.0" mnemonicParsing="false" text="Set Status" />
       <Button layoutX="88.0" layoutY="222.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Cancel" />
