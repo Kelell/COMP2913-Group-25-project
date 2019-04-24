@@ -4,17 +4,24 @@
  * and open the template in the editor.
  */
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.text.Text;
@@ -38,6 +45,7 @@ public class BikeManagement implements Initializable {
     @FXML Button setStatusBtn;
     @FXML Button cancelBtn;
     @FXML Text statusLabel;
+    
 
     
     //Database connection
@@ -110,6 +118,77 @@ public class BikeManagement implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 
+                String alterSQL = "UPDATE bike SET STATUS=";
+                String statusVal = statusCombo.getValue();
+                int bikeID = -1;
+                int status = -1;
+                boolean validStatus = false;
+                boolean validBike = false;
+                
+                //ensure a value is selected
+                if(!bikeCombo.getSelectionModel().isEmpty()){
+                    bikeID = Integer.parseInt(bikeCombo.getValue());
+                }
+                //validate selections and process
+                if(bikeID > 0){
+                    validBike = true;
+                
+                    if (statusVal.equals("Hired")) {
+                        status = 0;
+                        validStatus = true;
+                    } else if (statusVal.equals("Free")){
+                        status = 1;
+                        validStatus = true;
+                    }
+                    else if (statusVal.equals("Damaged")){
+                        status = 2;
+                        validStatus = true;
+                    }
+                    else {
+                        validStatus = false;
+                    }
+                }
+                else{
+                    validBike = false;
+                }
+                
+                if (validBike && validStatus){
+                    boolean notExecuted= false;
+                    
+                    alterSQL += status + " WHERE BIKE_ID='"+ bikeID + "'";
+                    System.out.println(alterSQL);
+                    
+                    try {
+                        PreparedStatement preparedStatement1 = DbConnect.getDbConnect().prepareStatement(alterSQL, Statement.RETURN_GENERATED_KEYS);
+                        notExecuted = preparedStatement1.execute();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(BikeManagement.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    if (notExecuted){
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Error");
+                        alert.setContentText("Database not updated!");
+                        alert.show();
+                    }else {
+                       
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Success");
+                        alert.setContentText("Database Updated!");
+                        alert.show();                        
+                    }
+
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Error");
+                    alert.setContentText("Invalid bike or status selected!");
+                    alert.show();
+                }
+                    
                 
 
             }
@@ -121,6 +200,20 @@ public class BikeManagement implements Initializable {
                 // get a handle to the stage
                 Stage stage = (Stage) cancelBtn.getScene().getWindow();
                 stage.close();
+                
+                //After updating launches the dasboard with updated information
+                Stage primaryStage;
+
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(BikeManagement.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                primaryStage = new Stage();
+                primaryStage.setScene(new Scene(root, 1200, 561));
+                primaryStage.centerOnScreen();
+                primaryStage.show();
 
             }
         });

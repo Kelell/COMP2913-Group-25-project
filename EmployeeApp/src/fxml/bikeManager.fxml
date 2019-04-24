@@ -21,7 +21,7 @@
       <ComboBox fx:id="bikeCombo" layoutX="88.0" layoutY="121.0" prefWidth="150.0" promptText="Select bike" />
       <ComboBox fx:id="statusCombo" layoutX="273.0" layoutY="121.0" prefWidth="150.0" promptText="Select Status" />
       <Button fx:id="setStatusBtn" layoutX="341.0" layoutY="222.0" mnemonicParsing="false" text="Set Status" />
-      <Button fx:id="cancelBtn" layoutX="88.0" layoutY="222.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Cancel" />
+      <Button fx:id="cancelBtn" layoutX="88.0" layoutY="222.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Go Back" />
       <Text layoutX="137.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current status:" wrappingWidth="100.61669614515267" />
       <Text fx:id="statusLabel" layoutX="273.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="no bike selected" />
    </children>

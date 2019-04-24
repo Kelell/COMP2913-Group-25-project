@@ -234,16 +234,21 @@ public class DashboardController implements Initializable {
                 close();
 
                 //Launches bike manager
-                Parent root = null;
+                Parent root = null;                
                 try {
                     root = FXMLLoader.load(getClass().getResource("fxml/bikeManager.fxml"));
-                } catch (IOException e) {
+                } catch (IOException ex) {
+                    Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
                 primaryStage = new Stage();
                 primaryStage.setScene(new Scene(root, 545, 285));
                 primaryStage.centerOnScreen();
                 primaryStage.show();
-
+                
+                //close the dashboard
+                new LoginController().close();
+                
             }
         });
 
