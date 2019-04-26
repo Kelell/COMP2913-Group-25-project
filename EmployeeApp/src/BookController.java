@@ -144,7 +144,7 @@ public class BookController {
                         double change = cash - total;
 
                         //display the change in the text
-                        changeText.setText("£ "+change);
+                        changeText.setText("£ "+ String.format("%.2f", change));
                     }
                 }
             }
