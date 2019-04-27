@@ -63,8 +63,8 @@ public class BookController {
 
         con = DbConnect.getDbConnect();
 
-        String b_id = bikeDetails.idProperty().getValue().toString();
-        String pric = bikeDetails.priceProperty().getValue().toString();
+        String b_id = bikeDetails.idProperty().getValue();
+        String pric = bikeDetails.priceProperty().getValue();
 
         //Sets the bike id and price passed from the table
         bike_id.setText(b_id);
@@ -168,7 +168,7 @@ public class BookController {
                 @Override
                 public void handle(ActionEvent event) {
 
-                    String selectedItem = customerCombo.getSelectionModel().getSelectedItem().toString();
+                    String selectedItem = customerCombo.getSelectionModel().getSelectedItem();
                     String [] arr = selectedItem.split(" | ");
                     String id = arr[0];
 
@@ -204,7 +204,7 @@ public class BookController {
         if(to.getValue() != null && start.getValue() != null){
 
             /**
-             * Now we calculate the time diffrence between the dates
+             * Now we calculate the time difference between the dates
              */
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
@@ -252,7 +252,7 @@ public class BookController {
                 long days = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
 
                 //Get the current price of the bike
-                String pric = bikeDetails.priceProperty().getValue().toString();
+                String pric = bikeDetails.priceProperty().getValue();
 
                 //convert it to a double
                 double raw_price = Double.parseDouble(pric.substring(1));
@@ -287,7 +287,7 @@ public class BookController {
         try {
 
             //intialises the  connection
-            con = new DbConnect().getDbConnect();
+            con = DbConnect.getDbConnect();
             con.setAutoCommit(false); //
 
             ResultSet rs2 = con.createStatement().executeQuery("SELECT * FROM `customer` WHERE CUSTOMER_ID = '"+currentId+"'");
@@ -356,12 +356,12 @@ public class BookController {
         try {
 
             //Get the database object
-            con = new DbConnect().getDbConnect();
+            con = DbConnect.getDbConnect();
             con.setAutoCommit(false); //
 
             //Retrieves cash from cash field
-            double cash = Double.parseDouble(cashField.getText().toString());
-            if(Double.parseDouble(changeText.getText().toString().trim().replace("£ ","")) < 0){
+            double cash = Double.parseDouble(cashField.getText());
+            if(Double.parseDouble(changeText.getText().trim().replace("£ ","")) < 0){
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
@@ -396,18 +396,32 @@ public class BookController {
             preparedStatement1.setString(7, start.getValue().toString());
             preparedStatement1.setString(8, to.getValue().toString());
             preparedStatement1.executeUpdate();
+            System.out.println("try commit");
+
             con.commit(); //Commit the Changes
+            System.out.println("done commit");
 
-            con.prepareStatement("UPDATE bike SET `status` = 2 WHERE bike_id = "+b_id).executeUpdate();
+            System.out.println("try commit 2");
+
+            con.prepareStatement("UPDATE bike SET `STATUS` = 2 WHERE bike_id = "+b_id).executeUpdate();
             con.commit();
+            System.out.println("done commit 2" + "bike id: " + b_id);
 
-            JOptionPane.showMessageDialog(null, "Successfully Saved Ticket ! ","Book",JOptionPane.PLAIN_MESSAGE);
-			BookButtonCell.close();
+            System.out.println("load JOptionPane");
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("Success");
+                alert.setContentText("Sucessfully Saved Ticket!");
+                alert.showAndWait();
+                
+            BookButtonCell.close();
             close();
+            System.out.println("load dashboard");
 
             //After updating launches the dasboard with updated information
             Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
-             primaryStage = new Stage();
+            primaryStage = new Stage();
             primaryStage.setScene(new Scene(root, 1200, 561));
             primaryStage.centerOnScreen();
             primaryStage.show();
