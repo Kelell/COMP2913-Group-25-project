@@ -396,18 +396,10 @@ public class BookController {
             preparedStatement1.setString(7, start.getValue().toString());
             preparedStatement1.setString(8, to.getValue().toString());
             preparedStatement1.executeUpdate();
-            System.out.println("try commit");
-
             con.commit(); //Commit the Changes
-            System.out.println("done commit");
-
-            System.out.println("try commit 2");
 
             con.prepareStatement("UPDATE bike SET `STATUS` = 2 WHERE bike_id = "+b_id).executeUpdate();
             con.commit();
-            System.out.println("done commit 2" + "bike id: " + b_id);
-
-            System.out.println("load JOptionPane");
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
