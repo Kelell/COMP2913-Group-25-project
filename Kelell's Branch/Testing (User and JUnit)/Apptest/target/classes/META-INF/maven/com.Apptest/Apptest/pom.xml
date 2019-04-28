@@ -5,162 +5,82 @@
 	<artifactId>Apptest</artifactId>
 	<version>2.0</version>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.2.RELEASE</version>
-	</parent>
+	<build>
+	 <resources>
+        <resource>
+            <filtering>false</filtering>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.fxml</include>
+            </includes>             
+        </resource>
+    </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20.1</version>
+                <configuration>
+                    <!-- Configuration to add to run the GUI test headless -->
+                    <!--<argLine>-Dheadless.geometry=1920x1080-32 -Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw -Dprism.text=t2k</argLine>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 	<properties>
-
-		<java.version>1.8</java.version>
-		<javafx.version>11.0.2</javafx.version>
-		<testfx.version>4.0.15-alpha</testfx.version>
-
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-		<!-- Properties used by the sonar:sonar goal -->
-		<sonar.host.url>http://localhost:9000</sonar.host.url>
-		<sonar.jdbc.url>jdbc:h2:tcp://localhost:9092/sonar</sonar.jdbc.url>
-		<sonar.jdbc.driverClassName>org.h2.Driver</sonar.jdbc.driverClassName>
-		<sonar.jdbc.username></sonar.jdbc.username>
-		<sonar.jdbc.password></sonar.jdbc.password>
-
-		<sonar.language>java</sonar.language>
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-
-		<!-- The location of the compiled (appended) integration test report -->
-		<!-- It must resolve to the root project's target/jacoco-it.exec -->
-		<!-- Override in subprojects that are in subdirectories -->
-		<sonar.jacoco.itReportPath>${project.basedir}/target/jacoco-it.exec</sonar.jacoco.itReportPath>
-
-	</properties>
-
-	<dependencies>
-		<!-- Application -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.bootclasspath>C:\Program Files\Java\jdk1.8.0_101\jre\lib\rt.jar${path.separator}C:\Program Files\Java\jdk1.8.0_101\jre\lib\jsse.jar${path.separator}C:\Program Files\Java\jdk1.8.0_101\jre\lib\jce.jar</maven.compiler.bootclasspath>
+</properties>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-core</artifactId>
+            <version>4.0.7-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    		<version>8.0.11</version>
 		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-controls</artifactId>
-			<version>${javafx.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>${javafx.version}</version>
-		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
-		<dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit</artifactId>
+            <version>4.0.7-alpha</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Dependency to run the GUI tests headless -->
+        <!--<dependency>-->
+            <!--<groupId>org.testfx</groupId>-->
+            <!--<artifactId>openjfx-monocle</artifactId>-->
+            <!--<version>1.8.0_20</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+        <dependency>
     		<groupId>net.sf.jasperreports</groupId>
     		<artifactId>jasperreports</artifactId>
     		<version>6.1.0</version>
 		</dependency>
-		
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-    		<groupId>mysql</groupId>
-    		<artifactId>mysql-connector-java</artifactId>
-    		</dependency>
-		
-		
-		<!-- Tests -->
-		<dependency>
-			<groupId>org.testfx</groupId>
-			<artifactId>testfx-junit</artifactId>
-			<version>${testfx.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
-	<profiles>
-		<!-- Runs tests and generates test coverage information -->
-		<!-- Profile activated by `-Ptest` Maven argument -->
-		<profile>
-			<id>test</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.jacoco</groupId>
-						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>0.8.3</version>
-						<configuration>
-							<!-- The destination file for the integration test code coverage report -->
-							<!-- It should be the same as the ${sonar.jacoco.itReportPath} -->
-							<destFile>${project.basedir}/target/jacoco-it.exec</destFile>
-						</configuration>
-						<executions>
-							<!-- Unit test coverage -->
-							<execution>
-								<id>default-prepare-agent</id>
-								<goals>
-									<goal>prepare-agent</goal>
-								</goals>
-								<configuration>
-									<propertyName>jacoco.agent.argLine</propertyName>
-									<append>true</append>
-								</configuration>
-							</execution>
-							<!-- Integration test coverage -->
-							<execution>
-								<id>default-prepare-agent-integration</id>
-								<goals>
-									<goal>prepare-agent-integration</goal>
-								</goals>
-								<configuration>
-									<propertyName>jacoco.agent.it.argLine</propertyName>
-									<append>true</append>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- Run unit tests -->
-					<plugin>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<argLine>${jacoco.agent.argLine}</argLine>
-						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>test</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- Run integration tests -->
-					<plugin>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<configuration>
-							<argLine>${jacoco.agent.it.argLine}</argLine>
-						</configuration>
-						<executions>
-							<execution>
-								<id>integration-test</id>
-								<goals>
-									<goal>integration-test</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>verify</id>
-								<goals>
-									<goal>verify</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>extra-enforcer-rules</artifactId>
+            <version>1.0-beta-5</version>
+          </dependency>
+    </dependencies>
 </project>

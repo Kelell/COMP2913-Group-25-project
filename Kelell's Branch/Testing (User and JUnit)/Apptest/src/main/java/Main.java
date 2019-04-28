@@ -1,4 +1,5 @@
 
+
 /** * @author Zahoor
  */
 import javafx.application.Application;
@@ -19,7 +20,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         //Load Login Page
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/loginPage.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("fxml/loginPage.fxml"));
         primaryStage.setScene(new Scene(root, 738, 508));
 
         //Displays App Name 
