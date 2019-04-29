@@ -1,5 +1,5 @@
-
-/** * @author Zahoor
+/**
+ * @author Zahoor
  */
 
 import javax.swing.*;

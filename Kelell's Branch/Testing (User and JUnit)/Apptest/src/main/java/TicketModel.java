@@ -1,5 +1,3 @@
-
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -39,8 +37,8 @@ public  class TicketModel {
         this.customerName = new SimpleStringProperty(customerName);
         this.startDate = new SimpleStringProperty(startDate);
         this.endDate = new SimpleStringProperty(endDate);
-        this.price = new SimpleStringProperty("Â£"+price);
-        this.total = new SimpleStringProperty("Â£"+total);
+        this.price = new SimpleStringProperty("£"+price);
+        this.total = new SimpleStringProperty("£"+total);
     }
 
     public StringProperty idProperty() {
