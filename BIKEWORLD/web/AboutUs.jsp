@@ -34,5 +34,14 @@
         </ul>
     </div>
 </nav>
+
+
+
+<%
+    if(session.getAttribute("us")==null){
+        response.sendRedirect("LogIn.jsp");
+    }
+%>
+This is the about us page
 </body>
 </html>

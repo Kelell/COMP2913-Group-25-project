@@ -37,6 +37,12 @@
   </nav>
 
 
+  <!-- temp log out button-->
+  <form action="LogOut" method="post">
+    <input type="submit" value="Log Out">
+
+  </form>
+
 
 
   </body>

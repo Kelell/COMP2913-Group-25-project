@@ -52,6 +52,15 @@
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>mypack.LogOut</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>Available</servlet-name>

@@ -51,8 +51,6 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
-
-
     <servlet>
         <servlet-name>Available</servlet-name>
         <servlet-class>mypack.AvailableBikes</servlet-class>

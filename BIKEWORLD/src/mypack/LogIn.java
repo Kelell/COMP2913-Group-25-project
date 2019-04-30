@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -33,8 +34,11 @@ public class LogIn extends HttpServlet {
 
             }
             if(name.equals(Uname)&&password.equals(Upass)){
+                HttpSession session = request.getSession();
+                session.setAttribute("us",name);
+
                 out.println("Successful LogIn");
-                response.sendRedirect("Verified.jsp");
+                response.sendRedirect("AboutUs.jsp");
             }else{
                 //response.sendRedirect("login.jsp");
                 RequestDispatcher rd = request.getRequestDispatcher("LogIn.jsp");
