@@ -9,17 +9,31 @@
 <html>
 <head>
     <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-<div class="nav"><!--Nav bar from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_topnav (TEST ONLY)-->
-    <a class="active" href="index.jsp">Home</a>
-    <a href="AboutUs.jsp">About Us</a>
-    <a href="ContactUs.jsp">Contact Us</a>
-    <a href="LogIn.jsp">LogIn</a>
-    <a href="registration.jsp">Register</a>
-    <a>Log out</a>
-</div>
+
+<nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.jsp">B!KEWORLD</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="Views">View bikes</a></li>
+            <li><a href="book">Book a bike</a></li>
+            <li><a href="bookbikes">Book</a></li>           <!-- <<<<  NEEDS REMOVING, required by Max for testing-->
+            <li><a href="AboutUs.jsp">About Us</a></li>
+            <li><a href="ContactUs.jsp">Contact Us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+    </div>
+</nav>
 
 <form action="Register" method="post">
     User name : <input type="text" name="user" required="required">

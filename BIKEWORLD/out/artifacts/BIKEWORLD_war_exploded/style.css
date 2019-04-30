@@ -5,6 +5,7 @@ body{
     color: goldenrod;
 }
 
+/**
 .Title{
     width : 100%;
     text-align: left;
@@ -41,4 +42,9 @@ body{
     float: right;
 
 }
+**/
+.glyphicon {
+    color: goldenrod;
+}
+
 
