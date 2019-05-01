@@ -1,5 +1,4 @@
 
-
 /** * @author Zahoor
  */
 import javafx.application.Application;
@@ -25,6 +24,8 @@ public class Main extends Application {
 
         //Displays App Name 
         primaryStage.setTitle("Bike App");
+        //Display App Icon
+        primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("CSS/icon.png")));
         mainStage = primaryStage;
         mainStage.centerOnScreen();
         mainStage.show();
