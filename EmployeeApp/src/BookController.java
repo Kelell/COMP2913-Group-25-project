@@ -351,7 +351,7 @@ public class BookController {
      */
     public void saveHire(String b_id, int customer_id){
 
-        String SQL1 = "INSERT INTO `hires` VALUES(?,?,?,?,?,?,?,?)";
+        String SQL1 = "INSERT INTO `hires` VALUES(?,?,?,?,?,?,?,?,NULL,NULL)";
 
         try {
 
