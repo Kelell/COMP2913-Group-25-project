@@ -38,10 +38,13 @@
 
 
 <%
-    if(session.getAttribute("us")==null){
+    if(session.getAttribute("uname")==null){
         response.sendRedirect("LogIn.jsp");
     }
 %>
-This is the about us page
+This is the about us page ${uname}
+
+
+
 </body>
 </html>

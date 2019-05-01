@@ -32,10 +32,35 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+
+
+        <%
+          if(session.getAttribute("uname")==null){
+
+        %>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+        <%
+          }
+
+        %>
+
+
       </ul>
+
     </div>
   </nav>
 
+
+  <%
+    if(session.getAttribute("uname")!=null){
+
+  %>
+  <li>Hi, (<a href="#">Logout</a>)</li>
+  <%
+    }
+
+  %>
 
   <!-- temp log out button-->
   <form action="LogOut" method="post">

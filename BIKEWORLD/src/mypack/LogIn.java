@@ -35,10 +35,11 @@ public class LogIn extends HttpServlet {
             }
             if(name.equals(Uname)&&password.equals(Upass)){
                 HttpSession session = request.getSession();
-                session.setAttribute("us",name);
+                session.setAttribute("uname",name);
 
-                out.println("Successful LogIn");
+                //out.println("Successful LogIn");
                 response.sendRedirect("AboutUs.jsp");
+
             }else{
                 //response.sendRedirect("login.jsp");
                 RequestDispatcher rd = request.getRequestDispatcher("LogIn.jsp");

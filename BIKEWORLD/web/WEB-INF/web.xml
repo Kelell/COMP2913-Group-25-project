@@ -5,15 +5,6 @@
          version="4.0">
 
 
-    <servlet>
-        <servlet-name>Submit</servlet-name>
-        <servlet-class>mypack.Submit</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Submit</servlet-name>
-        <url-pattern>/submit</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>Book</servlet-name>
@@ -35,6 +26,8 @@
         <url-pattern>/bookbikes</url-pattern>
     </servlet-mapping>
 
+
+
     <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>mypack.Registration</servlet-class>
@@ -43,6 +36,9 @@
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
     </servlet-mapping>
+
+
+
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>mypack.LogIn</servlet-class>
@@ -51,6 +47,20 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Log</servlet-name>
+        <servlet-class>mypack.LogOut</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Log</servlet-name>
+        <url-pattern>/LogOut</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
     <servlet>
         <servlet-name>Available</servlet-name>
         <servlet-class>mypack.AvailableBikes</servlet-class>
@@ -70,5 +80,8 @@
         <servlet-name>View</servlet-name>
         <url-pattern>/Views</url-pattern>
     </servlet-mapping>
+
+
+
 
 </web-app>
