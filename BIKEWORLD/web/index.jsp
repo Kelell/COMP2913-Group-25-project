@@ -36,7 +36,7 @@
 
 
         <%
-          if(session.getAttribute("uname")==null){
+          if(session.getAttribute("uname")==null){//displays logout button when not in session (needs changing)
 
         %>
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
@@ -53,10 +53,11 @@
 
 
   <%
-    if(session.getAttribute("uname")!=null){
+    if(session.getAttribute("uname")!=null){//log out button for when in session 
 
   %>
   <li>Hi, (<a href="#">Logout</a>)</li>
+  <li>(<a href="#"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a>)</li>
   <%
     }
 
