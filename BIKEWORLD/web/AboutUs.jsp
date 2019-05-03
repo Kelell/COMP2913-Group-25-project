@@ -70,8 +70,10 @@
         response.sendRedirect("LogIn.jsp");
     }
 %>
-This is the about us page ${uname}
-
+<div class="content">
+    <h1>About Us</h1>
+    This is the about us page ${uname}
+</div>
 
 
 </body>

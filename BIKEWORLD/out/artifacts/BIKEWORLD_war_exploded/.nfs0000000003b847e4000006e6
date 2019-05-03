@@ -2,12 +2,11 @@
 body{
     background-color: white;
     font-family: "Arial";
-    color: goldenrod;
+    /**color: goldenrod;**/
 }
 h1{
     font-family: Overpass;
     border-bottom: 5px solid black;
-    color: black;
 }
 /**
 .Title{

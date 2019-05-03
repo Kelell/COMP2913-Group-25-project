@@ -7,7 +7,6 @@ body{
 h1{
     font-family: Overpass;
     border-bottom: 5px solid black;
-    color: black;
 }
 /**
 .Title{

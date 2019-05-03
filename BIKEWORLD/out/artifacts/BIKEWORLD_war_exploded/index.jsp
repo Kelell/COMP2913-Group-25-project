@@ -68,13 +68,15 @@
 
   </nav>
 
-To book a bike please first Log in or register. <br>
-  TESTING ACCOUNT :<br>
-  USERNAME : test<br>
-  PASSWORD : test<br>
+  <div class="content">
+    <h1>Welcome To B!KEWORLD</h1>
+    To book a bike please first Log in or register. <br>
+    TESTING ACCOUNT :<br>
+    USERNAME : test<br>
+    PASSWORD : test<br>
 
-  The about page cannot be accessed unless user is logged in (for testing purposes)
-
+    The about page cannot be accessed unless user is logged in (for testing purposes)
+  </div>
 
 
   </body>

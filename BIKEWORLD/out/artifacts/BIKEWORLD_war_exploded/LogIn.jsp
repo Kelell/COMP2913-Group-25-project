@@ -42,11 +42,16 @@
     </div>
 </nav>
 
-<form action="LogIn" method="post">
-    User name : <input type="text" name="user" required="required">
-    Password : <input type="password" name="password" required="required">
-    <input type="submit" value="Login">
 
-</form>
+
+<div class="content">
+    <h1>Log In</h1>
+    <form action="LogIn" method="post">
+        User name : <input type="text" name="user" required="required">
+        Password : <input type="password" name="password" required="required">
+        <input type="submit" value="Login">
+
+    </form>
+</div>
 </body>
 </html>

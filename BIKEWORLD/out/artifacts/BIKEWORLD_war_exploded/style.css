@@ -4,7 +4,11 @@ body{
     font-family: "Arial";
     color: goldenrod;
 }
-
+h1{
+    font-family: Overpass;
+    border-bottom: 5px solid black;
+    color: black;
+}
 /**
 .Title{
     width : 100%;
@@ -47,4 +51,9 @@ body{
     color: goldenrod;
 }
 
-
+.content{
+    min-height: 100%;
+    height: 100%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
