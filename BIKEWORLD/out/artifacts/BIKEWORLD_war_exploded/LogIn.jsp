@@ -22,9 +22,6 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="index.jsp">Home</a></li>
-            <li><a href="Views">View bikes</a></li>
-            <li><a href="book">Book a bike</a></li>
-            <li><a href="bookbikes">Book</a></li>           <!-- <<<<  NEEDS REMOVING, required by Max for testing-->
             <li><a href="AboutUs.jsp">About Us</a></li>
             <li><a href="ContactUs.jsp">Contact Us</a></li>
         </ul>

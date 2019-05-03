@@ -44,9 +44,10 @@
 
             %>
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>Profile
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                    <li><strong>User: ${uname}</strong></li>
                     <li><a href="Views">View bikes</a></li>
                     <li><a href="book">Book a bike</a></li>
                     <li><a href="bookbikes">Book</a></li>           <!-- <<<<  NEEDS REMOVING, required by Max for testing-->
@@ -64,7 +65,7 @@
 
 
 
-<%
+<%//tests if user is logged in before accessing about us page (testing only)
     if(session.getAttribute("uname")==null){
         response.sendRedirect("LogIn.jsp");
     }

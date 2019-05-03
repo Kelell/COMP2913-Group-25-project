@@ -31,15 +31,6 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Profile
-            <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="Views">View bikes</a></li>
-            <li><a href="book">Book a bike</a></li>
-            <li><a href="bookbikes">Book</a></li>           <!-- <<<<  NEEDS REMOVING, required by Max for testing-->
-          </ul>
-        </li>
         <%
           if(session.getAttribute("uname")==null){//log out button for when in session
 
@@ -55,6 +46,17 @@
           if(session.getAttribute("uname")!=null){//log out button for when in session
 
         %>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>Profile
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><strong>User: ${uname}</strong></li>
+            <li><a href="Views">View bikes</a></li>
+            <li><a href="book">Book a bike</a></li>
+            <li><a href="bookbikes">Book</a></li>           <!-- <<<<  NEEDS REMOVING, required by Max for testing-->
+          </ul>
+        </li>
         <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
         <%
           }
@@ -63,9 +65,15 @@
       </ul>
 
     </div>
+
   </nav>
 
+To book a bike please first Log in or register. <br>
+  TESTING ACCOUNT :<br>
+  USERNAME : test<br>
+  PASSWORD : test<br>
 
+  The about page cannot be accessed unless user is logged in (for testing purposes)
 
 
 
