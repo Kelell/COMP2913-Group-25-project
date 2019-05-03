@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox id="imageBackground" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="514.0" stylesheets="@../CSS/background.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UpdateCustomerController">
+   <children>
+      <FlowPane alignment="CENTER" prefHeight="40.0" prefWidth="514.0" rowValignment="TOP" style="-fx-background-color: #336699;">
+         <children>
+            <Text fill="#ebe8e8" strokeType="OUTSIDE" strokeWidth="0.0" text="UPDATE CUSTOMER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+         </children>
+      </FlowPane>
+      <Pane id="imageBackground" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="227.0" prefWidth="514.0" scaleShape="false" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
+         <children>
+            <Text layoutX="109.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Names" wrappingWidth="105.0" />
+            <Text layoutX="111.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Address" wrappingWidth="105.13671875" />
+            <TextField fx:id="nameField" layoutX="214.0" layoutY="45.0" prefHeight="25.0" prefWidth="187.0" />
+            <TextField fx:id="addressField" layoutX="215.0" layoutY="101.0" prefHeight="25.0" prefWidth="187.0" />
+            <Button fx:id="updateButton" layoutX="247.0" layoutY="165.0" mnemonicParsing="false" onAction="#buttonClicked" opacity="0.77" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: green;" text="Update" textFill="#f3f4f5">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</VBox>
