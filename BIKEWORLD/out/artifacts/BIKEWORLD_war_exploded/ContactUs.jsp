@@ -29,8 +29,17 @@
             <li class="active"><a href="ContactUs.jsp">Contact Us</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <%
+                if(session.getAttribute("uname")==null){//log out button for when in session
+
+            %>
             <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <%
+                }
+
+            %>
+
             <%
                 if(session.getAttribute("uname")!=null){//log out button for when in session
 
