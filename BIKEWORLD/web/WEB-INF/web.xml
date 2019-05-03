@@ -48,15 +48,24 @@
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
 
+    <!--<servlet>-->
+        <!--<servlet-name>Log</servlet-name>-->
+        <!--<servlet-class>mypack.LogOut</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Log</servlet-name>-->
+        <!--<url-pattern>/LogOut</url-pattern>-->
+    <!--</servlet-mapping>-->
+
     <servlet>
-        <servlet-name>Log</servlet-name>
+        <servlet-name>LogOut</servlet-name>
         <servlet-class>mypack.LogOut</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>Log</servlet-name>
-        <url-pattern>/LogOut</url-pattern>
-    </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/Log</url-pattern>
+    </servlet-mapping>
 
 
 

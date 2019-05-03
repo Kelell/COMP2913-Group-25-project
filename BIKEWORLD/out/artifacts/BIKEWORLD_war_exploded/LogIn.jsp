@@ -31,6 +31,16 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li class="active"><a href="LogIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+            <%
+                if(session.getAttribute("uname")!=null){//log out button for when in session
+
+            %>
+            <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+            <%
+                }
+
+            %>
         </ul>
     </div>
 </nav>

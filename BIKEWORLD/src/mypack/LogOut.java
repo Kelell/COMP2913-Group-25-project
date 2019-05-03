@@ -12,6 +12,12 @@ import java.io.PrintWriter;
 @WebServlet(name = "LogOut")
 public class LogOut extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         out.println("Successful Log out");
 
@@ -19,11 +25,6 @@ public class LogOut extends HttpServlet {
         session.removeAttribute("uname");
         session.invalidate();
         response.sendRedirect("LogIn.jsp");
-
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }
