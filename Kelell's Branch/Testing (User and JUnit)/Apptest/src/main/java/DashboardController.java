@@ -343,6 +343,11 @@ public class DashboardController implements Initializable {
                                 return true; // Filter matches Location.
                             }
                             break;
+                        case "BY PRICE":
+                            if (bike.priceProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
+                                return true; // Filter matches Location.
+                            }
+                            break;
                         default:
                             if (bike.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Bike ID.
