@@ -40,6 +40,7 @@ public class Booked extends HttpServlet {
                 String bike_id = request.getParameter("bikeids");
                 String sql = "insert into hires(CUSTOMER_ID,BIKE_ID,days,cash,barcode,START_DATE,END_DATE) values(?,?,?,?,?,?,?)";
                 String sql2 = "SELECT barcode FROM hires";
+                String sql3 = "UPDATE `bike` SET `STATUS` = '0' WHERE `bike`.`BIKE_ID` = ? ";
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
                 //create barcode
@@ -100,8 +101,17 @@ public class Booked extends HttpServlet {
                 ps.setString(6, startdate);
                 ps.setString(7, enddate);
                 ps.executeUpdate();
+                ps.close();
+                conn2.close();
+
+                Connection conn3 = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
+                PreparedStatement ps2 = conn3.prepareStatement(sql3);
+                ps2.setString(1, bike_id);
+                ps2.executeUpdate();
+                ps2.close();
                 out.println("Success Booking");
                 response.sendRedirect("index.jsp");
+
             }
             catch (ClassNotFoundException e){
                 e.printStackTrace();

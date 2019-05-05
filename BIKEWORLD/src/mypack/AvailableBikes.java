@@ -79,11 +79,12 @@ public class AvailableBikes extends HttpServlet {
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
+            sql = "SELECT BIKE_ID, LOCATION, price, STATUS FROM bike";
             ResultSet rs = stmt.executeQuery(sql);
-            ArrayList<Integer> bike_ids = new ArrayList<Integer>();
+            ArrayList<Integer> bikes = new ArrayList<Integer>();
             ArrayList<String> loca = new ArrayList<String>();
             ArrayList<Float> cost = new ArrayList<Float>();
+            ArrayList<Integer> status = new ArrayList<Integer>();
             String loc = request.getParameter("Location");
 
 
@@ -92,10 +93,12 @@ public class AvailableBikes extends HttpServlet {
                 int id  = rs.getInt("BIKE_ID");
                 String location = rs.getString("LOCATION");
                 float price = rs.getFloat("price");
+                int x = rs.getInt("STATUS");
                 if (location.equals(loc) ){
-                    bike_ids.add(id);
+                    bikes.add(id);
                     loca.add(location);
                     cost.add(price);
+                    status.add(x);
                 }
 
             }
@@ -103,7 +106,7 @@ public class AvailableBikes extends HttpServlet {
             stmt.close();
             conn.close();
 
-            int listsize = bike_ids.size();
+            int listsize = bikes.size();
             String size = Integer.toString(listsize);
 
             out.println("<head onload=\"openFunction()\" >" +
@@ -129,19 +132,10 @@ public class AvailableBikes extends HttpServlet {
                     "  float: left;\n" +
                     "  display: block\n" +
                     "  height: 300px;\n" +
-
                     "}" +
-                    ".grid-container {\n" +
-                    "  display: grid;\n" +
-                    "  grid-template-columns: auto auto auto auto auto auto ;\n" +
-                    "  grid-gap: 10px;\n" +
-                    "  background-color: #2196F3;\n" +
-                    "  padding: 10px;\n" +
-                    "}"+
-                    ".grid-container > div {\n" +
-                    "  text-align: center;\n" +
-                    "  padding: 20px 0;\n" +
-                    "  font-size: 30px;\n" +
+                    ".holder {\n" +
+                    "  float: right;\n" +
+                    "  display: block\n" +
                     "}" +
                     "</style>" +
                     "</head>"
@@ -162,45 +156,58 @@ public class AvailableBikes extends HttpServlet {
             );
             out.println(
                     "<p>There are(is) "+ listsize +" bike(s) in this location.</p>" );
+
             for (int i = 0; i < listsize; i++)
             {
-                out.println(
-                        "<div class = \"section\">\n" +
-                        "<div  class = \"bike\">\n" +
-                                "\t<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
 
-                                "\n" +
-                                "</div>" +
-                                "<div class = \"info\">\n" +
-                                "    <p>price per hour : "+ cost.get(i) +"</p>\n" +
-                                "    <p>id: "+ bike_ids.get(i)+"</p>\n" +
-                                " <button style=\"display:none;\" type=\"button\" onclick=\"alert('Simulation of booking')\">Book</button>"+
-                                "</div>" +
-                                "</div>"+
-                                "<br>"+
-                                "<br>"
+                if (status.get(i) == 0)
+                {
+                    out.println(
+                            "<div style = 'background-color: #d9d9d9' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                    "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                    "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                    "    <p>id: "+ bikes.get(i)+"</p>\n"+
+                                    "    <p style = 'Color: blue;' class = "+ status.get(i)+ ">stat: Hired </p>\n" +
+                                    " <button style=\"display:none;\" type=\"button\" onclick=\"alert('Simulation of booking')\">Book</button>" +
+                                    "</div>");
+                }
+                else if (status.get(i) == 1)
+                {
+                    out.println(
+                            "<div onclick = 'myfunction0(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                    "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                    "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                    "    <p>id: "+ bikes.get(i)+"</p>\n" +
+                                    "    <p class = "+ status.get(i)+ ">stat: Available </p>\n" +
+                                    " <button style=\"display:none;\" type=\"button\" onclick=\"alert('Simulation of booking')\">Book</button>"+
+                                    "</div>");
+                }
+                else
+                {
+                    out.println(
+                            "<div style = 'background-color: #d9d9d9' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                    "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                    "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                    "    <p>id: "+ bikes.get(i)+"</p>\n"+
+                                    "    <p style = 'Color: red;' class = "+ status.get(i)+ ">stat: Damaged </p>\n"+
+                                    " <button style=\"display:none;\" type=\"button\" onclick=\"alert('Simulation of booking')\">Book</button>" +
+                                    "</div>");
+                }
+                out.println(
+                        "\n" +
+                                "</div>"
                 );
             }
             out.println(
-
+                    "<div class = 'holder' style = 'display : block; width: 100%;' >"+
+                    "<br><br>"+
+                            "<br><br>"+"<br><br>"+
                     "<button type=\"button\" onclick=\"myFunction0()\">Availabillity by time</button>"+
                     "<p style=\"display:none;\" name=\"date\" >Enter Date: </p> " + "\n" +
                     "<input onchange=\"myFunction1()\" required = 'required' style=\"display:none;\"  type=\"date\" name=\"date\" required=\"required\">" + "\n" +
                     "<p style=\"display:none;color:red;\" id =\"error\"> Error buddy</p>" +
-                            "<dive class = \"grid-container\" style=\"display:none;\"  name = \"Time\" >" +
-                            "<div>8</div>\n" +
-                            "  <div>9</div>\n" +
-                            "  <div>10</div>  \n" +
-                            "  <div>11</div>\n" +
-                            "  <div>12</div>\n" +
-                            "  <div>13</div>  \n" +
-                            "  <div>14</div>\n" +
-                            "  <div>15</div>\n" +
-                            "  <div>16</div>\n" +
-                            "  <div>17</div>  \n" +
-                            "  <div>18</div>\n" +
-                            "  <div>19</div>" +
-                            "</div>"+
+                    "</div>"+
+
 
                     "<form id = 'form1' action= book method = 'post' >" +
 
