@@ -61,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Payment.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Payment.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Payment.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+            <state relative-caret-position="240">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -97,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AboutUs.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AboutUs.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/AboutUs.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="681">
-              <caret line="49" column="32" lean-forward="true" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="46" />
+            <state relative-caret-position="441">
+              <caret line="69" column="51" lean-forward="true" selection-start-line="69" selection-start-column="51" selection-end-line="69" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -185,11 +185,11 @@
         <option value="$PROJECT_DIR$/web/LogIn.jsp" />
         <option value="$PROJECT_DIR$/src/mypack/AvailableBikes.java" />
         <option value="$PROJECT_DIR$/web/BookABike.jsp" />
-        <option value="$PROJECT_DIR$/web/AboutUs.jsp" />
         <option value="$PROJECT_DIR$/web/Profile.jsp" />
         <option value="$PROJECT_DIR$/src/mypack/BookABike.java" />
         <option value="$PROJECT_DIR$/src/mypack/View.java" />
         <option value="$PROJECT_DIR$/web/Payment.jsp" />
+        <option value="$PROJECT_DIR$/web/AboutUs.jsp" />
       </list>
     </option>
   </component>
@@ -479,12 +479,12 @@
       <workItem from="1557057126370" duration="210000" />
       <workItem from="1557057358378" duration="106000" />
       <workItem from="1557057900410" duration="250000" />
-      <workItem from="1557061736690" duration="19569000" />
+      <workItem from="1557061736690" duration="19751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248974000" />
+    <option name="totallyTimeSpent" value="249156000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
@@ -509,9 +509,9 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.20353064" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.20353064" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.769986" visible="true" weight="0.27864584" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.769986" visible="true" weight="0.27864584" />
       <window_info id="Web" order="6" sideWeight="0.23001403" side_tool="true" weight="0.27864584" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -733,13 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/AboutUs.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="49" column="32" lean-forward="true" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/LogIn.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -769,8 +762,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/Payment.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/AboutUs.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="69" column="51" lean-forward="true" selection-start-line="69" selection-start-column="51" selection-end-line="69" selection-end-column="51" />
         </state>
       </provider>
     </entry>
