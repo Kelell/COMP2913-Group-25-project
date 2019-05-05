@@ -46,12 +46,25 @@
 
 <div class="content">
     <h1>Log In</h1>
-    <form action="LogIn" method="post">
-        User name : <input type="text" name="username" required="required">
-        Password : <input type="password" name="password" required="required">
-        <input type="submit" value="Login">
+    <%--<form action="LogIn" method="post">--%>
+        <%--User name : <input type="text" name="username" required="required">--%>
+        <%--Password : <input type="password" name="password" required="required">--%>
+        <%--<input type="submit" value="Login">--%>
 
+    <%--</form>--%>
+
+    <form action="LogIn" method="post">
+        <div class="form-group">
+            <label for="username">User name :</label>
+            <input name="username" type="text" class="form-control" id="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password :</label>
+            <input name="password" type="text" class="form-control" id="password">
+        </div>
+        <button type="submit" class="btn btn-default">Login</button>
     </form>
+
 </div>
 </body>
 </html>

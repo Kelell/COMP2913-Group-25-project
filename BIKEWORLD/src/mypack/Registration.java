@@ -18,14 +18,22 @@ public class Registration extends HttpServlet {
         PrintWriter out = response.getWriter();
         jdbc test = new jdbc();
         try {
+            String firstname = request.getParameter("firstname");
+            String secondname = request.getParameter("secondname");
+            String customer_name = String.format("%s %s", firstname, secondname);
+            String address = request.getParameter("address");
+            String email = request.getParameter("email");
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            String sql = "insert into customer(name,password) values(?,?)";
+            String sql = "insert into customer(name,password,CUSTOMER_NAME,CUSTOMER_ADDRESS,email) values(?,?,?,?,?)";
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, username);
             ps.setString(2, password);
+            ps.setString(3, customer_name);
+            ps.setString(4, address);
+            ps.setString(5, email);
             ps.executeUpdate();
             out.println("Success Registration");
             response.sendRedirect("LogIn.jsp");
