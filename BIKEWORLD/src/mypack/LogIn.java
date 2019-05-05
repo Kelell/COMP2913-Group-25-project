@@ -21,7 +21,7 @@ public class LogIn extends HttpServlet {
             String password = request.getParameter("password");
             String Uname = null;
             String Upass = null;
-            String sql = "SELECT * FROM users WHERE name =? AND password=? ";
+            String sql = "SELECT * FROM customer WHERE name =? AND password=? ";
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
             PreparedStatement ps = conn.prepareStatement(sql);

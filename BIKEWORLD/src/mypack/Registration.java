@@ -20,7 +20,7 @@ public class Registration extends HttpServlet {
         try {
             String name = request.getParameter("user");
             String password = request.getParameter("password");
-            String sql = "insert into users(name,password) values(?,?)";
+            String sql = "insert into customer(name,password) values(?,?)";
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
             PreparedStatement ps = conn.prepareStatement(sql);
