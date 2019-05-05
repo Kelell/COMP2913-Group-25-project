@@ -369,7 +369,7 @@ public class BookABike extends HttpServlet {
                             "<li class='dropdown'>"+
                                 "<a class='dropdown-toggle' data-toggle='dropdown' href=#><span class='glyphicon glyphicon-user'></span>Profile <span class='caret'></span></a>"+
                                 "<ul class='dropdown-menu'>"+
-                                    "<li><strong>User: ${uname}</strong></li>"+
+                                    "<li><strong> User: " + session.getAttribute("uname") + "</strong></li>"+
                                     "<li><a href=Profile.jsp>Profile</a></li>"+
                                     "<li><a href=Views>View bikes</a></li>"+
                                     "<li class=active><a href=book>Book a bike</a></li>"+
