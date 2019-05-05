@@ -38,7 +38,7 @@ public class LogIn extends HttpServlet {
                 session.setAttribute("uname",username);
 
                 //out.println("Successful LogIn");
-                response.sendRedirect("AboutUs.jsp");
+                response.sendRedirect("Profile.jsp");
 
             }else{
                 //response.sendRedirect("login.jsp");

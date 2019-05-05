@@ -51,27 +51,27 @@
     <form action="Register" method="post">
         <div class="form-group">
             <label for="firstname">First Name : </label>
-            <input name="firstname" type="text" class="form-control" id="firstname">
+            <input name="firstname" type="text" class="form-control" id="firstname" required="required">
         </div>
         <div class="form-group">
             <label for="secondname">Second Name :</label>
-            <input name="secondname" type="text" class="form-control" id="secondname">
+            <input name="secondname" type="text" class="form-control" id="secondname" required="required">
         </div>
         <div class="form-group">
             <label for="address">Address :</label>
-            <input name="address" type="text" class="form-control" id="address">
+            <input name="address" type="text" class="form-control" id="address" required="required">
         </div>
         <div class="form-group">
             <label for="email">Email :</label>
-            <input name="email" type="text" class="form-control" id="email">
+            <input name="email" type="text" class="form-control" id="email" required="required">
         </div>
         <div class="form-group">
             <label for="username">User name :</label>
-            <input name="username" type="text" class="form-control" id="username">
+            <input name="username" type="text" class="form-control" id="username" required="required">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input name="password" type="password" class="form-control" id="password">
+            <input name="password" type="password" class="form-control" id="password" required="required">
         </div>
         <button type="submit" class="btn btn-default">Register</button>
     </form>
