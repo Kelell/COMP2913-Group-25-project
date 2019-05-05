@@ -19,12 +19,13 @@ public class BookABike extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
 
+        //Settinng up print writter to write to hml page and sql connection
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         jdbc test = new jdbc();
         String driver = "com.mysql.cj.jdbc.Driver";
-
         String term = request.getParameter("term");
+        //If long term is chosen
         if (Integer.parseInt(term) == 2)
         {
             String date = request.getParameter("date");
@@ -39,7 +40,7 @@ public class BookABike extends HttpServlet {
                 String sql;
                 String sql2;
                 sql = "SELECT BIKE_ID, LOCATION, price, STATUS FROM bike";
-                sql2 = "SELECT hire_id, BIKE_ID, START_DATE, END_DATE, Start_Time, End_Time FROM hires";
+                sql2 = "SELECT hire_id, BIKE_ID, START_DATE, END_DATE FROM hires";
 
 
                 ArrayList<Integer> bikes = new ArrayList<Integer>();
@@ -50,8 +51,6 @@ public class BookABike extends HttpServlet {
                 ArrayList<Integer> bikes2 = new ArrayList<Integer>();
                 ArrayList<Date>  startd = new ArrayList<Date>();
                 ArrayList<Date>  endd = new ArrayList<Date>();
-                ArrayList<Time>  startt = new ArrayList<Time>();
-                ArrayList<Time>  endt = new ArrayList<Time>();
 
                 ResultSet rs2 = stmt.executeQuery(sql2);
                 while(rs2.next()){
@@ -60,14 +59,10 @@ public class BookABike extends HttpServlet {
                     int b  = rs2.getInt("BIKE_ID");
                     Date s = rs2.getDate("START_DATE");
                     Date e = rs2.getDate("END_DATE");
-                    Time st = rs2.getTime("Start_Time");
-                    Time et = rs2.getTime("End_Time");
                     hires.add(h);
                     bikes2.add(b);
                     startd.add(s);
                     endd.add(e);
-                    startt.add(st);
-                    endt.add(et);
                 }
                 rs2.close();
 
@@ -163,7 +158,7 @@ public class BookABike extends HttpServlet {
                     out.println(
                             "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
                                     "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                    "    <p>price: "+ cost.get(i) +"</p>\n" +
+                                    "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
                                     "    <p>id: "+ bikes.get(i)+"</p>\n" +
                                     "    <p>stat: "+ status.get(i)+"</p>\n" +
                                     "\n" +
@@ -171,34 +166,34 @@ public class BookABike extends HttpServlet {
                     );
                 }
 
+
                 out.println(
 
-                        "<form id = 'form2' action= 'complete' method = 'post' >\n" +
+                        "<form id = 'form1' action= 'complete' method = 'post' >\n" +
                                 "<br><br>\n" +
-                                "<input type='text' style = 'display: none;' name='bikeids'>"+
+                                "<input type='text'  name='bikeids'>"+
                                 "<input type='text' style = 'display: none;' name='location' value = " + loca.get(0) + ">"+
                                 "<input type='text' style = 'display: none;' name='days' value = "+ duration +">"+
-                                "<input type='text' style = 'display: none;' name='cost'>"+
+                                "<input type='text'  name='cost'>"+
                                 "<input type='text' style = 'display: none;' name='startd' value = "+ date + ">"+
-                                "<input type='text' style = 'display: none;' name='startt' value = '8:00:00' >"+
-                                "<input type='text' style = 'display: none;' name='endt' value = '20:00:00' >"+
-                                "<input id = 'submit' style = 'display: none;' type=submit value= submit >\n" +
+                                "<input id = 'submit' style = 'display: none;' type=submit value= 'Book' >\n" +
                                 "</form>\n" +
                                 "<script>\n" +
                                 "function openFunction() {\n" +
-                                "document.getElementById('form1').reset();\n" +
+                                "document.getElementById('form2').reset();\n" +
                                 "document.getElementById('bod').reset();\n" +
                                 "location.reload();\n" +
                                 "}\n" +
                                 "\n" +
                                 "function myfunction(obj) {\n" +
-                                "var num = obj.id;" +
+                                //bike id
                                 "var a = document.getElementsByName('bikeids');\n" +
-                                "a[0].value = num;"+
-                                "var mun = obj.children"+
+                                "a[0].value = obj.id;"+
+                                //cost
                                 "var b = document.getElementsByName('cost');\n" +
-                                "var y = mun[1] * " + duration+ " "+
-                                "b[0].value =  y;"+
+                                "var num = obj.children[1].id * "+ duration+" ; "+
+                                "b[0].value =  (obj.children[1].id * "+ duration+") - (0.10 * num) ; "+
+
                                 "document.getElementById('submit').style.display = 'block';"+
                                 "}\n" +
                                 "</script>"
@@ -226,104 +221,7 @@ public class BookABike extends HttpServlet {
         ////Short termmmm
         else
         {
-            String date = request.getParameter("date");
-            String duration = request.getParameter("Dur");
-            String time = request.getParameter("time0");
-            try {
-                Class.forName(driver);
-                Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
-                Statement stmt = conn.createStatement();
-                String sql;
-                String sql2;
-                sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
-                sql2 = "SELECT hire_id, START_DATE, END_DATE, Start_Time, End_Time FROM hires";
 
-
-                ArrayList<Integer> bikes = new ArrayList<Integer>();
-                ArrayList<String> loca = new ArrayList<String>();
-                ArrayList<Float> cost = new ArrayList<Float>();
-                ArrayList<Integer> hires = new ArrayList<Integer>();
-                ArrayList<Date>  startd = new ArrayList<Date>();
-                ArrayList<Date>  endd = new ArrayList<Date>();
-                ArrayList<Time>  startt = new ArrayList<Time>();
-                ArrayList<Time>  endt = new ArrayList<Time>();
-
-                ResultSet rs2 = stmt.executeQuery(sql2);
-                while(rs2.next()){
-                    //Retrieve by column name
-                    int h  = rs2.getInt("hires_id");
-                    Date s = rs2.getDate("START_DATE");
-                    Date e = rs2.getDate("END_DATE");
-                    Time st = rs2.getTime("Start_Time");
-                    Time et = rs2.getTime("End_Time");
-                    hires.add(h);
-                    startd.add(s);
-                    endd.add(e);
-                    startt.add(st);
-                    endt.add(et);
-                }
-                rs2.close();
-
-                ResultSet rs = stmt.executeQuery(sql);
-                while(rs.next()){
-                    //Retrieve by column name
-                    int id  = rs.getInt("BIKE_ID");
-                    String l = rs.getString("LOCATION");
-                    float price = rs.getFloat("price");
-                    bikes.add(id);
-                    loca.add(l);
-                    cost.add(price);
-                }
-                rs.close();
-                stmt.close();
-                conn.close();
-
-                int listsize = bikes.size();
-                String size = Integer.toString(listsize);
-
-                out.println("<head onload=\"openFunction()\" >" +
-                        "<title id = prick >$Title$</title>" +
-                        "<link rel=stylesheet href=style.css type=text/css>" +
-                        "</head>"
-                );
-                out.println("<body  >");
-                out.println("<div class = \"Title\"> B!KEWORLD </div>");
-                out.println(
-                        "<div class=nav>"+
-                                "<a  href=index.jsp>Home</a>"+
-                                "<a class=active href=book>Book A Bike</a>" +
-                                "<a href=\"Views\">View bikes</a>" +
-                                "<a href=AboutUs.jsp>About Us</a>"+
-                                "<a href=ContactUs.jsp>Contact Us</a>"+
-                                "<a>Log out</a>" +
-                                "</div>"
-                );
-
-                for (int i = 0; i < listsize; i++)
-                {
-                    out.println(
-                            "<div class = \"bike\">\n" +
-                                    "\t<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                    "    <p>price: "+ cost.get(i) +"</p>\n" +
-                                    "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                    "\n" +
-                                    "</div>"
-                    );
-                }
-
-
-
-                out.println("</body>");
-
-
-
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-                out.println("Testing error 1- Failed");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                out.println("Testing error 2- Failed");
-            }
         }
 
 
@@ -388,7 +286,7 @@ public class BookABike extends HttpServlet {
                     "<link rel=stylesheet href=style.css type=text/css>" +
                     "</head>"
             );
-            out.println("<body id = 'bod' onload=\"openFunction()\"  >");
+            out.println("<body id = 'bod2' onload=\"openFunction()\"  >");
             out.println("<div class = \"Title\"> B!KEWORLD </div>");
             out.println(
                     "<div class=nav>"+
@@ -529,7 +427,7 @@ public class BookABike extends HttpServlet {
                             "<script>\n" +
                             "function openFunction() {\n" +
                             "document.getElementById('form1').reset();\n" +
-                            "document.getElementById('bod').reset();\n" +
+                            "document.getElementById('bod2').reset();\n" +
                             "location.reload();\n" +
                             "}\n" +
                             "\n" +
