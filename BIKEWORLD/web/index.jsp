@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>Index</title>
+    <title>Home</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -55,7 +55,6 @@
             <li><a href="Profile.jsp">Profile</a></li>
             <li><a href="Views">View bikes</a></li>
             <li><a href="book">Book a bike</a></li>
-            <li><a href="bookbikes">Book</a></li>           <!-- <<<<  NEEDS REMOVING, required by Max for testing-->
           </ul>
         </li>
         <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>

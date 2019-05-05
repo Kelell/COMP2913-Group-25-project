@@ -58,7 +58,7 @@ public class Booking extends HttpServlet {
             String size = Integer.toString(listsize);
 
             out.println("<head onload=\"openFunction()\" >" +
-                    "<title id = prick >$Title$</title>" +
+                    "<title id = prick >Test123</title>" +
                     "<link rel=stylesheet href=style.css type=text/css>" +
                     "</head>"
             );

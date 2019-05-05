@@ -12,6 +12,7 @@ import java.util.*;
 import java.util.Date;
 import java.text.*;
 import java.text.ParseException;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet(name = "BookABike")
@@ -320,23 +321,69 @@ public class BookABike extends HttpServlet {
 
             int listsize = bikes.size();
             String size = Integer.toString(listsize);
+            HttpSession session = request.getSession(false);
+
+            if(session.getAttribute("uname")==null){
+                response.sendRedirect("LogIn.jsp");
+            }
 
             out.println("<head onload=\"openFunction()\" >" +
                     "<title id = prick >$Title$</title>" +
-                    "<link rel=stylesheet href=style.css type=text/css>" +
+                    "<meta name=viewport content=width=device-width, initial-scale=1>"+
+                    "<link rel=stylesheet href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>"+ //<!-- Bootstrap style link  -->
+                    "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
+                    "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>"+  //<!-- Drop down button script-->
+                    "<link rel=stylesheet href=style.css type=text/css>"+
                     "</head>"
             );
             out.println("<body  >");
-            out.println("<div class = \"Title\"> B!KEWORLD </div>");
+
             out.println(
-                    "<div class=nav>"+
-                            "<a  href=index.jsp>Home</a>"+
-                            "<a href=\"Views\">View bikes</a>" +
-                            "<a class=active href=book>Book A Bike</a>" +
-                            "<a href=AboutUs.jsp>About Us</a>"+
-                            "<a href=ContactUs.jsp>Contact Us</a>"+
-                            "<a>Log out</a>" +
-                            "</div>"
+                    "<nav class='navbar navbar-inverse'>"+ //<!-- Bootstrap nav bar -->
+                        "<div class='container-fluid'>"+ "<div class='navbar-header'>"+
+                            "<a class='navbar-brand' href=index.jsp>B!KEWORLD</a>"+
+                        "</div>"+
+                            "<ul class='nav navbar-nav'>"+
+                                "<li><a href=index.jsp>Home</a></li>"+
+                                "<li class=active><a href=AboutUs.jsp>About Us</a></li>"+
+                                "<li><a href=ContactUs.jsp>Contact Us</a></li>"+
+                            "</ul>"+
+                            "<ul class='nav navbar-nav navbar-right'>");
+
+                            if(session.getAttribute("uname")==null){//log out button for when in session
+
+
+                                out.println(
+                            "<li><a href=registration.jsp><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>"+
+                            "<li><a href=LogIn.jsp><span class='glyphicon glyphicon-log-in'></span> Login</a></li>"
+                                );
+                            }
+
+
+
+
+                            if(session.getAttribute("uname")!=null){//log out button for when in session
+
+                                out.println(
+                            "<li class='dropdown'>"+
+                                "<a class='dropdown-toggle' data-toggle='dropdown' href=#><span class='glyphicon glyphicon-user'></span>Profile <span class='caret'></span></a>"+
+                                "<ul class='dropdown-menu'>"+
+                                    "<li><strong>User: ${uname}</strong></li>"+
+                                    "<li><a href=Profile.jsp>Profile</a></li>"+
+                                    "<li><a href=Views>View bikes</a></li>"+
+                                    "<li><a href=book>Book a bike</a></li>"+
+                                "</ul>"+
+                            "</li>"+
+                            "<li><a href=Log><span class='glyphicon glyphicon-log-in'></span> LOGOUT</a></li>");
+
+                            }
+
+
+            out.println(
+                            "</ul>"+
+                        "</div>"+
+                    "</nav>"
+
             );
             out.println(
 

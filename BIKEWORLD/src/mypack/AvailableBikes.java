@@ -108,7 +108,8 @@ public class AvailableBikes extends HttpServlet {
 
             out.println("<head onload=\"openFunction()\" >" +
                     "<title id = prick >$Title$</title>" +
-                    "<link rel=stylesheet href=style.css type=text/css>" +
+                    "<link rel=stylesheet href=style.css type=text/css>"+
+
                     "<style>" +
                     ".section {\n" +
                     "  list-style-type: none;\n" +
@@ -148,17 +149,15 @@ public class AvailableBikes extends HttpServlet {
             );
 
             out.println(
-                    "<div class = \"Title\">\n" +
-                            "    B!KEWORLD\n" +
-                            "  </div>"+
                     "<div class=nav>"+
-                            "<a  href=index.jsp>Home</a>"+
-                            "<a class=active href=\"Views\">View bikes</a>" +
-                            "<a href=\"book\">Book a bike</a>"+
-                            "<a href=AboutUs.jsp>About Us</a>"+
-                            "<a href=ContactUs.jsp>Contact Us</a>"+
-                            "<a>Log out</a>" +
-                            "</div>"
+                    "<a  href=index.jsp>Home</a>"+
+                    "<a href=\"Views\">View bikes</a>" +
+                    "<a class=active href=book>Book A Bike</a>" +
+                    "<a href=AboutUs.jsp>About Us</a>"+
+                    "<a href=ContactUs.jsp>Contact Us</a>"+
+                    "<a>Log out</a>" +
+                    "</div>"
+
             );
             out.println(
                     "<p>There are(is) "+ listsize +" bike(s) in this location.</p>" );

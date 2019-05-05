@@ -60,7 +60,7 @@
         </div>
         <div class="form-group">
             <label for="password">Password :</label>
-            <input name="password" type="text" class="form-control" id="password" required="required">
+            <input name="password" type="password" class="form-control" id="password" required="required">
         </div>
         <button type="submit" class="btn btn-default">Login</button>
     </form>
