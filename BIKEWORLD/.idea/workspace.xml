@@ -29,45 +29,12 @@
     <expand />
     <select />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="BookABike.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="189">
-                    <caret line="699" column="12" selection-start-line="699" selection-start-column="12" selection-end-line="699" selection-end-column="74" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                      <element signature="e#2125#2134#0" expanded="true" />
-                      <element signature="e#2192#2200#0" expanded="true" />
-                      <element signature="e#2257#2264#0" expanded="true" />
-                      <element signature="e#2325#2334#0" expanded="true" />
-                      <element signature="e#2394#2403#0" expanded="true" />
-                      <element signature="e#2464#2473#0" expanded="true" />
-                      <element signature="e#2532#2538#0" expanded="true" />
-                      <element signature="e#2595#2601#0" expanded="true" />
-                      <element signature="e#33091#33100#0" expanded="true" />
-                      <element signature="e#33154#33162#0" expanded="true" />
-                      <element signature="e#33215#33222#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
+            <state relative-caret-position="345">
               <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
             </state>
           </provider>
@@ -82,29 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AvailableBikes.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
+      <file leaf-file-name="Checkout.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/Checkout.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="497">
-              <caret line="788" column="31" selection-start-line="788" selection-start-column="31" selection-end-line="788" selection-end-column="31" />
-              <folding>
-                <element signature="e#1215#1224#0" expanded="true" />
-                <element signature="e#1278#1286#0" expanded="true" />
-                <element signature="e#1339#1346#0" expanded="true" />
-                <element signature="e#1403#1412#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="139" column="72" selection-start-line="139" selection-start-column="72" selection-end-line="139" selection-end-column="72" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="10" column="16" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -162,9 +111,10 @@
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/mypack/Booked.java" />
-        <option value="$PROJECT_DIR$/src/mypack/BookABike.java" />
         <option value="$PROJECT_DIR$/src/mypack/AvailableBikes.java" />
         <option value="$PROJECT_DIR$/src/mypack/View.java" />
+        <option value="$PROJECT_DIR$/src/mypack/BookABike.java" />
+        <option value="$PROJECT_DIR$/web/Checkout.jsp" />
       </list>
     </option>
   </component>
@@ -227,19 +177,13 @@
               <item name="BIKEWORLD" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="BIKEWORLD" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BIKEWORLD" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -451,14 +395,16 @@
       <workItem from="1557010464478" duration="1645000" />
       <workItem from="1557012260972" duration="12085000" />
       <workItem from="1557051147639" duration="3127000" />
+      <workItem from="1557091210010" duration="245000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="244303000" />
+    <option name="totallyTimeSpent" value="245029000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="28" width="1920" height="1018" extended-state="6" />
+    <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.50208336" side_tool="true" weight="0.32963374" />
@@ -479,44 +425,19 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.331813" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.30990416" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.77303755" visible="true" weight="0.2991453" />
-      <window_info id="Web" order="6" sideWeight="0.22696246" side_tool="true" visible="true" weight="0.2991453" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.77160496" visible="true" weight="0.3028846" />
+      <window_info id="Web" order="6" sideWeight="0.22839506" side_tool="true" visible="true" weight="0.3028846" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.50208336" side_tool="true" weight="0.32963374" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7731481" visible="true" weight="0.2991453" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Java Enterprise" order="10" />
-      <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.49791667" weight="0.327252" />
-      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32917964" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="5" weight="0.3297619" />
-      <window_info id="Web" order="6" sideWeight="0.22685185" side_tool="true" visible="true" weight="0.2991453" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info id="Image Layers" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Database" order="6" weight="0.3296875" />
-      <window_info id="Capture Tool" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info active="true" anchor="bottom" id="Database Console" order="13" sideWeight="0.49791667" visible="true" weight="0.32963374" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290735" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.30990416" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info id="Designer" order="2" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -531,7 +452,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/mysql/jdbc/SocketFactory.java" />
     <entry file="jar:///usr/java/jdk1.8.0_141/src.zip!/java/lang/ClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -642,7 +562,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
+        <state relative-caret-position="345">
           <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
         </state>
       </provider>
@@ -690,6 +610,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="788" column="31" selection-start-line="788" selection-start-column="31" selection-end-line="788" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18255">
+          <caret line="1217" column="35" lean-forward="true" selection-start-line="1217" selection-start-column="35" selection-end-line="1217" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="131" column="32" lean-forward="true" selection-start-line="131" selection-start-column="32" selection-end-line="131" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -697,47 +638,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
+    <entry file="file://$PROJECT_DIR$/web/Checkout.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="699" column="12" selection-start-line="699" selection-start-column="12" selection-end-line="699" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2125#2134#0" expanded="true" />
-            <element signature="e#2192#2200#0" expanded="true" />
-            <element signature="e#2257#2264#0" expanded="true" />
-            <element signature="e#2325#2334#0" expanded="true" />
-            <element signature="e#2394#2403#0" expanded="true" />
-            <element signature="e#2464#2473#0" expanded="true" />
-            <element signature="e#2532#2538#0" expanded="true" />
-            <element signature="e#2595#2601#0" expanded="true" />
-            <element signature="e#33091#33100#0" expanded="true" />
-            <element signature="e#33154#33162#0" expanded="true" />
-            <element signature="e#33215#33222#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="788" column="31" selection-start-line="788" selection-start-column="31" selection-end-line="788" selection-end-column="31" />
-          <folding>
-            <element signature="e#1215#1224#0" expanded="true" />
-            <element signature="e#1278#1286#0" expanded="true" />
-            <element signature="e#1339#1346#0" expanded="true" />
-            <element signature="e#1403#1412#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="139" column="72" selection-start-line="139" selection-start-column="72" selection-end-line="139" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="16" />
         </state>
       </provider>
     </entry>
