@@ -137,7 +137,7 @@ public class View extends HttpServlet {
                             "</div>"
             );
             out.println(
-                    "<form id = 'form2' action= Available method = 'get' >" +
+                    "<form id = 'form2' action= Available method = 'post' >" +
 
                             "<p style = \"display: none\" >Select a Location</p>" + "\n" +
                             "<select  id = \"Loca\" style = \"display: none\" name = Location >" +

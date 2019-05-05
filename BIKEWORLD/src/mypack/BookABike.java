@@ -153,7 +153,7 @@ public class BookABike extends HttpServlet {
                         }
                     }
 
-                    if (bookable == true && l.equals(location) && stat == 1)
+                    if (bookable == true && l.equals(location))
                     {
                         bikes.add(id);
                         loca.add(l);
@@ -184,8 +184,8 @@ public class BookABike extends HttpServlet {
                     out.println(
                             "<div class=nav>"+
                                     "<a  href=index.jsp>Home</a>"+
-                                    "<a class=active href=book>Book A Bike</a>" +
-                                    "<a href=\"Views\">View bikes</a>" +
+                                    "<a  class=activehref=\"Views\">View bikes</a>" +
+                                    "<a  href=book>Book A Bike</a>" +
                                     "<a href=AboutUs.jsp>About Us</a>"+
                                     "<a href=ContactUs.jsp>Contact Us</a>"+
                                     "<a>Log out</a>" +
@@ -248,8 +248,8 @@ public class BookABike extends HttpServlet {
                     out.println(
                             "<div class=nav>"+
                                     "<a  href=index.jsp>Home</a>"+
-                                    "<a class=active href=book>Book A Bike</a>" +
-                                    "<a href=\"Views\">View bikes</a>" +
+                                    "<a  class=activehref=\"Views\">View bikes</a>" +
+                                    "<a  href=book>Book A Bike</a>" +
                                     "<a href=AboutUs.jsp>About Us</a>"+
                                     "<a href=ContactUs.jsp>Contact Us</a>"+
                                     "<a>Log out</a>" +
@@ -259,33 +259,12 @@ public class BookABike extends HttpServlet {
                     for (int i = 0; i < listsize; i++)
                     {
 
-                        if (status.get(i) == 0)
-                        {
-                            out.println(
-                                    "<div style = 'background-color: #d9d9d9' id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                            "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                            "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
-                                            "    <p>id: "+ bikes.get(i)+"</p>\n"+
-                                            "    <p style = 'Color: blue;' class = "+ status.get(i)+ ">stat: Hired </p>\n");
-                        }
-                        else if (status.get(i) == 1)
-                        {
-                            out.println(
-                                    "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                            "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                            "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
-                                            "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                            "    <p class = "+ status.get(i)+ ">stat: Available </p>\n");
-                        }
-                        else
-                        {
-                            out.println(
-                                    "<div style = 'background-color: #d9d9d9' id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                            "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                            "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
-                                            "    <p>id: "+ bikes.get(i)+"</p>\n"+
-                                            "    <p style = 'Color: red;' class = "+ status.get(i)+ ">stat: Damaged </p>\n");
-                        }
+                        out.println(
+                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                        "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                        "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                        "    <p>id: "+ bikes.get(i)+"</p>\n" +
+                                        "    <p class = "+ status.get(i)+ ">stat: Available </p>\n");
                         out.println(
                                 "\n" +
                                         "</div>"
@@ -472,7 +451,6 @@ public class BookABike extends HttpServlet {
                                 }
                             }
                             else {
-                                out.println(reqdate.getTime() + " --> " + std.getTime() + "<br><br>");
 
                                 if (reqdate.before(edd) && reqdate.after(std))
                                 {
@@ -492,7 +470,7 @@ public class BookABike extends HttpServlet {
 
                         }
                     }
-                    if (bookable == true && l.equals(location) && stat == 1)
+                    if (bookable == true && l.equals(location))
                     {
                         bikes.add(id);
                         loca.add(l);
@@ -585,8 +563,8 @@ public class BookABike extends HttpServlet {
                     out.println(
                             "<div class=nav>"+
                                     "<a  href=index.jsp>Home</a>"+
-                                    "<a class=active href=book>Book A Bike</a>" +
-                                    "<a href=\"Views\">View bikes</a>" +
+                                    "<a  class=activehref=\"Views\">View bikes</a>" +
+                                    "<a  href=book>Book A Bike</a>" +
                                     "<a href=AboutUs.jsp>About Us</a>"+
                                     "<a href=ContactUs.jsp>Contact Us</a>"+
                                     "<a>Log out</a>" +
@@ -724,8 +702,8 @@ public class BookABike extends HttpServlet {
             out.println(
                     "<div class=nav>"+
                             "<a  href=index.jsp>Home</a>"+
-                            "<a href=\"Views\">View bikes</a>" +
-                            "<a class=active href=book>Book A Bike</a>" +
+                            "<a  class=activehref=\"Views\">View bikes</a>" +
+                            "<a  href=book>Book A Bike</a>" +
                             "<a href=AboutUs.jsp>About Us</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+
                             "<a>Log out</a>" +
