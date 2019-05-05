@@ -7,10 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.net.URLEncoder;
+import java.sql.*;
 
 @WebServlet(name = "Registration")
 public class Registration extends HttpServlet {
@@ -29,6 +27,24 @@ public class Registration extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
             PreparedStatement ps = conn.prepareStatement(sql);
+
+
+            String sql2 = "SELECT * FROM customer WHERE name =? ";
+            PreparedStatement ps2 = conn.prepareStatement(sql2);
+            String Uname = null;
+            ps2.setString(1, username);
+            ResultSet rs = ps2.executeQuery();
+            while(rs.next()){
+                Uname = rs.getString("name");
+
+            }
+            if(username.equals(Uname)){
+                String message = "Username already in use.";
+                response.sendRedirect("registration.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
+
+                //response.sendRedirect("registration.jsp");
+
+            }else{
             ps.setString(1, username);
             ps.setString(2, password);
             ps.setString(3, customer_name);
@@ -37,7 +53,7 @@ public class Registration extends HttpServlet {
             ps.executeUpdate();
             out.println("Success Registration");
             response.sendRedirect("LogIn.jsp");
-        }
+        }}
         catch (ClassNotFoundException e){
             e.printStackTrace();
         } catch (SQLException e){

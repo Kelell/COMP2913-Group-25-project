@@ -65,14 +65,14 @@
 
 
 
-<%//tests if user is logged in before accessing about us page (testing only)
-    if(session.getAttribute("uname")==null){
-        response.sendRedirect("LogIn.jsp");
-    }
-%>
+<%--<%//tests if user is logged in before accessing about us page (testing only)--%>
+    <%--if(session.getAttribute("uname")==null){--%>
+        <%--response.sendRedirect("LogIn.jsp");--%>
+    <%--}--%>
+<%--%>--%>
 <div class="content">
     <h1>About Us</h1>
-    This is the about us page ${uname}
+    This is the about us page
 
 </div>
 

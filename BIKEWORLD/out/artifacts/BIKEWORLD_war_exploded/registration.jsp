@@ -66,7 +66,7 @@
             <input name="email" type="text" class="form-control" id="email" required="required">
         </div>
         <div class="form-group">
-            <label for="username">User name :</label>
+            <label for="username">Username :</label>
             <input name="username" type="text" class="form-control" id="username" required="required">
         </div>
         <div class="form-group">
@@ -75,6 +75,7 @@
         </div>
         <button type="submit" class="btn btn-default">Register</button>
     </form>
+    <p>${param.message}</p>
 </div>
 
 </body>
