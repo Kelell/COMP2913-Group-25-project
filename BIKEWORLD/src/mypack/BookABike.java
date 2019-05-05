@@ -29,21 +29,26 @@ public class BookABike extends HttpServlet {
         //If long term is chosen
         if (Integer.parseInt(term) == 2)
         {
+            //Get selected date duration and location
             String date = request.getParameter("date");
             String duration = request.getParameter("Daydur");
             String location = request.getParameter("Location");
             try {
+                //Format date
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 Date ddate = format.parse(date);
+                //SQL connection and statments made
                 Class.forName(driver);
                 Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
                 Statement stmt = conn.createStatement();
                 String sql;
                 String sql2;
+                String sql3;
                 sql = "SELECT BIKE_ID, LOCATION, price, STATUS FROM bike";
                 sql2 = "SELECT hire_id, BIKE_ID, START_DATE, END_DATE FROM hires";
+                sql3 = "SELECT Hire_Id, Bike_Id, Start_Time, End_Time, Date FROM Short_Hires";
 
-
+                //Array lists created
                 ArrayList<Integer> bikes = new ArrayList<Integer>();
                 ArrayList<String> loca = new ArrayList<String>();
                 ArrayList<Float> cost = new ArrayList<Float>();
@@ -52,7 +57,7 @@ public class BookABike extends HttpServlet {
                 ArrayList<Integer> bikes2 = new ArrayList<Integer>();
                 ArrayList<Date>  startd = new ArrayList<Date>();
                 ArrayList<Date>  endd = new ArrayList<Date>();
-
+                //SQL statement used to add all the bikes from hire table into array lists
                 ResultSet rs2 = stmt.executeQuery(sql2);
                 while(rs2.next()){
                     //Retrieve by column name
@@ -67,48 +72,73 @@ public class BookABike extends HttpServlet {
                 }
                 rs2.close();
 
+                ResultSet rs3 = stmt.executeQuery(sql3);
+                while(rs3.next()){
+                    //Retrieve by column name
+                    int h  = rs3.getInt("hire_id");
+                    int b  = rs3.getInt("Bike_Id");
+                    Date s = rs3.getDate("Date");
+                    Date e = rs3.getDate("Date");
+                    hires.add(h);
+                    bikes2.add(b);
+                    startd.add(s);
+                    endd.add(e);
+                }
+                rs3.close();
+
+
+                //If statement to check if bikes are in hires table
                 int booking_size =  bikes2.size();
                 ResultSet rs = stmt.executeQuery(sql);
                 boolean bookable = true;
                 List<Integer> count = new ArrayList<Integer>();
+                //While there is another resultant set line
                 while(rs.next()){
+                    //Whether this row/record is bookable is true
                     bookable = true;
-                    //Retrieve by column name
+                    //Retrieve record data by column name
                     int id  = rs.getInt("BIKE_ID");
                     String l = rs.getString("LOCATION");
                     float price = rs.getFloat("price");
                     int stat = rs.getInt("STATUS");
+                    //For each element in the hires table
                     for (int i = 0; i < booking_size; i++ )
                     {
+                        //If id of resultant set record is equal to an id in hires table. I.e If its already been booked before
                         if (id == bikes2.get(i))
                         {
+                            //Set the requested date (Date user wants) to reqdate
                             Calendar reqdate = Calendar.getInstance();
                             reqdate.setTime(ddate);
-                            Calendar reqdatedur = Calendar.getInstance();
-                            reqdatedur.setTime(ddate);
-                            int reqdur = Integer.parseInt(duration);
-                            reqdatedur.add(Calendar.DAY_OF_MONTH, reqdur);
+                            //Set the requested end date. (Date user wants + duration) to reqdate
+                            Calendar reqend = Calendar.getInstance();
+                            reqend.setTime(ddate);
+                            int dur = Integer.parseInt(duration);
+                            reqend.add(Calendar.DAY_OF_MONTH, dur);
+                            //Set start date and end date of bike in hires table
                             Calendar std = Calendar.getInstance();
                             std.setTime(startd.get(i));
                             Calendar edd = Calendar.getInstance();
                             edd.setTime(endd.get(i));
+                            //If requested date is equal to start date of already existing hire on same bike
                             if ( reqdate == std)
                             {
+                                //Cannot be booked
                                 bookable = false;
                             }
                             else if (reqdate.before(edd) && reqdate.after(std))
                             {
                                 bookable = false;
                             }
-                            else if (reqdatedur.before(edd) && reqdatedur.after(std))
+                            else if (reqend.before(edd) && reqend.after(std))
                             {
                                 bookable = false;
                             }
-                            else if (reqdate.before(std) && reqdatedur.after(edd))
+                            else if (reqdate.before(std) && reqend.after(edd))
                             {
                                 bookable = false;
                             }
-                            else if (reqdate.after(std) && reqdatedur.before(edd))
+                            else if (reqdate.after(std) && reqend.before(edd))
                             {
                                 bookable = false;
                             }
@@ -116,8 +146,13 @@ public class BookABike extends HttpServlet {
                             {
                                 bookable =true;
                             }
+                            if(std == edd && reqdate == edd)
+                            {
+                                bookable = false;
+                            }
                         }
                     }
+
                     if (bookable == true && l.equals(location))
                     {
                         bikes.add(id);
@@ -135,74 +170,142 @@ public class BookABike extends HttpServlet {
                 conn.close();
 
                 int listsize = bikes.size();
-                String size = Integer.toString(listsize);
-
-                out.println("<head onload=\"openFunction()\" >" +
-                        "<title id = prick >$Title$</title>" +
-                        "<link rel=stylesheet href=style.css type=text/css>" +
-                        "</head>"
-                );
-                out.println("<body  id = 'bod' onload=\"openFunction()\">");
-                out.println("<div class = \"Title\"> B!KEWORLD </div>");
-                out.println(
-                        "<div class=nav>"+
-                                "<a  href=index.jsp>Home</a>"+
-                                "<a class=active href=book>Book A Bike</a>" +
-                                "<a href=\"Views\">View bikes</a>" +
-                                "<a href=AboutUs.jsp>About Us</a>"+
-                                "<a href=ContactUs.jsp>Contact Us</a>"+
-                                "<a>Log out</a>" +
-                                "</div>"
-                );
-
-                for (int i = 0; i < listsize; i++)
+                if (listsize == 0)
                 {
+                    String size = Integer.toString(listsize);
+
+                    out.println("<head onload=\"openFunction()\" >" +
+                            "<title id = prick >$Title$</title>" +
+                            "<link rel=stylesheet href=style.css type=text/css>" +
+                            "</head>"
+                    );
+                    out.println("<body  id = 'bod' onload=\"openFunction()\">");
+                    out.println("<div class = \"Title\"> B!KEWORLD </div>");
                     out.println(
-                            "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                    "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                    "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
-                                    "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                    "    <p>stat: "+ status.get(i)+"</p>\n" +
-                                    "\n" +
+                            "<div class=nav>"+
+                                    "<a  href=index.jsp>Home</a>"+
+                                    "<a class=active href=book>Book A Bike</a>" +
+                                    "<a href=\"Views\">View bikes</a>" +
+                                    "<a href=AboutUs.jsp>About Us</a>"+
+                                    "<a href=ContactUs.jsp>Contact Us</a>"+
+                                    "<a>Log out</a>" +
                                     "</div>"
                     );
+
+
+                    out.println(
+                            "<h1>NO BIKES AVAILABLE</h1>"
+                    );
+
+
+
+                    out.println(
+
+                            "<form id = 'form1' action= 'complete' method = 'post' >\n" +
+                                    "<input type='text' style = 'display: none;' name='term' value = "+term+">"+
+                                    "<br><br>\n" +
+                                    "<input type='text' style = 'display: none;' name='bikeids'>"+
+                                    "<input type='text' style = 'display: none;' name='location' value = " + location + ">"+
+                                    "<input type='text' style = 'display: none;' name='days' value = "+ duration +">"+
+                                    "<input type='text' style = 'display: none;' name='cost'>"+
+                                    "<input type='text' style = 'display: none;' name='startd' value = "+ date + ">"+
+                                    "<input id = 'submit' style = 'display: none;' type=submit value= 'Book' >\n" +
+                                    "</form>\n" +
+                                    "<script>\n" +
+                                    "function openFunction() {\n" +
+                                    "document.getElementById('form2').reset();\n" +
+                                    "document.getElementById('bod').reset();\n" +
+                                    "location.reload();\n" +
+                                    "}\n" +
+                                    "\n" +
+                                    "function myfunction(obj) {\n" +
+                                    //bike id
+                                    "var a = document.getElementsByName('bikeids');\n" +
+                                    "a[0].value = obj.id;"+
+                                    //cost
+                                    "var b = document.getElementsByName('cost');\n" +
+                                    "var num = obj.children[1].id * "+ duration+" ; "+
+                                    "b[0].value =  (obj.children[1].id * "+ duration+" * 12) - (0.20 * num) ; "+
+
+                                    "document.getElementById('submit').style.display = 'block';"+
+                                    "}\n" +
+                                    "</script>"
+                    );
+
+                    out.println("</body>");
+                }
+                else
+                {
+                    String size = Integer.toString(listsize);
+
+                    out.println("<head onload=\"openFunction()\" >" +
+                            "<title id = prick >$Title$</title>" +
+                            "<link rel=stylesheet href=style.css type=text/css>" +
+                            "</head>"
+                    );
+                    out.println("<body  id = 'bod' onload=\"openFunction()\">");
+                    out.println("<div class = \"Title\"> B!KEWORLD </div>");
+                    out.println(
+                            "<div class=nav>"+
+                                    "<a  href=index.jsp>Home</a>"+
+                                    "<a class=active href=book>Book A Bike</a>" +
+                                    "<a href=\"Views\">View bikes</a>" +
+                                    "<a href=AboutUs.jsp>About Us</a>"+
+                                    "<a href=ContactUs.jsp>Contact Us</a>"+
+                                    "<a>Log out</a>" +
+                                    "</div>"
+                    );
+
+                    for (int i = 0; i < listsize; i++)
+                    {
+                        out.println(
+                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                        "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                        "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                        "    <p>id: "+ bikes.get(i)+"</p>\n" +
+                                        "    <p>stat: "+ status.get(i)+"</p>\n" +
+                                        "\n" +
+                                        "</div>"
+                        );
+                    }
+
+
+                    out.println(
+
+                            "<form id = 'form1' action= 'complete' method = 'post' >\n" +
+                                    "<input type='text' style = 'display: none;' name='term' value = "+term+">"+
+                                    "<br><br>\n" +
+                                    "<input type='text' style = 'display: none;' name='bikeids'>"+
+                                    "<input type='text' style = 'display: none;' name='location' value = " + location + ">"+
+                                    "<input type='text' style = 'display: none;' name='days' value = "+ duration +">"+
+                                    "<input type='text' style = 'display: none;' name='cost'>"+
+                                    "<input type='text' style = 'display: none;' name='startd' value = "+ date + ">"+
+                                    "<input id = 'submit' style = 'display: none;' type=submit value= 'Book' >\n" +
+                                    "</form>\n" +
+                                    "<script>\n" +
+                                    "function openFunction() {\n" +
+                                    "document.getElementById('form2').reset();\n" +
+                                    "document.getElementById('bod').reset();\n" +
+                                    "location.reload();\n" +
+                                    "}\n" +
+                                    "\n" +
+                                    "function myfunction(obj) {\n" +
+                                    //bike id
+                                    "var a = document.getElementsByName('bikeids');\n" +
+                                    "a[0].value = obj.id;"+
+                                    //cost
+                                    "var b = document.getElementsByName('cost');\n" +
+                                    "var num = obj.children[1].id * "+ duration+" ; "+
+                                    "b[0].value =  (obj.children[1].id * "+ duration+" * 12) - (0.20 * num) ; "+
+
+                                    "document.getElementById('submit').style.display = 'block';"+
+                                    "}\n" +
+                                    "</script>"
+                    );
+
+                    out.println("</body>");
                 }
 
-
-                out.println(
-
-                        "<form id = 'form1' action= 'complete' method = 'post' >\n" +
-                                "<input type='text' style = 'display: none;' name='term' value = "+term+">"+
-                                "<br><br>\n" +
-                                "<input type='text' style = 'display: none;' name='bikeids'>"+
-                                "<input type='text' style = 'display: none;' name='location' value = " + loca.get(0) + ">"+
-                                "<input type='text' style = 'display: none;' name='days' value = "+ duration +">"+
-                                "<input type='text' style = 'display: none;' name='cost'>"+
-                                "<input type='text' style = 'display: none;' name='startd' value = "+ date + ">"+
-                                "<input id = 'submit' style = 'display: none;' type=submit value= 'Book' >\n" +
-                                "</form>\n" +
-                                "<script>\n" +
-                                "function openFunction() {\n" +
-                                "document.getElementById('form2').reset();\n" +
-                                "document.getElementById('bod').reset();\n" +
-                                "location.reload();\n" +
-                                "}\n" +
-                                "\n" +
-                                "function myfunction(obj) {\n" +
-                                //bike id
-                                "var a = document.getElementsByName('bikeids');\n" +
-                                "a[0].value = obj.id;"+
-                                //cost
-                                "var b = document.getElementsByName('cost');\n" +
-                                "var num = obj.children[1].id * "+ duration+" ; "+
-                                "b[0].value =  (obj.children[1].id * "+ duration+" * 12) - (0.20 * num) ; "+
-
-                                "document.getElementById('submit').style.display = 'block';"+
-                                "}\n" +
-                                "</script>"
-                );
-
-                out.println("</body>");
 
 
 
@@ -241,7 +344,7 @@ public class BookABike extends HttpServlet {
                 String sql;
                 String sql2;
                 sql = "SELECT BIKE_ID, LOCATION, price, STATUS FROM bike";
-                sql2 = "SELECT Hire_Id, Bike_Id, Start_Time, End_Time FROM Short_Hires";
+                sql2 = "SELECT Hire_Id, Bike_Id, Start_Time, End_Time, Date FROM Short_Hires";
 
 
                 ArrayList<Integer> bikes = new ArrayList<Integer>();
@@ -252,6 +355,7 @@ public class BookABike extends HttpServlet {
                 ArrayList<Integer> bikes2 = new ArrayList<Integer>();
                 ArrayList<Integer>  startt = new ArrayList<Integer>();
                 ArrayList<Integer>  endt = new ArrayList<Integer>();
+                ArrayList<Date>  day = new ArrayList<Date>();
 
                 ResultSet rs2 = stmt.executeQuery(sql2);
                 while(rs2.next()){
@@ -260,10 +364,12 @@ public class BookABike extends HttpServlet {
                     int b  = rs2.getInt("Bike_Id");
                     int s = rs2.getInt("Start_Time");
                     int e = rs2.getInt("End_Time");
+                    Date d = rs2.getDate("Date");
                     hires.add(h);
                     bikes2.add(b);
                     startt.add(s);
                     endt.add(e);
+                    day.add(d);
                 }
                 rs2.close();
 
@@ -286,30 +392,31 @@ public class BookABike extends HttpServlet {
                             int reqtimedur = endtime;
                             int stt = startt.get(i);
                             int edt = endt.get(i);
-                            if ( reqtime == stt)
+                            if ( reqtime == stt && ddate == day.get(i))
                             {
                                 bookable = false;
                             }
-                            else if (reqtime < edt && reqtime > stt)
+                            else if (reqtime < edt && reqtime > stt && ddate == day.get(i))
                             {
                                 bookable = false;
                             }
-                            else if (reqtimedur < edt && reqtimedur > stt)
+                            else if (reqtimedur < edt && reqtimedur > stt && ddate == day.get(i))
                             {
                                 bookable = false;
                             }
-                            else if (reqtime < stt && reqtimedur > edt)
+                            else if (reqtime < stt && reqtimedur > edt && ddate == day.get(i))
                             {
                                 bookable = false;
                             }
-                            else if (reqtime > stt && reqtimedur < edt)
+                            else if (reqtime > stt && reqtimedur < edt && ddate == day.get(i))
                             {
                                 bookable = false;
                             }
-                            if ( reqtime == edt)
+                            if ( reqtime == edt && ddate == day.get(i))
                             {
                                 bookable =true;
                             }
+
                         }
                     }
                     if (bookable == true && l.equals(location))
@@ -374,6 +481,7 @@ public class BookABike extends HttpServlet {
                                 "<input type='text' style = 'display: none;' name='cost'>"+
                                 "<input type='text' style = 'display: none;' name='startt' value = "+ starttime + ">"+
                                 "<input type='text' style = 'display: none;' name='endt' value = "+ endtime + ">"+
+                                "<input type='text' style = 'display: none;' name='theday' value = "+ date + ">"+
                                 "<input id = 'submit' style = 'display: none;' type=submit value= 'Book' >\n" +
                                 "</form>\n" +
                                 "<script>\n" +
@@ -493,11 +601,23 @@ public class BookABike extends HttpServlet {
                             "\n" +
                             "<p name = 'Location' >Select a Location</p>\n" +
                             "<select name = 'Location' required onclick='myFunction()' >\n" +
-                            "<option selected value= 'Please select'>Please select</option>\n" +
-                            "<option value='Alnmouth'>Alnmouth</option>\n" +
-                            "<option value='Beverly'>Beverly</option>\n" +
-                            "<option value='Crystal'>Crystal</option>\n" +
-                            "<option value='Hexam'>Hexam</option>\n" +
+                            "<option selected value= 'Please select'>Please select</option>" +
+                            "<option value=Alnmouth>Alnmouth</option>" +
+                            "<option value=Barnsley>Barnsley</option>"+
+                            "<option value=Beverly>Beverly</option>"+
+                            "<option value=Bournemouth>Bournemouth</option>"+
+                            "<option value=Bradford>Bradford</option>"+
+                            "<option value=Bristol>Bristol</option>"+
+                            "<option value=Buckingham>Buckingham</option>"+
+                            "<option value=Crystal>Crystal</option>"+
+                            "<option value=Halifax>Halifax</option>"+
+                            "<option value=Harrogate>Harrogate</option>"+
+                            "<option value=Hebden>Hebden</option>"+
+                            "<option value=Hexham>Hexham</option>"+
+                            "<option value=Leeds>Leeds</option>"+
+                            "<option value=Manchester>Manchester</option>"+
+                            "<option value=Rotherham>Rotherham</option>"+
+                            "<option value=Shipley>Shipley</option>"+
                             "</select>\n" +
                             "\n" +
                             "<p style='display:none;' name = 'term' >Would you like the bike for short term or long term?</p>\n" +

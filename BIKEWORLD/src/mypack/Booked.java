@@ -89,8 +89,8 @@ public class Booked extends HttpServlet {
                 reqdatedur.setTime(ddate);
                 int reqdur = Integer.parseInt(days);
                 reqdatedur.add(Calendar.DAY_OF_MONTH, reqdur);
-                String startdate = reqdate.get(Calendar.YEAR) + "-" + reqdate.get(Calendar.MONTH) + "-" + reqdate.get(Calendar.DATE);
-                String enddate = reqdatedur.get(Calendar.YEAR) + "-" + reqdatedur.get(Calendar.MONTH) + "-" + reqdatedur.get(Calendar.DATE);
+                String startdate = reqdate.get(Calendar.YEAR) + "-" + (reqdate.get(Calendar.MONTH) + 1) + "-" + reqdate.get(Calendar.DATE);
+                String enddate = reqdatedur.get(Calendar.YEAR) + "-" + (reqdatedur.get(Calendar.MONTH) + 1) + "-" + reqdatedur.get(Calendar.DATE);
                 PreparedStatement ps = conn2.prepareStatement(sql);
                 ps.setString(1, "2");
                 ps.setString(2, bId);
@@ -117,7 +117,7 @@ public class Booked extends HttpServlet {
             jdbc test = new jdbc();
             try {
                 String bike_id = request.getParameter("bikeids");
-                String sql = "insert into Short_Hires(Customer_Id,Bike_Id,Hours,Cash,Barcode,Start_Time,End_Time) values(?,?,?,?,?,?,?)";
+                String sql = "insert into Short_Hires(Customer_Id,Bike_Id,Hours,Cash,Barcode,Start_Time,End_Time, Date) values(?,?,?,?,?,?,?,?)";
                 String sql2 = "SELECT barcode FROM hires";
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
@@ -162,6 +162,7 @@ public class Booked extends HttpServlet {
                 //Time
                 String st = request.getParameter("startt");
                 String et = request.getParameter("endt");
+                String theday = request.getParameter("theday");
                 PreparedStatement ps = conn2.prepareStatement(sql);
                 ps.setString(1, "2");
                 ps.setString(2, bId);
@@ -170,6 +171,7 @@ public class Booked extends HttpServlet {
                 ps.setString(5, "111");
                 ps.setString(6, st);
                 ps.setString(7, et);
+                ps.setString(8, theday);
                 ps.executeUpdate();
                 out.println("Success Booking");
                 response.sendRedirect("index.jsp");
