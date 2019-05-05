@@ -385,6 +385,9 @@ public class BookABike extends HttpServlet {
                     "</nav>"
 
             );
+            out.println("<div class='content'>"+
+                        "<h1>Book A Bike</h1>");
+
             out.println(
 
                     "<form id = 'form1' action= 'book' method = 'post' >\n" +
@@ -511,6 +514,7 @@ public class BookABike extends HttpServlet {
                             "<br><br>\n" +
                             "<input id = 'submit' style='display:none;' type=submit value= submit >\n" +
                             "</form>\n" +
+                            "</div>"+
                             "<script>\n" +
                             "function openFunction() {\n" +
                             "document.getElementById('form1').reset();\n" +
