@@ -258,13 +258,36 @@ public class BookABike extends HttpServlet {
 
                     for (int i = 0; i < listsize; i++)
                     {
+
+                        if (status.get(i) == 0)
+                        {
+                            out.println(
+                                    "<div style = 'background-color: #d9d9d9' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                            "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                            "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                            "    <p>id: "+ bikes.get(i)+"</p>\n"+
+                                            "    <p style = 'Color: blue;' class = "+ status.get(i)+ ">stat: Hired </p>\n");
+                        }
+                        else if (status.get(i) == 1)
+                        {
+                            out.println(
+                                    "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                            "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                            "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                            "    <p>id: "+ bikes.get(i)+"</p>\n" +
+                                            "    <p class = "+ status.get(i)+ ">stat: Available </p>\n");
+                        }
+                        else
+                        {
+                            out.println(
+                                    "<div style = 'background-color: #d9d9d9' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                            "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                            "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                            "    <p>id: "+ bikes.get(i)+"</p>\n"+
+                                            "    <p style = 'Color: red;' class = "+ status.get(i)+ ">stat: Damaged </p>\n");
+                        }
                         out.println(
-                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                        "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                        "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
-                                        "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                        "    <p>stat: "+ status.get(i)+"</p>\n" +
-                                        "\n" +
+                                "\n" +
                                         "</div>"
                         );
                     }
@@ -343,8 +366,10 @@ public class BookABike extends HttpServlet {
                 Statement stmt = conn.createStatement();
                 String sql;
                 String sql2;
+                String sql3;
                 sql = "SELECT BIKE_ID, LOCATION, price, STATUS FROM bike";
                 sql2 = "SELECT Hire_Id, Bike_Id, Start_Time, End_Time, Date FROM Short_Hires";
+                sql3 = "SELECT hire_id, BIKE_ID, START_DATE, END_DATE FROM hires";
 
 
                 ArrayList<Integer> bikes = new ArrayList<Integer>();
@@ -355,7 +380,8 @@ public class BookABike extends HttpServlet {
                 ArrayList<Integer> bikes2 = new ArrayList<Integer>();
                 ArrayList<Integer>  startt = new ArrayList<Integer>();
                 ArrayList<Integer>  endt = new ArrayList<Integer>();
-                ArrayList<Date>  day = new ArrayList<Date>();
+                ArrayList<Date>  startd = new ArrayList<Date>();
+                ArrayList<Date>  endd = new ArrayList<Date>();
 
                 ResultSet rs2 = stmt.executeQuery(sql2);
                 while(rs2.next()){
@@ -369,9 +395,26 @@ public class BookABike extends HttpServlet {
                     bikes2.add(b);
                     startt.add(s);
                     endt.add(e);
-                    day.add(d);
+                    startd.add(d);
+                    endd.add(d);
                 }
                 rs2.close();
+
+                int timelength = bikes2.size();
+
+                ResultSet rs3 = stmt.executeQuery(sql3);
+                while(rs3.next()){
+                    //Retrieve by column name
+                    int h  = rs3.getInt("hire_id");
+                    int b  = rs3.getInt("BIKE_ID");
+                    Date s = rs3.getDate("START_DATE");
+                    Date e = rs3.getDate("END_DATE");
+                    hires.add(h);
+                    bikes2.add(b);
+                    startd.add(s);
+                    endd.add(e);
+                }
+                rs3.close();
 
                 int booking_size =  bikes2.size();
                 ResultSet rs = stmt.executeQuery(sql);
@@ -386,36 +429,66 @@ public class BookABike extends HttpServlet {
                     int stat = rs.getInt("STATUS");
                     for (int i = 0; i < booking_size; i++ )
                     {
+                        Calendar std = Calendar.getInstance();
+                        std.setTime(startd.get(i));
+                        Calendar edd = Calendar.getInstance();
+                        edd.setTime(endd.get(i));
+                        Calendar reqdate = Calendar.getInstance();
+                        reqdate.setTime(ddate);
                         if (id == bikes2.get(i))
                         {
-                            int reqtime = starttime;
-                            int reqtimedur = endtime;
-                            int stt = startt.get(i);
-                            int edt = endt.get(i);
-                            if ( reqtime == stt && ddate == day.get(i))
+                            if (i < timelength)
                             {
-                                bookable = false;
+                                int reqtime = starttime;
+                                int reqtimedur = endtime;
+                                int stt = startt.get(i);
+                                int edt = endt.get(i);
+                                if (ddate == startd.get(i))
+                                {
+                                    if ( reqtime == stt)
+                                    {
+                                        bookable = false;
+                                    }
+                                    else if (reqtime < edt && reqtime > stt)
+                                    {
+                                        bookable = false;
+                                    }
+                                    else if (reqtimedur < edt && reqtimedur > stt)
+                                    {
+                                        bookable = false;
+                                    }
+                                    else if (reqtime < stt && reqtimedur > edt )
+                                    {
+                                        bookable = false;
+                                    }
+                                    else if (reqtime > stt && reqtimedur < edt)
+                                    {
+                                        bookable = false;
+                                    }
+                                    if ( reqtime == edt )
+                                    {
+                                        bookable =true;
+                                    }
+                                }
                             }
-                            else if (reqtime < edt && reqtime > stt && ddate == day.get(i))
-                            {
-                                bookable = false;
+                            else {
+                                out.println(reqdate.getTime() + " --> " + std.getTime() + "<br><br>");
+
+                                if (reqdate.before(edd) && reqdate.after(std))
+                                {
+                                    bookable = false;
+                                }
+                                if ((reqdate.get(Calendar.MONTH ) == std.get(Calendar.MONTH)) && (reqdate.get(Calendar.YEAR ) == std.get(Calendar.YEAR)) && (reqdate.get(Calendar.DAY_OF_MONTH ) == std.get(Calendar.DAY_OF_MONTH)))
+                                {
+
+                                    bookable = false;
+                                }
+                                if ((reqdate.get(Calendar.MONTH ) == edd.get(Calendar.MONTH)) && (reqdate.get(Calendar.YEAR ) == edd.get(Calendar.YEAR)) && (reqdate.get(Calendar.DAY_OF_MONTH ) == edd.get(Calendar.DAY_OF_MONTH)))
+                                {
+                                    bookable = true;
+                                }
                             }
-                            else if (reqtimedur < edt && reqtimedur > stt && ddate == day.get(i))
-                            {
-                                bookable = false;
-                            }
-                            else if (reqtime < stt && reqtimedur > edt && ddate == day.get(i))
-                            {
-                                bookable = false;
-                            }
-                            else if (reqtime > stt && reqtimedur < edt && ddate == day.get(i))
-                            {
-                                bookable = false;
-                            }
-                            if ( reqtime == edt && ddate == day.get(i))
-                            {
-                                bookable =true;
-                            }
+
 
                         }
                     }
@@ -458,13 +531,35 @@ public class BookABike extends HttpServlet {
 
                 for (int i = 0; i < listsize; i++)
                 {
+                    if (status.get(i) == 0)
+                    {
+                        out.println(
+                                "<div style = 'background-color: #d9d9d9' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                        "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                        "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                        "    <p>id: "+ bikes.get(i)+"</p>\n"+
+                                        "    <p style = 'Color: blue;' class = "+ status.get(i)+ ">stat: Hired/Late </p>\n");
+                    }
+                    else if (status.get(i) == 1)
+                    {
+                        out.println(
+                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                        "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                        "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                        "    <p>id: "+ bikes.get(i)+"</p>\n" +
+                                        "    <p class = "+ status.get(i)+ ">stat: Available </p>\n");
+                    }
+                    else
+                    {
+                        out.println(
+                                "<div style = 'background-color: #d9d9d9' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                        "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                        "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                        "    <p>id: "+ bikes.get(i)+"</p>\n"+
+                                        "    <p style = 'Color: red;' class = "+ status.get(i)+ ">stat: Damaged </p>\n");
+                    }
                     out.println(
-                            "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                    "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                    "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
-                                    "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                    "    <p>stat: "+ status.get(i)+"</p>\n" +
-                                    "\n" +
+                            "\n" +
                                     "</div>"
                     );
                 }
