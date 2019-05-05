@@ -142,11 +142,11 @@ public class BookABike extends HttpServlet {
                             {
                                 bookable = false;
                             }
-                            if ( reqdate == edd)
+                            if ( (reqdate.get(Calendar.MONTH ) == edd.get(Calendar.MONTH)) && (reqdate.get(Calendar.YEAR ) == edd.get(Calendar.YEAR)) && (reqdate.get(Calendar.DAY_OF_MONTH ) == edd.get(Calendar.DAY_OF_MONTH)))
                             {
                                 bookable =true;
                             }
-                            if(std == edd && reqdate == edd)
+                            if(std == edd && (reqdate.get(Calendar.MONTH ) == edd.get(Calendar.MONTH)) && (reqdate.get(Calendar.YEAR ) == edd.get(Calendar.YEAR)) && (reqdate.get(Calendar.DAY_OF_MONTH ) == edd.get(Calendar.DAY_OF_MONTH)))
                             {
                                 bookable = false;
                             }
