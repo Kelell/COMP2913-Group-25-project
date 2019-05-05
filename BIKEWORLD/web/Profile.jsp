@@ -48,7 +48,7 @@
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><strong>User: ${uname}</strong></li>
-                    <li><a href="Profile.jsp">Profile</a></li>
+                    <li class=active><a href="Profile.jsp">Profile</a></li>
                     <li><a href="Views">View bikes</a></li>
                     <li><a href="book">Book a bike</a></li>
                 </ul>

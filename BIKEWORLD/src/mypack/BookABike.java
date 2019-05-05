@@ -321,8 +321,9 @@ public class BookABike extends HttpServlet {
 
             int listsize = bikes.size();
             String size = Integer.toString(listsize);
-            HttpSession session = request.getSession(false);
 
+
+            HttpSession session = request.getSession(false);//checks for session
             if(session.getAttribute("uname")==null){
                 response.sendRedirect("LogIn.jsp");
             }
@@ -345,7 +346,7 @@ public class BookABike extends HttpServlet {
                         "</div>"+
                             "<ul class='nav navbar-nav'>"+
                                 "<li><a href=index.jsp>Home</a></li>"+
-                                "<li class=active><a href=AboutUs.jsp>About Us</a></li>"+
+                                "<li><a href=AboutUs.jsp>About Us</a></li>"+
                                 "<li><a href=ContactUs.jsp>Contact Us</a></li>"+
                             "</ul>"+
                             "<ul class='nav navbar-nav navbar-right'>");
@@ -371,7 +372,7 @@ public class BookABike extends HttpServlet {
                                     "<li><strong>User: ${uname}</strong></li>"+
                                     "<li><a href=Profile.jsp>Profile</a></li>"+
                                     "<li><a href=Views>View bikes</a></li>"+
-                                    "<li><a href=book>Book a bike</a></li>"+
+                                    "<li class=active><a href=book>Book a bike</a></li>"+
                                 "</ul>"+
                             "</li>"+
                             "<li><a href=Log><span class='glyphicon glyphicon-log-in'></span> LOGOUT</a></li>");
