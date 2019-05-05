@@ -17,7 +17,7 @@ public class LogIn extends HttpServlet {
         PrintWriter out = response.getWriter();
         jdbc test = new jdbc();
         try {
-            String name = request.getParameter("user");
+            String username = request.getParameter("username");
             String password = request.getParameter("password");
             String Uname = null;
             String Upass = null;
@@ -25,7 +25,7 @@ public class LogIn extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, name);
+            ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
@@ -33,9 +33,9 @@ public class LogIn extends HttpServlet {
                 Upass = rs.getString("password");
 
             }
-            if(name.equals(Uname)&&password.equals(Upass)){
+            if(username.equals(Uname)&&password.equals(Upass)){
                 HttpSession session = request.getSession();
-                session.setAttribute("uname",name);
+                session.setAttribute("uname",username);
 
                 //out.println("Successful LogIn");
                 response.sendRedirect("AboutUs.jsp");

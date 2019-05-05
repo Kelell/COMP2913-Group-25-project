@@ -37,7 +37,7 @@
 <div class="content">
     <h1>Sign Up</h1>
     <form action="Register" method="post">
-        User name : <input type="text" name="user" required="required">
+        User name : <input type="text" name="username" required="required">
         Password : <input type="password" name="password" required="required">
         Confirm Password : <input type="password2" name="password2" required="required"  >
         <input type="submit" value="Register">
