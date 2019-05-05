@@ -30,83 +30,157 @@ public class Booked extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String term = request.getParameter("term");
 
-        PrintWriter out = response.getWriter();
-        jdbc test = new jdbc();
-        try {
-            String bike_id = request.getParameter("bikeids");
-            String sql = "insert into hires(CUSTOMER_ID,BIKE_ID,days,cash,barcode,START_DATE,END_DATE) values(?,?,?,?,?,?,?)";
-            String sql2 = "SELECT barcode FROM hires";
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
-            //create barcode
-            ArrayList<Integer> barcode = new ArrayList<Integer>();
-            Statement stmt = conn.createStatement();
-            ResultSet rs2 = stmt.executeQuery(sql2);
-            long bar = generateId();
-            while(rs2.next()){
-                //Retrieve by column name
-                int h  = rs2.getInt("barcode");
-                barcode.add(h);
-            }
-            rs2.close();
-            int h = 0;
-            int x = 1;
-            while(x == 1)
-            {
-                bar = generateId();
-                for (h = 0; h < barcode.size(); h++)
+        if (Integer.parseInt(term) == 2)
+        {
+            PrintWriter out = response.getWriter();
+            jdbc test = new jdbc();
+            try {
+                String bike_id = request.getParameter("bikeids");
+                String sql = "insert into hires(CUSTOMER_ID,BIKE_ID,days,cash,barcode,START_DATE,END_DATE) values(?,?,?,?,?,?,?)";
+                String sql2 = "SELECT barcode FROM hires";
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
+                //create barcode
+                ArrayList<Integer> barcode = new ArrayList<Integer>();
+                Statement stmt = conn.createStatement();
+                ResultSet rs2 = stmt.executeQuery(sql2);
+                long bar = generateId();
+                while(rs2.next()){
+                    //Retrieve by column name
+                    int h  = rs2.getInt("barcode");
+                    barcode.add(h);
+                }
+                rs2.close();
+                int h = 0;
+                int x = 1;
+                while(x == 1)
                 {
-                    if(bar == barcode.get(h))
+                    bar = generateId();
+                    for (h = 0; h < barcode.size(); h++)
                     {
-                        break;
-                    }
-                    else if(h == barcode.size() - 1 && bar != barcode.get(h))
-                    {
-                        x = 0;
+                        if(bar == barcode.get(h))
+                        {
+                            break;
+                        }
+                        else if(h == barcode.size() - 1 && bar != barcode.get(h))
+                        {
+                            x = 0;
+                        }
                     }
                 }
+                stmt.close();
+                conn.close();
+
+
+                Connection conn2 = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
+                String bId = request.getParameter("bikeids");
+                String location = request.getParameter("location");
+                String days = request.getParameter("days");
+                String cost = request.getParameter("cost");
+                String code = Long.toString(bar);
+                //Date
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date ddate = format.parse(request.getParameter("startd"));
+                Calendar reqdate = Calendar.getInstance();
+                reqdate.setTime(ddate);
+                Calendar reqdatedur = Calendar.getInstance();
+                reqdatedur.setTime(ddate);
+                int reqdur = Integer.parseInt(days);
+                reqdatedur.add(Calendar.DAY_OF_MONTH, reqdur);
+                String startdate = reqdate.get(Calendar.YEAR) + "-" + reqdate.get(Calendar.MONTH) + "-" + reqdate.get(Calendar.DATE);
+                String enddate = reqdatedur.get(Calendar.YEAR) + "-" + reqdatedur.get(Calendar.MONTH) + "-" + reqdatedur.get(Calendar.DATE);
+                PreparedStatement ps = conn2.prepareStatement(sql);
+                ps.setString(1, "2");
+                ps.setString(2, bId);
+                ps.setString(3, days);
+                ps.setString(4, cost);
+                ps.setString(5, "111");
+                ps.setString(6, startdate);
+                ps.setString(7, enddate);
+                ps.executeUpdate();
+                out.println("Success Booking");
+                response.sendRedirect("index.jsp");
             }
-            stmt.close();
-            conn.close();
+            catch (ClassNotFoundException e){
+                e.printStackTrace();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }catch (ParseException e){
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            PrintWriter out = response.getWriter();
+            jdbc test = new jdbc();
+            try {
+                String bike_id = request.getParameter("bikeids");
+                String sql = "insert into Short_Hires(Customer_Id,Bike_Id,Hours,Cash,Barcode,Start_Time,End_Time) values(?,?,?,?,?,?,?)";
+                String sql2 = "SELECT barcode FROM hires";
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
+                //create barcode
+                ArrayList<Integer> barcode = new ArrayList<Integer>();
+                Statement stmt = conn.createStatement();
+                ResultSet rs2 = stmt.executeQuery(sql2);
+                long bar = generateId();
+                while(rs2.next()){
+                    //Retrieve by column name
+                    int h  = rs2.getInt("barcode");
+                    barcode.add(h);
+                }
+                rs2.close();
+                int h = 0;
+                int x = 1;
+                while(x == 1)
+                {
+                    bar = generateId();
+                    for (h = 0; h < barcode.size(); h++)
+                    {
+                        if(bar == barcode.get(h))
+                        {
+                            break;
+                        }
+                        else if(h == barcode.size() - 1 && bar != barcode.get(h))
+                        {
+                            x = 0;
+                        }
+                    }
+                }
+                stmt.close();
+                conn.close();
 
 
-            Connection conn2 = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
-            String bId = request.getParameter("bikeids");
-            String location = request.getParameter("location");
-            String days = request.getParameter("days");
-            String cost = request.getParameter("cost");
-            String code = Long.toString(bar);
-            //Date
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date ddate = format.parse(request.getParameter("startd"));
-            Calendar reqdate = Calendar.getInstance();
-            reqdate.setTime(ddate);
-            Calendar reqdatedur = Calendar.getInstance();
-            reqdatedur.setTime(ddate);
-            int reqdur = Integer.parseInt(days);
-            reqdatedur.add(Calendar.DAY_OF_MONTH, reqdur);
-            String startdate = reqdate.get(Calendar.YEAR) + "-" + reqdate.get(Calendar.MONTH) + "-" + reqdate.get(Calendar.DATE);
-            String enddate = reqdatedur.get(Calendar.YEAR) + "-" + reqdatedur.get(Calendar.MONTH) + "-" + reqdatedur.get(Calendar.DATE);
-            PreparedStatement ps = conn2.prepareStatement(sql);
-            ps.setString(1, "2");
-            ps.setString(2, bId);
-            ps.setString(3, days);
-            ps.setString(4, cost);
-            ps.setString(5, "111");
-            ps.setString(6, startdate);
-            ps.setString(7, enddate);
-            ps.executeUpdate();
-            out.println("Success Booking");
-            response.sendRedirect("index.jsp");
+                Connection conn2 = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
+                String bId = request.getParameter("bikeids");
+                String location = request.getParameter("location");
+                String days = request.getParameter("hours");
+                String cost = request.getParameter("cost");
+                String code = Long.toString(bar);
+                //Time
+                String st = request.getParameter("startt");
+                String et = request.getParameter("endt");
+                PreparedStatement ps = conn2.prepareStatement(sql);
+                ps.setString(1, "2");
+                ps.setString(2, bId);
+                ps.setString(3, days);
+                ps.setString(4, cost);
+                ps.setString(5, "111");
+                ps.setString(6, st);
+                ps.setString(7, et);
+                ps.executeUpdate();
+                out.println("Success Booking");
+                response.sendRedirect("index.jsp");
+            }
+            catch (ClassNotFoundException e){
+                e.printStackTrace();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
         }
-        catch (ClassNotFoundException e){
-            e.printStackTrace();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
+
 
     }
 

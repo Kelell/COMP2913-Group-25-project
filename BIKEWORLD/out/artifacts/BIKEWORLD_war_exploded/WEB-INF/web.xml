@@ -37,6 +37,17 @@
 
 
     <servlet>
+        <servlet-name>ShortBooked</servlet-name>
+        <servlet-class>mypack.ShortBooked</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ShortBooked</servlet-name>
+        <url-pattern>/completeshort</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>mypack.Registration</servlet-class>
     </servlet>

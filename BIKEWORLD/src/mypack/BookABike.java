@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.*;
 import java.util.Date;
 import java.text.*;
@@ -123,6 +124,7 @@ public class BookABike extends HttpServlet {
                         loca.add(l);
                         cost.add(price);
                         status.add(stat);
+
                     }
 
 
@@ -170,11 +172,12 @@ public class BookABike extends HttpServlet {
                 out.println(
 
                         "<form id = 'form1' action= 'complete' method = 'post' >\n" +
+                                "<input type='text' style = 'display: none;' name='term' value = "+term+">"+
                                 "<br><br>\n" +
-                                "<input type='text'  name='bikeids'>"+
+                                "<input type='text' style = 'display: none;' name='bikeids'>"+
                                 "<input type='text' style = 'display: none;' name='location' value = " + loca.get(0) + ">"+
                                 "<input type='text' style = 'display: none;' name='days' value = "+ duration +">"+
-                                "<input type='text'  name='cost'>"+
+                                "<input type='text' style = 'display: none;' name='cost'>"+
                                 "<input type='text' style = 'display: none;' name='startd' value = "+ date + ">"+
                                 "<input id = 'submit' style = 'display: none;' type=submit value= 'Book' >\n" +
                                 "</form>\n" +
@@ -192,7 +195,7 @@ public class BookABike extends HttpServlet {
                                 //cost
                                 "var b = document.getElementsByName('cost');\n" +
                                 "var num = obj.children[1].id * "+ duration+" ; "+
-                                "b[0].value =  (obj.children[1].id * "+ duration+") - (0.10 * num) ; "+
+                                "b[0].value =  (obj.children[1].id * "+ duration+" * 12) - (0.20 * num) ; "+
 
                                 "document.getElementById('submit').style.display = 'block';"+
                                 "}\n" +
@@ -221,7 +224,192 @@ public class BookABike extends HttpServlet {
         ////Short termmmm
         else
         {
+            String date = request.getParameter("date");
+            String duration = request.getParameter("Dur");
+            String location = request.getParameter("Location");
+            String timelabel = request.getParameter("time0");
+            String time = request.getParameter(timelabel);
+            int starttime = Integer.parseInt(time.substring(0,2));
+            int endtime = Integer.parseInt(time.substring(3,5));
 
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date ddate = format.parse(date);
+                Class.forName(driver);
+                Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
+                Statement stmt = conn.createStatement();
+                String sql;
+                String sql2;
+                sql = "SELECT BIKE_ID, LOCATION, price, STATUS FROM bike";
+                sql2 = "SELECT Hire_Id, Bike_Id, Start_Time, End_Time FROM Short_Hires";
+
+
+                ArrayList<Integer> bikes = new ArrayList<Integer>();
+                ArrayList<String> loca = new ArrayList<String>();
+                ArrayList<Float> cost = new ArrayList<Float>();
+                ArrayList<Integer> status = new ArrayList<Integer>();
+                ArrayList<Integer> hires = new ArrayList<Integer>();
+                ArrayList<Integer> bikes2 = new ArrayList<Integer>();
+                ArrayList<Integer>  startt = new ArrayList<Integer>();
+                ArrayList<Integer>  endt = new ArrayList<Integer>();
+
+                ResultSet rs2 = stmt.executeQuery(sql2);
+                while(rs2.next()){
+                    //Retrieve by column name
+                    int h  = rs2.getInt("Hire_Id");
+                    int b  = rs2.getInt("Bike_Id");
+                    int s = rs2.getInt("Start_Time");
+                    int e = rs2.getInt("End_Time");
+                    hires.add(h);
+                    bikes2.add(b);
+                    startt.add(s);
+                    endt.add(e);
+                }
+                rs2.close();
+
+                int booking_size =  bikes2.size();
+                ResultSet rs = stmt.executeQuery(sql);
+                boolean bookable = true;
+                List<Integer> count = new ArrayList<Integer>();
+                while(rs.next()){
+                    bookable = true;
+                    //Retrieve by column name
+                    int id  = rs.getInt("BIKE_ID");
+                    String l = rs.getString("LOCATION");
+                    float price = rs.getFloat("price");
+                    int stat = rs.getInt("STATUS");
+                    for (int i = 0; i < booking_size; i++ )
+                    {
+                        if (id == bikes2.get(i))
+                        {
+                            int reqtime = starttime;
+                            int reqtimedur = endtime;
+                            int stt = startt.get(i);
+                            int edt = endt.get(i);
+                            if ( reqtime == stt)
+                            {
+                                bookable = false;
+                            }
+                            else if (reqtime < edt && reqtime > stt)
+                            {
+                                bookable = false;
+                            }
+                            else if (reqtimedur < edt && reqtimedur > stt)
+                            {
+                                bookable = false;
+                            }
+                            else if (reqtime < stt && reqtimedur > edt)
+                            {
+                                bookable = false;
+                            }
+                            else if (reqtime > stt && reqtimedur < edt)
+                            {
+                                bookable = false;
+                            }
+                            if ( reqtime == edt)
+                            {
+                                bookable =true;
+                            }
+                        }
+                    }
+                    if (bookable == true && l.equals(location))
+                    {
+                        bikes.add(id);
+                        loca.add(l);
+                        cost.add(price);
+                        status.add(stat);
+
+                    }
+
+
+
+                }
+                rs.close();
+                stmt.close();
+                conn.close();
+
+                int listsize = bikes.size();
+                String size = Integer.toString(listsize);
+
+                out.println("<head onload=\"openFunction()\" >" +
+                        "<title id = prick >$Title$</title>" +
+                        "<link rel=stylesheet href=style.css type=text/css>" +
+                        "</head>"
+                );
+                out.println("<body  id = 'bod' onload=\"openFunction()\">");
+                out.println("<div class = \"Title\"> B!KEWORLD </div>");
+                out.println(
+                        "<div class=nav>"+
+                                "<a  href=index.jsp>Home</a>"+
+                                "<a class=active href=book>Book A Bike</a>" +
+                                "<a href=\"Views\">View bikes</a>" +
+                                "<a href=AboutUs.jsp>About Us</a>"+
+                                "<a href=ContactUs.jsp>Contact Us</a>"+
+                                "<a>Log out</a>" +
+                                "</div>"
+                );
+
+                for (int i = 0; i < listsize; i++)
+                {
+                    out.println(
+                            "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                    "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                    "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
+                                    "    <p>id: "+ bikes.get(i)+"</p>\n" +
+                                    "    <p>stat: "+ status.get(i)+"</p>\n" +
+                                    "\n" +
+                                    "</div>"
+                    );
+                }
+
+
+                out.println(
+
+                        "<form id = 'form1' action= 'complete' method = 'post' >\n" +
+                                "<input type='text'  style = 'display: none;' name='term' value = "+term+">"+
+                                "<br><br>\n" +
+                                "<input type='text' style = 'display: none;' name='bikeids'>"+
+                                "<input type='text' style = 'display: none;' name='location' value = " + loca.get(0) + ">"+
+                                "<input type='text' style = 'display: none;' name='hours' value = "+ duration +">"+
+                                "<input type='text' style = 'display: none;' name='cost'>"+
+                                "<input type='text' style = 'display: none;' name='startt' value = "+ starttime + ">"+
+                                "<input type='text' style = 'display: none;' name='endt' value = "+ endtime + ">"+
+                                "<input id = 'submit' style = 'display: none;' type=submit value= 'Book' >\n" +
+                                "</form>\n" +
+                                "<script>\n" +
+                                "function openFunction() {\n" +
+                                "document.getElementById('form2').reset();\n" +
+                                "document.getElementById('bod').reset();\n" +
+                                "location.reload();\n" +
+                                "}\n" +
+                                "\n" +
+                                "function myfunction(obj) {\n" +
+                                //bike id
+                                "var a = document.getElementsByName('bikeids');\n" +
+                                "a[0].value = obj.id;"+
+                                //cost
+                                "var b = document.getElementsByName('cost');\n" +
+                                "var num = obj.children[1].id * "+ duration+" ; "+
+                                "b[0].value =  (obj.children[1].id * "+ duration+");"+
+
+                                "document.getElementById('submit').style.display = 'block';"+
+                                "}\n" +
+                                "</script>"
+                );
+
+                out.println("</body>");
+
+
+
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                out.println("Testing error 1- Failed");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                out.println("Testing error 2- Failed");
+            }  catch (ParseException e){
+                e.printStackTrace();
+            }
         }
 
 
@@ -345,7 +533,7 @@ public class BookABike extends HttpServlet {
                             "\n" +
                             "\n" +
                             "\n" +
-                            "<p style='display:none;' name = Time1 >Select a Time to book</p>\n" +
+                            "<p style='display:none;' name = 'Time1' >Select a Time to book</p>\n" +
                             "<select onclick ='myFunction4(this)' style='display:none;' name = Time1 required >\n" +
                             "<option value= 0>Please select</option>\n" +
                             "<option value= '08-09' >8 am to 9 am</option>\n" +
@@ -362,7 +550,7 @@ public class BookABike extends HttpServlet {
                             "<option value= '19-20' >7 pm to 8 pm</option>\n" +
                             "</select>\n" +
                             "\n" +
-                            "<p style='display:none;' name = Time2 >Select a Time to book</p>\n" +
+                            "<p style='display:none;' name = 'Time2' >Select a Time to book</p>\n" +
                             "<select onclick ='myFunction4(this)' style='display:none;' name = Time2 required >\n" +
                             "<option value= 0>Please select</option>\n" +
                             "<option value= '08-10' >8 am to 10 am</option>\n" +
@@ -378,7 +566,7 @@ public class BookABike extends HttpServlet {
                             "<option value= '18-20' >6 pm to 8 pm</option>\n" +
                             "</select>\n" +
                             "\n" +
-                            "<p style='display:none;' name = Time3 >Select a Time to book</p>\n" +
+                            "<p style='display:none;' name = 'Time3' >Select a Time to book</p>\n" +
                             "<select onclick='myFunction4(this)' style='display:none;' name = Time3 required >\n" +
                             "<option value= 0>Please select</option>\n" +
                             "<option value= '08-11' >8 am to 11 am</option>\n" +
@@ -393,7 +581,7 @@ public class BookABike extends HttpServlet {
                             "<option value= '17-20' >5 pm to 8 pm</option>\n" +
                             "</select>\n" +
                             "\n" +
-                            "<p style='display:none;' name = Time4 >Select a Time to book</p>\n" +
+                            "<p style='display:none;' name = 'Time4' >Select a Time to book</p>\n" +
                             "<select onclick='myFunction4(this)' style='display:none;' name = Time4 required >\n" +
                             "<option value= 0>Please select</option>\n" +
                             "<option value= '08-12' >8 am to 12 pm</option>\n" +
@@ -413,7 +601,7 @@ public class BookABike extends HttpServlet {
                             "\n" +
                             "<p style='display:none;color:red;' id ='error3'> No more bookings today</p>\n" +
                             "\n" +
-                            "<select id = tyme style='display:none;' name = time0 required >\n" +
+                            "<select id = tyme style='display:none;' name = 'time0' required >\n" +
                             "<option value= Time1>Time1</option>\n" +
                             "<option value= Time2>Time2</option>\n" +
                             "<option value= Time3>Time3</option>\n" +
