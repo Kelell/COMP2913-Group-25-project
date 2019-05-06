@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: ll16m25s
-  Date: 24/02/19
-  Time: 22:09
+  Date: 05/05/19
+  Time: 16:39
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>About Us</title>
+    <title>Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
@@ -24,7 +24,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="index.jsp">Home</a></li>
-            <li class="active"><a href="AboutUs.jsp">About Us</a></li>
+            <li><a href="AboutUs.jsp">About Us</a></li>
             <li><a href="ContactUs.jsp">Contact Us</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><strong>User: ${uname}</strong></li>
-                    <li><a href="Profile.jsp">Profile</a></li>
+                    <li class=active><a href="Profile.jsp">Profile</a></li>
                     <li><a href="Views">View bikes</a></li>
                     <li><a href="book">Book a bike</a></li>
                 </ul>
@@ -65,14 +65,14 @@
 
 
 
-<%--<%//tests if user is logged in before accessing about us page (testing only)--%>
-<%--if(session.getAttribute("uname")==null){--%>
-<%--response.sendRedirect("LogIn.jsp");--%>
-<%--}--%>
-<%--%>--%>
+<%//tests if user is logged in before accessing about us page (testing only)
+    if(session.getAttribute("uname")==null){
+        response.sendRedirect("LogIn.jsp");
+    }
+%>
 <div class="content">
-    <h1>About Us</h1>
-    This is the about us page
+    <h1>Profile</h1>
+    Welcome: ${uname}
 
 </div>
 

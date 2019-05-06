@@ -68,7 +68,8 @@ public class AvailableBikes extends HttpServlet {
 
             out.println("<head onload=\"openFunction()\" >" +
                     "<title id = prick >$Title$</title>" +
-                    "<link rel=stylesheet href=style.css type=text/css>" +
+                    "<link rel=stylesheet href=style.css type=text/css>"+
+
                     "<style>" +
                     ".section {\n" +
                     "  list-style-type: none;\n" +
@@ -100,16 +101,16 @@ public class AvailableBikes extends HttpServlet {
 
             out.println("<body id = 'bod2' onload=\"openFunction()\"  >");
             out.println(
-                    "<div class = \"Title\">\n" +
-                            "    B!KEWORLD\n" +
-                            "  </div>"+
-                            "<div class=nav>"+
-                            "<a href=\"Dashboard.jsp\">Home</a>"+
-                            "<a class=active href=\"Views\">View bikes</a>" +
-                            "<a href=AboutUs.jsp>About Us</a>"+
-                            "<a href=ContactUs.jsp>Contact Us</a>"+
-                            "<a href=\"Logout.jsp\">Log out</a>"+
-                            "</div>"
+
+                    "<div class=nav>"+
+                    "<a  href=index.jsp>Home</a>"+
+                    "<a href=\"Views\">View bikes</a>" +
+                    "<a class=active href=book>Book A Bike</a>" +
+                    "<a href=AboutUs.jsp>About Us</a>"+
+                    "<a href=ContactUs.jsp>Contact Us</a>"+
+                    "<a>Log out</a>" +
+                    "</div>"
+
             );
 
 
