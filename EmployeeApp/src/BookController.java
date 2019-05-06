@@ -282,7 +282,7 @@ public class BookController {
         String name = names.getText();
 
         //Query to insert data
-        String SQL1 = "INSERT INTO `customer`( `CUSTOMER_NAME`, `CUSTOMER_ADDRESS`, `name`, `password`, `email`, `CUSTOMER_CARD_NO`) VALUES(?,?,NULL,NULL,NULL,0)";
+        String SQL1 = "INSERT INTO `customer`( `CUSTOMER_NAME`, `CUSTOMER_ADDRESS`, `name`, `password`, `email`) VALUES(?,?,NULL,NULL,NULL)";
 
         try {
 
@@ -397,7 +397,7 @@ public class BookController {
             preparedStatement1.executeUpdate();
             con.commit(); //Commit the Changes
 
-            con.prepareStatement("UPDATE bike SET `STATUS` = 2 WHERE bike_id = "+b_id).executeUpdate();
+            con.prepareStatement("UPDATE bike SET `STATUS` = 0 WHERE bike_id = "+b_id).executeUpdate();
             con.commit();
             
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
