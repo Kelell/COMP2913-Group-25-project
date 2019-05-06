@@ -61,3 +61,13 @@ h1{
 p{
     color: red;
 }
+
+a{
+    color: goldenrod ;
+}
+
+img{
+    max-width: 100%;
+    display:block;
+    height: auto;
+}

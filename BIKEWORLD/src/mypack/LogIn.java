@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.*;
 
 @WebServlet(name = "LogIn")
@@ -38,7 +39,9 @@ public class LogIn extends HttpServlet {
                 session.setAttribute("uname",username);
 
                 //out.println("Successful LogIn");
-                response.sendRedirect("Profile.jsp");
+                String message = "Welcome : " + username;
+                response.sendRedirect("Profile.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
+                //response.sendRedirect("Profile.jsp");
 
             }else{
                 //response.sendRedirect("login.jsp");

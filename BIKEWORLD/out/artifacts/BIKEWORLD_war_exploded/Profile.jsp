@@ -72,7 +72,26 @@
 %>
 <div class="content">
     <h1>Profile</h1>
-    Welcome: ${uname}
+    <h2>${param.message}</h2>
+    <%--<p>${param.message}</p>--%>
+    <div class="row">
+        <div class="col-sm-3" >
+            <div class="img" >
+                <img src = "https://www.sgm-inc.com/wp-content/uploads/2014/06/no-profile-male-img.gif" alt = "bike" width = "220px" height = "290px">
+            </div>
+
+            <ul class="nav flex-column">
+                <li><a href="Views">View bikes</a></li>
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="AboutUs.jsp">About Us</a></li>
+                <li><a href="ContactUs.jsp">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="col">
+        <h4>Username : ${uname}</h4>
+        </div>
+    </div>
+
 
 </div>
 
