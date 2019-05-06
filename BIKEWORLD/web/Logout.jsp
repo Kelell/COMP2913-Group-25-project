@@ -15,13 +15,11 @@
 <body>
 
 <%HttpSession oldSession = request.getSession(false);
-    if (oldSession.getAttribute("uName") != null) {
+    if (oldSession.getAttribute("uname") != null) {
         oldSession.invalidate();
         response.sendRedirect("index.jsp");
     }
-    else{
-    response.sendRedirect("index.jsp");
-    }%>
+%>
 
 </body>
 </html>
