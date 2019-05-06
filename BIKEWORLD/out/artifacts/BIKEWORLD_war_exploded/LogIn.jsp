@@ -19,11 +19,11 @@
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="Home.jsp">B!KEWORLD</a>
+            <a class="navbar-brand" href="index.jsp">B!KEWORLD</a>
         </div>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li class="active"><a href="index.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li class="active"><a href="LogIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
             <%
                 if(session.getAttribute("uname")!=null){//log out button for when in session
@@ -51,6 +51,13 @@
             <label for="password">Password :</label>
             <input name="password" type="password" class="form-control" id="password" required="required">
         </div>
+        <% if (session.getAttribute("error") == null){
+            out.println("<p style = 'Display: none;' id = 'usernameError' style = 'Colour : red;'> "+ session.getAttribute("error") + "</p>");
+                }
+            else{
+            out.println("<p id = 'usernameError' style = 'Colour : red;'> "+ session.getAttribute("error") + "</p>");
+        }%>
+
         <button type="submit" class="btn btn-default">Login</button>
     </form>
 

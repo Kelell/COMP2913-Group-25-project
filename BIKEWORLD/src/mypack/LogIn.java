@@ -28,6 +28,12 @@ public class LogIn extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         jdbc test = new jdbc();
+
+        HttpSession oldsession =  request.getSession(false);
+        if (oldsession == null) {
+            response.sendRedirect("index.jsp");
+        }
+
         try {
             String name = request.getParameter("username");
             String password = request.getParameter("password");
@@ -57,7 +63,10 @@ public class LogIn extends HttpServlet {
             if(name.equals(Uname)&&password.equals(Upass)){
 
 
-
+                if (oldsession != null)
+                {
+                    oldsession.invalidate();
+                }
 
 
                 HttpSession session = request.getSession();
@@ -74,8 +83,10 @@ public class LogIn extends HttpServlet {
 
             }else{
                 //response.sendRedirect("login.jsp");
+                HttpSession session = request.getSession();
                 String message = "Please enter the correct details";
-                response.sendRedirect("LogIn.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
+                session.setAttribute("error", "Invalid Username Or Password. Try again");
+                response.sendRedirect("LogIn.jsp");
 
             }
 
