@@ -7,77 +7,33 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Home</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  <!-- Drop down button script-->
+  <head>
+    <title>Index</title>
     <link rel="stylesheet" href="style.css" type="text/css">
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
 
-<nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.jsp">B!KEWORLD</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="index.jsp">Home</a></li>
-            <li><a href="AboutUs.jsp">About Us</a></li>
-            <li><a href="ContactUs.jsp">Contact Us</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
+  <div class = "Title">
+    B!KEWORLD
+  </div>
 
-            <%
-                if(session.getAttribute("uname")==null){//log out button for when in session
+  <div class="nav"><!--Nav bar from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_topnav (TEST ONLY)-->
+    <a class="active" href="index.jsp">Home</a>
+    <a href="registration.jsp">Sign up</a>
+  </div>
 
-            %>
-            <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            <%
-                }
+  <form action="LogIn" method="post">
 
-            %>
+    Username: <br><input type="text" name="username" required>
+    <br>
+    Password: <br><input type="password" name="password" required>
+    <br><br>
+    <input type="submit" value="Login">
 
-            <%
-                if(session.getAttribute("uname")!=null){//log out button for when in session
-
-            %>
-
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>Profile
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><strong>User: ${uname}</strong></li>
-                    <li><a href="Profile.jsp">Profile</a></li>
-                    <li><a href="Views">View bikes</a></li>
-                    <li><a href="book">Book a bike</a></li>
-                </ul>
-            </li>
-            <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
-            <%
-                }
-
-            %>
-        </ul>
-
-    </div>
-
-</nav>
-
-<div class="content">
-    <h1>Welcome To B!KEWORLD</h1>
-    To book a bike please first Log in or register. <br>
-    TESTING ACCOUNT :<br>
-    USERNAME : test<br>
-    PASSWORD : test<br>
-
-    The about page cannot be accessed unless user is logged in (for testing purposes)
-</div>
+  </form>
 
 
-</body>
+
+  </body>
 </html>

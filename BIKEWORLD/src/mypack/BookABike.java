@@ -14,7 +14,6 @@ import java.util.*;
 import java.util.Date;
 import java.text.*;
 import java.text.ParseException;
-import javax.servlet.http.HttpSession;
 
 
 @WebServlet(name = "BookABike")
