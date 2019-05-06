@@ -9,44 +9,7 @@ h1{
     border-bottom: 5px solid black;
     color: black;
 }
-/**
-.Title{
-    width : 100%;
-    text-align: left;
-    font-family: "Lucida Console";
-    font-size: 32px;
-    border-bottom: 5px solid goldenrod;
-}
 
-* {
-  box-sizing: border-box;
-}
-
-.nav a {
-    float: left;
-    color: goldenrod;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    border-radius: 5px;
-}
-
-.nav a:hover {
-    background-color: khaki;
-    color: black;
-}
-.nav a.active {
-    color: crimson;
-}
-
-.nav {
-    overflow: hidden;
-    background-color: white;
-    float: right;
-
-}
-**/
 .glyphicon {
     color: goldenrod;
 }
@@ -70,4 +33,40 @@ img{
     max-width: 100%;
     display:block;
     height: auto;
+}
+
+/*Social media styles from https://www.w3schools.com/howto/howto_css_social_media_buttons.asp*/
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 70px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+    opacity: 0.7;
+}
+
+/* Facebook */
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+
+.fa-snapchat-ghost {
+    background: #fffc00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }

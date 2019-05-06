@@ -64,6 +64,7 @@
         </div>
         <button type="submit" class="btn btn-default">Login</button>
     </form>
+    <p>${param.message}</p>
 
 </div>
 </body>

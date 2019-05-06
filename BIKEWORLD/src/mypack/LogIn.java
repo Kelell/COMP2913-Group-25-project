@@ -45,8 +45,10 @@ public class LogIn extends HttpServlet {
 
             }else{
                 //response.sendRedirect("login.jsp");
-                RequestDispatcher rd = request.getRequestDispatcher("LogIn.jsp");
-                rd.include(request, response);
+                String message = "Please enter the correct details";
+                response.sendRedirect("LogIn.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
+                //RequestDispatcher rd = request.getRequestDispatcher("LogIn.jsp");
+                //rd.include(request, response);
             }
 
         }
