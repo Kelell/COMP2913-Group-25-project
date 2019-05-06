@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.net.URLEncoder;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
@@ -57,12 +58,9 @@ public class LogIn extends HttpServlet {
 
 
 
-                HttpSession oldSession = request.getSession(false);
-                if (oldSession != null) {
-                    oldSession.invalidate();
-                }
 
-                HttpSession session = request.getSession(true);
+
+                HttpSession session = request.getSession();
                 session.setAttribute("uname", name);
                 session.setAttribute("uemail", email);
                 session.setAttribute("uId", custid);
@@ -70,16 +68,15 @@ public class LogIn extends HttpServlet {
                 session.setAttribute("uCusname", fullname);
                 //setting session to expiry in 5 mins
                 session.setMaxInactiveInterval(5*60);
+                String message = "Welcome : " + name;
+                response.sendRedirect("index.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
 
-                Cookie message = new Cookie("message", "Welcome");
-                response.addCookie(message);
 
-                response.sendRedirect("Dashboard.jsp");
             }else{
                 //response.sendRedirect("login.jsp");
-                out.print("Sorry, username or password error!");
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.forward(request, response);
+                String message = "Please enter the correct details";
+                response.sendRedirect("LogIn.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
+
             }
 
         }

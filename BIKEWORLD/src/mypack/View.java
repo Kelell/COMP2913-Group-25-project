@@ -76,12 +76,12 @@ public class View extends HttpServlet {
                 response.sendRedirect("index.jsp");
             }
             out.println(
-                    "<title id = prick >Bike Locations</title>" +
-                            "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css\"> <!-- Bootstrap style link  -->\n" +
-                            "    <link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n" +
-                            "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js\"></script> <!-- Drop down button script-->"+
-                    "<link rel=stylesheet href=style.css type=text/css>" +
-                    "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"+
+                    "<title id = prick >$Title$</title>" +
+                            "<meta name=viewport content=width=device-width, initial-scale=1>"+
+                            "<link rel=stylesheet href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>"+ //<!-- Bootstrap style link  -->
+                            "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
+                            "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>"+  //<!-- Drop down button script-->
+                            "<link rel=stylesheet href=style.css type=text/css>"+
                     "<style>\n" +
                     "\n" +
                     "/* The grid: Four equal columns that floats next to each other */\n" +
@@ -148,32 +148,63 @@ public class View extends HttpServlet {
             out.println("<body  >");
 
             out.println(
-                    "<nav class=\"navbar navbar-inverse\"><!-- Bootstrap nav bar -->\n" +
-                            "    <div class=\"container-fluid\">\n" +
-                            "        <div class=\"navbar-header\">\n" +
-                            "            <a class=\"navbar-brand\" href=\"Dashboard.jsp\">B!KEWORLD</a>\n" +
-                            "        </div>\n" +
-                            "        <ul class=\"nav navbar-nav\">\n" +
-                            "            <li ><a href=\"Dashboard.jsp\">Home</a></li>\n" +
-                            "            <li class=\"active\"><a href=\"Views\">View bikes</a></li>\n" +
-                            "            <li><a href=\"AboutUs.jsp\">About Us</a></li>\n" +
-                            "            <li><a href=\"ContactUs.jsp\">Contact Us</a></li>\n" +
-                            "        </ul>\n" +
-                            "        <ul class=\"nav navbar-nav navbar-right\">\n" +
-                            "\n" +
-                            "            <li class=\"dropdown\">\n" +
-                            "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>Profile: " + session.getAttribute("uname") + "\n" +
-                            "                    <span class=\"caret\"></span></a>\n" +
-                            "                <ul class=\"dropdown-menu\">\n" +
-                            "                    <li><strong> </strong></li>\n" +
-                            "                    <li><a href=\"Profile.jsp\">Later</a></li>\n" +
-                            "                </ul>\n" +
-                            "            </li>\n" +
-                            "            <li><a href=\"Logout.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> LOGOUT</a></li>\n" +
-                            "        </ul>\n" +
-                            "    </div>\n" +
+                    "<nav class='navbar navbar-inverse'>"+ //<!-- Bootstrap nav bar -->
+                            "<div class='container-fluid'>"+ "<div class='navbar-header'>"+
+
+                            "<button type= 'button' class= 'navbar-toggle' data-toggle='collapse' data-target='#Navigation'>"+ //<!--button enabelinig the colapse of navigation ber-->
+                            "<span class='icon-bar'></span>"+
+                            "<span class='icon-bar'></span>" +
+                            "<span class='icon-bar'></span>" +
+                            "</button>" +
+
+                            "<a class='navbar-brand' href=index.jsp>B!KEWORLD</a>"+
+                            "</div>"+
+
+                            "<div class = 'collapse navbar-collapse' id='Navigation'>"+
+
+                            "<ul class='nav navbar-nav'>"+
+                            "<li><a href=index.jsp>Home</a></li>"+
+                            "<li><a href=AboutUs.jsp>About Us</a></li>"+
+                            "<li><a href=ContactUs.jsp>Contact Us</a></li>"+
+                            "</ul>"+
+                            "<ul class='nav navbar-nav navbar-right'>");
+
+            if(session.getAttribute("uname")==null){//log out button for when in session
+
+
+                out.println(
+                        "<li><a href=registration.jsp><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>"+
+                                "<li><a href=LogIn.jsp><span class='glyphicon glyphicon-log-in'></span> Login</a></li>"
+                );
+            }
+
+
+
+
+            if(session.getAttribute("uname")!=null){//log out button for when in session
+
+                out.println(
+                        "<li class='dropdown'>"+
+                                "<a class='dropdown-toggle' data-toggle='dropdown' href=#><span class='glyphicon glyphicon-user'></span>Profile <span class='caret'></span></a>"+
+                                "<ul class='dropdown-menu'>"+
+                                "<li><strong> User: " + session.getAttribute("uname") + "</strong></li>"+
+                                "<li><a href=Profile.jsp>Profile</a></li>"+
+                                "<li><a href=Views>BookABike</a></li>"+
+                                "</ul>"+
+                                "</li>"+
+                                "<li><a href=Log><span class='glyphicon glyphicon-log-in'></span> LOGOUT</a></li>");
+
+            }
+
+
+            out.println(
+                    "</ul>"+
+                            "</div>"+
+                            "</div>"+
                             "</nav>"
+
             );
+
             out.println(
                     "<form id = 'form2' action= Available method = 'post' >" +
 

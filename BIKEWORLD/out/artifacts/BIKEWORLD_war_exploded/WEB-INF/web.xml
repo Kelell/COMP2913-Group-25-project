@@ -5,15 +5,7 @@
          version="4.0">
 
 
-    <servlet>
-        <servlet-name>Submit</servlet-name>
-        <servlet-class>mypack.Submit</servlet-class>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>Submit</servlet-name>
-        <url-pattern>/submit</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>Book</servlet-name>
@@ -45,6 +37,7 @@
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>mypack.LogIn</servlet-class>
@@ -54,6 +47,16 @@
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
 
+
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>mypack.LogOut</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/Log</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>Dash</servlet-name>

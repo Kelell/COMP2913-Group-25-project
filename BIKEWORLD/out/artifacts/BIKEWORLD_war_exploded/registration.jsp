@@ -281,6 +281,7 @@
             }
 
         }
+<<<<<<< HEAD
 
         function myfunction4() {
             var username = document.getElementById("username");
@@ -373,6 +374,17 @@
             var psw = document.getElementById("password");
             var pswerror = document.getElementById("passwordError");
             var cnpsw = document.getElementById("conpassword");
+=======
+        function myfunction3(){
+            var email = document.getElementById("email");
+            var emailerror = document.getElementById("emailError");
+            var username = document.getElementById("usernameg");
+            var usernamerror = document.getElementById("usernameError");
+            var psw = document.getElementById("passwordg");
+            var usernamerror = document.getElementById("passwordError");
+            var cnpsw = document.getElementById("conpasswordg");
+            var lnamerror = document.getElementById("lnameError");
+>>>>>>> 2e811477726d0bdec931e52473af4fd6200ccd4b
             var sub = document.getElementById("sub");
             if (cnpsw.value != ""){
                 if(sub.style.display = 'none'){

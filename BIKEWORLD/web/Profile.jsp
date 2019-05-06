@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: ll16m25s
-  Date: 24/02/19
-  Time: 22:09
+  Date: 05/05/19
+  Time: 16:39
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>About Us</title>
+    <title>Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
@@ -39,7 +39,7 @@
                     }
 
                 %>
-                <li class="active"><a href="AboutUs.jsp">About Us</a></li>
+                <li><a href="AboutUs.jsp">About Us</a></li>
                 <li><a href="ContactUs.jsp">Contact Us</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -63,7 +63,7 @@
                         <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><strong>User: ${uname}</strong></li>
-                        <li><a href="Profile.jsp">Profile</a></li>
+                        <li class=active><a href="Profile.jsp">Profile</a></li>
                         <li><a href="Views">Book A Bike</a></li>
                         <%--<li><a href="book">Book a bike</a></li>--%>
                     </ul>
@@ -81,45 +81,37 @@
 
 
 
-<%--<%//tests if user is logged in before accessing about us page (testing only)--%>
-<%--if(session.getAttribute("uname")==null){--%>
-<%--response.sendRedirect("LogIn.jsp");--%>
-<%--}--%>
-<%--%>--%>
+<%//tests if user is logged in before accessing about us page (testing only)
+    if(session.getAttribute("uname")==null){
+        response.sendRedirect("LogIn.jsp");
+    }
+%>
 <div class="content">
-    <h1>About Us</h1>
-    <h5>We are a group of students from the University of Leeds working on our year two project. We hope you enjoy using our application.</h5>
+    <h1>Profile</h1>
+
+    <%--<p>${param.message}</p>--%>
     <div class="row">
-        <div class="col-sm-5" >
-            <h5>The standard Lorem Ipsum passage, used since the 1500s</h5>
-            <h5>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum."</h5>
+        <div class="col-sm-3" >
+            <div class="img" >
+                <img src = "https://www.sgm-inc.com/wp-content/uploads/2014/06/no-profile-male-img.gif" alt = "bike" width = "220px" height = "290px">
+            </div>
 
-            <h5>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum."</h5>
-
+            <ul class="nav flex-column">
+                <li><a href="Views">Book A Bike</a></li>
+                <li><a href="index.jsp">Home</a></li>
+                <li><a href="AboutUs.jsp">About Us</a></li>
+                <li><a href="ContactUs.jsp">Contact Us</a></li>
+            </ul>
         </div>
-        <div class="col-5">
-            <h5>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum."</h5>
-            <h5>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum."</h5>
-
+        <div class="col">
+            <h4>ID : ${uId}</h4>
+            <h4>Username : ${uname}</h4>
+            <h4>Email : ${uemail}</h4>
 
         </div>
     </div>
+
+
 </div>
 
 
