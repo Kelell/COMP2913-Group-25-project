@@ -12,6 +12,10 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+
 
 /**
  * @author Zahoor
@@ -62,17 +66,7 @@ public class UpdateCustomerController {
                         pst1.executeUpdate();
                         con.commit();//Commit the changes
                         JOptionPane.showMessageDialog(null, "Record Updated Successfully", "Success!", JOptionPane.PLAIN_MESSAGE);
-
-                        //Close the update window
-                        new DashboardController().close();
-
-                        //After updating launches the dashboard with updated information
-                        Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
-                        primaryStage = new Stage();
-                        primaryStage.setScene(new Scene(root, 1200, 561));
-                        primaryStage.centerOnScreen();
-                        primaryStage.show();
-
+                        closeAndBack();
                     } catch (SQLException e) {
                         e.printStackTrace();
                         con.rollback(); //Rollback any changes made
@@ -83,7 +77,35 @@ public class UpdateCustomerController {
             }
         }
     }
+    private void closeAndBack() throws IOException{
+        
+                        //Close the update window
+                        new DashboardController().close();
 
+                        //After updating launches the dashboard with updated information
+                        Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
+                        primaryStage = new Stage();
+                        primaryStage.setScene(new Scene(root, 1200, 561));
+                        primaryStage.centerOnScreen();
+                        primaryStage.show();
+
+    }
+     @FXML
+    void deleteCustomer(ActionEvent event) throws SQLException, IOException {
+            Connection con=DbConnect.getDbConnect();
+            String sql="delete from customer where CUSTOMER_ID="+id;
+            Alert a=new Alert(AlertType.CONFIRMATION);
+            a.setContentText("Are you sure you want to delete this customer? "+nameField.getText());
+            a.setHeaderText(null);
+            a.setTitle("Warning");
+            a.showAndWait();
+            if(a.getResult()==ButtonType.OK);
+            {PreparedStatement pst1=con.prepareStatement(sql);
+               pst1.executeUpdate();
+               con.close();
+               closeAndBack();
+            }
+    }
     //Initialise the text fields with data from the dashboard
     public void setData(String id,String names, String address){
          this.id  = id;
