@@ -79,7 +79,7 @@
 %>
 <div class="content">
     <h1>Profile</h1>
-    <h2>${param.message}</h2>
+
     <%--<p>${param.message}</p>--%>
     <div class="row">
         <div class="col-sm-3" >

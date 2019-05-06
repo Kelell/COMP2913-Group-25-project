@@ -79,6 +79,7 @@
 
 <div class="content">
   <h1>Welcome To B!KEWORLD</h1>
+  <h2>${param.message}</h2>
   To book a bike please first Log in or register. <br>
   TESTING ACCOUNT :<br>
   USERNAME : test<br>

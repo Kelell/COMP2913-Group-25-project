@@ -45,6 +45,7 @@
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>mypack.LogIn</servlet-class>
@@ -53,6 +54,7 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
+
 
     <servlet>
         <servlet-name>LogOut</servlet-name>
