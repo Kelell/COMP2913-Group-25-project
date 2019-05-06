@@ -16,12 +16,6 @@
 </head>
 <body>
 
-<%
-
-    HttpSession ion =  request.getSession(false);
-    if (ion.getAttribute("uName") == null) {
-        response.sendRedirect("index.jsp");
-    }%>
 
 <div class = "Title">
     B!KEWORLD

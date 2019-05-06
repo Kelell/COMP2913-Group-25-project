@@ -26,12 +26,6 @@
     <a class="active" href="ContactUs.jsp">Contact Us</a>
     <a href="Logout.jsp">Log out</a>
 
-    <%
-
-    HttpSession ion =  request.getSession(false);
-        if (ion.getAttribute("uName") == null) {
-            response.sendRedirect("index.jsp");
-        }%>
 
 </div>
 </body>

@@ -190,11 +190,14 @@
             sub.style.display = 'none';
         }
         function myfunction3(){
-            var addy = document.getElementById("address");
-            var email = document.getElementById("emailg");
+            var email = document.getElementById("email");
+            var emailerror = document.getElementById("emailError");
             var username = document.getElementById("usernameg");
+            var usernamerror = document.getElementById("usernameError");
             var psw = document.getElementById("passwordg");
+            var usernamerror = document.getElementById("passwordError");
             var cnpsw = document.getElementById("conpasswordg");
+            var lnamerror = document.getElementById("lnameError");
             var sub = document.getElementById("sub");
             email.style.display = 'block';
             email.children[1].value = "";
