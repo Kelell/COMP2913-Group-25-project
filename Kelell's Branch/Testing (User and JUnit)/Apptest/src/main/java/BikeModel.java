@@ -1,4 +1,4 @@
-﻿import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
@@ -14,7 +14,7 @@ public  class BikeModel {
     private StringProperty status;
     private StringProperty location;
     private StringProperty price;
-
+    
     /***
      * Bike Model holds the properties of a bike, initialises using constructor and getters to retrieve the values
      * @param id
@@ -28,8 +28,9 @@ public  class BikeModel {
 
         if(status.equals("1")){
             this.status = new SimpleStringProperty("Free");
-        }else{
+        }else {if(status.equals("0")){
             this.status = new SimpleStringProperty("Hired");
+        }else this.status = new SimpleStringProperty("Damaged");
         }
 
         this.location = new SimpleStringProperty(location);
@@ -53,4 +54,3 @@ public  class BikeModel {
         return price;
     }
 }
-
