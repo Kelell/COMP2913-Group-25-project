@@ -23,7 +23,11 @@
 </div>
 
 <form action="Register" method="post">
+    First name : <input type="text" name="fname" required="required">
+    Last name : <input type="text" name="lname" required="required">
+    Address : <input type="text" name="address" required="required">
     User name : <input type="text" name="user" required="required">
+    Email : <input type="email" name="email" required="required">
     Password : <input type="password" name="password" required="required">
     Confirm Password : <input type="password2" name="password2" required="required"  >
     <input type="submit" value="Register">

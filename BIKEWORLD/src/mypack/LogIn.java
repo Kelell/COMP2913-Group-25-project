@@ -32,8 +32,7 @@ public class LogIn extends HttpServlet {
             String password = request.getParameter("password");
             String Uname = "";
             String Upass = "";
-            int customerId = 0;
-            String sql = "SELECT * FROM customer WHERE name =? AND password=? ";
+            String sql = "SELECT * FROM users WHERE name =? AND password=? ";
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -41,10 +40,8 @@ public class LogIn extends HttpServlet {
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                customerId = rs.getInt("CUSTOMER_ID");
                 Uname = rs.getString("name");
                 Upass = rs.getString("password");
-
 
             }
             if(name.equals(Uname)&&password.equals(Upass)){

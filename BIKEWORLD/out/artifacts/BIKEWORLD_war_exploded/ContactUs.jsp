@@ -24,6 +24,7 @@
     <a href="Views">View bikes</a>
     <a href="AboutUs.jsp">About Us</a>
     <a class="active" href="ContactUs.jsp">Contact Us</a>
+    <a href="Logout.jsp">Log out</a>
 
     <%
 

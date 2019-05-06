@@ -14,11 +14,9 @@ public class Dashboard extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         HttpSession current = request.getSession(false);
-        if (current == null) {
-            out.println("FALSE");
-        }
-        else{
-            out.println(current.getAttribute("uName"));
+        out.println("<html>\n");
+        if (current.getAttribute("uName") == null) {
+            response.sendRedirect("index.jsp");
         }
 
         out.println("<html>\n" +
