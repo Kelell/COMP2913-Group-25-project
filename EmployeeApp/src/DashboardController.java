@@ -232,6 +232,7 @@ public class DashboardController implements Initializable {
                             primaryStage = new Stage();
                             primaryStage.setScene(scene);
                             primaryStage.show();
+                            customerTable.getScene().getWindow().hide();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
