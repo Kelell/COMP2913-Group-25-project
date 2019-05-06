@@ -282,7 +282,7 @@ public class BookController {
         String name = names.getText();
 
         //Query to insert data
-        String SQL1 = "INSERT INTO `customer` VALUES(?,?,?,NULL,NULL)";
+        String SQL1 = "INSERT INTO `customer` VALUES(?,?,?,NULL,NULL,NULL)";
 
         try {
 
