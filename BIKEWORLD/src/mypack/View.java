@@ -130,10 +130,8 @@ public class View extends HttpServlet {
                     "<div class=nav>"+
                             "<a  href=index.jsp>Home</a>"+
                             "<a class=active href=\"Views\">View bikes</a>" +
-                            "<a href=\"book\">Book a bike</a>"+
                             "<a href=AboutUs.jsp>About Us</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+
-                            "<a>Log out</a>" +
                             "</div>"
             );
             out.println(

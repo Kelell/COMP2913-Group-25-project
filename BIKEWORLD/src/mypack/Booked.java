@@ -109,8 +109,7 @@ public class Booked extends HttpServlet {
                 ps2.setString(1, bike_id);
                 ps2.executeUpdate();
                 ps2.close();
-                out.println("Success Booking");
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("Checkout.jsp");
 
             }
             catch (ClassNotFoundException e){
@@ -184,7 +183,7 @@ public class Booked extends HttpServlet {
                 ps.setString(8, theday);
                 ps.executeUpdate();
                 out.println("Success Booking");
-                response.sendRedirect("index.jsp");
+                response.sendRedirect("Checkout.jsp");
             }
             catch (ClassNotFoundException e){
                 e.printStackTrace();
