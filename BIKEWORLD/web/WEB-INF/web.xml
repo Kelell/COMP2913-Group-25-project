@@ -54,6 +54,15 @@
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>mypack.LogOut</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/Log</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>Dash</servlet-name>
