@@ -85,11 +85,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContactUs.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContactUs.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/ContactUs.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
+            <state relative-caret-position="1275">
               <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dashboard.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/Dashboard.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2">
+              <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Profile.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/Profile.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="542">
+              <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
             </state>
           </provider>
         </entry>
@@ -108,8 +126,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -169,6 +187,7 @@
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/AboutUs.jsp" />
         <option value="$PROJECT_DIR$/web/ContactUs.jsp" />
+        <option value="$PROJECT_DIR$/web/Profile.jsp" />
       </list>
     </option>
   </component>
@@ -456,12 +475,12 @@
       <workItem from="1557144750803" duration="4685000" />
       <workItem from="1557155567517" duration="888000" />
       <workItem from="1557156486150" duration="12186000" />
-      <workItem from="1557169740080" duration="898000" />
+      <workItem from="1557169740080" duration="1110000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="292846000" />
+    <option name="totallyTimeSpent" value="293058000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
@@ -513,7 +532,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/mypack/Search.java" />
     <entry file="file://$PROJECT_DIR$/src/mypack/Search.java" />
     <entry file="file://$PROJECT_DIR$/src/mypack/Booking.java" />
     <entry file="file://$PROJECT_DIR$/src/mypack/ShortBooked.java" />
@@ -645,13 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/Dashboard.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -720,8 +731,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/ContactUs.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
+        <state relative-caret-position="1275">
           <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Dashboard.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Profile.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
         </state>
       </provider>
     </entry>
