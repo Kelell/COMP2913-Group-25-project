@@ -41,7 +41,7 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
 
                 //close the dashboard
                 new LoginController().close();
-
+                
                 //Load the Booking Screen
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/books.fxml"));
 
