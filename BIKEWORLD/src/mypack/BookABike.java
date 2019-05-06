@@ -236,7 +236,8 @@ public class BookABike extends HttpServlet {
                     out.println(
                             "</ul>"+
                                     "</div>"+
-                                    "</nav>"
+                                    "</nav>"+
+                                    "<div class='content'>"
 
                     );
 
@@ -338,7 +339,8 @@ public class BookABike extends HttpServlet {
                     out.println(
                             "</ul>"+
                                     "</div>"+
-                                    "</nav>"
+                                    "</nav>" +
+                                    "<div class='content'>"
 
                     );
 
@@ -392,7 +394,7 @@ public class BookABike extends HttpServlet {
                                     "</script>"
                     );
 
-                    out.println("</body>");
+                    out.println("</div>"+ "</body>");
                 }
 
 
@@ -636,7 +638,8 @@ public class BookABike extends HttpServlet {
                     out.println(
                             "</ul>"+
                                     "</div>"+
-                                    "</nav>"
+                                    "</nav>"+
+                                    "<div class='content'>"
 
                     );
 
@@ -678,7 +681,7 @@ public class BookABike extends HttpServlet {
                                     "</script>"
                     );
 
-                    out.println("</body>");
+                    out.println("</div>" + "</body>");
                 }
                 else
                 {
@@ -737,7 +740,8 @@ public class BookABike extends HttpServlet {
                     out.println(
                             "</ul>"+
                                     "</div>"+
-                                    "</nav>"
+                                    "</nav>"+
+                                    "<div class='content'>"
 
                     );
 
@@ -790,7 +794,7 @@ public class BookABike extends HttpServlet {
                                     "</script>"
                     );
 
-                    out.println("</body>");
+                    out.println("</div>" + "</body>");
                 }
 
 

@@ -148,7 +148,8 @@ public class AvailableBikes extends HttpServlet {
             out.println(
                     "</ul>"+
                             "</div>"+
-                            "</nav>"
+                            "</nav>"+
+                            "<div class='content'>"
 
             );
 
@@ -886,7 +887,7 @@ public class AvailableBikes extends HttpServlet {
             e.printStackTrace();
             out.println("Testing error 2- Failed");
         }
-        out.println("</body>");
+        out.println("</div>" + "</body>");
 
 
     }
