@@ -67,7 +67,10 @@ public class AvailableBikes extends HttpServlet {
             String size = Integer.toString(listsize);
 
             out.println("<head onload=\"openFunction()\" >" +
-                    "<title id = prick >$Title$</title>" +
+                    "<title id = prick >Available bikes</title>" +
+                    "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css\"> <!-- Bootstrap style link  -->\n" +
+                    "    <link rel=\"stylesheet\" href=\"style.css\" type=\"text/css\">\n" +
+                    "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js\"></script> <!-- Drop down button script-->"+
                     "<link rel=stylesheet href=style.css type=text/css>" +
                     "<style>" +
                     ".section {\n" +
@@ -100,16 +103,31 @@ public class AvailableBikes extends HttpServlet {
 
             out.println("<body id = 'bod2' onload=\"openFunction()\"  >");
             out.println(
-                    "<div class = \"Title\">\n" +
-                            "    B!KEWORLD\n" +
-                            "  </div>"+
-                            "<div class=nav>"+
-                            "<a href=\"Dashboard.jsp\">Home</a>"+
-                            "<a class=active href=\"Views\">View bikes</a>" +
-                            "<a href=AboutUs.jsp>About Us</a>"+
-                            "<a href=ContactUs.jsp>Contact Us</a>"+
-                            "<a href=\"Logout.jsp\">Log out</a>"+
-                            "</div>"
+                    "<nav class=\"navbar navbar-inverse\"><!-- Bootstrap nav bar -->\n" +
+                            "    <div class=\"container-fluid\">\n" +
+                            "        <div class=\"navbar-header\">\n" +
+                            "            <a class=\"navbar-brand\" href=\"Dashboard.jsp\">B!KEWORLD</a>\n" +
+                            "        </div>\n" +
+                            "        <ul class=\"nav navbar-nav\">\n" +
+                            "            <li ><a href=\"Dashboard.jsp\">Home</a></li>\n" +
+                            "            <li class=\"active\"><a href=\"Views\">View bikes</a></li>\n" +
+                            "            <li><a href=\"AboutUs.jsp\">About Us</a></li>\n" +
+                            "            <li><a href=\"ContactUs.jsp\">Contact Us</a></li>\n" +
+                            "        </ul>\n" +
+                            "        <ul class=\"nav navbar-nav navbar-right\">\n" +
+                            "\n" +
+                            "            <li class=\"dropdown\">\n" +
+                            "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>Profile: " + session.getAttribute("uname")+ "\n" +
+                            "                    <span class=\"caret\"></span></a>\n" +
+                            "                <ul class=\"dropdown-menu\">\n" +
+                            "                    <li><strong> </strong></li>\n" +
+                            "                    <li><a href=\"Profile.jsp\">Later</a></li>\n" +
+                            "                </ul>\n" +
+                            "            </li>\n" +
+                            "            <li><a href=\"Logout.jsp\"><span class=\"glyphicon glyphicon-log-in\"></span> LOGOUT</a></li>\n" +
+                            "        </ul>\n" +
+                            "    </div>\n" +
+                            "</nav>"
             );
 
 

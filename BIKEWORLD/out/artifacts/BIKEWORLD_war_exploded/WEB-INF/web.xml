@@ -54,6 +54,7 @@
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
         <servlet-name>Dash</servlet-name>
         <servlet-class>mypack.Dashboard</servlet-class>

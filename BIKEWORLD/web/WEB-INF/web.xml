@@ -63,7 +63,7 @@
         <servlet-name>Dash</servlet-name>
         <url-pattern>/Dashboard</url-pattern>
     </servlet-mapping>
-    
+
 
     <servlet>
         <servlet-name>Available</servlet-name>
