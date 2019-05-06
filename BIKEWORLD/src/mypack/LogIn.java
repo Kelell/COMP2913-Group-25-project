@@ -40,7 +40,7 @@ public class LogIn extends HttpServlet {
 
                 //out.println("Successful LogIn");
                 String message = "Welcome : " + username;
-                response.sendRedirect("Profile.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
+                response.sendRedirect("index.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
                 //response.sendRedirect("Profile.jsp");
 
             }else{
