@@ -50,7 +50,7 @@
                     <li><strong>User: ${uname}</strong></li>
                     <li><a href="Profile.jsp">Profile</a></li>
                     <li><a href="Views">View bikes</a></li>
-                    <li><a href="book">Book a bike</a></li>
+                    <%--<li><a href="book">Book a bike</a></li>--%>
                 </ul>
             </li>
             <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>

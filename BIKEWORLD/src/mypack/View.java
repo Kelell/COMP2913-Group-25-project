@@ -5,7 +5,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -14,6 +13,19 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.sql.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "View")
 public class View extends HttpServlet {
@@ -22,6 +34,9 @@ public class View extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+
 
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
@@ -56,135 +71,91 @@ public class View extends HttpServlet {
             int listsize = bike_ids.size();
             String size = Integer.toString(listsize);
 
-            HttpSession session = request.getSession(false);//checks for session
-            if(session.getAttribute("uname")==null){
-                response.sendRedirect("LogIn.jsp");
-            }
+            out.println("<head onload=\"openFunction()\" >");
 
-            out.println("<head onload=\"openFunction()\" >" +
+            out.println(
                     "<title id = prick >$Title$</title>" +
-                    "<meta name=viewport content=width=device-width, initial-scale=1>"+
-                    "<link rel=stylesheet href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>"+ //<!-- Bootstrap style link  -->
-                    "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
-                    "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>"+  //<!-- Drop down button script-->
-                    "<link rel=stylesheet href=style.css type=text/css>"+
-
-                    "<style>\n" +
-                    "\n" +
-                    "/* The grid: Four equal columns that floats next to each other */\n" +
-                    ".column {\n" +
-                    "  float: left;\n" +
-                    "  width: 25%;\n" +
-                    "  padding: 10px;\n" +
-                    "}\n" +
-                    "\n" +
-                    "/* Style the images inside the grid */\n" +
-                    ".column img {\n" +
-                    "  opacity: 0.8; \n" +
-                    "  cursor: pointer; \n" +
-                    "}\n" +
-                    "\n" +
-                    ".column img:hover {\n" +
-                    "  opacity: 1;\n" +
-                    "}\n" +
-                    "\n" +
-                    "/* Clear floats after the columns */\n" +
-                    ".row:after {\n" +
-                    "  content: \"\";\n" +
-                    "  display: table;\n" +
-                    "  clear: both;\n" +
-                    "}\n" +
-                    "\n" +
-                    "#imgtext {\n" +
-                    "  position: absolute;\n" +
-                    "  top: 50%;\n" +
-                    "  left: 50%;\n" +
-                    "  transform: translate(-50%, -50%);\n" +
-                    "  -ms-transform: translate(-50%, -50%);\n" +
-                    "  background-color: #555;\n" +
-                    "  color: white;\n" +
-                    "  font-size: 16px;\n" +
-                    "  padding: 12px 24px;\n" +
-                    "  border: none;\n" +
-                    "  cursor: pointer;\n" +
-                    "  border-radius: 5px;\n" +
-                    "  text-align: center;" +
-                    "  font-size: 20px;\n" +
-                    "}\n" +
-                    "\n" +
-                    ".container {\n" +
-                    "  position: relative;\n" +
-                    "  width: 100%;\n" +
-                    "  max-width: 400px;\n" +
-                    "}"+
-                    "/* Closable button inside the expanded image */\n" +
-                    ".closebtn {\n" +
-                    "  position: absolute;\n" +
-                    "  top: 10px;\n" +
-                    "  right: 15px;\n" +
-                    "  color: white;\n" +
-                    "  font-size: 35px;\n" +
-                    "  cursor: pointer;\n" +
-                    "}\n" +
-                    "img {\n" +
-                    "  border-radius: 10%;\n" +
-                    "}"+
-                    "</style>"+
-                    "</head>"
+                            "<link rel=stylesheet href=style.css type=text/css>" +
+                            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"+
+                            "<style>\n" +
+                            "\n" +
+                            "/* The grid: Four equal columns that floats next to each other */\n" +
+                            ".column {\n" +
+                            "  float: left;\n" +
+                            "  width: 25%;\n" +
+                            "  padding: 10px;\n" +
+                            "}\n" +
+                            "\n" +
+                            "/* Style the images inside the grid */\n" +
+                            ".column img {\n" +
+                            "  opacity: 0.8; \n" +
+                            "  cursor: pointer; \n" +
+                            "}\n" +
+                            "\n" +
+                            ".column img:hover {\n" +
+                            "  opacity: 1;\n" +
+                            "}\n" +
+                            "\n" +
+                            "/* Clear floats after the columns */\n" +
+                            ".row:after {\n" +
+                            "  content: \"\";\n" +
+                            "  display: table;\n" +
+                            "  clear: both;\n" +
+                            "}\n" +
+                            "\n" +
+                            "#imgtext {\n" +
+                            "  position: absolute;\n" +
+                            "  top: 50%;\n" +
+                            "  left: 50%;\n" +
+                            "  transform: translate(-50%, -50%);\n" +
+                            "  -ms-transform: translate(-50%, -50%);\n" +
+                            "  background-color: #555;\n" +
+                            "  color: white;\n" +
+                            "  font-size: 16px;\n" +
+                            "  padding: 12px 24px;\n" +
+                            "  border: none;\n" +
+                            "  cursor: pointer;\n" +
+                            "  border-radius: 5px;\n" +
+                            "  text-align: center;" +
+                            "  font-size: 20px;\n" +
+                            "}\n" +
+                            "\n" +
+                            ".container {\n" +
+                            "  position: relative;\n" +
+                            "  width: 100%;\n" +
+                            "  max-width: 400px;\n" +
+                            "}"+
+                            "/* Closable button inside the expanded image */\n" +
+                            ".closebtn {\n" +
+                            "  position: absolute;\n" +
+                            "  top: 10px;\n" +
+                            "  right: 15px;\n" +
+                            "  color: white;\n" +
+                            "  font-size: 35px;\n" +
+                            "  cursor: pointer;\n" +
+                            "}\n" +
+                            "img {\n" +
+                            "  border-radius: 10%;\n" +
+                            "}"+
+                            "</style>"+
+                            "</head>"
             );
-
-
             out.println("<body  >");
-            out.println(
-                    "<nav class='navbar navbar-inverse'>"+ //<!-- Bootstrap nav bar -->
-                            "<div class='container-fluid'>"+ "<div class='navbar-header'>"+
-                            "<a class='navbar-brand' href=index.jsp>B!KEWORLD</a>"+
-                            "</div>"+
-                            "<ul class='nav navbar-nav'>"+
-                            "<li><a href=index.jsp>Home</a></li>"+
-                            "<li><a href=AboutUs.jsp>About Us</a></li>"+
-                            "<li><a href=ContactUs.jsp>Contact Us</a></li>"+
-                            "</ul>"+
-                            "<ul class='nav navbar-nav navbar-right'>");
-
-            if(session.getAttribute("uname")==null){//log out button for when in session
-
-
-                out.println(
-                        "<li><a href=registration.jsp><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>"+
-                                "<li><a href=LogIn.jsp><span class='glyphicon glyphicon-log-in'></span> Login</a></li>"
-                );
-            }
-
-
-
-
-            if(session.getAttribute("uname")!=null){//log out button for when in session
-
-                out.println(
-                        "<li class='dropdown'>"+
-                                "<a class='dropdown-toggle' data-toggle='dropdown' href=#><span class='glyphicon glyphicon-user'></span>Profile <span class='caret'></span></a>"+
-                                "<ul class='dropdown-menu'>"+
-                                "<li><strong> User: " + session.getAttribute("uname") + "</strong></li>"+
-                                "<li><a href=Profile.jsp>Profile</a></li>"+
-                                "<li class=active><a href=Views>View bikes</a></li>"+
-                                "<li><a href=book>Book a bike</a></li>"+
-                                "</ul>"+
-                                "</li>"+
-                                "<li><a href=Log><span class='glyphicon glyphicon-log-in'></span> LOGOUT</a></li>");
-
-            }
-
 
             out.println(
-                    "</ul>"+
-                            "</div>"+
-                            "</nav>"
-
+                    "<div class = \"Title\">\n" +
+                            "    B!KEWORLD\n" +
+                            "  </div>"+
+                            "<div class=nav>"+
+                            "<a href=\"Dashboard\">Home</a>"+
+                            "<a class=active href=\"Views\">View bikes</a>" +
+                            "<a href=AboutUs.jsp>About Us</a>"+
+                            "<a href=ContactUs.jsp>Contact Us</a>"+
+                            "<a href=\"Logout.jsp\">Log out</a>"+
+                            "</div>"
             );
-
             out.println(
-                    "<form id = 'form2' action= Available method = 'get' >" +
+                    "<form id = 'form2' action= Available method = 'post' >" +
 
                             "<p style = \"display: none\" >Select a Location</p>" + "\n" +
                             "<select  id = \"Loca\" style = \"display: none\" name = Location >" +
