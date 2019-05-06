@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -56,10 +55,6 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
                     controller.setBikeDetails(bikeModel);
                     Scene scene = new Scene(root2, 572, 528);
                     primaryStage = new Stage();
-                    //Displays App Name 
-                    primaryStage.setTitle("Bike World");
-                    //Display App Icon
-                    primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("CSS/icon.png")));
                     primaryStage.setScene(scene);
                     primaryStage.show();
                     

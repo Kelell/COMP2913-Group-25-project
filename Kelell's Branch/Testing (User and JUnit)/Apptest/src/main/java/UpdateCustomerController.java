@@ -5,7 +5,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -70,10 +69,6 @@ public class UpdateCustomerController {
                         //After updating launches the dashboard with updated information
                         Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
                         primaryStage = new Stage();
-                        //Displays App Name 
-                        primaryStage.setTitle("Bike World");
-                        //Display App Icon
-                        primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("CSS/icon.png")));
                         primaryStage.setScene(new Scene(root, 1200, 561));
                         primaryStage.centerOnScreen();
                         primaryStage.show();

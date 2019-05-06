@@ -1,12 +1,10 @@
-
-
-/** * @author Zahoor
+/**
+ * @author Zahoor
  */
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -21,17 +19,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
         //Load Login Page
-    	Parent root = FXMLLoader.load(getClass().getResource("fxml/loginPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/loginPage.fxml"));
         primaryStage.setScene(new Scene(root, 738, 508));
 
         //Displays App Name 
-        primaryStage.setTitle("Bike World");
-        //Display App Icon
-        primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("CSS/icon.png")));
+        primaryStage.setTitle("Bike App");
         mainStage = primaryStage;
         mainStage.centerOnScreen();
         mainStage.show();
-        
 
     }
 

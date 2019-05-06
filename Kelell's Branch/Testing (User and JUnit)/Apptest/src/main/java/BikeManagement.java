@@ -24,7 +24,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -211,12 +210,7 @@ public class BikeManagement implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(BikeManagement.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
                 primaryStage = new Stage();
-                //Displays App Name 
-                primaryStage.setTitle("Bike World");
-                //Display App Icon
-                primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("CSS/icon.png")));
                 primaryStage.setScene(new Scene(root, 1200, 561));
                 primaryStage.centerOnScreen();
                 primaryStage.show();

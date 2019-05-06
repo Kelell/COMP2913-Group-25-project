@@ -1,4 +1,3 @@
-﻿
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -65,8 +63,8 @@ public class BookController {
 
         con = DbConnect.getDbConnect();
 
-        String b_id = bikeDetails.idProperty().getValue().toString();
-        String pric = bikeDetails.priceProperty().getValue().toString();
+        String b_id = bikeDetails.idProperty().getValue();
+        String pric = bikeDetails.priceProperty().getValue();
 
         //Sets the bike id and price passed from the table
         bike_id.setText(b_id);
@@ -106,10 +104,6 @@ public class BookController {
                     e.printStackTrace();
                 }
                 primaryStage = new Stage();
-                //Displays App Name 
-                primaryStage.setTitle("Bike World");
-                //Display App Icon
-                primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("CSS/icon.png")));
                 primaryStage.setScene(new Scene(root, 1200, 561));
                 primaryStage.centerOnScreen();
                 primaryStage.show();
@@ -150,7 +144,7 @@ public class BookController {
                         double change = cash - total;
 
                         //display the change in the text
-                        changeText.setText("£ "+change);
+                        changeText.setText("£ "+ String.format("%.2f", change));
                     }
                 }
             }
@@ -174,7 +168,7 @@ public class BookController {
                 @Override
                 public void handle(ActionEvent event) {
 
-                    String selectedItem = customerCombo.getSelectionModel().getSelectedItem().toString();
+                    String selectedItem = customerCombo.getSelectionModel().getSelectedItem();
                     String [] arr = selectedItem.split(" | ");
                     String id = arr[0];
 
@@ -258,7 +252,7 @@ public class BookController {
                 long days = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
 
                 //Get the current price of the bike
-                String pric = bikeDetails.priceProperty().getValue().toString();
+                String pric = bikeDetails.priceProperty().getValue();
 
                 //convert it to a double
                 double raw_price = Double.parseDouble(pric.substring(1));
@@ -288,12 +282,12 @@ public class BookController {
         String name = names.getText();
 
         //Query to insert data
-        String SQL1 = "INSERT INTO `customer` VALUES(?,?,?)";
+        String SQL1 = "INSERT INTO `customer` VALUES(?,?,?,NULL,NULL)";
 
         try {
 
             //intialises the  connection
-            con = new DbConnect().getDbConnect();
+            con = DbConnect.getDbConnect();
             con.setAutoCommit(false); //
 
             ResultSet rs2 = con.createStatement().executeQuery("SELECT * FROM `customer` WHERE CUSTOMER_ID = '"+currentId+"'");
@@ -362,12 +356,12 @@ public class BookController {
         try {
 
             //Get the database object
-            con = new DbConnect().getDbConnect();
+            con = DbConnect.getDbConnect();
             con.setAutoCommit(false); //
 
             //Retrieves cash from cash field
-            double cash = Double.parseDouble(cashField.getText().toString());
-            if(Double.parseDouble(changeText.getText().toString().trim().replace("£ ","")) < 0){
+            double cash = Double.parseDouble(cashField.getText());
+            if(Double.parseDouble(changeText.getText().trim().replace("£ ","")) < 0){
 
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
@@ -404,16 +398,22 @@ public class BookController {
             preparedStatement1.executeUpdate();
             con.commit(); //Commit the Changes
 
-            con.prepareStatement("UPDATE bike SET `status` = 2 WHERE bike_id = "+b_id).executeUpdate();
+            con.prepareStatement("UPDATE bike SET `STATUS` = 2 WHERE bike_id = "+b_id).executeUpdate();
             con.commit();
-
-            JOptionPane.showMessageDialog(null, "Successfully Saved Ticket ! ","Book",JOptionPane.PLAIN_MESSAGE);
-			BookButtonCell.close();
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText(null);
+                alert.setTitle("Success");
+                alert.setContentText("Sucessfully Saved Ticket!");
+                alert.showAndWait();
+                
+            BookButtonCell.close();
             close();
+            System.out.println("load dashboard");
 
             //After updating launches the dasboard with updated information
             Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
-             primaryStage = new Stage();
+            primaryStage = new Stage();
             primaryStage.setScene(new Scene(root, 1200, 561));
             primaryStage.centerOnScreen();
             primaryStage.show();

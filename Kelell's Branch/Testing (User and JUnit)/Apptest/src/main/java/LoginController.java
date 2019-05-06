@@ -4,7 +4,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -62,10 +61,6 @@ public class LoginController {
                             primaryStage = new Stage();
                             primaryStage.setScene(new Scene(root, 1200, 561));
                             new Main().close();
-                            //Displays App Name 
-                            primaryStage.setTitle("Bike World");
-                            //Display App Icon
-                            primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("CSS/icon.png")));
                             primaryStage.show();
                         } catch (IOException e) {
                             e.printStackTrace();
