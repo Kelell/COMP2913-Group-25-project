@@ -36,6 +36,7 @@
     </servlet-mapping>
 
 
+
     <servlet>
         <servlet-name>Register</servlet-name>
         <servlet-class>mypack.Registration</servlet-class>
@@ -51,6 +52,15 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/LogIn</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Dash</servlet-name>
+        <servlet-class>mypack.Dashboard</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Dash</servlet-name>
+        <url-pattern>/Dashboard</url-pattern>
     </servlet-mapping>
 
 

@@ -13,6 +13,19 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.sql.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "View")
 public class View extends HttpServlet {
@@ -21,6 +34,9 @@ public class View extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session =  request.getSession(false);
+
 
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
@@ -55,7 +71,11 @@ public class View extends HttpServlet {
             int listsize = bike_ids.size();
             String size = Integer.toString(listsize);
 
-            out.println("<head onload=\"openFunction()\" >" +
+            out.println("<head onload=\"openFunction()\" >");
+            if (session.getAttribute("uName") == null) {
+                response.sendRedirect("index.jsp");
+            }
+            out.println(
                     "<title id = prick >$Title$</title>" +
                     "<link rel=stylesheet href=style.css type=text/css>" +
                     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">"+
@@ -123,21 +143,21 @@ public class View extends HttpServlet {
                     "</head>"
             );
             out.println("<body  >");
+
             out.println(
                     "<div class = \"Title\">\n" +
                             "    B!KEWORLD\n" +
                             "  </div>"+
                     "<div class=nav>"+
-                            "<a  href=index.jsp>Home</a>"+
+                            "<a href=\"Dashboard\">Home</a>"+
                             "<a class=active href=\"Views\">View bikes</a>" +
-                            "<a href=\"book\">Book a bike</a>"+
                             "<a href=AboutUs.jsp>About Us</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+
-                            "<a>Log out</a>" +
+                            "<a href=\"Logout.jsp\">Log out</a>"+
                             "</div>"
             );
             out.println(
-                    "<form id = 'form2' action= Available method = 'get' >" +
+                    "<form id = 'form2' action= Available method = 'post' >" +
 
                             "<p style = \"display: none\" >Select a Location</p>" + "\n" +
                             "<select  id = \"Loca\" style = \"display: none\" name = Location >" +

@@ -1,30 +1,4 @@
-package mypack;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-@WebServlet(name = "AvailableBikes")
-public class AvailableBikes extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        HttpSession session =  request.getSession(false);
-        if (session == null) {
-            response.sendRedirect("index.jsp");
-        }
-
-
-        PrintWriter out = response.getWriter();
+PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         jdbc test = new jdbc();
         String driver = "com.mysql.cj.jdbc.Driver";
@@ -34,13 +8,12 @@ public class AvailableBikes extends HttpServlet {
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
             String sql;
-            sql = "SELECT BIKE_ID, LOCATION, price, STATUS FROM bike";
+            sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
+
             ResultSet rs = stmt.executeQuery(sql);
             ArrayList<Integer> bikes = new ArrayList<Integer>();
             ArrayList<String> loca = new ArrayList<String>();
             ArrayList<Float> cost = new ArrayList<Float>();
-            ArrayList<Integer> status = new ArrayList<Integer>();
-            String loc = request.getParameter("Location");
 
 
             while(rs.next()){
@@ -48,20 +21,14 @@ public class AvailableBikes extends HttpServlet {
                 int id  = rs.getInt("BIKE_ID");
                 String location = rs.getString("LOCATION");
                 float price = rs.getFloat("price");
-                int x = rs.getInt("STATUS");
-                if (location.equals(loc) ){
-                    bikes.add(id);
-                    loca.add(location);
-                    cost.add(price);
-                    status.add(x);
-                }
-
+                bikes.add(id);
+                loca.add(location);
+                cost.add(price);
             }
+
             rs.close();
             stmt.close();
             conn.close();
-
-
 
             int listsize = bikes.size();
             String size = Integer.toString(listsize);
@@ -69,124 +36,28 @@ public class AvailableBikes extends HttpServlet {
             out.println("<head onload=\"openFunction()\" >" +
                     "<title id = prick >$Title$</title>" +
                     "<link rel=stylesheet href=style.css type=text/css>" +
-                    "<style>" +
-                    ".section {\n" +
-                    "  list-style-type: none;\n" +
-                    "  margin: 0;\n" +
-                    "  padding: 0;\n" +
-                    "  overflow: hidden;\n" +
-                    "  background-color: white;\n" +
-                    "  height: 300px;\n" +
-                    "}\n" +
-                    "\n" +
-                    ".bike {\n" +
-                    "  float: left;\n" +
-                    "  display: block\n" +
-                    "border-right: 1px solid black;"+
-                    "}\n" +
-                    "\n" +
-                    ".info {\n" +
-                    "  float: left;\n" +
-                    "  display: block\n" +
-                    "  height: 300px;\n" +
-                    "}" +
-                    ".holder {\n" +
-                    "  float: right;\n" +
-                    "  display: block\n" +
-                    "}" +
-                    "</style>" +
                     "</head>"
             );
-
             out.println("<body id = 'bod2' onload=\"openFunction()\"  >");
+            out.println("<div class = \"Title\"> B!KEWORLD </div>");
             out.println(
-                    "<div class = \"Title\">\n" +
-                            "    B!KEWORLD\n" +
-                            "  </div>"+
-                            "<div class=nav>"+
-                            "<a href=\"Dashboard.jsp\">Home</a>"+
-                            "<a class=active href=\"Views\">View bikes</a>" +
+                    "<div class=nav>"+
+                            "<a  href=index.jsp>Home</a>"+
+                            "<a  class=activehref=\"Views\">View bikes</a>" +
+                            "<a  href=book>Book A Bike</a>" +
                             "<a href=AboutUs.jsp>About Us</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+
-                            "<a href=\"Logout.jsp\">Log out</a>"+
+                            "<a>Log out</a>" +
                             "</div>"
             );
-
-
-
             out.println(
-                    "<p>There are(is) "+ listsize +" bike(s) in this location.</p>" );
 
-
-            if(loc.equals("Alnmouth"))
-            {
-                out.println("<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d36279.987310143624!2d-1.6253423327709322!3d55.366744091928254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e0472db35c6d3%3A0x2a39153ad77fb156!2sAlnmouth%2C+Alnwick!5e0!3m2!1sen!2suk!4v1557101499273!5m2!1sen!2suk' width='600' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Barnsley")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75828.47829640322!2d-1.5184422816798653!3d53.564194575225066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487962b7c1b768c3%3A0xc2476c02bf53d08a!2sBarnsley!5e0!3m2!1sen!2suk!4v1557102298285!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Beverly")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37665.6294351413!2d-0.46681248311360063!3d53.84105255182187!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4878b82fd883c559%3A0xa7ecf2db4d15fc7b!2sBeverley!5e0!3m2!1sen!2suk!4v1557102404709!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Bournemouth")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d80773.26454549863!2d-1.9297784048150328!3d50.7539830758078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487398a0b1a067fd%3A0x3b2ee0156ba92c94!2sBournemouth!5e0!3m2!1sen!2suk!4v1557102446821!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Bradford")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75410.53514953193!2d-1.8243998841439404!3d53.79697624683072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48795f7ae9c21919%3A0x8fe0edd83227194f!2sBradford!5e0!3m2!1sen!2suk!4v1557102466695!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Bristol")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d79534.02653582788!2d-2.6607570769134634!3d51.46846808883825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4871836681b3d861%3A0x8ee4b22e4b9ad71f!2sBristol!5e0!3m2!1sen!2suk!4v1557102488221!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Buckingham")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19652.048218070522!2d-0.9877888182930727!3d51.99765650198046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876e1098aea9191%3A0xee092e76e65ad2b!2sBuckingham!5e0!3m2!1sen!2suk!4v1557102519357!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe");
-            }
-            else if(loc.equals("Crystal")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9953.150285288582!2d-0.09139270756538645!3d51.416143873922245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876015d4bc394bd%3A0x6f51309b2fa08ffe!2sCrystal+Palace%2C+London!5e0!3m2!1sen!2suk!4v1557102575453!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Halifax")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75513.18119590492!2d-1.9444972364519215!3d53.73986983397286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bc201a120ef39%3A0x6c3f29996afa5893!2sHalifax!5e0!3m2!1sen!2suk!4v1557102603964!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Harrogate")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37527.89968060756!2d-1.5639340815819953!3d53.99401141057279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48794e237175bd01%3A0x3c084fbaadea4ff!2sHarrogate!5e0!3m2!1sen!2suk!4v1557102776212!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Hebden")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15753.06615053711!2d-1.9772564924384983!3d54.061199239474654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487c08344de97f31%3A0xdda31bad3a66c662!2sHebden%2C+Skipton+BD23+5DT!5e0!3m2!1sen!2suk!4v1557102836436!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Hexham")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d36646.20391480342!2d-2.138369721778697!3d54.96629911957963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487d90620d319815%3A0xa83a2b78210dc004!2sHexham!5e0!3m2!1sen!2suk!4v1557102851915!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Leeds")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d150788.90157971418!2d-1.675814485279139!3d53.80592089162559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48793e4ada64bd99%3A0x51adbafd0213dca9!2sLeeds!5e0!3m2!1sen!2suk!4v1557102866772!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Manchester")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75993.25869269183!2d-2.293502347247276!3d53.47222497479299!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487a4d4c5226f5db%3A0xd9be143804fe6baa!2sManchester!5e0!3m2!1sen!2suk!4v1557102886859!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else if(loc.equals("Rotherham")){
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38031.31077189646!2d-1.4022718871804016!3d53.433478479214486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48790a41d8154027%3A0x5d4fabde0673d601!2sRotherham!5e0!3m2!1sen!2suk!4v1557102903339!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-            else{
-                out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18837.49851814451!2d-1.7988262137881466!3d53.830638325322845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487be25520ab12b9%3A0x9af31619017257e0!2sShipley!5e0!3m2!1sen!2suk!4v1557102922643!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
-            }
-
-            for (int i = 0; i < listsize; i++)
-            {
-
-                out.println(
-                        "<div id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
-                                "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
-                                "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                "    <p class = "+ status.get(i)+ ">stat: Available </p>\n" +
-                                " <button style=\"display:none;\" type=\"button\" onclick=\"alert('Simulation of booking')\">Book</button>"+
-                                "</div>");
-            }
-            out.println(
                     "<form id = 'form1' action= 'book' method = 'post' >\n" +
-                            "<div class = 'holder' style = 'display : block; width: 100%;' >"+
-                            "<br><br>"+
-                            "<br><br>"+"<br><br>"+
-                            "<p style = 'display: none;' name = 'Location' >Select a Location</p>\n" +
-                            "<select style = 'display: none;' name = 'Location' >\n" +
+                            "\n" +
+                            "\n" +
+                            "<p name = 'Location' >Select a Location</p>\n" +
+                            "<select name = 'Location' required onclick='myFunction()' >\n" +
+                            "<option selected value= 'Please select'>Please select</option>" +
                             "<option value=Alnmouth>Alnmouth</option>" +
                             "<option value=Barnsley>Barnsley</option>"+
                             "<option value=Beverly>Beverly</option>"+
@@ -204,8 +75,6 @@ public class AvailableBikes extends HttpServlet {
                             "<option value=Rotherham>Rotherham</option>"+
                             "<option value=Shipley>Shipley</option>"+
                             "</select>\n" +
-
-                            "<button type=\"button\" onclick=\"myFunction0()\">Availabillity by time</button>"+
                             "\n" +
                             "<p style='display:none;' name = 'term' >Would you like the bike for short term or long term?</p>\n" +
                             "<select style='display:none;' name = 'term' required onchange='myFunction5()'>\n" +
@@ -319,25 +188,97 @@ public class AvailableBikes extends HttpServlet {
                             "<br><br>\n" +
                             "<input id = 'submit' style='display:none;' type=submit value= submit >\n" +
                             "</form>\n" +
-                            "</div>"+
-
-
-                            "<script>"  + "\n" +
-
-
-                            "function openFunction() {"   + "\n" +
-
+                            "<script>\n" +
+                            "function openFunction() {\n" +
                             "document.getElementById('form1').reset();\n" +
                             "document.getElementById('bod2').reset();\n" +
                             "location.reload();\n" +
-                            "document.getElementsByName('Location')[1].value = " + request.getParameter("Location") +";"+
-                            "}" + "\n" +
-
-                            "function myFunction0() {"   + "\n" +
-                            "document.getElementsByName('term')[0].style.display = 'block';" +
-                            "document.getElementsByName('term')[1].style.display = 'block';" +
-                            "}" + "\n" +
-
+                            "}\n" +
+                            "\n" +
+                            "\n" +
+                            "function myFunction() {\n" +
+                            "var a = document.getElementsByName('Location');\n" +
+                            "var b = document.getElementsByName('Dur');\n" +
+                            "var c = document.getElementsByName('date');\n" +
+                            "var d = document.getElementsByName('Time1');\n" +
+                            "var e = document.getElementsByName('Time2');\n" +
+                            "var f = document.getElementsByName('Time3');\n" +
+                            "var g = document.getElementsByName('Time4');\n" +
+                            "var h = document.getElementsByName('term');\n" +
+                            "var i = document.getElementsByName('Daydur');\n" +
+                            "var j = document.getElementsByName('secondate');\n" +
+                            "var w = document.getElementById('error');\n" +
+                            "w.style.display = 'none';\n" +
+                            "var x = document.getElementById('error2');\n" +
+                            "x.style.display = 'none';\n" +
+                            "var y = document.getElementById('error3');\n" +
+                            "y.style.display = 'none';\n" +
+                            "var z = document.getElementById('submit');\n" +
+                            "z.style.display = 'none';\n" +
+                            "if (a[1].value !=  'Please select'){\n" +
+                            "if (h[1].style.display ==  'none'){\n" +
+                            "b[0].style.display = 'none';\n" +
+                            "b[1].style.display = 'none';\n" +
+                            "c[0].style.display = 'none';\n" +
+                            "c[1].style.display = 'none';\n" +
+                            "d[0].style.display = 'none';\n" +
+                            "d[1].style.display = 'none';\n" +
+                            "e[0].style.display = 'none';\n" +
+                            "e[1].style.display = 'none';\n" +
+                            "f[0].style.display = 'none';\n" +
+                            "f[1].style.display = 'none';\n" +
+                            "g[0].style.display = 'none';\n" +
+                            "g[1].style.display = 'none';\n" +
+                            "h[0].style.display = 'block';\n" +
+                            "h[1].style.display = 'block';\n" +
+                            "i[0].style.display = 'none';\n" +
+                            "i[1].style.display = 'none';\n" +
+                            "j[0].style.display = 'none';\n" +
+                            "j[1].style.display = 'none';\n" +
+                            "}\n" +
+                            "if (h[1].style.display ==  'block'){\n" +
+                            "h[1].value = 0;\n" +
+                            "b[0].style.display = 'none';\n" +
+                            "b[1].style.display = 'none';\n" +
+                            "c[0].style.display = 'none';\n" +
+                            "c[1].style.display = 'none';\n" +
+                            "d[0].style.display = 'none';\n" +
+                            "d[1].style.display = 'none';\n" +
+                            "e[0].style.display = 'none';\n" +
+                            "e[1].style.display = 'none';\n" +
+                            "f[0].style.display = 'none';\n" +
+                            "f[1].style.display = 'none';\n" +
+                            "g[0].style.display = 'none';\n" +
+                            "g[1].style.display = 'none';\n" +
+                            "i[0].style.display = 'none';\n" +
+                            "i[1].style.display = 'none';\n" +
+                            "j[0].style.display = 'none';\n" +
+                            "j[1].style.display = 'none';\n" +
+                            "}\n" +
+                            "}\n" +
+                            "if (a[1].value ==  'Please select'){\n" +
+                            "b[0].style.display = 'none';\n" +
+                            "b[1].style.display = 'none';\n" +
+                            "c[0].style.display = 'none';\n" +
+                            "c[1].style.display = 'none';\n" +
+                            "d[0].style.display = 'none';\n" +
+                            "d[1].style.display = 'none';\n" +
+                            "e[0].style.display = 'none';\n" +
+                            "e[1].style.display = 'none';\n" +
+                            "f[0].style.display = 'none';\n" +
+                            "f[1].style.display = 'none';\n" +
+                            "g[0].style.display = 'none';\n" +
+                            "g[1].style.display = 'none';\n" +
+                            "h[0].style.display = 'none';\n" +
+                            "h[1].style.display = 'none';\n" +
+                            "i[0].style.display = 'none';\n" +
+                            "i[1].style.display = 'none';\n" +
+                            "j[0].style.display = 'none';\n" +
+                            "j[1].style.display = 'none';\n" +
+                            "}\n" +
+                            "}\n" +
+                            "\n" +
+                            "\n" +
                             "function myFunctionx() {\n" +
                             "var a = document.getElementsByName('Location');\n" +
                             "var b = document.getElementsByName('Dur');\n" +
@@ -833,11 +774,8 @@ public class AvailableBikes extends HttpServlet {
                             "\n" +
                             "</script>\n"
 
+
             );
-
-
-
-
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -847,14 +785,4 @@ public class AvailableBikes extends HttpServlet {
             out.println("Testing error 2- Failed");
         }
         out.println("</body>");
-
-
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
-
-    }
-}
