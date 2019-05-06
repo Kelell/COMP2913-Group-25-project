@@ -30,6 +30,15 @@
         <div class = "collapse navbar-collapse" id="Navigation">
             <ul class="nav navbar-nav">
                 <li><a href="index.jsp">Home</a></li>
+                <%
+                    if(session.getAttribute("uname")!=null){//log out button for when in session
+
+                %>
+                <li><a href="Views">Book A Bike</a></li>
+                <%
+                    }
+
+                %>
                 <li><a href="AboutUs.jsp">About Us</a></li>
                 <li><a href="ContactUs.jsp">Contact Us</a></li>
             </ul>
@@ -88,14 +97,17 @@
             </div>
 
             <ul class="nav flex-column">
-                <li><a href="Views">View bikes</a></li>
+                <li><a href="Views">Book A Bike</a></li>
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="AboutUs.jsp">About Us</a></li>
                 <li><a href="ContactUs.jsp">Contact Us</a></li>
             </ul>
         </div>
         <div class="col">
+            <h4>ID : ${uId}</h4>
             <h4>Username : ${uname}</h4>
+            <h4>Email : ${uemail}</h4>
+
         </div>
     </div>
 

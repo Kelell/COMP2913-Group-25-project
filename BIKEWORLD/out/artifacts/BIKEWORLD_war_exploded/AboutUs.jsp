@@ -30,6 +30,15 @@
         <div class = "collapse navbar-collapse" id="Navigation">
             <ul class="nav navbar-nav">
                 <li><a href="index.jsp">Home</a></li>
+                <%
+                    if(session.getAttribute("uname")!=null){//log out button for when in session
+
+                %>
+                <li><a href="Views">Book A Bike</a></li>
+                <%
+                    }
+
+                %>
                 <li class="active"><a href="AboutUs.jsp">About Us</a></li>
                 <li><a href="ContactUs.jsp">Contact Us</a></li>
             </ul>
@@ -55,7 +64,7 @@
                     <ul class="dropdown-menu">
                         <li><strong>User: ${uname}</strong></li>
                         <li><a href="Profile.jsp">Profile</a></li>
-                        <li><a href="Views">View bikes</a></li>
+                        <li><a href="Views">Book A Bike</a></li>
                         <%--<li><a href="book">Book a bike</a></li>--%>
                     </ul>
                 </li>
