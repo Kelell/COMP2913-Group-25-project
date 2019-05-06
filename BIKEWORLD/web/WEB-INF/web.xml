@@ -5,6 +5,15 @@
          version="4.0">
 
 
+    <servlet>
+        <servlet-name>Submit</servlet-name>
+        <servlet-class>mypack.Submit</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Submit</servlet-name>
+        <url-pattern>/submit</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>Book</servlet-name>
@@ -36,9 +45,6 @@
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
     </servlet-mapping>
-
-
-
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>mypack.LogIn</servlet-class>
@@ -48,7 +54,10 @@
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0e1d1d7a099cb31c86c0a07fe1aa73f454f2dd5a
     <servlet>
         <servlet-name>Dash</servlet-name>
         <servlet-class>mypack.Dashboard</servlet-class>
@@ -58,6 +67,7 @@
         <url-pattern>/Dashboard</url-pattern>
     </servlet-mapping>
 
+<<<<<<< HEAD
     <!--<servlet>-->
         <!--<servlet-name>Log</servlet-name>-->
         <!--<servlet-class>mypack.LogOut</servlet-class>-->
@@ -79,6 +89,8 @@
 
 
 
+=======
+>>>>>>> 0e1d1d7a099cb31c86c0a07fe1aa73f454f2dd5a
 
     <servlet>
         <servlet-name>Available</servlet-name>
@@ -99,8 +111,5 @@
         <servlet-name>View</servlet-name>
         <url-pattern>/Views</url-pattern>
     </servlet-mapping>
-
-
-
 
 </web-app>

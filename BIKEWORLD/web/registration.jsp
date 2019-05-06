@@ -8,23 +8,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>SignUp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
     <link rel="stylesheet" href="style.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
+<div class = "Title">
+    B!KEWORLD
+</div>
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="index.jsp">B!KEWORLD</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li><a href="index.jsp">Home</a></li>
-            <li><a href="AboutUs.jsp">About Us</a></li>
-            <li><a href="ContactUs.jsp">Contact Us</a></li>
-        </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="active"><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -32,30 +30,17 @@
     </div>
 </nav>
 
-
-
 <div class="content">
     <h1>Sign Up</h1>
-    <%--<form action="Register" method="post">--%>
-    <%--First Name : <input type="text" name="firstname" required="required">--%>
-    <%--Second Name : <input type="text" name="secondname" required="required">--%>
-    <%--Address : <input type="text" name="address" required="required">--%>
-    <%--Email : <input type="text" name="email" required="required">--%>
-    <%--User name : <input type="text" name="username" required="required">--%>
-    <%--Password : <input type="password" name="password" required="required">--%>
-    <%--Confirm Password : <input type="password2" name="password2" required="required"  >--%>
-    <%--<input type="submit" value="Register">--%>
-    <%--</form>--%>
-
 
     <form action="Register" method="post">
         <div class="form-group">
-            <label for="firstname">First Name : </label>
-            <input name="firstname" type="text" class="form-control" id="firstname" required="required">
+            <label for="fname">First Name : </label>
+            <input name="firstname" type="text" class="form-control" id="fname" required="required">
         </div>
         <div class="form-group">
-            <label for="secondname">Second Name :</label>
-            <input name="secondname" type="text" class="form-control" id="secondname" required="required">
+            <label for="lname">Second Name :</label>
+            <input name="secondname" type="text" class="form-control" id="lname" required="required">
         </div>
         <div class="form-group">
             <label for="address">Address :</label>
@@ -73,10 +58,13 @@
             <label for="password">Password:</label>
             <input name="password" type="password" class="form-control" id="password" required="required">
         </div>
+        <div class="form-group">
+            <label for="conpassword">Password:</label>
+            <input name="password" type="password" class="form-control" id="conpassword" required="required">
+        </div>
         <button type="submit" class="btn btn-default">Register</button>
     </form>
     <p>${param.message}</p>
 </div>
-
 </body>
 </html>

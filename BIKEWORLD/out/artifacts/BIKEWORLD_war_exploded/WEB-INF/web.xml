@@ -5,6 +5,15 @@
          version="4.0">
 
 
+    <servlet>
+        <servlet-name>Submit</servlet-name>
+        <servlet-class>mypack.Submit</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Submit</servlet-name>
+        <url-pattern>/submit</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>Book</servlet-name>
@@ -17,7 +26,6 @@
     </servlet-mapping>
 
     <servlet>
-<<<<<<< HEAD
         <servlet-name>Booked</servlet-name>
         <servlet-class>mypack.Booked</servlet-class>
     </servlet>
@@ -30,8 +38,6 @@
 
 
     <servlet>
-=======
->>>>>>> Michal
         <servlet-name>Register</servlet-name>
         <servlet-class>mypack.Registration</servlet-class>
     </servlet>
@@ -39,9 +45,6 @@
         <servlet-name>Register</servlet-name>
         <url-pattern>/Register</url-pattern>
     </servlet-mapping>
-
-
-
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>mypack.LogIn</servlet-class>
@@ -51,7 +54,6 @@
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
 
-<<<<<<< HEAD
     <servlet>
         <servlet-name>Dash</servlet-name>
         <servlet-class>mypack.Dashboard</servlet-class>
@@ -61,29 +63,6 @@
         <url-pattern>/Dashboard</url-pattern>
     </servlet-mapping>
 
-=======
-    <!--<servlet>-->
-        <!--<servlet-name>Log</servlet-name>-->
-        <!--<servlet-class>mypack.LogOut</servlet-class>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>Log</servlet-name>-->
-        <!--<url-pattern>/LogOut</url-pattern>-->
-    <!--</servlet-mapping>-->
-
-    <servlet>
-        <servlet-name>LogOut</servlet-name>
-        <servlet-class>mypack.LogOut</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>LogOut</servlet-name>
-        <url-pattern>/Log</url-pattern>
-    </servlet-mapping>
-
-
-
->>>>>>> Michal
 
     <servlet>
         <servlet-name>Available</servlet-name>
@@ -104,8 +83,5 @@
         <servlet-name>View</servlet-name>
         <url-pattern>/Views</url-pattern>
     </servlet-mapping>
-
-
-
 
 </web-app>
