@@ -282,7 +282,7 @@ public class BookController {
         String name = names.getText();
 
         //Query to insert data
-        String SQL1 = "INSERT INTO `customer` VALUES(?,?,?,NULL,NULL)";
+        String SQL1 = "INSERT INTO `customer`( `CUSTOMER_NAME`, `CUSTOMER_ADDRESS`, `name`, `password`, `email`, `CUSTOMER_CARD_NO`) VALUES(?,?,NULL,NULL,NULL,0)";
 
         try {
 
@@ -308,9 +308,8 @@ public class BookController {
 
             //Execute the SQL
             PreparedStatement preparedStatement1 = new DbConnect().getDbConnect().prepareStatement(SQL1, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement1.setString(1, currentId);
-            preparedStatement1.setString(2, name);
-            preparedStatement1.setString(3, addr);
+            preparedStatement1.setString(1, name);
+            preparedStatement1.setString(2, addr);
             preparedStatement1.executeUpdate();
 
             //Get the id of the customer
@@ -406,7 +405,6 @@ public class BookController {
                 alert.setTitle("Success");
                 alert.setContentText("Sucessfully Saved Ticket!");
                 alert.showAndWait();
-                
             BookButtonCell.close();
             close();
             System.out.println("load dashboard");
