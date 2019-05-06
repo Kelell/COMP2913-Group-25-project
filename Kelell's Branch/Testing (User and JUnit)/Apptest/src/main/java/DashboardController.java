@@ -232,6 +232,7 @@ public class DashboardController implements Initializable {
                             primaryStage = new Stage();
                             primaryStage.setScene(scene);
                             primaryStage.show();
+                            customerTable.getScene().getWindow().hide();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -271,34 +272,25 @@ public class DashboardController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
-                primaryStage = new Stage();
-                primaryStage.setScene(new Scene(root, 545, 285));
-                primaryStage.centerOnScreen();
-                primaryStage.show();
-
-                //close the dashboard
-                new LoginController().close();
+                DialogPane d=new DialogPane();
+                d.setContent(root);
+                Alert a=new Alert(null);
+                a.setDialogPane(d);
+                a.setTitle("Manage Bike");
+                a.setHeaderText(null);
+                a.showAndWait();
+                try {
+                    refresh();
+                } catch (SQLException ex) {
+                    Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
             }
         });
 
         try {
 
-            //get DB Object
-            con = new DbConnect().getDbConnect();
-
-            //Create a list to store bike data
-            bikeData = FXCollections.observableArrayList();
-
-            //Fetches data from the bike database
-            ResultSet rs1 = con.createStatement().executeQuery("SELECT * FROM `bike`");
-
-            //Populates the data from the database to the list to display on the bike table
-            while (rs1.next()) {
-                bikeData.add(new BikeModel(rs1.getString("BIKE_ID"), rs1.getString("STATUS"), rs1.getString("LOCATION"), String.format("%.2f", rs1.getDouble("PRICE"))));
-            }
-
+             refresh();
             //initialise the bike table columns
             bike_idColumn.setCellValueFactory(new PropertyValueFactory("id"));
             statusColumn.setCellValueFactory(new PropertyValueFactory("status"));
@@ -482,6 +474,24 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
+    }
+    //refresh the Bikes table
+    private void refresh() throws SQLException{
+        
+          //get DB Object
+            con = new DbConnect().getDbConnect();
+
+            //Create a list to store bike data
+            bikeData = FXCollections.observableArrayList();
+            bikeData.clear();
+            //Fetches data from the bike database
+            ResultSet rs1 = con.createStatement().executeQuery("SELECT * FROM `bike`");
+
+            //Populates the data from the database to the list to display on the bike table
+            while (rs1.next()) {
+                bikeData.add(new BikeModel(rs1.getString("BIKE_ID"), rs1.getString("STATUS"), rs1.getString("LOCATION"), String.format("%.2f", rs1.getDouble("PRICE"))));
+            }
+        bikeTable.setItems(bikeData);
     }
 
     /*
