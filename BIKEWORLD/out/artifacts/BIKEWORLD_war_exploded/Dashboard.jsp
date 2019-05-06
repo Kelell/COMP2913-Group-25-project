@@ -9,36 +9,50 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import ="javax.servlet.http.HttpSession" %>
-<%
 
-    HttpSession ion =  request.getSession(false);
-    if (ion == null) {
-        response.sendRedirect("index.jsp");
-    }%>
 <html>
 <head>
-    <title>Index</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
     <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+<%
 
-<div class = "Title">
-    B!KEWORLD
-</div>
+    HttpSession session1 =  request.getSession(false);
+    if(session1.getAttribute("uname")==null) {
+        response.sendRedirect("index.jsp");
+    }%>
 
-<div class="nav"><!--Nav bar from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_topnav (TEST ONLY)-->
-    <a class="active" href="Dashboard.jsp">Home</a>
-    <a href="Views">View bikes</a>
-    <a href="AboutUs.jsp">About Us</a>
-    <a href="ContactUs.jsp">Contact Us</a>
-    <a href="Logout.jsp">Log out</a>
-</div>
+<nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="Dashboard.jsp">B!KEWORLD</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="Dashboard.jsp">Home</a></li>
+            <li><a href="Views">View bikes</a></li>
+            <li><a href="AboutUs.jsp">About Us</a></li>
+            <li><a href="ContactUs.jsp">Contact Us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
 
-<% HttpSession current = request.getSession(false);%>
-<%= out.println(current.getAttribute("uName"));%>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>Profile: <%= session1.getAttribute("uname")%>
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><strong> </strong></li>
+                    <li><a href="Profile.jsp">Later</a></li>
+                </ul>
+            </li>
+            <li><a href="Logout.jsp"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+        </ul>
+    </div>
+</nav>
 
-
+<p><%=session1.getAttribute("uname")%></p>
 
 
 </body>

@@ -42,6 +42,7 @@ public class View extends HttpServlet {
         response.setContentType("text/html");
         jdbc test = new jdbc();
         String driver = "com.mysql.cj.jdbc.Driver";
+        out.println(session.getAttribute("uName"));
 
         try {
             Class.forName(driver);
@@ -72,7 +73,7 @@ public class View extends HttpServlet {
             String size = Integer.toString(listsize);
 
             out.println("<head onload=\"openFunction()\" >");
-            if (session.getAttribute("uName") == null) {
+            if (session.getAttribute("uname") == null) {
                 response.sendRedirect("index.jsp");
             }
             out.println(
@@ -149,7 +150,7 @@ public class View extends HttpServlet {
                             "    B!KEWORLD\n" +
                             "  </div>"+
                     "<div class=nav>"+
-                            "<a href=\"Dashboard\">Home</a>"+
+                            "<a href=\"Dashboard.jsp\">Home</a>"+
                             "<a class=active href=\"Views\">View bikes</a>" +
                             "<a href=AboutUs.jsp>About Us</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+

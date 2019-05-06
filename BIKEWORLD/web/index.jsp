@@ -1,39 +1,32 @@
 <%--
   Created by IntelliJ IDEA.
   User: sc16bmt
-  Date: 23/02/19
-  Time: 19:47
+  Date: 06/05/19
+  Time: 13:45
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>Index</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
+<head>
+  <title>LogIn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 
-  <div class = "Title">
-    B!KEWORLD
+<nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.jsp">B!KEWORLD</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
   </div>
+</nav>
 
-  <div class="nav"><!--Nav bar from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_topnav (TEST ONLY)-->
-    <a class="active" href="index.jsp">Home</a>
-    <a href="registration.jsp">Sign up</a>
-  </div>
-
-  <form action="LogIn" method="post">
-
-    Username: <br><input type="text" name="username" required>
-    <br>
-    Password: <br><input type="password" name="password" required>
-    <br><br>
-    <input type="submit" value="Login">
-
-  </form>
-
-
-
-  </body>
+</body>
 </html>

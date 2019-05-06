@@ -30,9 +30,12 @@ public class LogIn extends HttpServlet {
         try {
             String name = request.getParameter("username");
             String password = request.getParameter("password");
+            int custid = 0;
+            String address = "";
             String Uname = "";
+            String email = "";
             String Upass = "";
-            String sql = "SELECT * FROM users WHERE name =? AND password=? ";
+            String sql = "SELECT * FROM customer WHERE name =? AND password=? ";
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -40,11 +43,17 @@ public class LogIn extends HttpServlet {
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                custid = rs.getInt("CUSTOMER_ID");
                 Uname = rs.getString("name");
                 Upass = rs.getString("password");
+                email = rs.getString("email");
+                address = rs.getString("CUSTOMER_ADDRESS");
+
 
             }
             if(name.equals(Uname)&&password.equals(Upass)){
+
+
 
                 HttpSession oldSession = request.getSession(false);
                 if (oldSession != null) {
@@ -52,17 +61,17 @@ public class LogIn extends HttpServlet {
                 }
 
                 HttpSession session = request.getSession(true);
-                session.setAttribute("uName", "ChaitanyaSingh");
-                session.setAttribute("uemailId", "myemailid@gmail.com");
-                session.setAttribute("uAge", "30");
-
+                session.setAttribute("uname", name);
+                session.setAttribute("uemail", email);
+                session.setAttribute("uId", custid);
+                session.setAttribute("uAddress", address);
                 //setting session to expiry in 5 mins
                 session.setMaxInactiveInterval(5*60);
 
                 Cookie message = new Cookie("message", "Welcome");
                 response.addCookie(message);
 
-                response.sendRedirect("Dashboard");
+                response.sendRedirect("Dashboard.jsp");
             }else{
                 //response.sendRedirect("login.jsp");
                 out.print("Sorry, username or password error!");

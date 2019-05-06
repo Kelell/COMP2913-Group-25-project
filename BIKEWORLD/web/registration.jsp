@@ -15,9 +15,6 @@
 </head>
 <body>
 
-<div class = "Title">
-    B!KEWORLD
-</div>
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
     <div class="container-fluid">
         <div class="navbar-header">
@@ -59,7 +56,7 @@
             <input name="password" type="password" class="form-control" id="password" required="required">
         </div>
         <div class="form-group">
-            <label for="conpassword">Password:</label>
+            <label for="conpassword">Confrim Password:</label>
             <input name="password" type="password" class="form-control" id="conpassword" required="required">
         </div>
         <button type="submit" class="btn btn-default">Register</button>

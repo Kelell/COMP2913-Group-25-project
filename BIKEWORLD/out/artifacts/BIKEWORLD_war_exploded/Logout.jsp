@@ -18,6 +18,9 @@
     if (oldSession.getAttribute("uName") != null) {
         oldSession.invalidate();
         response.sendRedirect("index.jsp");
+    }
+    else{
+    response.sendRedirect("index.jsp");
     }%>
 
 </body>
