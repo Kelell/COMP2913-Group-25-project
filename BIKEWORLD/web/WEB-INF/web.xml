@@ -5,15 +5,7 @@
          version="4.0">
 
 
-    <servlet>
-        <servlet-name>Submit</servlet-name>
-        <servlet-class>mypack.Submit</servlet-class>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>Submit</servlet-name>
-        <url-pattern>/submit</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>Book</servlet-name>
