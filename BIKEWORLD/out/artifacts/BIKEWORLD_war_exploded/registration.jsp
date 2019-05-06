@@ -106,11 +106,6 @@
                 <p id="length" class="invalid">Minimum <b>8 characters</b></p>
             </div>
         </div>
-        <div class="form-group" id="conpasswordg" style = 'Display : none;'>
-            <label for="conpassword">Confrim Password:</label>
-            <input name="password" type="password" class="form-control" oninput="myfunction5()" id="conpassword" required="required">
-            <p id = 'confirmError' style = 'Colour : red; Display : none;' > Error</p>
-        </div>
         <button id="sub" style = 'Display : none;' type="submit" class="btn btn-default">Register</button>
     </form>
     <script>
@@ -126,8 +121,6 @@
             var usernamerror = document.getElementById("usernameError");
             var psw = document.getElementById("passwordg");
             var pswerror = document.getElementById("passwordError");
-            var cnpsw = document.getElementById("conpasswordg");
-            var cnpswerror = document.getElementById("confirmError");
             var sub = document.getElementById("sub");
             var letters = /^[A-Za-z]+$/;
             if (fname.value.match(letters) )
@@ -145,10 +138,6 @@
                     username.children[1].value = "";
                     psw.style.display = 'none';
                     psw.children[1].value = "";
-                    pswerror.style.display = 'none';
-                    cnpsw.style.display = 'none';
-                    cnpsw.children[1].value = "";
-                    cnpswerror.style.display = 'none';
                     fnamerror.style.display = 'none';
                     sub.style.display = 'none';
                 }
@@ -167,8 +156,6 @@
                 username.children[1].value = "";
                 psw.style.display = 'none';
                 psw.children[1].value = "";
-                cnpsw.style.display = 'none';
-                cnpsw.children[1].value = "";
                 fnamerror.style.display = 'block';
                 sub.style.display = 'none';
             }
@@ -184,8 +171,6 @@
             var usernamerror = document.getElementById("usernameError");
             var psw = document.getElementById("passwordg");
             var pswerror = document.getElementById("passwordError");
-            var cnpsw = document.getElementById("conpasswordg");
-            var cnpswerror = document.getElementById("confirmError");
             var sub = document.getElementById("sub");
             var letters = /^[A-Za-z]+$/;
             if (lname.value.match(letters))
@@ -200,8 +185,6 @@
                     username.children[1].value = "";
                     psw.style.display = 'none';
                     psw.children[1].value = "";
-                    cnpsw.style.display = 'none';
-                    cnpsw.children[1].value = "";
                     lnamerror.style.display = 'none';
                     sub.style.display = 'none';
 
@@ -217,8 +200,6 @@
                 username.children[1].value = "";
                 psw.style.display = 'none';
                 psw.children[1].value = "";
-                cnpsw.style.display = 'none';
-                cnpsw.children[1].value = "";
                 lnamerror.style.display = 'block';
                 sub.style.display = 'none';
             }
@@ -229,7 +210,6 @@
             var email = document.getElementById("emailg");
             var username = document.getElementById("usernameg");
             var psw = document.getElementById("passwordg");
-            var cnpsw = document.getElementById("conpasswordg");
             var sub = document.getElementById("sub");
             if (email.style.display == 'none'){
                 email.style.display = 'block';
@@ -238,8 +218,6 @@
                 username.children[1].value = "";
                 psw.style.display = 'none';
                 psw.children[1].value = "";
-                cnpsw.style.display = 'none';
-                cnpsw.children[1].value = "";
                 sub.style.display = 'none';
             }
 
@@ -253,8 +231,6 @@
             var usernamerror = document.getElementById("usernameError");
             var psw = document.getElementById("passwordg");
             var pswerror = document.getElementById("passwordError");
-            var cnpsw = document.getElementById("conpasswordg");
-            var cnpswerror = document.getElementById("confirmError");
             var sub = document.getElementById("sub");
             var letters = /^[[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
             if (email.value.match(letters)){
@@ -263,8 +239,6 @@
                     username.children[1].value = "";
                     psw.style.display = 'none';
                     psw.children[1].value = "";
-                    cnpsw.style.display = 'none';
-                    cnpsw.children[1].value = "";
                     emailerror.style.display = 'none';
                     sub.style.display = 'none';
                 }
@@ -274,29 +248,22 @@
                 username.children[1].value = "";
                 psw.style.display = 'none';
                 psw.children[1].value = "";
-                cnpsw.style.display = 'none';
-                cnpsw.children[1].value = "";
                 emailerror.style.display = 'block';
                 sub.style.display = 'none';
             }
 
         }
-<<<<<<< HEAD
 
         function myfunction4() {
             var username = document.getElementById("username");
             var usernamerror = document.getElementById("usernameError");
             var psw = document.getElementById("passwordg");
             var pswerror = document.getElementById("passwordError");
-            var cnpsw = document.getElementById("conpasswordg");
-            var cnpswerror = document.getElementById("confirmError");
             var sub = document.getElementById("sub");
             var letters = /^[[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
             if (psw.style.display == 'none') {
                 psw.style.display = 'block';
                 psw.children[1].value = "";
-                cnpsw.style.display = 'none';
-                cnpsw.children[1].value = "";
                 usernamerror.style.display = 'none';
                 sub.style.display = 'none';
             }
@@ -307,9 +274,6 @@
                 var number = document.getElementById("number");
                 var length = document.getElementById("length");
         var pswerror = document.getElementById("passwordError");
-        var cnpsw = document.getElementById("conpasswordg");
-        var cnpswerror = document.getElementById("confirmError");
-        var sub = document.getElementById("sub");
                 psw.onfocus = function() {
                     document.getElementById("message").style.display = "block";
                 }
@@ -361,43 +325,14 @@
 
                     if(letter.classList == 'valid' && number.classList == 'valid' && length.classList == 'valid' && capital.classList == 'valid')
                     {
-                        if(cnpsw.style.display == 'none'){
-                            cnpsw.style.display = 'block';
-                            cnpsw.children[1].value = "";
-                            cnpswerror.style.display = 'none';
-                            sub.style.display = 'none';
-                        }
+                        sub.style.display = 'block';
                     }
+                    else{
+                        sub.style.display = 'none';
+                    }
+
                 }
 
-        function myfunction5(){
-            var psw = document.getElementById("password");
-            var pswerror = document.getElementById("passwordError");
-            var cnpsw = document.getElementById("conpassword");
-=======
-        function myfunction3(){
-            var email = document.getElementById("email");
-            var emailerror = document.getElementById("emailError");
-            var username = document.getElementById("usernameg");
-            var usernamerror = document.getElementById("usernameError");
-            var psw = document.getElementById("passwordg");
-            var usernamerror = document.getElementById("passwordError");
-            var cnpsw = document.getElementById("conpasswordg");
-            var lnamerror = document.getElementById("lnameError");
->>>>>>> 2e811477726d0bdec931e52473af4fd6200ccd4b
-            var sub = document.getElementById("sub");
-            if (cnpsw.value != ""){
-                if(sub.style.display = 'none'){
-                    cnpswerror.style.display = 'none';
-                    sub.style.display = 'block';
-                }
-            }
-            else{
-                ;
-                sub.style.display = 'none';
-            }
-
-        }
 
 
     </script>
