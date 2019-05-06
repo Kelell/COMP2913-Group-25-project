@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -16,6 +17,12 @@ import java.util.List;
 @WebServlet(name = "AvailableBikes")
 public class AvailableBikes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session =  request.getSession(false);
+        if (session == null) {
+            response.sendRedirect("index.jsp");
+        }
+
 
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
@@ -97,10 +104,11 @@ public class AvailableBikes extends HttpServlet {
                             "    B!KEWORLD\n" +
                             "  </div>"+
                             "<div class=nav>"+
-                            "<a  href=index.jsp>Home</a>"+
+                            "<a href=\"Dashboard.jsp\">Home</a>"+
                             "<a class=active href=\"Views\">View bikes</a>" +
                             "<a href=AboutUs.jsp>About Us</a>"+
                             "<a href=ContactUs.jsp>Contact Us</a>"+
+                            "<a href=\"Logout.jsp\">Log out</a>"+
                             "</div>"
             );
 

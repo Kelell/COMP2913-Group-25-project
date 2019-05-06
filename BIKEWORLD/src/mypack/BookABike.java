@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
@@ -19,6 +20,12 @@ import java.text.ParseException;
 public class BookABike extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+
+        HttpSession session =  request.getSession(false);
+        if (session.getAttribute("uName") == null) {
+            response.sendRedirect("index.jsp");
+        }
+
 
         //Settinng up print writter to write to hml page and sql connection
         PrintWriter out = response.getWriter();
@@ -185,10 +192,11 @@ public class BookABike extends HttpServlet {
                     out.println("<div class = \"Title\"> B!KEWORLD </div>");
                     out.println(
                             "<div class=nav>"+
-                                    "<a  href=index.jsp>Home</a>"+
-                                    "<a  class=activehref=\"Views\">View bikes</a>" +
+                                    "<a href=\"Dashboard\">Home</a>"+
+                                    "<a class=active href=\"Views\">View bikes</a>" +
                                     "<a href=AboutUs.jsp>About Us</a>"+
                                     "<a href=ContactUs.jsp>Contact Us</a>"+
+                                    "<a href=\"Logout.jsp\">Log out</a>"+
                                     "</div>"
                     );
 
@@ -246,11 +254,11 @@ public class BookABike extends HttpServlet {
                     out.println("<div class = \"Title\"> B!KEWORLD </div>");
                     out.println(
                             "<div class=nav>"+
-                                    "<a  href=index.jsp>Home</a>"+
-                                    "<a  class=activehref=\"Views\">View bikes</a>" +
+                                    "<a href=\"Dashboard\">Home</a>"+
+                                    "<a class=active href=\"Views\">View bikes</a>" +
                                     "<a href=AboutUs.jsp>About Us</a>"+
                                     "<a href=ContactUs.jsp>Contact Us</a>"+
-
+                                    "<a href=\"Logout.jsp\">Log out</a>"+
                                     "</div>"
                     );
 
@@ -499,12 +507,11 @@ public class BookABike extends HttpServlet {
                     out.println("<div class = \"Title\"> B!KEWORLD </div>");
                     out.println(
                             "<div class=nav>"+
-                                    "<a  href=index.jsp>Home</a>"+
-                                    "<a class=active href=book>Book A Bike</a>" +
-                                    "<a href=\"Views\">View bikes</a>" +
+                                    "<a href=\"Dashboard\">Home</a>"+
+                                    "<a class=active href=\"Views\">View bikes</a>" +
                                     "<a href=AboutUs.jsp>About Us</a>"+
                                     "<a href=ContactUs.jsp>Contact Us</a>"+
-                                    "<a>Log out</a>" +
+                                    "<a href=\"Logout.jsp\">Log out</a>"+
                                     "</div>"
                     );
 
@@ -565,6 +572,7 @@ public class BookABike extends HttpServlet {
                                     "<a  class=active href=\"Views\">View bikes</a>" +
                                     "<a href=AboutUs.jsp>About Us</a>"+
                                     "<a href=ContactUs.jsp>Contact Us</a>"+
+                                    "<a href=\"Logout.jsp\">Log out</a>"+
                                     "</div>"
                     );
 
