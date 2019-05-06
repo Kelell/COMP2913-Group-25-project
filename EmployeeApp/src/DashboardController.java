@@ -254,7 +254,7 @@ public class DashboardController implements Initializable {
         //Initialise the combo box with list items
         searchCombo_b.getItems().setAll("BY BIKE ID", "BY LOCATION", "BY PRICE");
         searchCombo_b.getSelectionModel().selectFirst();
-        statusCombo.getItems().setAll("ALL", "FREE", "HIRED");
+        statusCombo.getItems().setAll("ALL", "FREE", "HIRED", "DAMAGED");
         statusCombo.getSelectionModel().selectFirst();
 
         manageBikesBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -372,7 +372,7 @@ public class DashboardController implements Initializable {
                             if (bike.locationProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Location.
                             }
-							case "BY PRICE":
+                        case "BY PRICE":
                             if (bike.priceProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Price.
                             }
