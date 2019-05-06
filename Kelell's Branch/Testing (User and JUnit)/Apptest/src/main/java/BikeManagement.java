@@ -32,33 +32,33 @@ import javafx.stage.Stage;
  *
  * @author sahil
  */
-
-
 public class BikeManagement implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    
-    @FXML ComboBox<String> bikeCombo;
-    @FXML ComboBox<String> statusCombo;
-    @FXML Button setStatusBtn;
-    @FXML Button cancelBtn;
-    @FXML Text statusLabel;
-    
+    @FXML
+    ComboBox<String> bikeCombo;
+    @FXML
+    ComboBox<String> statusCombo;
+    @FXML
+    Button setStatusBtn;
+    @FXML
+    Button cancelBtn;
+    @FXML
+    Text statusLabel;
 
-    
     //Database connection
     private static Connection con;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         con = DbConnect.getDbConnect();
-        
+
         ResultSet rs1 = null;
         try {
             rs1 = con.createStatement().executeQuery("SELECT * FROM `bike`");
-        
 
             //Populates the combo box with bike IDs from the database
             while (rs1.next()) {
@@ -72,7 +72,7 @@ public class BikeManagement implements Initializable {
         statusCombo.getItems().add("Hired");//0
         statusCombo.getItems().add("Free");//1
         statusCombo.getItems().add("Damaged");//2
-        
+
         bikeCombo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -81,143 +81,122 @@ public class BikeManagement implements Initializable {
                 int status = -1;
                 selectedBikeID = Integer.parseInt(bikeCombo.getSelectionModel().getSelectedItem().trim());
                 System.out.print(selectedBikeID);
-                
-                
+
                 //set label corresponding to current status
                 ResultSet bikeStatus = null;
-                
+
                 try {
                     bikeStatus = con.createStatement().executeQuery("SELECT * FROM `bike` WHERE BIKE_ID=" + selectedBikeID);
                     bikeStatus.next();
                     status = Integer.parseInt(bikeStatus.getString("STATUS"));
-                
+
                 } catch (SQLException ex) {
                     Logger.getLogger(BikeManagement.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                switch(status) {
+                switch (status) {
                     case 0:
-                      statusLabel.setText("Hired");
-                      break;
+                        statusLabel.setText("Hired");
+                        break;
                     case 1:
-                      statusLabel.setText("Free");
-                      break;
+                        statusLabel.setText("Free");
+                        break;
                     case 2:
-                      statusLabel.setText("Damaged");
-                      break;
+                        statusLabel.setText("Damaged");
+                        break;
                     case -1:
-                      statusLabel.setText("Invalid");
-                      break;
+                        statusLabel.setText("Invalid");
+                        break;
 
                 }
 
             }
         });
-        
+
         setStatusBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                
+
                 String alterSQL = "UPDATE bike SET STATUS=";
                 String statusVal = statusCombo.getValue();
                 int bikeID = -1;
                 int status = -1;
                 boolean validStatus = false;
                 boolean validBike = false;
-                
+
                 //ensure a value is selected
-                if(!bikeCombo.getSelectionModel().isEmpty()){
+                if (!bikeCombo.getSelectionModel().isEmpty()) {
                     bikeID = Integer.parseInt(bikeCombo.getValue());
                 }
                 //validate selections and process
-                if(bikeID > 0){
+                if (bikeID > 0) {
                     validBike = true;
-                
+
                     if (statusVal.equals("Hired")) {
                         status = 0;
                         validStatus = true;
-                    } else if (statusVal.equals("Free")){
+                    } else if (statusVal.equals("Free")) {
                         status = 1;
                         validStatus = true;
-                    }
-                    else if (statusVal.equals("Damaged")){
+                    } else if (statusVal.equals("Damaged")) {
                         status = 2;
                         validStatus = true;
-                    }
-                    else {
+                    } else {
                         validStatus = false;
                     }
-                }
-                else{
+                } else {
                     validBike = false;
                 }
-                
-                if (validBike && validStatus){
-                    boolean notExecuted= false;
-                    
-                    alterSQL += status + " WHERE BIKE_ID='"+ bikeID + "'";
+
+                if (validBike && validStatus) {
+                    boolean notExecuted = false;
+
+                    alterSQL += status + " WHERE BIKE_ID='" + bikeID + "'";
                     System.out.println(alterSQL);
-                    
+
                     try {
                         PreparedStatement preparedStatement1 = DbConnect.getDbConnect().prepareStatement(alterSQL, Statement.RETURN_GENERATED_KEYS);
                         notExecuted = preparedStatement1.execute();
+
                     } catch (SQLException ex) {
                         Logger.getLogger(BikeManagement.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
-                    if (notExecuted){
+
+                    if (notExecuted) {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setHeaderText(null);
                         alert.setTitle("Error");
                         alert.setContentText("Database not updated!");
                         alert.show();
-                    }else {
-                       
+                    } else {
+
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setHeaderText(null);
                         alert.setTitle("Success");
                         alert.setContentText("Database Updated!");
-                        alert.show();                        
+                        alert.show();
+                        bikeCombo.getScene().getWindow().hide();
                     }
 
-                }
-                else{
+                } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setHeaderText(null);
                     alert.setTitle("Error");
                     alert.setContentText("Invalid bike or status selected!");
                     alert.show();
                 }
-                    
-                
 
             }
         });
-        
+
         cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                // get a handle to the stage
-                Stage stage = (Stage) cancelBtn.getScene().getWindow();
-                stage.close();
-                
-                //After updating launches the dasboard with updated information
-                Stage primaryStage;
-
-                Parent root = null;
-                try {
-                    root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
-                } catch (IOException ex) {
-                    Logger.getLogger(BikeManagement.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                primaryStage = new Stage();
-                primaryStage.setScene(new Scene(root, 1200, 561));
-                primaryStage.centerOnScreen();
-                primaryStage.show();
+                cancelBtn.getScene().getWindow().hide();
 
             }
         });
-        
-    }    
-    
+
+    }
+
 }
