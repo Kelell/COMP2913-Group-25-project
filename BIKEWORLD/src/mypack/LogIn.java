@@ -32,6 +32,7 @@ public class LogIn extends HttpServlet {
             String password = request.getParameter("password");
             int custid = 0;
             String address = "";
+            String fullname = "";
             String Uname = "";
             String email = "";
             String Upass = "";
@@ -48,6 +49,7 @@ public class LogIn extends HttpServlet {
                 Upass = rs.getString("password");
                 email = rs.getString("email");
                 address = rs.getString("CUSTOMER_ADDRESS");
+                fullname = rs.getString("CUSTOMER_NAME");
 
 
             }
@@ -65,6 +67,7 @@ public class LogIn extends HttpServlet {
                 session.setAttribute("uemail", email);
                 session.setAttribute("uId", custid);
                 session.setAttribute("uAddress", address);
+                session.setAttribute("uCusname", fullname);
                 //setting session to expiry in 5 mins
                 session.setMaxInactiveInterval(5*60);
 

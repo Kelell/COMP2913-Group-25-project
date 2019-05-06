@@ -205,7 +205,7 @@ public class BookABike extends HttpServlet {
                                     "        <ul class=\"nav navbar-nav navbar-right\">\n" +
                                     "\n" +
                                     "            <li class=\"dropdown\">\n" +
-                                    "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>Profile: " + session.getAttribute("uname")+ "\n" +
+                                    "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>" + session.getAttribute("uname")+ "\n" +
                                     "                    <span class=\"caret\"></span></a>\n" +
                                     "                <ul class=\"dropdown-menu\">\n" +
                                     "                    <li><strong> </strong></li>\n" +
@@ -285,7 +285,7 @@ public class BookABike extends HttpServlet {
                                     "        <ul class=\"nav navbar-nav navbar-right\">\n" +
                                     "\n" +
                                     "            <li class=\"dropdown\">\n" +
-                                    "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>Profile: " + session.getAttribute("uname")+ "\n" +
+                                    "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>" + session.getAttribute("uname")+ "\n" +
                                     "                    <span class=\"caret\"></span></a>\n" +
                                     "                <ul class=\"dropdown-menu\">\n" +
                                     "                    <li><strong> </strong></li>\n" +
@@ -556,7 +556,7 @@ public class BookABike extends HttpServlet {
                                     "        <ul class=\"nav navbar-nav navbar-right\">\n" +
                                     "\n" +
                                     "            <li class=\"dropdown\">\n" +
-                                    "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>Profile: " + session.getAttribute("uname")+ "\n" +
+                                    "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>" + session.getAttribute("uname")+ "\n" +
                                     "                    <span class=\"caret\"></span></a>\n" +
                                     "                <ul class=\"dropdown-menu\">\n" +
                                     "                    <li><strong> </strong></li>\n" +
@@ -635,7 +635,7 @@ public class BookABike extends HttpServlet {
                                     "        <ul class=\"nav navbar-nav navbar-right\">\n" +
                                     "\n" +
                                     "            <li class=\"dropdown\">\n" +
-                                    "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>Profile: " + session.getAttribute("uname")+ "\n" +
+                                    "                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>" + session.getAttribute("uname")+ "\n" +
                                     "                    <span class=\"caret\"></span></a>\n" +
                                     "                <ul class=\"dropdown-menu\">\n" +
                                     "                    <li><strong> </strong></li>\n" +

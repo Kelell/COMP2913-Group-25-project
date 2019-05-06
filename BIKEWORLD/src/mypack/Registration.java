@@ -29,9 +29,9 @@ public class Registration extends HttpServlet {
         try {
             String fname = request.getParameter("fname");
             String lname = request.getParameter("lname");
-            String fullname = String.format("%s %s", fname, lname);
+            String fullname = fname + " " + lname;
             String address = request.getParameter("address");
-            String uname = request.getParameter("user");
+            String uname = request.getParameter("username");
             String password = request.getParameter("password");
             String email = request.getParameter("email");
             String sql = "insert into customer(name,password,CUSTOMER_NAME,CUSTOMER_ADDRESS,email) values(?,?,?,?,?)";
@@ -47,7 +47,18 @@ public class Registration extends HttpServlet {
                 Username = rs.getString("name");
 
             }
-            if(uname.equals(Username)){
+            if (Username == null)
+            {
+                ps.setString(1, uname);
+                ps.setString(2, password);
+                ps.setString(3, fullname);
+                ps.setString(4, address);
+                ps.setString(5, email);
+                ps.executeUpdate();
+                out.println("Success Registration");
+                response.sendRedirect("LogIn.jsp");
+            }
+            else if(uname.equals(Username)){
                 String message = "Username already in use.";
                 response.sendRedirect("registration.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
 

@@ -186,7 +186,7 @@
 <%String term = request.getParameter("term"); %>
 <h2>RECEIPT</h2>
 <%if ((term.equals("2"))){
-    out.print( "<p> Name : " + request.getParameter("location") + "</p>");
+    out.print( "<p> Name : " + session.getAttribute("uCusname") + "</p>");
     out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
     out.print( "<p>Days : " + request.getParameter("days")+ "</p>");
     out.print( "<p>Bike ID : " + request.getParameter("bikeids")+ "</p>");
@@ -195,7 +195,7 @@
     out.print( "<p>Return date : " + request.getParameter("endd")+ "</p>");
 }%>
 <%if (term.equals("1")){
-    out.print( "<p> Name : " + request.getParameter("location") + "</p>");
+    out.print( "<p> Name : " + session.getAttribute("uCusname") + "</p>");
     out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
     out.print( "<p>Hours : " + request.getParameter("hours")+ "</p>");
     out.print( "<p>Bike ID : " + request.getParameter("bikeids")+ "</p>");
@@ -216,30 +216,20 @@
         <div class="row">
             <div class="col-75">
                 <div class="container">
-                    <form action="/action_page.php">
+                    <form action="complete" method = 'post'>
 
                         <div class="row">
                             <div class="col-50">
                                 <h3>Billing Address</h3>
                                 <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                                <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
+                                <input type="text" id="fname" name="firstname" value = <%=session.getAttribute("uCusname")%>>
                                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                                <input type="text" id="email" name="email" placeholder="john@example.com">
+                                <input type="text" id="email" name="email" value = <%=session.getAttribute("uemail")%>>
                                 <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                                <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
+                                <input type="text" id="adr" name="address" value = <%=session.getAttribute("uAddress")%>>
                                 <label for="city"><i class="fa fa-institution"></i> City</label>
-                                <input type="text" id="city" name="city" placeholder="New York">
+                                <input type="text" id="city" name="city" value = <%=request.getParameter("location")%>>
 
-                                <div class="row">
-                                    <div class="col-50">
-                                        <label for="state">State</label>
-                                        <input type="text" id="state" name="state" placeholder="NY">
-                                    </div>
-                                    <div class="col-50">
-                                        <label for="zip">Zip</label>
-                                        <input type="text" id="zip" name="zip" placeholder="10001">
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="col-50">
@@ -252,7 +242,7 @@
                                     <i class="fa fa-cc-discover" style="color:orange;"></i>
                                 </div>
                                 <label for="cname">Name on Card</label>
-                                <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                                <input type="text" id="cname" name="cardname" value = <%=session.getAttribute("uCusname")%>>
                                 <label for="ccnum">Credit card number</label>
                                 <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
                                 <label for="expmonth">Exp Month</label>
@@ -271,7 +261,28 @@
 
                         </div>
                         <label>
+                            <input type='text' style = 'display: none;' name='term' value = <%=request.getParameter("term")%>>
+                            <br><br>
+                            <input type='text' style = 'display: none;' name='bikeids' value = <%=request.getParameter("bikeids")%>>
+                            <input type='text' style = 'display: none;' name='location' value = <%=request.getParameter("location")%>>
+                            <input type='text' style = 'display: none;' name='days' value = <%=request.getParameter("days")%>>
+                            <input type='text' style = 'display: none;' name='hours' value = <%=request.getParameter("hours")%>>
+                            <%if (term.equals("2")){
+                                out.print( "<input type='text' style = 'display: none;' name='cost' value = " + (Integer.parseInt(request.getParameter("cost"))- (0.20 * Integer.parseInt(request.getParameter("cost"))))+ "");
+                            }
+                            else{
+                                out.print( "<input type='text' style = 'display: none;' name='cost' value = " + Integer.parseInt(request.getParameter("cost")) + ">");
+                            }%>
+                            >
+                            <input type='text' style = 'display: none;' name='startd' value = <%=request.getParameter("startd")%>>
+                            <input type='text' style = 'display: none;' name='endd' value = <%=request.getParameter("endd")%>>
+                            <input type='text' style = 'display: none;' name='startt' value = <%=request.getParameter("startt")%>>
+                            <input type='text' style = 'display: none;' name='endt' value = <%=request.getParameter("endt")%>>
+                            <input type='text' style = 'display: none;' name='theday' value = <%=request.getParameter("theday")%>>
                             <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
+                        </label>
+                        <label>
+                            <input type="checkbox"  name="sameadr"> Remember card
                         </label>
                         <input type="submit" value="Continue to checkout" class="btn">
                     </form>

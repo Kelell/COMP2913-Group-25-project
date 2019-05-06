@@ -33,11 +33,11 @@
     <form action="Register" method="post">
         <div class="form-group">
             <label for="fname">First Name : </label>
-            <input name="firstname" type="text" class="form-control" id="fname" required="required">
+            <input name="fname" type="text" class="form-control" id="fname" required="required">
         </div>
         <div class="form-group">
             <label for="lname">Second Name :</label>
-            <input name="secondname" type="text" class="form-control" id="lname" required="required">
+            <input name="lname" type="text" class="form-control" id="lname" required="required">
         </div>
         <div class="form-group">
             <label for="address">Address :</label>
