@@ -1,3 +1,4 @@
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -11,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -29,58 +29,88 @@ import java.util.logging.Logger;
 /**
  * @author Zahoor
  */
-
 public class DashboardController implements Initializable {
 
     private static Connection con;
 
-    @FXML VBox vBox;
+    @FXML
+    VBox vBox;
 
     /*
       Customer Tab
      */
     private ObservableList<CustomerModel> customerData;
-    @FXML private TableView customerTable;
-    @FXML private TableColumn idColumn;
-    @FXML private TableColumn nameColumn;
-    @FXML private TableColumn addressColumn;
-    @FXML private TableColumn printColumn;
-    @FXML private TextField searchField;
-    @FXML private ComboBox<String> searchCombo;
+    @FXML
+    private TableView customerTable;
+    @FXML
+    private TableColumn idColumn;
+    @FXML
+    private TableColumn nameColumn;
+    @FXML
+    private TableColumn addressColumn;
+    @FXML
+    private TableColumn printColumn;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private ComboBox<String> searchCombo;
 
     /*
       Bike Tab
      */
     private ObservableList<BikeModel> bikeData;
     private ObservableList<BikeModel> bikeBookedData;
-    @FXML private TableView bikeTable;
-    @FXML private TableColumn bike_idColumn;
-    @FXML private TableColumn statusColumn;
-    @FXML private TableColumn priceColumn;
-    @FXML private TableColumn locationColumn;
-    @FXML private TableColumn bookColumn;
-    @FXML private TextField searchField_b;
-    @FXML private ComboBox<String> searchCombo_b;
-    @FXML private ComboBox<String> statusCombo;
-    @FXML private DatePicker startDate;
-    @FXML private DatePicker endDate;
-    @FXML private Button manageBikesBtn;
+    @FXML
+    private TableView bikeTable;
+    @FXML
+    private TableColumn bike_idColumn;
+    @FXML
+    private TableColumn statusColumn;
+    @FXML
+    private TableColumn priceColumn;
+    @FXML
+    private TableColumn locationColumn;
+    @FXML
+    private TableColumn bookColumn;
+    @FXML
+    private TextField searchField_b;
+    @FXML
+    private ComboBox<String> searchCombo_b;
+    @FXML
+    private ComboBox<String> statusCombo;
+    @FXML
+    private DatePicker startDate;
+    @FXML
+    private DatePicker endDate;
+    @FXML
+    private Button manageBikesBtn;
 
     /*
       Ticket Tab
-    */
+     */
     private ObservableList<TicketModel> ticketData;
-    @FXML private TableView ticketTable;
-    @FXML private TableColumn ticket_idColumn;
-    @FXML private TableColumn customerID;
-    @FXML private TableColumn customerName;
-    @FXML private TableColumn t_bike_idColumn;
-    @FXML private TableColumn t_priceColumn;
-    @FXML private TableColumn startDateColumn;
-    @FXML private TableColumn endDateColumn;
-    @FXML private TableColumn totalColumn;
-    @FXML private TextField searchField_t;
-    @FXML private ComboBox<String> searchCombo_t;
+    @FXML
+    private TableView ticketTable;
+    @FXML
+    private TableColumn ticket_idColumn;
+    @FXML
+    private TableColumn customerID;
+    @FXML
+    private TableColumn customerName;
+    @FXML
+    private TableColumn t_bike_idColumn;
+    @FXML
+    private TableColumn t_priceColumn;
+    @FXML
+    private TableColumn startDateColumn;
+    @FXML
+    private TableColumn endDateColumn;
+    @FXML
+    private TableColumn totalColumn;
+    @FXML
+    private TextField searchField_t;
+    @FXML
+    private ComboBox<String> searchCombo_t;
 
     protected static Stage primaryStage;
 
@@ -89,18 +119,18 @@ public class DashboardController implements Initializable {
     @Override
 
     public void initialize(URL url, ResourceBundle rb) {
-       customerPaneBuild();
-       bikePaneBuild();
-       ticketPaneBuild();
+        customerPaneBuild();
+        bikePaneBuild();
+        ticketPaneBuild();
     }
-    
+
     /*
       Handles All Customer Data and displays in a table
      */
-    private  void customerPaneBuild() {
+    private void customerPaneBuild() {
 
         //Initialise the combo box with items
-        searchCombo.getItems().setAll("BY NAME","BY ADDRESS","BY ID");
+        searchCombo.getItems().setAll("BY NAME", "BY ADDRESS", "BY ID");
 
         //Let first item be selected at start
         searchCombo.getSelectionModel().selectFirst();
@@ -117,7 +147,7 @@ public class DashboardController implements Initializable {
 
             //Populates the data from the database to the list to display on the customer table
             while (rs1.next()) {
-                    customerData.add(new CustomerModel(rs1.getString("CUSTOMER_ID"),rs1.getString("CUSTOMER_NAME"), rs1.getString("CUSTOMER_ADDRESS")));
+                customerData.add(new CustomerModel(rs1.getString("CUSTOMER_ID"), rs1.getString("CUSTOMER_NAME"), rs1.getString("CUSTOMER_ADDRESS")));
             }
 
             //initialises the customer table columns
@@ -139,29 +169,29 @@ public class DashboardController implements Initializable {
                     // Compare first name and last name of every customer with filter text.
                     String lowerCaseFilter = newValue.toLowerCase();
 
-                   switch(searchCombo.getSelectionModel().getSelectedItem()) {
-                       case "BY NAME":
-                           if (customer.nameProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
-                               return true; // Filter matches Name.
-                           }
-                           break;
-                       case "BY ADDRESS":
-                           if (customer.addressProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
-                               return true; // Filter matches Address.
-                           }
-                           break;
-                       case "BY ID":
-                           if (customer.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
-                               return true; // Filter matches ID
-                           }
-                           break;
-                       default:
-                           if (customer.nameProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
-                               return true; // Filter matches Name
-                           }
-                           break;
+                    switch (searchCombo.getSelectionModel().getSelectedItem()) {
+                        case "BY NAME":
+                            if (customer.nameProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
+                                return true; // Filter matches Name.
+                            }
+                            break;
+                        case "BY ADDRESS":
+                            if (customer.addressProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
+                                return true; // Filter matches Address.
+                            }
+                            break;
+                        case "BY ID":
+                            if (customer.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
+                                return true; // Filter matches ID
+                            }
+                            break;
+                        default:
+                            if (customer.nameProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
+                                return true; // Filter matches Name
+                            }
+                            break;
 
-                   }
+                    }
                     return false; // Does not match.
                 });
             });
@@ -175,15 +205,15 @@ public class DashboardController implements Initializable {
             // 5. Add sorted (and filtered) customerData to the table.
             customerTable.setItems(sortedData);
 
-            customerTable.setRowFactory( tv -> {
+            customerTable.setRowFactory(tv -> {
                 TableRow<CustomerModel> row = new TableRow<>();
                 row.setOnMouseClicked(event -> {
-                    if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    if (event.getClickCount() == 2 && (!row.isEmpty())) {
                         CustomerModel customer = row.getItem();
 
                         String id = customer.idProperty().getValue();
-                        String names =  customer.nameProperty().getValue();
-                        String address =  customer.addressProperty().getValue();
+                        String names = customer.nameProperty().getValue();
+                        String address = customer.addressProperty().getValue();
 
                         //close the dashboard
                         BookButtonCell.close();
@@ -195,14 +225,11 @@ public class DashboardController implements Initializable {
 
                         Parent root2 = null;
                         try {
-                            root2 = (Parent)fxmlLoader.load();
+                            root2 = (Parent) fxmlLoader.load();
                             UpdateCustomerController controller = fxmlLoader.<UpdateCustomerController>getController();
-                            controller.setData(id,names,address);
+                            controller.setData(id, names, address);
                             Scene scene = new Scene(root2);
                             primaryStage = new Stage();
-                            primaryStage.setTitle("Bike World");
-                            //Display App Icon
-                            primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("CSS/icon.png")));
                             primaryStage.setScene(scene);
                             primaryStage.show();
                         } catch (IOException e) {
@@ -210,7 +237,7 @@ public class DashboardController implements Initializable {
                         }
                     }
                 });
-                return row ;
+                return row;
             });
 
         } catch (SQLException e) {
@@ -218,18 +245,18 @@ public class DashboardController implements Initializable {
             System.out.println("Error on Building Data");
         }
     }
-    
+
     /*
       Handles All Bikes Data and displays in a table
      */
     private void bikePaneBuild() {
 
         //Initialise the combo box with list items
-        searchCombo_b.getItems().setAll("BY BIKE ID","BY LOCATION","BY PRICE");
+        searchCombo_b.getItems().setAll("BY BIKE ID", "BY LOCATION", "BY PRICE");
         searchCombo_b.getSelectionModel().selectFirst();
-        statusCombo.getItems().setAll("ALL","FREE","HIRED");
+        statusCombo.getItems().setAll("ALL", "FREE", "HIRED");
         statusCombo.getSelectionModel().selectFirst();
-        
+
         manageBikesBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -238,7 +265,7 @@ public class DashboardController implements Initializable {
                 close();
 
                 //Launches bike manager
-                Parent root = null;                
+                Parent root = null;
                 try {
                     root = FXMLLoader.load(getClass().getResource("fxml/bikeManager.fxml"));
                 } catch (IOException ex) {
@@ -246,16 +273,13 @@ public class DashboardController implements Initializable {
                 }
 
                 primaryStage = new Stage();
-                primaryStage.setTitle("Bike World");
-                //Display App Icon
-                primaryStage.getIcons().add(new Image(ClassLoader.getSystemResourceAsStream("CSS/icon.png")));
                 primaryStage.setScene(new Scene(root, 545, 285));
                 primaryStage.centerOnScreen();
                 primaryStage.show();
-                
+
                 //close the dashboard
                 new LoginController().close();
-                
+
             }
         });
 
@@ -269,10 +293,10 @@ public class DashboardController implements Initializable {
 
             //Fetches data from the bike database
             ResultSet rs1 = con.createStatement().executeQuery("SELECT * FROM `bike`");
-            
+
             //Populates the data from the database to the list to display on the bike table
             while (rs1.next()) {
-                bikeData.add(new BikeModel(rs1.getString("BIKE_ID"),rs1.getString("STATUS"), rs1.getString("LOCATION"), String.format("%.2f",rs1.getDouble("PRICE"))));
+                bikeData.add(new BikeModel(rs1.getString("BIKE_ID"), rs1.getString("STATUS"), rs1.getString("LOCATION"), String.format("%.2f", rs1.getDouble("PRICE"))));
             }
 
             //initialise the bike table columns
@@ -293,14 +317,20 @@ public class DashboardController implements Initializable {
                             if (!isEmpty()) {
 
                                 // Get fancy and change color based on data
-                                if(item.equals("Hired")){
+                                if (item.equals("Hired")) {
                                     this.setTextFill(Color.RED);
-                                }else{
-                                    this.setTextFill(Color.GREEN);
+                                } else {
+                                    if (item.equals("Free")) {
+                                        this.setTextFill(Color.GREEN);
+                                    } else {
+                                        if (item.equals("Damaged")) {
+                                            this.setTextFill(Color.ORANGE);
+                                        }
+                                    }
                                 }
                                 setText(item);
 
-                            }else{
+                            } else {
                                 setText("");
                             }
                         }
@@ -327,7 +357,7 @@ public class DashboardController implements Initializable {
                     // Compare value of customer with filter text.
                     String lowerCaseFilter = newValue.toLowerCase();
 
-                    switch(searchCombo_b.getSelectionModel().getSelectedItem()) {
+                    switch (searchCombo_b.getSelectionModel().getSelectedItem()) {
                         case "BY BIKE ID":
                             if (bike.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Bike ID
@@ -340,11 +370,6 @@ public class DashboardController implements Initializable {
                             break;
                         case "BY LOCATION":
                             if (bike.locationProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
-                                return true; // Filter matches Location.
-                            }
-                            break;
-                        case "BY PRICE":
-                            if (bike.priceProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter matches Location.
                             }
                             break;
@@ -368,8 +393,7 @@ public class DashboardController implements Initializable {
 
             // 5. Add sorted (and filtered) bikeData to the table.
             bikeTable.setItems(sortedData);
-            
-            
+
             //Date Constraints
             statusCombo.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -378,21 +402,20 @@ public class DashboardController implements Initializable {
                     String currentStatus = statusCombo.getSelectionModel().getSelectedItem();
                     FilteredList<BikeModel> filteredData = new FilteredList<>(sortedData, p -> true);
                     filteredData.setPredicate(bike -> {
-                        
-						// If filter text is empty, display all bikes
-                        if(bike.idProperty().getValue().trim().equals("")){
+
+                        // If filter text is empty, display all bikes
+                        if (bike.idProperty().getValue().trim().equals("")) {
                             return false;
-                        }else{
-                            if(currentStatus.equals("ALL")){
+                        } else {
+                            if (currentStatus.equals("ALL")) {
                                 return true;
-                            }else if (currentStatus.toLowerCase().equals(bike.statusProperty().getValue().toLowerCase()) ) {
+                            } else if (currentStatus.toLowerCase().equals(bike.statusProperty().getValue().toLowerCase())) {
                                 return true;
                             }
                         }
 
                         return false;
                     });
-                    
 
                     // 3. Wrap the FilteredList in a SortedList.
                     SortedList<BikeModel> sortedData = new SortedList<>(filteredData);
@@ -405,42 +428,40 @@ public class DashboardController implements Initializable {
                 }
 
             });
-            
-            
+
             endDate.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                ResultSet bikesBooked;
-                bikeBookedData = FXCollections.observableArrayList();
-                
-                //query which gets bikes which are occupied within a given time frame
-                String dateConstrainedQuery = "SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE (START_DATE <= ('" + startDate.getValue() + "') AND END_DATE >= ('" + startDate.getValue() + "')) OR (START_DATE <= ('" + endDate.getValue() + "') AND END_DATE >= ('" + endDate.getValue() + "'))";
-                System.err.println("Selected date: " + dateConstrainedQuery);
-                        
-                try {
-                   bikesBooked = con.createStatement().executeQuery(dateConstrainedQuery);
-                    
-                    //populate list with sql data
-                    while (bikesBooked.next()) {
-                    bikeBookedData.add(new BikeModel(bikesBooked.getString("BIKE_ID"),bikesBooked.getString("STATUS"), bikesBooked.getString("LOCATION"), String.format("%.2f",bikesBooked.getDouble("PRICE"))));
+                    ResultSet bikesBooked;
+                    bikeBookedData = FXCollections.observableArrayList();
+
+                    //query which gets bikes which are occupied within a given time frame
+                    String dateConstrainedQuery = "SELECT bike.BIKE_ID, bike.STATUS, bike.LOCATION, bike.PRICE FROM bike INNER JOIN hires ON hires.BIKE_ID = bike.BIKE_ID WHERE (START_DATE <= ('" + startDate.getValue() + "') AND END_DATE >= ('" + startDate.getValue() + "')) OR (START_DATE <= ('" + endDate.getValue() + "') AND END_DATE >= ('" + endDate.getValue() + "'))";
+                    System.err.println("Selected date: " + dateConstrainedQuery);
+
+                    try {
+                        bikesBooked = con.createStatement().executeQuery(dateConstrainedQuery);
+
+                        //populate list with sql data
+                        while (bikesBooked.next()) {
+                            bikeBookedData.add(new BikeModel(bikesBooked.getString("BIKE_ID"), bikesBooked.getString("STATUS"), bikesBooked.getString("LOCATION"), String.format("%.2f", bikesBooked.getDouble("PRICE"))));
+                        }
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                
-                } catch (SQLException ex) {
-                       Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                //if the booked bike is in the current (active) data set then filter it out
-                
-                filteredData.setPredicate(bike -> {
-                        for (BikeModel bikes : bikeBookedData){
-                            if( bike.idProperty().getValue().equals(bikes.idProperty().getValue())){
+
+                    //if the booked bike is in the current (active) data set then filter it out
+                    filteredData.setPredicate(bike -> {
+                        for (BikeModel bikes : bikeBookedData) {
+                            if (bike.idProperty().getValue().equals(bikes.idProperty().getValue())) {
                                 return false;
                             }
                         }
-                    return true;
-                    
+                        return true;
+
                     });
-                
+
                     // 3. Wrap the FilteredList in a SortedList.
                     SortedList<BikeModel> sortedData = new SortedList<>(filteredData);
                     // 4. Bind the SortedList comparator to the TableView comparator.
@@ -448,24 +469,24 @@ public class DashboardController implements Initializable {
                     sortedData.comparatorProperty().bind(bikeTable.comparatorProperty());
                     // 5. Add sorted (and filtered) bikeData to the table.
                     bikeTable.setItems(sortedData);
-       
-                }                         
-                        
+
+                }
+
             });
-            
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error on Building Data");
         }
     }
+
     /*
       Handles All Ticket Data and displays in a table
      */
     private void ticketPaneBuild() {
 
         //initiliase the combo box on the ticket panel
-        searchCombo_t.getItems().setAll("BY TICKET ID","BY CUSTOMER NAME","BY BIKE ID","BY CUSTOMER ID");
+        searchCombo_t.getItems().setAll("BY TICKET ID", "BY CUSTOMER NAME", "BY BIKE ID", "BY CUSTOMER ID");
         searchCombo_t.getSelectionModel().selectFirst();
 
         try {
@@ -480,9 +501,9 @@ public class DashboardController implements Initializable {
 
             //Populates the data from the database to the list to display on the ticket table
             while (rs1.next()) {
-                ticketData.add(new TicketModel(rs1.getString("hire_id"),rs1.getString("customer_id"), rs1.getString("bike_id"),
-                                                 rs1.getString("CUSTOMER_NAME"),rs1.getString("start"), rs1.getString("end"),
-                        String.format("%.2f",rs1.getDouble("price")),String.format("%.2f",rs1.getDouble("total"))));
+                ticketData.add(new TicketModel(rs1.getString("hire_id"), rs1.getString("customer_id"), rs1.getString("bike_id"),
+                        rs1.getString("CUSTOMER_NAME"), rs1.getString("start"), rs1.getString("end"),
+                        String.format("%.2f", rs1.getDouble("price")), String.format("%.2f", rs1.getDouble("total"))));
             }
 
             //Initialise the columns on the ticket table
@@ -511,7 +532,7 @@ public class DashboardController implements Initializable {
                     // Compare value of every ticket  with filter text.
                     String lowerCaseFilter = newValue.toLowerCase();
 
-                    switch(searchCombo_t.getSelectionModel().getSelectedItem()) {
+                    switch (searchCombo_t.getSelectionModel().getSelectedItem()) {
                         case "BY TICKET ID":
                             if (ticket.idProperty().toString().toLowerCase().contains(lowerCaseFilter)) {
                                 return true; // Filter Ticket ID
@@ -557,8 +578,9 @@ public class DashboardController implements Initializable {
             System.out.println("Error on Building Data");
         }
     }
-    public void close(){
-        if(primaryStage!= null){
+
+    public void close() {
+        if (primaryStage != null) {
             primaryStage.close();
         }
     }
