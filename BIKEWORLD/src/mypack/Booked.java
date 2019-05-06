@@ -25,9 +25,9 @@ import java.util.Properties;
 
 @WebServlet(name = "Booked")
 public class Booked extends HttpServlet {
-    public long generateBarcode() {
+    public int generateBarcode() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        return random.nextLong(10_000_000_000L, 100_000_000_000L);
+        return random.nextInt(100_000_000, 1_000_000_000);
     }
 
 
@@ -105,7 +105,7 @@ public class Booked extends HttpServlet {
                 ps.setString(2, bId);
                 ps.setString(3, days);
                 ps.setString(4, cost);
-                ps.setString(5, "111");
+                ps.setString(5, code);
                 ps.setString(6, startdate);
                 ps.setString(7, enddate);
                 ps.executeUpdate();
@@ -126,7 +126,6 @@ public class Booked extends HttpServlet {
 
 
 
-                // Recipient's email ID needs to be mentioned.
                 String to = session.getAttribute("uemail").toString();
 
                 // Sender's email ID needs to be mentioned
@@ -238,7 +237,7 @@ public class Booked extends HttpServlet {
                 ps.setString(2, bId);
                 ps.setString(3, days);
                 ps.setString(4, cost);
-                ps.setString(5, "111");
+                ps.setString(5, code);
                 ps.setString(6, st);
                 ps.setString(7, et);
                 ps.setString(8, theday);

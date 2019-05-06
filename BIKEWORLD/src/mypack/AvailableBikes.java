@@ -525,7 +525,7 @@ public class AvailableBikes extends HttpServlet {
                             "var inputyear = parseInt(c[1].value.substring(0,4));\n" +
                             "var inputmonth = parseInt(c[1].value.substring(5,7));\n" +
                             "var inputdate = parseInt(c[1].value.substring(8,10));\n" +
-                            "if ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate >= currentday)){\n" +
+                            "if ((inputyear > currentyear) || ((inputyear >= currentyear) && (inputmonth > currentmonth)) || ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate > currentday))){\n" +
                             "if (c[1].value !=  '0000-00-00'){\n" +
                             "z.style.display = 'block';\n" +
                             "h.style.display = 'none';\n" +
@@ -594,7 +594,7 @@ public class AvailableBikes extends HttpServlet {
                             "var inputyear = parseInt(c[1].value.substring(0,4));\n" +
                             "var inputmonth = parseInt(c[1].value.substring(5,7));\n" +
                             "var inputdate = parseInt(c[1].value.substring(8,10));\n" +
-                            "if ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate >= currentday)){\n" +
+                            "if ((inputyear > currentyear) || ((inputyear >= currentyear) && (inputmonth > currentmonth)) || ((inputyear >= currentyear) && (inputmonth >= currentmonth) && (inputdate > currentday))){\n" +
                             "if (c[1].value !=  '0000-00-00'){\n" +
                             "if (b[1].value == 4){\n" +
                             "if (g[1].style.display == 'none'){\n" +
