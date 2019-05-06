@@ -585,7 +585,9 @@ public class BookABike extends HttpServlet {
 
                     out.println(
 
-                            "<form id = 'form1' action= 'complete' method = 'post' >\n" +
+//                            "<form id = 'form1' action= 'complete' method = 'post' >\n" +
+                                    "<form id = 'form1' action= 'Checkout.jsp' method = 'post' >\n" +
+
                                     "<input type='text'  style = 'display: none;' name='term' value = "+term+">"+
                                     "<br><br>\n" +
                                     "<input type='text' style = 'display: none;' name='bikeids'>"+

@@ -6,9 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = "javax.servlet.ServletException" %>
+
 <html>
 <head>
     <title>Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
     <link rel="stylesheet" href="style.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -151,19 +155,37 @@
 </head>
 <body>
 
-<div class = "Title">
-    B!KEWORLD
-</div>
 
-<div class="nav"><!--Nav bar from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_topnav (TEST ONLY)-->
-    <a  href="index.jsp">Home</a>
-    <a class="active" href="Views">View bikes</a>
-    <a href="AboutUs.jsp">About Us</a>
-    <a href="ContactUs.jsp">Contact Us</a>
-</div>
-<%int term= Integer.parseInt(request.getParameter("term")); %>
+<nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="Dashboard.jsp">B!KEWORLD</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li ><a href="Dashboard.jsp">Home</a></li>
+            <li class= "active"><a href="Views">View bikes</a></li>
+            <li><a href="AboutUs.jsp">About Us</a></li>
+            <li><a href="ContactUs.jsp">Contact Us</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>Profile: <%= session.getAttribute("uname")%>
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><strong> </strong></li>
+                    <li><a href="Profile.jsp">Later</a></li>
+                </ul>
+            </li>
+            <li><a href="Logout.jsp"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<%String term = request.getParameter("term"); %>
 <h2>RECEIPT</h2>
-<%if (term == 2){
+<%if ((term.equals("2"))){
     out.print( "<p> Name : " + request.getParameter("location") + "</p>");
     out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
     out.print( "<p>Days : " + request.getParameter("days")+ "</p>");
@@ -172,7 +194,7 @@
     out.print( "<p>Start day : " + request.getParameter("startd")+ "</p>");
     out.print( "<p>Return date : " + request.getParameter("endd")+ "</p>");
 }%>
-<%if (term == 1){
+<%if (term.equals("1")){
     out.print( "<p> Name : " + request.getParameter("location") + "</p>");
     out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
     out.print( "<p>Hours : " + request.getParameter("hours")+ "</p>");
@@ -258,13 +280,13 @@
             <div class="col-25">
                 <div class="container">
                     <h2>RECEIPT</h2>
-                    <%if (term == 2){
+                    <%if (term.equals("2")){
                         out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
                         out.print( "<p>Days : " + request.getParameter("days")+ "</p>");
                         out.print(" -20% (Discount)");
                         out.print( "<p>Total cost : £" + (Integer.parseInt(request.getParameter("cost"))- (0.20 * Integer.parseInt(request.getParameter("cost"))))+ "</p>");
                     }%>
-                    <%if (term == 1){
+                    <%if (term.equals("1")){
                         out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
                         out.print( "<p>Hours : " + request.getParameter("hours")+ "</p>");
                         out.print( "<p>Total cost : £" + request.getParameter("cost")+ "</p>");

@@ -36,6 +36,16 @@
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Booked</servlet-name>
+        <servlet-class>mypack.Booked</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Booked</servlet-name>
+        <url-pattern>/complete</url-pattern>
+    </servlet-mapping>
+
     <!--<servlet>-->
         <!--<servlet-name>Log</servlet-name>-->
         <!--<servlet-class>mypack.LogOut</servlet-class>-->
