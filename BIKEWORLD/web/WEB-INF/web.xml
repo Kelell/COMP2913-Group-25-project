@@ -17,7 +17,6 @@
     </servlet-mapping>
 
     <servlet>
-<<<<<<< HEAD
         <servlet-name>Booked</servlet-name>
         <servlet-class>mypack.Booked</servlet-class>
     </servlet>
@@ -30,8 +29,6 @@
 
 
     <servlet>
-=======
->>>>>>> Michal
         <servlet-name>Register</servlet-name>
         <servlet-class>mypack.Registration</servlet-class>
     </servlet>
@@ -51,7 +48,7 @@
         <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
 
-<<<<<<< HEAD
+
     <servlet>
         <servlet-name>Dash</servlet-name>
         <servlet-class>mypack.Dashboard</servlet-class>
@@ -61,7 +58,6 @@
         <url-pattern>/Dashboard</url-pattern>
     </servlet-mapping>
 
-=======
     <!--<servlet>-->
         <!--<servlet-name>Log</servlet-name>-->
         <!--<servlet-class>mypack.LogOut</servlet-class>-->
@@ -83,7 +79,6 @@
 
 
 
->>>>>>> Michal
 
     <servlet>
         <servlet-name>Available</servlet-name>
