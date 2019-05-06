@@ -167,10 +167,10 @@
     out.print( "<p> Name : " + request.getParameter("location") + "</p>");
     out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
     out.print( "<p>Days : " + request.getParameter("days")+ "</p>");
-out.print( "<p>Bike ID : " + request.getParameter("bikeids")+ "</p>");
-out.print( "<p>Total cost : £" + request.getParameter("cost")+ "</p>");
-out.print( "<p>Start day : " + request.getParameter("startd")+ "</p>");
-out.print( "<p>Return date : " + request.getParameter("endd")+ "</p>");
+    out.print( "<p>Bike ID : " + request.getParameter("bikeids")+ "</p>");
+    out.print( "<p>Total cost : £" + request.getParameter("cost")+ "</p>");
+    out.print( "<p>Start day : " + request.getParameter("startd")+ "</p>");
+    out.print( "<p>Return date : " + request.getParameter("endd")+ "</p>");
 }%>
 <%if (term == 1){
     out.print( "<p> Name : " + request.getParameter("location") + "</p>");
@@ -190,6 +190,7 @@ out.print( "<p>Return date : " + request.getParameter("endd")+ "</p>");
 
     <!-- Modal content -->
     <div class="modal-content">
+        <span class="close">&times;</span>
         <div class="row">
             <div class="col-75">
                 <div class="container">
@@ -256,13 +257,19 @@ out.print( "<p>Return date : " + request.getParameter("endd")+ "</p>");
             </div>
             <div class="col-25">
                 <div class="container">
-                    <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
-                    <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-                    <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-                    <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-                    <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-                    <hr>
-                    <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+                    <h2>RECEIPT</h2>
+                    <%if (term == 2){
+                        out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
+                        out.print( "<p>Days : " + request.getParameter("days")+ "</p>");
+                        out.print(" -20% (Discount)");
+                        out.print( "<p>Total cost : £" + (Integer.parseInt(request.getParameter("cost"))- (0.20 * Integer.parseInt(request.getParameter("cost"))))+ "</p>");
+                    }%>
+                    <%if (term == 1){
+                        out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
+                        out.print( "<p>Hours : " + request.getParameter("hours")+ "</p>");
+                        out.print( "<p>Total cost : £" + request.getParameter("cost")+ "</p>");
+
+                    }%>
                 </div>
             </div>
         </div>

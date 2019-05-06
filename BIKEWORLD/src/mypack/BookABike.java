@@ -224,7 +224,7 @@ public class BookABike extends HttpServlet {
                                     //cost
                                     "var b = document.getElementsByName('cost');\n" +
                                     "var num = obj.children[1].id * "+ duration+" ; "+
-                                    "b[0].value =  (obj.children[1].id * "+ duration+" * 12) - (0.20 * num) ; "+
+                                    "b[0].value =  (obj.children[1].id * "+ duration+" * 12)  ; "+
 
                                     "document.getElementById('submit').style.display = 'block';"+
                                     "}\n" +
@@ -297,7 +297,7 @@ public class BookABike extends HttpServlet {
                                     //cost
                                     "var b = document.getElementsByName('cost');\n" +
                                     "var num = obj.children[1].id * "+ duration+" ; "+
-                                    "b[0].value =  (obj.children[1].id * "+ duration+" * 12) - (0.20 * num) ; "+
+                                    "b[0].value =  (obj.children[1].id * "+ duration+" * 12)  ; "+
 
                                     "document.getElementById('submit').style.display = 'block';"+
                                     "}\n" +
