@@ -20,8 +20,14 @@
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
     <div class="container-fluid">
         <div class="navbar-header">
+            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!--button enabelinig the colapse of navigation ber-->
+                <span class="icon-bar"></span>                                                               <!--used when screen size is too small-->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="index.jsp">B!KEWORLD</a>
         </div>
+        <div class = "collapse navbar-collapse" id="Navigation">
         <ul class="nav navbar-nav">
             <li><a href="index.jsp">Home</a></li>
             <li class="active"><a href="AboutUs.jsp">About Us</a></li>
@@ -60,6 +66,7 @@
             %>
 
         </ul>
+        </div>
     </div>
 </nav>
 

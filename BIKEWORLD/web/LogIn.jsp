@@ -11,6 +11,8 @@
     <title>LogIn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  <!-- Drop down button script-->
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
@@ -18,8 +20,14 @@
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
     <div class="container-fluid">
         <div class="navbar-header">
+            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!--button enabelinig the colapse of navigation ber-->
+                <span class="icon-bar"></span>                                                               <!--used when screen size is too small-->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="index.jsp">B!KEWORLD</a>
         </div>
+        <div class = "collapse navbar-collapse" id="Navigation">
         <ul class="nav navbar-nav">
             <li><a href="index.jsp">Home</a></li>
             <li><a href="AboutUs.jsp">About Us</a></li>
@@ -39,6 +47,7 @@
 
             %>
         </ul>
+        </div>
     </div>
 </nav>
 
