@@ -76,7 +76,7 @@ public class View extends HttpServlet {
             out.println("<head onload=\"openFunction()\" >");
 
             out.println(
-                    "<title id = prick >$Title$</title>" +
+                    "<title id = prick >Book A Bike</title>" +
                             "<meta name=viewport content=width=device-width, initial-scale=1>"+
                             "<link rel=stylesheet href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>"+ //<!-- Bootstrap style link  -->
                             "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->

@@ -213,7 +213,7 @@ public class BookABike extends HttpServlet {
 
                     if(session.getAttribute("uname")!=null){//log out button for when in session
 
-                        out.println("<li  class=\"active\" ><a href=\"Views\">Book A Bike</a></li>");
+                        out.println("<li><a href=\"Views\">Book A Bike</a></li>");
 
 
                     }
@@ -264,7 +264,9 @@ public class BookABike extends HttpServlet {
 
 
                     out.println(
-                            "<h1>NO BIKES AVAILABLE</h1>"
+                            "<br>" +
+                                    "<h2>No bikes available for selected times at that location. <br></h2>"+
+                                    "<h2>Please try a different time or date.</h2>"
                     );
 
                     out.println(
@@ -308,7 +310,7 @@ public class BookABike extends HttpServlet {
                     String size = Integer.toString(listsize);
 
                     out.println("<head onload=\"openFunction()\" >" +
-                            "<title id = prick >$Title$</title>" +
+                            "<title id = prick >Book A Bike</title>" +
                             "<meta name=viewport content=width=device-width, initial-scale=1>"+
                             "<link rel=stylesheet href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>"+ //<!-- Bootstrap style link  -->
                             "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
@@ -624,7 +626,7 @@ public class BookABike extends HttpServlet {
                     String size = Integer.toString(listsize);
 
                     out.println("<head onload=\"openFunction()\" >" +
-                            "<title id = prick >$Title$</title>" +
+                            "<title id = prick >Book A Bike</title>" +
                             "<meta name=viewport content=width=device-width, initial-scale=1>"+
                             "<link rel=stylesheet href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>"+ //<!-- Bootstrap style link  -->
                             "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
@@ -654,7 +656,7 @@ public class BookABike extends HttpServlet {
 
                     if(session.getAttribute("uname")!=null){//log out button for when in session
 
-                        out.println("<li  class=\"active\" ><a href=\"Views\">Book A Bike</a></li>");
+                        out.println("<li><a href=\"Views\">Book A Bike</a></li>");
 
 
                     }
@@ -703,7 +705,11 @@ public class BookABike extends HttpServlet {
                     );
 
 
-                    out.println( "<h1>NO BIKES AVAILABLE</h1>");
+                    out.println(
+                            "<br>" +
+                                    "<h2>No bikes available for selected times at that location. <br></h2>"+
+                                    "<h2>Please try a different time or date.</h2>"
+                    );
 
 
                     out.println(
@@ -748,7 +754,7 @@ public class BookABike extends HttpServlet {
                     String size = Integer.toString(listsize);
 
                     out.println("<head onload=\"openFunction()\" >" +
-                            "<title id = prick >$Title$</title>" +
+                            "<title id = prick >Book A Bike</title>" +
                             "<meta name=viewport content=width=device-width, initial-scale=1>"+
                             "<link rel=stylesheet href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>"+ //<!-- Bootstrap style link  -->
                             "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
