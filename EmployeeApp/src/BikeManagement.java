@@ -177,7 +177,23 @@ public class BikeManagement implements Initializable {
                         alert.setTitle("Success");
                         alert.setContentText("Database Updated!");
                         alert.show();
-                        bikeCombo.getScene().getWindow().hide();
+                        
+                        // close manager
+                        Stage stage = (Stage) setStatusBtn.getScene().getWindow();
+                        stage.close();
+
+                        //open dashboard
+                        Parent root = null;
+                        try {
+                            root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        primaryStage = new Stage();
+                        primaryStage.setScene(new Scene(root, 1200, 561));
+                        primaryStage.centerOnScreen();
+                        primaryStage.show();
+                
                     }
 
                 } else {
