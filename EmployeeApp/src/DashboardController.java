@@ -25,6 +25,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.image.Image;
 
 /**
  * @author Zahoor
@@ -274,6 +275,10 @@ public class DashboardController implements Initializable {
                             Scene scene = new Scene(root);
                             primaryStage = new Stage();
                             primaryStage.setScene(scene);
+                            //Displays App Name 
+                            primaryStage.setTitle("Bike World");
+                            // Displays App Icon
+                            primaryStage.getIcons().add(new Image("/CSS/icon2.png"));
                             primaryStage.show();
                             customerTable.getScene().getWindow().hide();
                         } catch (IOException e) {
