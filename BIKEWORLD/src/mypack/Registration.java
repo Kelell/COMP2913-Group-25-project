@@ -38,21 +38,21 @@ public class Registration extends HttpServlet {
         PrintWriter out = response.getWriter();
         jdbc test = new jdbc();
         try {
-            String fname = request.getParameter("fname");
-            String lname = request.getParameter("lname");
-            String fullname = fname + " " + lname;
-            String address = request.getParameter("address");
-            String uname = request.getParameter("username");
-            String password = request.getParameter("password");
-            String email = request.getParameter("email");
-            String sql = "insert into customer(name,password,CUSTOMER_NAME,CUSTOMER_ADDRESS,email) values(?,?,?,?,?)";
+            String fname = request.getParameter("fname");//converts name input from registration from to string
+            String lname = request.getParameter("lname");//converts surname input from registration from to string
+            String fullname = fname + " " + lname;//creates fullname string from firstname and surname
+            String address = request.getParameter("address");//converts address input from registration from to string
+            String uname = request.getParameter("username");//converts username input from registration from to string
+            String password = request.getParameter("password");//converts password input from registration from to string
+            String email = request.getParameter("email");//converts email input from registration from to string
+            String sql = "insert into customer(name,password,CUSTOMER_NAME,CUSTOMER_ADDRESS,email) values(?,?,?,?,?)"; //sql query for accessing Customers table
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
+            Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//creates connection to my sql database
             PreparedStatement ps = conn.prepareStatement(sql);
-            String sql2 = "SELECT * FROM customer WHERE name =? ";
+            String sql2 = "SELECT * FROM customer WHERE name =? ";//sql query for checking Customer table for existing username and password
             PreparedStatement ps2 = conn.prepareStatement(sql2);
-            String Username = null;
-            ps2.setString(1, uname);
+            String Username = null;//ensures username is null before assigning new name
+            ps2.setString(1, uname); // checks name field for instances of a suername
             ResultSet rs = ps2.executeQuery();
             while(rs.next()){
                 Username = rs.getString("name");
@@ -110,19 +110,19 @@ public class Registration extends HttpServlet {
 
                 response.sendRedirect("LogIn.jsp");
             }
-            else if(uname.equals(Username)){
-                String message = "Username already in use.";
+            else if(uname.equals(Username)){//if username entered already exists redirects user to log in register page
+                String message = "Username already in use.";//error message
                 response.sendRedirect("registration.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
 
             }
-            else{
+            else{//if username not taken assigns input to database collumns
                 ps.setString(1, uname);
                 ps.setString(2, password);
                 ps.setString(3, fullname);
                 ps.setString(4, address);
                 ps.setString(5, email);
-                ps.executeUpdate();
-                response.sendRedirect("LogIn.jsp");
+                ps.executeUpdate();//updates changes to database
+                response.sendRedirect("LogIn.jsp");//redirects user to login
             }
         }
         catch (ClassNotFoundException e){
@@ -138,9 +138,6 @@ public class Registration extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//not used
     }
 }

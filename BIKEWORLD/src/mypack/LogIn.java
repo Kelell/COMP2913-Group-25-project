@@ -29,23 +29,23 @@ public class LogIn extends HttpServlet {
         PrintWriter out = response.getWriter();
         jdbc test = new jdbc();
 
-        HttpSession oldsession =  request.getSession(false);
+        HttpSession oldsession =  request.getSession(false);//ensures session not in progress, if session in progress redirects user to index.jsp
         if (oldsession == null) {
             response.sendRedirect("index.jsp");
         }
 
         try {
-            String name = request.getParameter("username");
-            String password = request.getParameter("password");
-            int custid = 0;
+            String name = request.getParameter("username");//converts username input from registration from to string
+            String password = request.getParameter("password");//converts password input from registration from to string
+            int custid = 0; //should be null
             String address = "";
             String fullname = "";
             String Uname = "";
             String email = "";
             String Upass = "";
-            String sql = "SELECT * FROM customer WHERE name =? AND password=? ";
+            String sql = "SELECT * FROM customer WHERE name =? AND password=? ";//sql query for checking Customer table for existing username and password
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//connects to mysql database
+            Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//creates connection to my sql database
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, name);
             ps.setString(2, password);
@@ -81,12 +81,9 @@ public class LogIn extends HttpServlet {
                 response.sendRedirect("index.jsp");
 
 
-            }else{
-                //response.sendRedirect("login.jsp");
-                HttpSession session = request.getSession();
-                String message = "Please enter the correct details";
-                session.setAttribute("error", "Invalid Username Or Password. Try again");
-                response.sendRedirect("LogIn.jsp");
+            }else{//if details dont exist in database redirects to Login page and print error
+                String message = "Please enter the correct details";//error message
+                response.sendRedirect("LogIn.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
 
             }
 
@@ -98,8 +95,7 @@ public class LogIn extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {//not used
 
     }
 }

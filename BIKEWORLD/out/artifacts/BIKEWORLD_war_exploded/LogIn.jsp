@@ -75,6 +75,7 @@
 
         <button type="submit" class="btn btn-default">Login</button>
     </form>
+    <p>${param.message}</p><!-- print error message when required-->
 
 </div><!--end of content -->
 

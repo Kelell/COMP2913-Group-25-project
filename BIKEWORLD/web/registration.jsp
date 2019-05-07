@@ -88,7 +88,7 @@
         </div>
         <button id="sub" style = 'Display : none;' type="submit" class="btn btn-default">Register</button>
     </form>
-    <p>${param.message}</p>
+    <p>${param.message}</p><!-- print error message when required-->
     <script>
         function myfunction(){
             var fname = document.getElementById("fname");
