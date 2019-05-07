@@ -58,15 +58,6 @@
         <url-pattern>/Log</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>Dash</servlet-name>
-        <servlet-class>mypack.Dashboard</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Dash</servlet-name>
-        <url-pattern>/Dashboard</url-pattern>
-    </servlet-mapping>
-
 
     <servlet>
         <servlet-name>Available</servlet-name>

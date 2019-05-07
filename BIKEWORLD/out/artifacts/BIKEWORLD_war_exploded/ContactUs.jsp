@@ -35,7 +35,7 @@
                     if(session.getAttribute("uname")!=null){//log out button for when in session
 
                 %>
-                <li><a href="Views">Book A Bike</a></li>
+                <li><a href="Views">View Bikes</a></li>
                 <%
                     }
 

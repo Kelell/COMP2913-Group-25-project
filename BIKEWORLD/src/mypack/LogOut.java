@@ -22,7 +22,6 @@ public class LogOut extends HttpServlet {
         out.println("Successful Log out");
 
         HttpSession session = request.getSession();
-        session.removeAttribute("uname");
         session.invalidate();
         response.sendRedirect("LogIn.jsp");
 

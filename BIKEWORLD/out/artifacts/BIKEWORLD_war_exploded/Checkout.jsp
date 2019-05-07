@@ -10,6 +10,10 @@
 
 <html>
 <head>
+        <% HttpSession session1 =  request.getSession(false);
+            if (session1.getAttribute("uname") == null) {
+                response.sendRedirect("index.jsp");
+            }%>
     <title>Index</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
@@ -177,7 +181,7 @@
                     <li><a href="Profile.jsp">Later</a></li>
                 </ul>
             </li>
-            <li><a href="Logout.jsp"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+            <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
         </ul>
     </div>
 </nav>
@@ -222,9 +226,9 @@
                             <div class="col-50">
                                 <h3>Billing Address</h3>
                                 <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                                <input type="text" id="fname" name="firstname" value = <%=session.getAttribute("uCusname")%>>
+                                <input type="text" id="fname" name="firstname" pattern="[A-Za-z]{0-60}" value = <%=session.getAttribute("uCusname")%> >
                                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                                <input type="text" id="email" name="email" value = <%=session.getAttribute("uemail")%>>
+                                <input type="text" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value = <%=session.getAttribute("uemail")%>>
                                 <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
                                 <input type="text" id="adr" name="address" value = <%=session.getAttribute("uAddress")%>>
                                 <label for="city"><i class="fa fa-institution"></i> City</label>

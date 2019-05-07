@@ -19,7 +19,7 @@ public class AvailableBikes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session =  request.getSession(false);
-        if (session == null) {
+        if (session.getAttribute("uname") == null) {
             response.sendRedirect("index.jsp");
         }
 
@@ -120,24 +120,12 @@ public class AvailableBikes extends HttpServlet {
 
                             "<ul class='nav navbar-nav'>"+
                             "<li><a href=index.jsp>Home</a></li>"+
+                            "<li  class=\"active\" ><a href=\"Views\">View bikes</a></li>"+
                             "<li><a href=AboutUs.jsp>About Us</a></li>"+
                             "<li><a href=ContactUs.jsp>Contact Us</a></li>"+
                             "</ul>"+
                             "<ul class='nav navbar-nav navbar-right'>");
 
-            if(session.getAttribute("uname")==null){//log out button for when in session
-
-
-                out.println(
-                        "<li><a href=registration.jsp><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>"+
-                                "<li><a href=LogIn.jsp><span class='glyphicon glyphicon-log-in'></span> Login</a></li>"
-                );
-            }
-
-
-
-
-            if(session.getAttribute("uname")!=null){//log out button for when in session
 
                 out.println(
                         "<li class='dropdown'>"+
@@ -149,8 +137,6 @@ public class AvailableBikes extends HttpServlet {
                                 "</ul>"+
                                 "</li>"+
                                 "<li><a href=Log><span class='glyphicon glyphicon-log-in'></span> LOGOUT</a></li>");
-
-            }
 
 
             out.println(
@@ -887,7 +873,11 @@ public class AvailableBikes extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+        HttpSession session =  request.getSession(false);
+        if (session.getAttribute("uname") == null) {
+            response.sendRedirect("index.jsp");
+        }
+        response.sendRedirect("Views");
 
 
     }

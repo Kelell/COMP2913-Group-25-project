@@ -41,9 +41,6 @@ public class BookABike extends HttpServlet {
             String date = request.getParameter("date");
             String duration = request.getParameter("Daydur");
             String location = request.getParameter("Location");
-            out.println(date);
-            out.println(duration);
-            out.println(location);
             try {
                 //Format date
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -213,6 +210,7 @@ public class BookABike extends HttpServlet {
 
                                     "<ul class='nav navbar-nav'>"+
                                     "<li><a href=index.jsp>Home</a></li>"+
+                                    "<li  class=\"active\" ><a href=\"Views\">View bikes</a></li>"+
                                     "<li><a href=AboutUs.jsp>About Us</a></li>"+
                                     "<li><a href=ContactUs.jsp>Contact Us</a></li>"+
                                     "</ul>"+
@@ -641,20 +639,6 @@ public class BookABike extends HttpServlet {
                                     "</ul>"+
                                     "<ul class='nav navbar-nav navbar-right'>");
 
-                    if(session.getAttribute("uname")==null){//log out button for when in session
-
-
-                        out.println(
-                                "<li><a href=registration.jsp><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>"+
-                                        "<li><a href=LogIn.jsp><span class='glyphicon glyphicon-log-in'></span> Login</a></li>"
-                        );
-                    }
-
-
-
-
-                    if(session.getAttribute("uname")!=null){//log out button for when in session
-
                         out.println(
                                 "<li class='dropdown'>"+
                                         "<a class='dropdown-toggle' data-toggle='dropdown' href=#><span class='glyphicon glyphicon-user'></span>Profile <span class='caret'></span></a>"+
@@ -665,8 +649,6 @@ public class BookABike extends HttpServlet {
                                         "</ul>"+
                                         "</li>"+
                                         "<li><a href=Log><span class='glyphicon glyphicon-log-in'></span> LOGOUT</a></li>");
-
-                    }
 
 
                     out.println(
@@ -688,7 +670,7 @@ public class BookABike extends HttpServlet {
                                     "<input type='text'  style = 'display: none;' name='term' value = "+term+">"+
                                     "<br><br>\n" +
                                     "<input type='text' style = 'display: none;' name='bikeids'>"+
-                                    "<input type='text' style = 'display: none;' name='location' value = " + loca.get(0) + ">"+
+                                    "<input type='text' style = 'display: none;' name='location' value = " + location + ">"+
                                     "<input type='text' style = 'display: none;' name='hours' value = "+ duration +">"+
                                     "<input type='text' style = 'display: none;' name='cost'>"+
                                     "<input type='text' style = 'display: none;' name='startt' value = "+ starttime + ">"+
@@ -812,7 +794,7 @@ public class BookABike extends HttpServlet {
                                     "<input type='text'  style = 'display: none;' name='term' value = "+term+">"+
                                     "<br><br>\n" +
                                     "<input type='text' style = 'display: none;' name='bikeids'>"+
-                                    "<input type='text' style = 'display: none;' name='location' value = " + loca.get(0) + ">"+
+                                    "<input type='text' style = 'display: none;' name='location' value = " + location + ">"+
                                     "<input type='text' style = 'display: none;' name='hours' value = "+ duration +">"+
                                     "<input type='text' style = 'display: none;' name='cost'>"+
                                     "<input type='text' style = 'display: none;' name='startt' value = "+ starttime + ">"+
@@ -868,6 +850,12 @@ public class BookABike extends HttpServlet {
     /////////////////////////GET
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session =  request.getSession(false);
+        if (session.getAttribute("uname") == null) {
+            response.sendRedirect("index.jsp");
+        }
+        response.sendRedirect("Views");
 
     }
 

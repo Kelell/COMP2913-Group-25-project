@@ -36,7 +36,9 @@ public class View extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session =  request.getSession(false);
-
+        if (session.getAttribute("uname") == null) {
+            response.sendRedirect("index.jsp");
+        }
 
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
@@ -72,9 +74,7 @@ public class View extends HttpServlet {
             String size = Integer.toString(listsize);
 
             out.println("<head onload=\"openFunction()\" >");
-            if (session.getAttribute("uname") == null) {
-                response.sendRedirect("index.jsp");
-            }
+
             out.println(
                     "<title id = prick >$Title$</title>" +
                             "<meta name=viewport content=width=device-width, initial-scale=1>"+
@@ -164,24 +164,11 @@ public class View extends HttpServlet {
 
                             "<ul class='nav navbar-nav'>"+
                             "<li><a href=index.jsp>Home</a></li>"+
+                            "<li  class=\"active\" ><a href=\"Views\">View bikes</a></li>"+
                             "<li><a href=AboutUs.jsp>About Us</a></li>"+
                             "<li><a href=ContactUs.jsp>Contact Us</a></li>"+
                             "</ul>"+
                             "<ul class='nav navbar-nav navbar-right'>");
-
-            if(session.getAttribute("uname")==null){//log out button for when in session
-
-
-                out.println(
-                        "<li><a href=registration.jsp><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>"+
-                                "<li><a href=LogIn.jsp><span class='glyphicon glyphicon-log-in'></span> Login</a></li>"
-                );
-            }
-
-
-
-
-            if(session.getAttribute("uname")!=null){//log out button for when in session
 
                 out.println(
                         "<li class='dropdown'>"+
@@ -194,7 +181,6 @@ public class View extends HttpServlet {
                                 "</li>"+
                                 "<li><a href=Log><span class='glyphicon glyphicon-log-in'></span> LOGOUT</a></li>");
 
-            }
 
 
             out.println(
