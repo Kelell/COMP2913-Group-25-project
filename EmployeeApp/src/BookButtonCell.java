@@ -64,7 +64,7 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
                     primaryStage.setTitle("Bike World");
                     // Displays App Icon
                     primaryStage.getIcons().add(
-                     new Image("/CSS/icon2.png"));
+                    new Image("/CSS/icon2.png"));
                     primaryStage.setScene(scene);
                     primaryStage.show();
                     

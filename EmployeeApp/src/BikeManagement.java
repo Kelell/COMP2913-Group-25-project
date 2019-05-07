@@ -24,6 +24,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -169,14 +170,14 @@ public class BikeManagement implements Initializable {
                         alert.setHeaderText(null);
                         alert.setTitle("Error");
                         alert.setContentText("Database not updated!");
-                        alert.show();
+                        alert.showAndWait();
                     } else {
 
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         alert.setHeaderText(null);
                         alert.setTitle("Success");
                         alert.setContentText("Database Updated!");
-                        alert.show();
+                        alert.showAndWait();
                     }
                     // close manager
                         Stage stage = (Stage) setStatusBtn.getScene().getWindow();
@@ -192,6 +193,10 @@ public class BikeManagement implements Initializable {
                         primaryStage = new Stage();
                         primaryStage.setScene(new Scene(root, 1200, 561));
                         primaryStage.centerOnScreen();
+                        primaryStage.setTitle("Bike World");
+                        // Displays App Icon
+                        primaryStage.getIcons().add(
+                        new Image("/CSS/icon2.png"));
                         primaryStage.show();
 
                 } else {
@@ -199,7 +204,7 @@ public class BikeManagement implements Initializable {
                     alert.setHeaderText(null);
                     alert.setTitle("Error");
                     alert.setContentText("Invalid bike or status selected!");
-                    alert.show();
+                    alert.showAndWait();
                 }
 
             }
@@ -222,6 +227,10 @@ public class BikeManagement implements Initializable {
                 primaryStage = new Stage();
                 primaryStage.setScene(new Scene(root, 1200, 561));
                 primaryStage.centerOnScreen();
+                primaryStage.setTitle("Bike World");
+                // Displays App Icon
+                primaryStage.getIcons().add(
+                new Image("/CSS/icon2.png"));    
                 primaryStage.show();
 
             }
