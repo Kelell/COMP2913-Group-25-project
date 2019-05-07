@@ -165,31 +165,72 @@
 
 
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
+
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="Dashboard.jsp">B!KEWORLD</a>
+            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!--button enabelinig the colapse of navigation ber-->
+                <span class="icon-bar"></span>                                                               <!--used when screen size is too small-->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.jsp">B!KEWORLD</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li ><a href="Dashboard.jsp">Home</a></li>
-            <li class= "active"><a href="Views">View bikes</a></li>
-            <li><a href="AboutUs.jsp">About Us</a></li>
-            <li><a href="ContactUs.jsp">Contact Us</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <div class = "collapse navbar-collapse" id="Navigation">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.jsp">Home</a></li>
+                <%
+                    if(session.getAttribute("uname")!=null){//log out button for when in session
 
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>Profile: <%= session.getAttribute("uname")%>
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><strong> </strong></li>
-                    <li><a href="Profile.jsp">Later</a></li>
-                </ul>
-            </li>
-            <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
-        </ul>
+                %>
+                <li><a href="Views">Book A Bike</a></li>
+                <%
+                    }
+
+                %>
+                <li><a href="AboutUs.jsp">About Us</a></li>
+                <li><a href="ContactUs.jsp">Contact Us</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <%
+                    if(session.getAttribute("uname")==null){//log out button for when in session
+
+                %>
+                <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="LogIn.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <%
+                    }
+
+                %>
+
+                <%
+                    if(session.getAttribute("uname")!=null){//log out button for when in session
+
+                %>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>Profile
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><strong>User: ${uname}</strong></li>
+                        <li><a href="Profile.jsp">Profile</a></li>
+                        <li><a href="Views">Book A Bike</a></li>
+                        <%--<li><a href="book">Book a bike</a></li>--%>
+                    </ul>
+                </li>
+                <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+                <%
+                    }
+
+                %>
+            </ul>
+        </div>
+
     </div>
-</nav>
 
+</nav>
+<div class="content">
 <% double a = Double.parseDouble(request.getParameter("cost"))- (0.20 * Double.parseDouble(request.getParameter("cost"))); %>
 
 <%String term = request.getParameter("term"); %>
@@ -348,6 +389,6 @@
 </script>
 
 
-
+</div>
 </body>
 </html>
