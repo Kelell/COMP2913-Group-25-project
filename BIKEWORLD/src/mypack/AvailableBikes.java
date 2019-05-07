@@ -67,7 +67,7 @@ public class AvailableBikes extends HttpServlet {
             String size = Integer.toString(listsize);
 
             out.println("<head onload=\"openFunction()\" >" +
-                    "<title id = prick >$Title$</title>" +
+                    "<title id = prick >Available bikes</title>" +
                     "<meta name=viewport content=width=device-width, initial-scale=1>"+
                     "<link rel=stylesheet href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>"+ //<!-- Bootstrap style link  -->
                     "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
@@ -237,25 +237,8 @@ public class AvailableBikes extends HttpServlet {
                             "<div class = 'holder' style = 'display : block; width: 100%;' >"+
                             "<br><br>"+
                             "<br><br>"+"<br><br>"+
-                            "<p style = 'display: none;' name = 'Location' >Select a Location</p>\n" +
-                            "<select style = 'display: none;' name = 'Location' >\n" +
-                            "<option value=Alnmouth>Alnmouth</option>" +
-                            "<option value=Barnsley>Barnsley</option>"+
-                            "<option value=Beverly>Beverly</option>"+
-                            "<option value=Bournemouth>Bournemouth</option>"+
-                            "<option value=Bradford>Bradford</option>"+
-                            "<option value=Bristol>Bristol</option>"+
-                            "<option value=Buckingham>Buckingham</option>"+
-                            "<option value=Crystal>Crystal</option>"+
-                            "<option value=Halifax>Halifax</option>"+
-                            "<option value=Harrogate>Harrogate</option>"+
-                            "<option value=Hebden>Hebden</option>"+
-                            "<option value=Hexham>Hexham</option>"+
-                            "<option value=Leeds>Leeds</option>"+
-                            "<option value=Manchester>Manchester</option>"+
-                            "<option value=Rotherham>Rotherham</option>"+
-                            "<option value=Shipley>Shipley</option>"+
-                            "</select>\n" +
+                            "<input style = 'display: none;' name = 'Location' value = "+ request.getParameter("Location") +">\n" +
+
 
                             "<button type=\"button\" onclick=\"myFunction0()\">Availabillity by time</button>"+
                             "\n" +
@@ -382,7 +365,6 @@ public class AvailableBikes extends HttpServlet {
                             "document.getElementById('form1').reset();\n" +
                             "document.getElementById('bod2').reset();\n" +
                             "location.reload();\n" +
-                            "document.getElementsByName('Location')[1].value = " + request.getParameter("Location") +";"+
                             "}" + "\n" +
 
                             "function myFunction0() {"   + "\n" +

@@ -41,6 +41,9 @@ public class BookABike extends HttpServlet {
             String date = request.getParameter("date");
             String duration = request.getParameter("Daydur");
             String location = request.getParameter("Location");
+            out.println(date);
+            out.println(duration);
+            out.println(location);
             try {
                 //Format date
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
