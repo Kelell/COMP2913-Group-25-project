@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 
 /**
  * @author Zahoor
@@ -61,6 +62,11 @@ public class LoginController {
                             primaryStage = new Stage();
                             primaryStage.setScene(new Scene(root, 1200, 561));
                             new Main().close();
+                            //Displays App Name 
+                            primaryStage.setTitle("Bike World");
+                            // Displays App Icon
+                            primaryStage.getIcons().add(
+                            new Image("/CSS/icon2.png"));
                             primaryStage.show();
                         } catch (IOException e) {
                             e.printStackTrace();

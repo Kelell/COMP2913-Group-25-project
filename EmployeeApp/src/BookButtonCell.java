@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 /**
  * This class handles all functions when Book Button is clicked
@@ -55,6 +56,11 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
                     controller.setBikeDetails(bikeModel);
                     Scene scene = new Scene(root2, 566, 528);
                     primaryStage = new Stage();
+                     //Displays App Name 
+                    primaryStage.setTitle("Bike World");
+                    // Displays App Icon
+                    primaryStage.getIcons().add(
+                     new Image("/CSS/icon2.png"));
                     primaryStage.setScene(scene);
                     primaryStage.show();
                     

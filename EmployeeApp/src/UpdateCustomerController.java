@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 
 
 /**
@@ -85,6 +86,11 @@ public class UpdateCustomerController {
                         //After updating launches the dashboard with updated information
                         Parent root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
                         primaryStage = new Stage();
+                        //Displays App Name 
+                        primaryStage.setTitle("Bike World");
+                        // Displays App Icon
+                        primaryStage.getIcons().add(
+                        new Image("/CSS/icon2.png"));
                         primaryStage.setScene(new Scene(root, 1200, 561));
                         primaryStage.centerOnScreen();
                         primaryStage.show();

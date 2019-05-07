@@ -5,7 +5,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
 
 /**
  * Start of Application, runs the application instance
@@ -23,10 +25,14 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 738, 508));
 
         //Displays App Name 
-        primaryStage.setTitle("Bike App");
+        primaryStage.setTitle("Bike World");
         mainStage = primaryStage;
         mainStage.centerOnScreen();
         mainStage.show();
+        
+        // Displays App Icon
+        primaryStage.getIcons().add(
+            new Image("/CSS/icon2.png"));
 
     }
 
