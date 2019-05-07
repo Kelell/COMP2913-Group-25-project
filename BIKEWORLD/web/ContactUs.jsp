@@ -81,7 +81,8 @@
 
 <div class="content"><!-- start of content/ enables page styling -->
     <h1>Contact Us</h1>
-    <h5>If you have any questions why not contact us on the following email: <br> contact@bikeworld.co.uk</h5>
+    <h5>If you have any questions why not contact us on the following email: <br> bikeworld@gmail.com</h5>
+    <h5>Or call us on :  <br> 0113 014 9456</h5>
     <h5>Want to hear the latest news and offers? Why not follow us on one of the platforms below? <br></h5>
     <br><br>
     <a href="https://www.facebook.com/" class="fa fa-facebook"></a>

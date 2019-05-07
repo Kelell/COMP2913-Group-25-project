@@ -60,23 +60,14 @@ public class LogIn extends HttpServlet {
 
 
             }
-            if(name.equals(Uname)&&password.equals(Upass)){
+            if(name.equals(Uname)&&password.equals(Upass)){//if username and password exist in database continue to log in
 
-
-                if (oldsession != null)
-                {
-                    oldsession.invalidate();
-                }
-
-
-                HttpSession session = request.getSession();
+                HttpSession session = request.getSession();// creates session and redirects to index page
                 session.setAttribute("uname", name);
                 session.setAttribute("uemail", email);
                 session.setAttribute("uId", custid);
                 session.setAttribute("uAddress", address);
                 session.setAttribute("uCusname", fullname);
-                //setting session to expiry in 5 mins
-                session.setMaxInactiveInterval(5*60);
                 String message = "Welcome : " + name;
                 response.sendRedirect("index.jsp");
 
