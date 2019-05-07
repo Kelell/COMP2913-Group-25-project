@@ -21,8 +21,8 @@
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!--button enabelinig the colapse of navigation ber-->
-                <span class="icon-bar"></span>                                                               <!--used when screen size is too small-->
+            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!-- enables a responsive nav bar for mobiles -->
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
@@ -32,7 +32,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="index.jsp">Home</a></li>
                 <%
-                    if(session.getAttribute("uname")!=null){//log out button for when in session
+                    if(session.getAttribute("uname")!=null){//if in session show book a bike option
 
                 %>
                 <li><a href="Views">Book A Bike</a></li>
@@ -45,7 +45,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <%
-                    if(session.getAttribute("uname")==null){//log out button for when in session
+                    if(session.getAttribute("uname")==null){//displays sign up and log in options only when not in session/when not logged in
 
                 %>
                 <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -56,7 +56,7 @@
                 %>
 
                 <%
-                    if(session.getAttribute("uname")!=null){//log out button for when in session
+                    if(session.getAttribute("uname")!=null){//displays drop down nav only when in session
 
                 %>
 
@@ -67,7 +67,6 @@
                         <li><strong>User: ${uname}</strong></li>
                         <li><a href="Profile.jsp">Profile</a></li>
                         <li><a href="Views">Book A Bike</a></li>
-                        <%--<li><a href="book">Book a bike</a></li>--%>
                     </ul>
                 </li>
                 <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
@@ -78,8 +77,9 @@
             </ul>
         </div>
     </div>
-</nav>
-<div class="content">
+</nav><!-- end of nav -->
+
+<div class="content"><!-- start of content/ enables page styling -->
     <h1>Contact Us</h1>
     <h5>If you have any questions why not contact us on the following email: <br> contact@bikeworld.co.uk</h5>
     <h5>Want to hear the latest news and offers? Why not follow us on one of the platforms below? <br></h5>
@@ -88,7 +88,7 @@
     <a href="https://twitter.com/?lang=en-gb" class="fa fa-twitter"></a>
     <a href="https://www.instagram.com/?hl=en" class="fa fa-instagram"></a>
     <a href="https://www.snapchat.com/l/en-gb/" class="fa fa-snapchat-ghost"></a>
-</div>
+</div><!--end of content -->
 
 </body>
 </html>

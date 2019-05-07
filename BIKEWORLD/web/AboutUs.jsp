@@ -13,15 +13,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  <!-- Drop down button script-->
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="style.css" type="text/css"> <!-- link to style sheet -->
 </head>
 <body>
 
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!--button enabelinig the colapse of navigation ber-->
-                <span class="icon-bar"></span>                                                               <!--used when screen size is too small-->
+            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!-- enables a responsive nav bar for mobiles -->
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
@@ -31,7 +31,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="index.jsp">Home</a></li>
                 <%
-                    if(session.getAttribute("uname")!=null){//log out button for when in session
+                    if(session.getAttribute("uname")!=null){//if in session show book a bike option
 
                 %>
                 <li><a href="Views">Book A Bike</a></li>
@@ -44,7 +44,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <%
-                    if(session.getAttribute("uname")==null){//log out button for when in session
+                    if(session.getAttribute("uname")==null){//displays sign up and log in options only when not in session/when not logged in
 
                 %>
                 <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -55,7 +55,7 @@
                 %>
 
                 <%
-                    if(session.getAttribute("uname")!=null){//log out button for when in session
+                    if(session.getAttribute("uname")!=null){//displays drop down nav only when in session
 
                 %>
                 <li class="dropdown">
@@ -65,7 +65,6 @@
                         <li><strong>User: ${uname}</strong></li>
                         <li><a href="Profile.jsp">Profile</a></li>
                         <li><a href="Views">Book A Bike</a></li>
-                        <%--<li><a href="book">Book a bike</a></li>--%>
                     </ul>
                 </li>
                 <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
@@ -77,16 +76,10 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav> <!-- end of nav -->
 
 
-
-<%--<%//tests if user is logged in before accessing about us page (testing only)--%>
-<%--if(session.getAttribute("uname")==null){--%>
-<%--response.sendRedirect("LogIn.jsp");--%>
-<%--}--%>
-<%--%>--%>
-<div class="content">
+<div class="content"><!-- start of content/ enables page styling -->
     <h1>About Us</h1>
     <h5>We are a group of students from the University of Leeds working on our year two project. We hope you enjoy using our application.</h5>
     <div class="row">
@@ -120,7 +113,7 @@
 
         </div>
     </div>
-</div>
+</div><!--end of content -->
 
 
 </body>

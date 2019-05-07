@@ -167,8 +167,8 @@
 
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!--button enabelinig the colapse of navigation ber-->
-                <span class="icon-bar"></span>                                                               <!--used when screen size is too small-->
+            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!-- enables a responsive nav bar for mobiles -->
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
@@ -179,7 +179,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.jsp">Home</a></li>
                 <%
-                    if(session.getAttribute("uname")!=null){//log out button for when in session
+                    if(session.getAttribute("uname")!=null){//if in session show book a bike option
 
                 %>
                 <li><a href="Views">Book A Bike</a></li>
@@ -193,7 +193,7 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <%
-                    if(session.getAttribute("uname")==null){//log out button for when in session
+                    if(session.getAttribute("uname")==null){//displays sign up and log in options only when not in session/when not logged in
 
                 %>
                 <li><a href="registration.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -204,7 +204,7 @@
                 %>
 
                 <%
-                    if(session.getAttribute("uname")!=null){//log out button for when in session
+                    if(session.getAttribute("uname")!=null){//displays drop down nav only when in session
 
                 %>
 
@@ -215,7 +215,6 @@
                         <li><strong>User: ${uname}</strong></li>
                         <li><a href="Profile.jsp">Profile</a></li>
                         <li><a href="Views">Book A Bike</a></li>
-                        <%--<li><a href="book">Book a bike</a></li>--%>
                     </ul>
                 </li>
                 <li><a href="Log"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
@@ -225,11 +224,12 @@
                 %>
             </ul>
         </div>
-
     </div>
+</nav><!-- end of nav -->
 
-</nav>
-<div class="content">
+
+<div class="content"><!-- start of content/ enables page styling -->
+
 <% double a = Double.parseDouble(request.getParameter("cost"))- (0.20 * Double.parseDouble(request.getParameter("cost"))); %>
 
 <%String term = request.getParameter("term"); %>
@@ -388,6 +388,6 @@
 </script>
 
 
-</div>
+</div><!--end of content -->
 </body>
 </html>
