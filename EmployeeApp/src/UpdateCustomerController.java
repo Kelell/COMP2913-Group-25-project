@@ -70,7 +70,7 @@ public class UpdateCustomerController {
                         alert.setHeaderText(null);
                         alert.setTitle("Success");
                         alert.setContentText("Record Updated Successfully");
-                        alert.show();
+                        alert.showAndWait();
                         
                         closeAndBack();
                     } catch (SQLException e) {
