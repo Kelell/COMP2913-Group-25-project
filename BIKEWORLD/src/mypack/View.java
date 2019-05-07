@@ -35,23 +35,34 @@ public class View extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //Checks to see if session is still active by seeing if session Attribute is false
+        //Session obtained through getSession
         HttpSession session =  request.getSession(false);
+        //If session attribute is false then the session is false. Therefore you are redirected to index.jsp page
         if (session.getAttribute("uname") == null) {
             response.sendRedirect("index.jsp");
         }
 
+        //Print writter variable out is set and used to write to response.
         PrintWriter out = response.getWriter();
+        //Response is set to a HTML page
         response.setContentType("text/html");
+        //JDBC object created from class
         jdbc test = new jdbc();
+        //String driver created for mysql database
         String driver = "com.mysql.cj.jdbc.Driver";
 
         try {
+            //Class created for driver
             Class.forName(driver);
+            //Connection to mysql database created with password and username created in order toaccess it
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
             String sql;
+            //sql statement selects all BIKE_ID , LOCATION, price from database
             sql = "SELECT BIKE_ID, LOCATION, price FROM bike";
             ResultSet rs = stmt.executeQuery(sql);
+            //Array lists created to hold values
             ArrayList<Integer> bike_ids = new ArrayList<Integer>();
             ArrayList<String> loca = new ArrayList<String>();
             ArrayList<Float> cost = new ArrayList<Float>();
@@ -66,15 +77,17 @@ public class View extends HttpServlet {
                 loca.add(location);
                 cost.add(price);
             }
+            //close database attributes
             rs.close();
             stmt.close();
             conn.close();
 
+            //Creates list of six
             int listsize = bike_ids.size();
             String size = Integer.toString(listsize);
-
+            //Head
             out.println("<head onload=\"openFunction()\" >");
-
+            //Out.println prints html code
             out.println(
                     "<title id = prick >Book A Bike</title>" +
                             "<meta name=viewport content=width=device-width, initial-scale=1>"+
@@ -82,7 +95,7 @@ public class View extends HttpServlet {
                             "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
                             "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>"+  //<!-- Drop down button script-->
                             "<link rel=stylesheet href=style.css type=text/css>"+
-                    "<style>\n" +
+                    "<style>\n" +//Styl
                     "\n" +
                     "/* The grid: Four equal columns that floats next to each other */\n" +
                     ".column {\n" +
@@ -148,7 +161,7 @@ public class View extends HttpServlet {
             out.println("<body  >");
 
             out.println(
-                    "<nav class='navbar navbar-inverse'>"+ //<!-- Bootstrap nav bar -->
+                    "<nav class='navbar navbar-inverse'>"+ //Navbar
                             "<div class='container-fluid'>"+ "<div class='navbar-header'>"+
 
                             "<button type= 'button' class= 'navbar-toggle' data-toggle='collapse' data-target='#Navigation'>"+ //<!-- enables a responsive nav bar for mobiles -->
@@ -165,7 +178,7 @@ public class View extends HttpServlet {
                             "<ul class='nav navbar-nav'>"+
                             "<li><a href=index.jsp>Home</a></li>");
 
-            if(session.getAttribute("uname")!=null){//log out button for when in session
+            if(session.getAttribute("uname")!=null){//If session is not null Then Book a bike tab is active
 
                 out.println("<li  class=\"active\" ><a href=\"Views\">Book A Bike</a></li>");
 
@@ -178,7 +191,7 @@ public class View extends HttpServlet {
                             "</ul>"+
                             "<ul class='nav navbar-nav navbar-right'>");
 
-            if(session.getAttribute("uname")==null){//log out button for when in session
+            if(session.getAttribute("uname")==null){//If session is null then Sign up and Login are added to nav bar
 
 
                 out.println(
@@ -190,7 +203,7 @@ public class View extends HttpServlet {
 
 
 
-            if(session.getAttribute("uname")!=null){//log out button for when in session
+            if(session.getAttribute("uname")!=null){///If session is not null Then profile tab is added to Nav bar
 
                 out.println(
                         "<li class='dropdown'>"+
@@ -215,9 +228,10 @@ public class View extends HttpServlet {
 
             );
 
+            //Displays Different locations
             out.println(
-                    "<form id = 'form2' action= Available method = 'post' >" +
-
+                    "<form id = 'form2' action= 'Available' method = 'post' >" +
+                            //Hidden location variable to store location choice
                             "<p style = \"display: none\" >Select a Location</p>" + "\n" +
                             "<select  id = \"Loca\" style = \"display: none\" name = Location >" +
                             "<option selected value= 'Please select'>Please select</option>" +
@@ -239,112 +253,116 @@ public class View extends HttpServlet {
                             "<option value=Shipley>Shipley</option>"+
                             "</select>"+ "\n" +
 
-
+                            //Display of locations and images.(All images cleared and labeled for reuse)
                             "<h1 name = Location >Select a Location</h1>" + "\n" +
                             "<div class=\"row\"  style = \"\">\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \" https://i.pinimg.com/474x/de/2e/9d/de2e9d4d049c7032056149762f313f88--wales-england.jpg\" alt=\"Alnmouth\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/0/0d/Alnmouth%2C_Northumberland_Street_-_geograph.org.uk_-_1716284.jpg\" alt=\"Alnmouth\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Alnmouth</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"http://blackwoodcontracts.co.uk/public/images/images/1476785212.9959.jpg\" alt=\"Barnsley Interchange\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://s1.geograph.org.uk/geophotos/04/07/74/4077465_8a0260e7_1024x1024.jpg\" alt=\"Barnsley Interchange\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Barnsley</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://odis.homeaway.com/odis/listing/6e43f6f7-ca87-4df4-b68d-06e1d0199fb7.c6.jpg\" alt=\"Beverly\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/b/be/Beverley_Minster_-_geograph.org.uk_-_1733055.jpg\" alt=\"Beverly\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Beverly</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://odis.homeaway.com/odis/listing/837a55f6-e395-4443-9abd-3b486af23e90.c6.jpg\" alt=\"Bournemouth\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Bournemouth_pier.jpg/1280px-Bournemouth_pier.jpg\" alt=\"Bournemouth\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Bournemouth</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://imgs.nestimg.com/2_bedroom_flat_110858279168491148.jpg\" alt=\"Bradford Interchange\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Bradford_City_Hall_020.jpg/800px-Bradford_City_Hall_020.jpg\" alt=\"Bradford Interchange\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Bradford</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://imgc.allpostersimages.com/img/print/u-g-P1H1SK0.jpg?w=400&h=300\" alt=\"Bristol\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://cdn.pixabay.com/photo/2015/09/19/15/46/bristol-947391_960_720.jpg\" alt=\"Bristol\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Bristol</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img  src= \"https://t1.ftcdn.net/jpg/01/84/33/50/400_F_184335035_sqCKtkB9su1fGseg1NhRIsFmBlC5b1mJ.jpg\" alt=\"Buckingham\" width=\"390\" height=\"300\">\n" +
+                            "       <img  src= \"https://s0.geograph.org.uk/geophotos/04/47/26/4472608_b7b60ad1_1024x1024.jpg\" alt=\"Buckingham\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Buckingham</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://res.cloudinary.com/travelodgeuk/image/upload/w_400/hotels/GB0727_Croydon_Central_EXTERIOR_2208.jpg\" alt=\"Crystal\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://cdn.pixabay.com/photo/2016/07/02/14/45/madrid-1493002_960_720.jpg\" alt=\"Crystal\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Crystal</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"http://www.visitoruk.com/images/franchises/Halifax/1290959401_1homeslider_halifax2.jpg\" alt=\"Halifax\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://cdn.pixabay.com/photo/2017/01/11/17/04/halifax-1972314_960_720.jpg\" alt=\"Halifax\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Halifax</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"http://www.visitoruk.com/images/franchises/Harrogate/1290959182_1homeslider_harrogate2.jpg\" alt=\"Harrogate\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"http://res.freestockphotos.biz/pictures/5/5699-traffic-lights-at-night-in-a-city-pv.jpg\" alt=\"Harrogate\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Harrogate</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://www.britainexpress.com/images/accommodation/cottages/SY/SY930177_19.jpg\" alt=\"Hebden\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://s0.geograph.org.uk/geophotos/02/58/33/2583373_daf45c15.jpg\" alt=\"Hebden\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Hebden</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://images.snaptrip.com/uploads/image/file/4809608/hero_304527.jpg\" alt=\"Hexam\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://s0.geograph.org.uk/geophotos/05/61/61/5616173_ea0be852_original.jpg\" alt=\"Hexam\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Hexham</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"http://www.europeanrailguide.com/images/itour/182.jpg\" alt=\"Leeds\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://s2.geograph.org.uk/geophotos/04/97/93/4979322_06774607_1024x1024.jpg\" alt=\"Leeds\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Leeds</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\"onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://i.pinimg.com/originals/be/e8/ec/bee8ec97008567e59dab790d58ab6836.jpg\" alt=\"Manchester\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Urbis%2C_Manchester_city_centre_in_2012.jpg/800px-Urbis%2C_Manchester_city_centre_in_2012.jpg\" alt=\"Manchester\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Manchester</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://3.bp.blogspot.com/-8yGySJG5cas/WIdzaDKG1CI/AAAAAAAAT-Y/MicdItwRdDkkzRT7xEgY2J0ECSTeCe_FwCLcB/s400/rothbiz+rotherham+interchange.jpg\" alt=\"Rotherham\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/5/51/ECT_waalhaven_bij_nacht.jpg\" alt=\"Rotherham\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Rotherham</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://imgs.nestimg.com/1_bedroom_flat_for_sale_110499546788616634.jpg\" alt=\"Shipley\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://s0.geograph.org.uk/geophotos/05/48/81/5488166_2b917b16_original.jpg\" alt=\"Shipley\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Shipley</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "</div>" +
                             "</form>" + "\n" +
+
+                            //Script for choosing location
                             "<script>"  + "\n" +
+                            //Open function refreshes page on every load
                             "function openFunction() {"   + "\n" +
                             "document.getElementById(\"form1\").reset();" +
                             "location.reload();" +
                             "}" +
+                            //If location object cosen is equal to one ofthe values  in hidden variable, then the value is chosen as the location
                             "function myFunction(cont) {\n" +
                             "  var tag = cont.lastElementChild; " +
                             "  var val = document.getElementById(\"Loca\");" +
@@ -354,13 +372,14 @@ public class View extends HttpServlet {
                             "       val.value = tag.innerHTML;"+
                             "    }"+
                             "  }"+
+                            //Submits
                             "  var x = document.getElementById('form2').submit();" +
                             "}"+
 
                             "</script>"
 
             );
-
+        //Error exception catching
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             out.println("Testing error 1- Failed");

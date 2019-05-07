@@ -1,7 +1,7 @@
 body{
     background-color: white;
     font-family: "Arial";
-    color: goldenrod;
+    color: black;
 }
 h1{
     font-family: Overpass;
@@ -21,7 +21,7 @@ h1{
 }
 
 p{
-    color: red;
+    color: black;
 }
 
 a{

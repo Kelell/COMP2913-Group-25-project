@@ -54,12 +54,15 @@ public class Registration extends HttpServlet {
             String Username = null;//ensures username is null before assigning new name
             ps2.setString(1, uname); // checks name field for instances of a suername
             ResultSet rs = ps2.executeQuery();
+            //Loops through the result set to find user name the assigns it to variable Username
             while(rs.next()){
                 Username = rs.getString("name");
 
             }
+            //Username is null meaning the variable did not find a record with username == Username
             if (Username == null)
             {
+                //Assigns these values to prepared statement
                 ps.setString(1, uname);
                 ps.setString(2, password);
                 ps.setString(3, fullname);
@@ -69,43 +72,26 @@ public class Registration extends HttpServlet {
 
 
 
-                String to = request.getParameter("email").toString();
-
+                //Welcome to Bike world email to  let user know he has joined
+                String recieve_email = request.getParameter("email");
                 // Sender's email ID needs to be mentioned
-                String from = "bikeworld@gmail.com";
-
-                // Assuming you are sending email from localhost
+                String from_email = "bikeworld@gmail.com";
                 String host = "localhost";
-
-                // Get system properties
-                Properties properties = System.getProperties();
-
-                // Setup mail server
-                properties.setProperty("mail.smtp.host", host);
-                Properties props = new Properties();
-                // Get the default Session object.
-                Session mailsession = Session.getDefaultInstance(properties);
-
-
-                // Create a default MimeMessage object.
+                Properties prop = System.getProperties();
+                // Setting up mail server
+                prop.setProperty("mail.smtp.host", host);
+                // Got mail session.
+                Session mailsession = Session.getDefaultInstance(prop);
                 MimeMessage message = new MimeMessage(mailsession);
-
                 // Set From: header field of the header.
-                message.setFrom(new InternetAddress(from));
-
-                BodyPart messageBodyPart = new MimeBodyPart();
-
+                message.setFrom(new InternetAddress(from_email));
                 // Set To: header field of the header.
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(recieve_email));
                 // Set Subject: header field
                 message.setSubject("Welcome!!");
-
-                // Now set the actual message
+                // Email body
                 message.setText("This is an introductury email welcoming you to our family. As the leading bike rental website we are pleased to have you and hope your stay may be enjoyable");
-
-
-                // Send message
+                // Email sent
                 Transport.send(message);
 
                 response.sendRedirect("LogIn.jsp");
