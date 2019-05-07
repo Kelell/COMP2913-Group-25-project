@@ -78,7 +78,7 @@ public class LogIn extends HttpServlet {
                 //setting session to expiry in 5 mins
                 session.setMaxInactiveInterval(5*60);
                 String message = "Welcome : " + name;
-                response.sendRedirect("Dashboard.jsp");
+                response.sendRedirect("index.jsp");
 
 
             }else{

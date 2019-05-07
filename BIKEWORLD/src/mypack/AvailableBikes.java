@@ -119,13 +119,34 @@ public class AvailableBikes extends HttpServlet {
                             "<div class = 'collapse navbar-collapse' id='Navigation'>"+
 
                             "<ul class='nav navbar-nav'>"+
-                            "<li><a href=index.jsp>Home</a></li>"+
-                            "<li  class=\"active\" ><a href=\"Views\">View bikes</a></li>"+
-                            "<li><a href=AboutUs.jsp>About Us</a></li>"+
+                            "<li><a href=index.jsp>Home</a></li>");
+
+            if(session.getAttribute("uname")!=null){//log out button for when in session
+
+                out.println("<li  class=\"active\" ><a href=\"Views\">Book A Bike</a></li>");
+
+
+            }
+
+            out.println(
+                    "<li><a href=AboutUs.jsp>About Us</a></li>"+
                             "<li><a href=ContactUs.jsp>Contact Us</a></li>"+
                             "</ul>"+
                             "<ul class='nav navbar-nav navbar-right'>");
 
+            if(session.getAttribute("uname")==null){//log out button for when in session
+
+
+                out.println(
+                        "<li><a href=registration.jsp><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>"+
+                                "<li><a href=LogIn.jsp><span class='glyphicon glyphicon-log-in'></span> Login</a></li>"
+                );
+            }
+
+
+
+
+            if(session.getAttribute("uname")!=null){//log out button for when in session
 
                 out.println(
                         "<li class='dropdown'>"+
@@ -133,10 +154,12 @@ public class AvailableBikes extends HttpServlet {
                                 "<ul class='dropdown-menu'>"+
                                 "<li><strong> User: " + session.getAttribute("uname") + "</strong></li>"+
                                 "<li><a href=Profile.jsp>Profile</a></li>"+
-                                "<li><a href=Views>BookABike</a></li>"+
+                                "<li><a href=Views>Book A Bike</a></li>"+
                                 "</ul>"+
                                 "</li>"+
                                 "<li><a href=Log><span class='glyphicon glyphicon-log-in'></span> LOGOUT</a></li>");
+
+            }
 
 
             out.println(
