@@ -235,10 +235,14 @@ public class DashboardController implements Initializable {
                             //Displays App Name 
                             primaryStage.setTitle("Bike World");
                             // Displays App Icon
-                            primaryStage.getIcons().add(
-                            new Image("/CSS/icon2.png"));
+                            primaryStage.getIcons().add(new Image("/CSS/icon2.png"));
                             primaryStage.show();
-                            customerTable.getScene().getWindow().hide();
+                            
+                            // close dashboard
+                            Stage stage = (Stage) customerTable.getScene().getWindow();
+                            stage.close();
+
+                      
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -285,7 +289,9 @@ public class DashboardController implements Initializable {
                             // Displays App Icon
                             primaryStage.getIcons().add(new Image("/CSS/icon2.png"));
                             primaryStage.show();
-                            customerTable.getScene().getWindow().hide();
+                            // close dashboard
+                            Stage stage = (Stage) customerTable.getScene().getWindow();
+                            stage.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
