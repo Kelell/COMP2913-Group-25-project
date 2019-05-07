@@ -232,6 +232,11 @@ public class DashboardController implements Initializable {
                             Scene scene = new Scene(root2);
                             primaryStage = new Stage();
                             primaryStage.setScene(scene);
+                            //Displays App Name 
+                            primaryStage.setTitle("Bike World");
+                            // Displays App Icon
+                            primaryStage.getIcons().add(
+                            new Image("/CSS/icon2.png"));
                             primaryStage.show();
                             customerTable.getScene().getWindow().hide();
                         } catch (IOException e) {
