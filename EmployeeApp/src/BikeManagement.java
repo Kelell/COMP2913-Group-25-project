@@ -47,7 +47,9 @@ public class BikeManagement implements Initializable {
     Button cancelBtn;
     @FXML
     Text statusLabel;
-
+    
+    
+    private static Stage primaryStage;
     //Database connection
     private static Connection con;
 
@@ -192,7 +194,21 @@ public class BikeManagement implements Initializable {
         cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                cancelBtn.getScene().getWindow().hide();
+                // close manager
+                Stage stage = (Stage) cancelBtn.getScene().getWindow();
+                stage.close();
+                
+                //open dashboard
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("fxml/dashboard.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                primaryStage = new Stage();
+                primaryStage.setScene(new Scene(root, 1200, 561));
+                primaryStage.centerOnScreen();
+                primaryStage.show();
 
             }
         });
