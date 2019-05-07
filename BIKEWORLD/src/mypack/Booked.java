@@ -22,6 +22,31 @@ import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.mail.Session;
 import java.util.Properties;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import java.util.Properties;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 @WebServlet(name = "Booked")
 public class Booked extends HttpServlet {
@@ -139,7 +164,11 @@ public class Booked extends HttpServlet {
 
                 // Setup mail server
                 properties.setProperty("mail.smtp.host", host);
-
+                Properties props = new Properties();
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable", "true");
+                props.put("mail.smtp.host", host);
+                props.put("mail.smtp.port", "25");
                 // Get the default Session object.
                 Session mailsession = Session.getDefaultInstance(properties);
 
@@ -153,11 +182,35 @@ public class Booked extends HttpServlet {
                 // Set To: header field of the header.
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-                // Set Subject: header field
-                message.setSubject("This is the Subject Line!");
+                message.setSubject("Booking Confirmation!");
+                /////////////////////////////////////////////////////
+
+
+                BodyPart messageBodyPart = new MimeBodyPart();
 
                 // Now set the actual message
-                message.setText("This is actual message");
+                messageBodyPart.setText("Good evening. " +
+                        "" +
+                        "" +
+                        "Please find attatched a copy of your booking reciept.");
+
+                // Create a multipar message
+                Multipart multipart = new MimeMultipart();
+
+                // Set text message part
+                multipart.addBodyPart(messageBodyPart);
+
+
+                messageBodyPart = new MimeBodyPart();
+                File file = new File(System.getProperty("user.dir") + "/myfile.pdf");
+                String filename = System.getProperty("user.dir") + "/myfile.pdf";
+                DataSource source = new FileDataSource(filename);
+                messageBodyPart.setDataHandler(new DataHandler(source));
+                messageBodyPart.setFileName(filename);
+                multipart.addBodyPart(messageBodyPart);
+
+                // Send the complete message parts
+                message.setContent(multipart);
 
                 // Send message
                 Transport.send(message);
@@ -177,6 +230,9 @@ public class Booked extends HttpServlet {
                 e.printStackTrace();
             }catch (MessagingException mex) {
                 mex.printStackTrace();
+            }
+            catch (Exception e) {
+                System.err.println(e);
             }
         }
         else
@@ -274,10 +330,13 @@ public class Booked extends HttpServlet {
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
                 // Set Subject: header field
-                message.setSubject("This is the Subject Line!");
+                message.setSubject("Booking Confirmation!");
 
                 // Now set the actual message
-                message.setText("This is actual message");
+                message.setText("Good evening. " +
+                        "" +
+                        "" +
+                        "Please find attatched a copy of your booking reciept.");
 
                 // Send message
                 Transport.send(message);

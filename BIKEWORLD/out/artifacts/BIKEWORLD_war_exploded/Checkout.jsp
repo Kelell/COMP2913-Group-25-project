@@ -13,10 +13,14 @@
         <% HttpSession session1 =  request.getSession(false);
             if (session1.getAttribute("uname") == null) {
                 response.sendRedirect("index.jsp");
-            }%>
+            }
+        if (request.getParameter("term") == null){
+            response.sendRedirect("Views");
+        }%>
     <title>Index</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> <!-- Bootstrap style link  -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
     <link rel="stylesheet" href="style.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -186,6 +190,7 @@
     </div>
 </nav>
 
+<% double a = Double.parseDouble(request.getParameter("cost"))- (0.20 * Double.parseDouble(request.getParameter("cost"))); %>
 
 <%String term = request.getParameter("term"); %>
 <h2>RECEIPT</h2>
@@ -272,10 +277,10 @@
                             <input type='text' style = 'display: none;' name='days' value = <%=request.getParameter("days")%>>
                             <input type='text' style = 'display: none;' name='hours' value = <%=request.getParameter("hours")%>>
                             <%if (term.equals("2")){
-                                out.print( "<input type='text' style = 'display: none;' name='cost' value = " + (Integer.parseInt(request.getParameter("cost"))- (0.20 * Integer.parseInt(request.getParameter("cost"))))+ "");
+                                out.print( "<input type='text' style = 'display: none;' name='cost' value = " + Double.toString(a) + ">");
                             }
                             else{
-                                out.print( "<input type='text' style = 'display: none;' name='cost' value = " + Integer.parseInt(request.getParameter("cost")) + ">");
+                                out.print( "<input type='text' style = 'display: none;' name='cost' value = " + Double.parseDouble(request.getParameter("cost")) + ">");
                             }%>
                             >
                             <input type='text' style = 'display: none;' name='startd' value = <%=request.getParameter("startd")%>>
@@ -299,7 +304,7 @@
                         out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
                         out.print( "<p>Days : " + request.getParameter("days")+ "</p>");
                         out.print(" -20% (Discount)");
-                        out.print( "<p>Total cost : £" + (Integer.parseInt(request.getParameter("cost"))- (0.20 * Integer.parseInt(request.getParameter("cost"))))+ "</p>");
+                        out.print( "<p>Total cost : £" + (Double.parseDouble(request.getParameter("cost"))- (0.20 * Double.parseDouble(request.getParameter("cost"))))+ "</p>");
                     }%>
                     <%if (term.equals("1")){
                         out.print( "<p>Location : " + request.getParameter("location")+ "</p>");

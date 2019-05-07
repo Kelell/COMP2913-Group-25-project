@@ -22,5 +22,6 @@
     <orderEntry type="library" scope="PROVIDED" name="Jetty 9.4.15.v20190215" level="application_server_libraries" />
     <orderEntry type="library" name="mysql-connector-java-8.0.15" level="project" />
     <orderEntry type="library" name="activation" level="project" />
+    <orderEntry type="library" name="zxing-1.7-javase" level="project" />
   </component>
 </module>

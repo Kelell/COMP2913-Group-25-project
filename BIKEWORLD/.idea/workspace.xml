@@ -31,29 +31,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
+      <file leaf-file-name="Booked.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mypack/Booked.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-105">
-              <caret line="170" column="72" selection-start-line="170" selection-start-column="72" selection-end-line="170" selection-end-column="72" />
+            <state relative-caret-position="270">
+              <caret line="205" column="75" selection-start-line="205" selection-start-column="75" selection-end-line="205" selection-end-column="75" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AvailableBikes.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AvailableBikes.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3330">
+            <state relative-caret-position="-6330">
               <caret line="127" selection-start-line="127" selection-end-line="127" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Booked.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mypack/Booked.java">
+      <file leaf-file-name="BookABike.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2178">
-              <caret line="109" column="41" lean-forward="true" selection-start-line="109" selection-start-column="41" selection-end-line="109" selection-end-column="41" />
+            <state relative-caret-position="2353">
+              <caret line="796" column="117" selection-start-line="796" selection-start-column="117" selection-end-line="796" selection-end-column="117" />
             </state>
           </provider>
         </entry>
@@ -61,17 +64,8 @@
       <file leaf-file-name="Checkout.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/Checkout.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="183" column="28" selection-start-line="183" selection-start-column="28" selection-end-line="183" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BookABike.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="688" selection-start-line="688" selection-end-line="688" />
+            <state relative-caret-position="313">
+              <caret line="286" column="38" lean-forward="true" selection-start-line="286" selection-start-column="38" selection-end-line="286" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -125,9 +119,7 @@
         <option value="$PROJECT_DIR$/out/artifacts/BIKEWORLD_war_exploded/registration.jsp" />
         <option value="$PROJECT_DIR$/out/artifacts/BIKEWORLD_war_exploded/Dashboard.jsp" />
         <option value="$PROJECT_DIR$/src/mypack/SendEmail.java" />
-        <option value="$PROJECT_DIR$/src/mypack/Booked.java" />
         <option value="$PROJECT_DIR$/web/Logout.jsp" />
-        <option value="$PROJECT_DIR$/src/mypack/Registration.java" />
         <option value="$PROJECT_DIR$/web/style.css" />
         <option value="$PROJECT_DIR$/web/Profile.jsp" />
         <option value="$PROJECT_DIR$/web/registration.jsp" />
@@ -141,9 +133,11 @@
         <option value="$PROJECT_DIR$/src/mypack/View.java" />
         <option value="$PROJECT_DIR$/src/mypack/AvailableBikes.java" />
         <option value="$PROJECT_DIR$/src/mypack/Dashboard.java" />
-        <option value="$PROJECT_DIR$/web/Checkout.jsp" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/mypack/BookABike.java" />
+        <option value="$PROJECT_DIR$/src/mypack/Registration.java" />
+        <option value="$PROJECT_DIR$/src/mypack/Booked.java" />
+        <option value="$PROJECT_DIR$/web/Checkout.jsp" />
       </list>
     </option>
   </component>
@@ -229,7 +223,7 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL&#10;DDL Data Source" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="database.console.LAST_STATE" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../mail.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../zxing-core-2.0.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -438,12 +432,12 @@
       <workItem from="1557155567517" duration="888000" />
       <workItem from="1557156486150" duration="12186000" />
       <workItem from="1557169740080" duration="4588000" />
-      <workItem from="1557189757658" duration="4197000" />
+      <workItem from="1557189757658" duration="12314000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="304445000" />
+    <option name="totallyTimeSpent" value="312562000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="28" width="1920" height="1018" extended-state="6" />
@@ -468,9 +462,9 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.28620297" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.28620297" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7635783" visible="true" weight="0.321047" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7635783" visible="true" weight="0.321047" />
       <window_info id="Web" order="6" sideWeight="0.23642172" side_tool="true" weight="0.31730768" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32839224" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -525,7 +519,15 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/web/Checkout.jsp</url>
+          <line>279</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -632,24 +634,10 @@
     <entry file="file://$PROJECT_DIR$/out/artifacts/BIKEWORLD_war_exploded/LogIn.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/Registration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/LogIn.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
           <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/registration.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="89" column="211" selection-start-line="89" selection-start-column="162" selection-end-line="89" selection-end-column="211" />
         </state>
       </provider>
     </entry>
@@ -674,13 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
-          <caret line="170" column="72" selection-start-line="170" selection-start-column="72" selection-end-line="170" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/Logout.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -692,13 +673,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="74" column="34" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/Booked.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2178">
-          <caret line="109" column="41" lean-forward="true" selection-start-line="109" selection-start-column="41" selection-end-line="109" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -733,20 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/Checkout.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="183" column="28" selection-start-line="183" selection-start-column="28" selection-end-line="183" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="688" selection-start-line="688" selection-end-line="688" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/java/jdk1.8.0_141/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -754,10 +714,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-105">
+          <caret line="170" column="72" selection-start-line="170" selection-start-column="72" selection-end-line="170" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/registration.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="89" column="211" selection-start-line="89" selection-start-column="162" selection-end-line="89" selection-end-column="211" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/Registration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-780">
+          <caret line="32" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/Checkout.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="286" column="38" lean-forward="true" selection-start-line="286" selection-start-column="38" selection-end-line="286" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/Booked.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="205" column="75" selection-start-line="205" selection-start-column="75" selection-end-line="205" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3330">
+        <state relative-caret-position="-6330">
           <caret line="127" selection-start-line="127" selection-end-line="127" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2353">
+          <caret line="796" column="117" selection-start-line="796" selection-start-column="117" selection-end-line="796" selection-end-column="117" />
         </state>
       </provider>
     </entry>
@@ -828,7 +836,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>activation</last-edited>
+          <last-edited>zxing-1.7-javase</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

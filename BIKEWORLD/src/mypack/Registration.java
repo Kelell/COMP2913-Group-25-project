@@ -1,5 +1,13 @@
 package mypack;
 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +28,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.sql.*;
+import java.util.Properties;
+import java.io.FileOutputStream;
+
 
 @WebServlet(name = "Registration")
 public class Registration extends HttpServlet {
@@ -55,7 +66,48 @@ public class Registration extends HttpServlet {
                 ps.setString(4, address);
                 ps.setString(5, email);
                 ps.executeUpdate();
-                out.println("Success Registration");
+
+
+
+                String to = request.getParameter("email").toString();
+
+                // Sender's email ID needs to be mentioned
+                String from = "bikeworld@gmail.com";
+
+                // Assuming you are sending email from localhost
+                String host = "localhost";
+
+                // Get system properties
+                Properties properties = System.getProperties();
+
+                // Setup mail server
+                properties.setProperty("mail.smtp.host", host);
+                Properties props = new Properties();
+                // Get the default Session object.
+                Session mailsession = Session.getDefaultInstance(properties);
+
+
+                // Create a default MimeMessage object.
+                MimeMessage message = new MimeMessage(mailsession);
+
+                // Set From: header field of the header.
+                message.setFrom(new InternetAddress(from));
+
+                BodyPart messageBodyPart = new MimeBodyPart();
+
+                // Set To: header field of the header.
+                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+                // Set Subject: header field
+                message.setSubject("Welcome!!");
+
+                // Now set the actual message
+                message.setText("This is an introductury email welcoming you to our family. As the leading bike rental website we are pleased to have you and hope your stay may be enjoyable");
+
+
+                // Send message
+                Transport.send(message);
+
                 response.sendRedirect("LogIn.jsp");
             }
             else if(uname.equals(Username)){
@@ -80,6 +132,12 @@ public class Registration extends HttpServlet {
             e.printStackTrace();
         } catch (SQLException e){
             e.printStackTrace();
+        }
+        catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+        catch (Exception e) {
+            System.err.println(e);
         }
     }
 
