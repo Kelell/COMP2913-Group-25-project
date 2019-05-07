@@ -53,7 +53,7 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
                     root2 = (Parent) fxmlLoader.load();
                     BookController controller = fxmlLoader.<BookController>getController();
                     controller.setBikeDetails(bikeModel);
-                    Scene scene = new Scene(root2, 572, 528);
+                    Scene scene = new Scene(root2, 566, 528);
                     primaryStage = new Stage();
                     primaryStage.setScene(scene);
                     primaryStage.show();

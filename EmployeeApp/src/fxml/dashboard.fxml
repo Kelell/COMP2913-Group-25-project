@@ -11,143 +11,155 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox id="imageBackground" fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="1200.0" stylesheets="@../CSS/background.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardController">
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DashboardController">
    <children>
-      <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-        <tabs>
-          <Tab fx:id="customerTab" text="Customers">
-               <content>
-                  <VBox>
-                     <children>
-                        <FlowPane alignment="CENTER" prefHeight="57.0" prefWidth="1159.0" style="-fx-background-color: #336699;">
+      <VBox id="imageBackground" fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="1200.0" stylesheets="@../CSS/background.css">
+         <children>
+            <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+              <tabs>
+                <Tab fx:id="customerTab" text="Customers">
+                     <content>
+                        <VBox>
                            <children>
-                              <Text fill="#ebe8e8" strokeType="OUTSIDE" strokeWidth="0.0" text="VIEW CUSTOMERS">
-                                 <font>
-                                    <Font name="Century" size="24.0" />
-                                 </font>
-                              </Text>
+                              <FlowPane alignment="CENTER" prefHeight="63.0" prefWidth="1200.0" style="-fx-background-color: #336699;">
+                                 <children>
+                                    <Text fill="#ebe8e8" strokeType="OUTSIDE" strokeWidth="0.0" text="VIEW CUSTOMERS">
+                                       <font>
+                                          <Font name="Century" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </FlowPane>
+                              <ToolBar id="imageBackground" prefHeight="37.0" prefWidth="1192.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
+                                 <items>
+                                    <TextField fx:id="searchField" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
+                                    <ComboBox fx:id="searchCombo" prefHeight="25.0" prefWidth="232.0" promptText="SEARCH" />
+                                 </items>
+                              </ToolBar>
+                              <TableView fx:id="customerTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <columns>
+                                    <TableColumn fx:id="idColumn" minWidth="180.0" prefWidth="234.40002137422562" text="CUSTOMER ID" />
+                                    <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" prefWidth="537.6000518798828" text="CUSTOMER NAME" />
+                                    <TableColumn fx:id="addressColumn" maxWidth="746.0" minWidth="406.39984130859375" prefWidth="487.99993896484375" text="CUSTOMER ADDRESS" />
+                                 </columns>
+                              </TableView>
                            </children>
-                           <padding>
-                              <Insets bottom="5.0" top="5.0" />
-                           </padding>
-                        </FlowPane>
-                        <ToolBar id="imageBackground" prefWidth="1159.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
-                           <items>
-                              <TextField fx:id="searchField" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
-                              <ComboBox fx:id="searchCombo" prefHeight="25.0" prefWidth="232.0" promptText="SEARCH" />
-                           </items>
-                        </ToolBar>
-                        <TableView fx:id="customerTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                           <columns>
-                              <TableColumn fx:id="idColumn" minWidth="180.0" prefWidth="234.40002137422562" text="CUSTOMER ID" />
-                              <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" prefWidth="537.6000518798828" text="CUSTOMER NAME" />
-                              <TableColumn fx:id="addressColumn" maxWidth="746.0" minWidth="406.39984130859375" prefWidth="487.99993896484375" text="CUSTOMER ADDRESS" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
-               </content>
-          </Tab>
-            <Tab fx:id="bikeTab" text="Bikes">
-               <content>
-                  <VBox prefHeight="238.0" prefWidth="1200.0">
-                     <children>
-                        <FlowPane alignment="CENTER" prefHeight="57.0" prefWidth="1159.0" style="-fx-background-color: #336699;">
+                        </VBox>
+                     </content>
+                </Tab>
+                  <Tab fx:id="bikeTab" text="Bikes">
+                     <content>
+                        <VBox prefHeight="238.0" prefWidth="1200.0">
                            <children>
-                              <Text fill="#ebe8e8" strokeType="OUTSIDE" strokeWidth="0.0" text="BIKES">
-                                 <font>
-                                    <Font name="Century" size="24.0" />
-                                 </font>
-                              </Text>
+                              <FlowPane alignment="CENTER" prefHeight="75.0" prefWidth="1200.0" style="-fx-background-color: #336699;">
+                                 <children>
+                                    <Text fill="#ebe8e8" strokeType="OUTSIDE" strokeWidth="0.0" text="BIKES">
+                                       <font>
+                                          <Font name="Century" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </FlowPane>
+                              <ToolBar id="imageBackground" prefHeight="39.0" prefWidth="1195.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
+                                 <items>
+                                    <TextField fx:id="searchField_b" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
+                                    <ComboBox fx:id="searchCombo_b" prefHeight="27.0" prefWidth="128.0" promptText="SEARCH" />
+                                    <ComboBox fx:id="statusCombo" layoutX="261.0" layoutY="17.0" prefHeight="27.0" prefWidth="120.0" promptText="FILTER" />
+                                    <DatePicker fx:id="startDate" promptText="Select start date" />
+                                    <DatePicker fx:id="endDate" promptText="Select end date" />
+                                    <Button fx:id="manageBikesBtn" mnemonicParsing="false" text="Manage Bikes" textFill="#2900f5">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </items>
+                              </ToolBar>
+                              <TableView fx:id="bikeTable" prefHeight="438.0" prefWidth="1159.0" VBox.vgrow="ALWAYS">
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <columns>
+                                    <TableColumn fx:id="bike_idColumn" minWidth="100.0" prefWidth="179.19997864961624" resizable="false" text="BIKE ID" />
+                                    <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="241.6000518798828" resizable="false" text="STATUS" />
+                                    <TableColumn fx:id="locationColumn" minWidth="160.00001525878906" prefWidth="412.7999572753906" resizable="false" text="LOCATION" />
+                                    <TableColumn fx:id="priceColumn" minWidth="80.0" prefWidth="238.40008544921875" resizable="false" text="PRICE PER DAY" />
+                                    <TableColumn fx:id="bookColumn" minWidth="40.0" prefWidth="132.0" resizable="false" text="BOOK BIKE" />
+                                 </columns>
+                              </TableView>
                            </children>
-                           <padding>
-                              <Insets bottom="5.0" top="5.0" />
-                           </padding>
-                        </FlowPane>
-                        <ToolBar id="imageBackground" prefHeight="55.0" prefWidth="1159.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
-                           <items>
-                              <TextField fx:id="searchField_b" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
-                              <ComboBox fx:id="searchCombo_b" prefHeight="27.0" prefWidth="128.0" promptText="SEARCH" />
-                              <ComboBox fx:id="statusCombo" layoutX="261.0" layoutY="17.0" prefHeight="27.0" prefWidth="120.0" promptText="FILTER" />
-                              <DatePicker fx:id="startDate" promptText="Select start date" />
-                              <DatePicker fx:id="endDate" promptText="Select end date" />
-                              <Button fx:id="manageBikesBtn" mnemonicParsing="false" text="Manage Bikes" textFill="#2900f5">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </items>
-                        </ToolBar>
-                        <TableView fx:id="bikeTable" prefHeight="438.0" prefWidth="1159.0" VBox.vgrow="ALWAYS">
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                           <columns>
-                              <TableColumn fx:id="bike_idColumn" minWidth="100.0" prefWidth="179.19997864961624" resizable="false" text="BIKE ID" />
-                              <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="241.6000518798828" resizable="false" text="STATUS" />
-                              <TableColumn fx:id="locationColumn" minWidth="160.00001525878906" prefWidth="412.7999572753906" resizable="false" text="LOCATION" />
-                              <TableColumn fx:id="priceColumn" minWidth="80.0" prefWidth="238.40008544921875" resizable="false" text="PRICE PER DAY" />
-                              <TableColumn fx:id="bookColumn" minWidth="40.0" prefWidth="132.0" resizable="false" text="BOOK BIKE" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
-               </content>
-            </Tab>
-            <Tab fx:id="ticketTab" text="Tickets">
-               <content>
-                  <VBox prefHeight="238.0" prefWidth="993.0">
-                     <children>
-                        <FlowPane alignment="CENTER" prefHeight="57.0" prefWidth="1159.0" style="-fx-background-color: #336699;">
+                        </VBox>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="ticketTab" text="Tickets">
+                     <content>
+                        <VBox prefHeight="238.0" prefWidth="993.0">
                            <children>
-                              <Text fill="#ebe8e8" strokeType="OUTSIDE" strokeWidth="0.0" text="TICKETS">
-                                 <font>
-                                    <Font name="Century" size="24.0" />
-                                 </font>
-                              </Text>
+                              <FlowPane alignment="CENTER" prefHeight="73.0" prefWidth="1200.0" style="-fx-background-color: #336699;">
+                                 <children>
+                                    <Text fill="#ebe8e8" strokeType="OUTSIDE" strokeWidth="0.0" text="TICKETS">
+                                       <font>
+                                          <Font name="Century" size="24.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </FlowPane>
+                              <ToolBar id="imageBackground" prefHeight="41.0" prefWidth="1192.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
+                                 <items>
+                                    <TextField fx:id="searchField_t" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
+                                    <ComboBox fx:id="searchCombo_t" prefHeight="25.0" prefWidth="280.0" promptText="SEARCH" />
+                                 </items>
+                              </ToolBar>
+                              <TableView fx:id="ticketTable" prefHeight="438.0" prefWidth="1159.0" VBox.vgrow="ALWAYS">
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <columns>
+                                    <TableColumn fx:id="ticket_idColumn" prefWidth="179.0" text="TICKET ID" />
+                                    <TableColumn fx:id="customerID" minWidth="-1.0" prefWidth="-1.0" text="CUSTOMER ID" />
+                                    <TableColumn fx:id="customerName" minWidth="210.0" prefWidth="270.0" text="CUSTOMER NAMES" />
+                                    <TableColumn fx:id="t_bike_idColumn" minWidth="0.0" prefWidth="156.0" text="BIKE ID" />
+                                    <TableColumn fx:id="t_priceColumn" minWidth="0.0" prefWidth="224.0" text="BIKE PRICE" />
+                                    <TableColumn fx:id="startDateColumn" minWidth="0.0" prefWidth="196.0" text="START DATE" />
+                                    <TableColumn fx:id="endDateColumn" minWidth="0.0" prefWidth="196.0" text="END DATE" />
+                                    <TableColumn fx:id="totalColumn" minWidth="0.0" prefWidth="213.0" text="TOTAL DUE" />
+                                    <TableColumn fx:id="printColumn" minWidth="0.0" prefWidth="213.0" text="PRINT" />
+                                 </columns>
+                              </TableView>
                            </children>
-                           <padding>
-                              <Insets bottom="5.0" top="5.0" />
-                           </padding>
-                        </FlowPane>
-                        <ToolBar id="imageBackground" prefHeight="55.0" prefWidth="1159.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
-                           <items>
-                              <TextField fx:id="searchField_t" cacheHint="SPEED" prefHeight="25.0" prefWidth="247.0" promptText="search" />
-                              <ComboBox fx:id="searchCombo_t" prefHeight="25.0" prefWidth="280.0" promptText="SEARCH" />
-                           </items>
-                        </ToolBar>
-                        <TableView fx:id="ticketTable" prefHeight="438.0" prefWidth="1159.0" VBox.vgrow="ALWAYS">
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                           <columns>
-                              <TableColumn fx:id="ticket_idColumn" prefWidth="179.0" text="TICKET ID" />
-                              <TableColumn fx:id="customerID" minWidth="-1.0" prefWidth="-1.0" text="CUSTOMER ID" />
-                              <TableColumn fx:id="customerName" minWidth="210.0" prefWidth="270.0" text="CUSTOMER NAMES" />
-                              <TableColumn fx:id="t_bike_idColumn" minWidth="0.0" prefWidth="156.0" text="BIKE ID" />
-                              <TableColumn fx:id="t_priceColumn" minWidth="0.0" prefWidth="224.0" text="BIKE PRICE" />
-                              <TableColumn fx:id="startDateColumn" minWidth="0.0" prefWidth="196.0" text="START DATE" />
-                              <TableColumn fx:id="endDateColumn" minWidth="0.0" prefWidth="196.0" text="END DATE" />
-                              <TableColumn fx:id="totalColumn" minWidth="0.0" prefWidth="213.0" text="TOTAL DUE" />
-                              <TableColumn fx:id="printColumn" minWidth="0.0" prefWidth="213.0" text="PRINT" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </VBox>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
+                        </VBox>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+      <ImageView fitHeight="63.0" fitWidth="73.0" layoutX="1129.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../CSS/icon.PNG" />
+         </image>
+      </ImageView>
    </children>
-</VBox>
+</AnchorPane>
