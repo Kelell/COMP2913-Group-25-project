@@ -219,7 +219,7 @@ public class Booked extends HttpServlet {
 
 
 
-                response.sendRedirect("Dashboard.jsp");
+                response.sendRedirect("index.jsp");
 
             }
             catch (ClassNotFoundException e){
@@ -343,7 +343,7 @@ public class Booked extends HttpServlet {
                 System.out.println("Sent message successfully....");
 
 
-                response.sendRedirect("Dashboard.jsp");
+                response.sendRedirect("index.jsp");
             }
             catch (ClassNotFoundException e){
                 e.printStackTrace();
