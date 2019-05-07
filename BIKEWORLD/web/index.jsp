@@ -87,7 +87,7 @@
   To book a bike please first Log in or register. <br>
   TESTING ACCOUNT :<br>
   USERNAME : test<br>
-  PASSWORD : test<br>
+  PASSWORD : Test1234<br>
   <div class="row">
     <div class="col-sm-5" >
       <h5>The standard Lorem Ipsum passage, used since the 1500s</h5>
