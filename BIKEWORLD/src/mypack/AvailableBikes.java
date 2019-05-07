@@ -107,7 +107,7 @@ public class AvailableBikes extends HttpServlet {
                     "<nav class='navbar navbar-inverse'>"+ //<!-- Bootstrap nav bar -->
                             "<div class='container-fluid'>"+ "<div class='navbar-header'>"+
 
-                            "<button type= 'button' class= 'navbar-toggle' data-toggle='collapse' data-target='#Navigation'>"+ //<!--button enabelinig the colapse of navigation ber-->
+                            "<button type= 'button' class= 'navbar-toggle' data-toggle='collapse' data-target='#Navigation'>"+ //<!-- enables a responsive nav bar for mobiles -->
                             "<span class='icon-bar'></span>"+
                             "<span class='icon-bar'></span>" +
                             "<span class='icon-bar'></span>" +

@@ -31,6 +31,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Booked.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mypack/Booked.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1755">
+              <caret line="159" column="42" selection-start-line="159" selection-start-column="42" selection-end-line="159" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2651">
+              <caret line="153" column="178" selection-start-line="153" selection-start-column="178" selection-end-line="153" selection-end-column="178" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Registration.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mypack/Registration.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -61,29 +82,51 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="85" column="31" lean-forward="true" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LogOut.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mypack/LogOut.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LogIn.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LogIn.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mypack/LogIn.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="64" column="105" selection-start-line="64" selection-start-column="105" selection-end-line="64" selection-end-column="105" />
+            <state relative-caret-position="303">
+              <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AvailableBikes.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="109" column="178" selection-start-line="109" selection-start-column="178" selection-end-line="109" selection-end-column="178" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BookABike.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1751">
+              <caret line="770" column="186" selection-start-line="770" selection-start-column="186" selection-end-line="770" selection-end-column="186" />
+              <folding>
+                <element signature="e#2369#2378#0" expanded="true" />
+                <element signature="e#2436#2444#0" expanded="true" />
+                <element signature="e#2501#2508#0" expanded="true" />
+                <element signature="e#2569#2578#0" expanded="true" />
+                <element signature="e#2638#2647#0" expanded="true" />
+                <element signature="e#2708#2717#0" expanded="true" />
+                <element signature="e#2776#2782#0" expanded="true" />
+                <element signature="e#2839#2845#0" expanded="true" />
+                <element signature="e#4271#4280#0" expanded="true" />
+                <element signature="e#25029#25038#0" expanded="true" />
+                <element signature="e#25096#25104#0" expanded="true" />
+                <element signature="e#25161#25168#0" expanded="true" />
+                <element signature="e#25229#25238#0" expanded="true" />
+                <element signature="e#25298#25307#0" expanded="true" />
+                <element signature="e#25368#25377#0" expanded="true" />
+                <element signature="e#25439#25448#0" expanded="true" />
+                <element signature="e#25508#25517#0" expanded="true" />
+                <element signature="e#25576#25582#0" expanded="true" />
+                <element signature="e#25639#25645#0" expanded="true" />
+                <element signature="e#27085#27094#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -93,6 +136,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1305">
               <caret line="90" column="27" lean-forward="true" selection-start-line="90" selection-start-column="27" selection-end-line="90" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AboutUs.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/AboutUs.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="22" column="107" lean-forward="true" selection-start-line="22" selection-start-column="107" selection-end-line="22" selection-end-column="156" />
             </state>
           </provider>
         </entry>
@@ -160,11 +212,8 @@
         <option value="$PROJECT_DIR$/web/Dashboard.jsp" />
         <option value="$PROJECT_DIR$/src/mypack/Dashboard.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/mypack/AvailableBikes.java" />
         <option value="$PROJECT_DIR$/src/mypack/Booked.java" />
         <option value="$PROJECT_DIR$/web/style.css" />
-        <option value="$PROJECT_DIR$/src/mypack/View.java" />
-        <option value="$PROJECT_DIR$/src/mypack/BookABike.java" />
         <option value="$PROJECT_DIR$/web/AboutUs.jsp" />
         <option value="$PROJECT_DIR$/web/Checkout.jsp" />
         <option value="$PROJECT_DIR$/web/Profile.jsp" />
@@ -175,6 +224,9 @@
         <option value="$PROJECT_DIR$/web/index.jsp" />
         <option value="$PROJECT_DIR$/web/ContactUs.jsp" />
         <option value="$PROJECT_DIR$/src/mypack/LogIn.java" />
+        <option value="$PROJECT_DIR$/src/mypack/AvailableBikes.java" />
+        <option value="$PROJECT_DIR$/src/mypack/BookABike.java" />
+        <option value="$PROJECT_DIR$/src/mypack/View.java" />
       </list>
     </option>
   </component>
@@ -465,12 +517,12 @@
       <workItem from="1557189757658" duration="12314000" />
       <workItem from="1557228029750" duration="6356000" />
       <workItem from="1557236020600" duration="2488000" />
-      <workItem from="1557238846240" duration="4344000" />
+      <workItem from="1557238846240" duration="4536000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="325750000" />
+    <option name="totallyTimeSpent" value="325942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1920" height="1018" extended-state="6" />
@@ -494,10 +546,10 @@
       <window_info id="Image Layers" order="3" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.28523862" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.28523862" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7635783" visible="true" weight="0.32083333" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7635783" visible="true" weight="0.32083333" />
       <window_info id="Web" order="6" sideWeight="0.23642172" side_tool="true" weight="0.31730768" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="5" side_tool="true" />
@@ -630,27 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="352" column="81" selection-start-line="352" selection-start-column="78" selection-end-line="352" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="78" column="58" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="709" column="95" selection-start-line="709" selection-start-column="95" selection-end-line="709" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -669,23 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1425">
           <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/Booked.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1695">
-          <caret line="159" column="42" selection-start-line="159" selection-start-column="42" selection-end-line="159" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/AboutUs.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="115" column="6" selection-start-line="115" selection-start-column="6" selection-end-line="115" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -736,8 +750,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/LogIn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="64" column="105" selection-start-line="64" selection-start-column="105" selection-end-line="64" selection-end-column="105" />
+        <state relative-caret-position="303">
+          <caret line="79" lean-forward="true" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/AboutUs.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="22" column="107" lean-forward="true" selection-start-line="22" selection-start-column="107" selection-end-line="22" selection-end-column="156" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="109" column="178" selection-start-line="109" selection-start-column="178" selection-end-line="109" selection-end-column="178" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/BookABike.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1751">
+          <caret line="770" column="186" selection-start-line="770" selection-start-column="186" selection-end-line="770" selection-end-column="186" />
+          <folding>
+            <element signature="e#2369#2378#0" expanded="true" />
+            <element signature="e#2436#2444#0" expanded="true" />
+            <element signature="e#2501#2508#0" expanded="true" />
+            <element signature="e#2569#2578#0" expanded="true" />
+            <element signature="e#2638#2647#0" expanded="true" />
+            <element signature="e#2708#2717#0" expanded="true" />
+            <element signature="e#2776#2782#0" expanded="true" />
+            <element signature="e#2839#2845#0" expanded="true" />
+            <element signature="e#4271#4280#0" expanded="true" />
+            <element signature="e#25029#25038#0" expanded="true" />
+            <element signature="e#25096#25104#0" expanded="true" />
+            <element signature="e#25161#25168#0" expanded="true" />
+            <element signature="e#25229#25238#0" expanded="true" />
+            <element signature="e#25298#25307#0" expanded="true" />
+            <element signature="e#25368#25377#0" expanded="true" />
+            <element signature="e#25439#25448#0" expanded="true" />
+            <element signature="e#25508#25517#0" expanded="true" />
+            <element signature="e#25576#25582#0" expanded="true" />
+            <element signature="e#25639#25645#0" expanded="true" />
+            <element signature="e#27085#27094#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/Booked.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1755">
+          <caret line="159" column="42" selection-start-line="159" selection-start-column="42" selection-end-line="159" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2651">
+          <caret line="153" column="178" selection-start-line="153" selection-start-column="178" selection-end-line="153" selection-end-column="178" />
         </state>
       </provider>
     </entry>
