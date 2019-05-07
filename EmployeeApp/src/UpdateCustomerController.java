@@ -65,8 +65,13 @@ public class UpdateCustomerController {
                     try {
                         PreparedStatement pst1=con.prepareStatement(sq11);
                         pst1.executeUpdate();
-                        con.commit();//Commit the changes
-                        JOptionPane.showMessageDialog(null, "Record Updated Successfully", "Success!", JOptionPane.PLAIN_MESSAGE);
+                        con.commit();//Commit the changes                        
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setTitle("Success");
+                        alert.setContentText("Record Updated Successfully");
+                        alert.show();
+                        
                         closeAndBack();
                     } catch (SQLException e) {
                         e.printStackTrace();
