@@ -48,6 +48,10 @@ public class BookButtonCell<S> extends TableCell<S, Button> {
 
                 Parent root2 = null;
                 try {
+                    
+                    // close dahshboard
+                    Stage stage = (Stage) bookButton.getScene().getWindow();
+                    stage.close();
 
                     BikeModel bikeModel = (BikeModel) getCurrentItem();
                     System.out.println(bikeModel);

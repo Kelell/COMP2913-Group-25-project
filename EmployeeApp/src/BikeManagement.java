@@ -177,8 +177,8 @@ public class BikeManagement implements Initializable {
                         alert.setTitle("Success");
                         alert.setContentText("Database Updated!");
                         alert.show();
-                        
-                        // close manager
+                    }
+                    // close manager
                         Stage stage = (Stage) setStatusBtn.getScene().getWindow();
                         stage.close();
 
@@ -193,8 +193,6 @@ public class BikeManagement implements Initializable {
                         primaryStage.setScene(new Scene(root, 1200, 561));
                         primaryStage.centerOnScreen();
                         primaryStage.show();
-                
-                    }
 
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
