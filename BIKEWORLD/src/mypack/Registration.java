@@ -114,8 +114,6 @@ public class Registration extends HttpServlet {
                 String message = "Username already in use.";
                 response.sendRedirect("registration.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
 
-                //response.sendRedirect("registration.jsp");
-
             }
             else{
                 ps.setString(1, uname);
@@ -124,7 +122,6 @@ public class Registration extends HttpServlet {
                 ps.setString(4, address);
                 ps.setString(5, email);
                 ps.executeUpdate();
-                out.println("Success Registration");
                 response.sendRedirect("LogIn.jsp");
             }
         }

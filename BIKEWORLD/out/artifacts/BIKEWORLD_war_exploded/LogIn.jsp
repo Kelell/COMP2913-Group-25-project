@@ -21,8 +21,8 @@
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!--button enabelinig the colapse of navigation ber-->
-                <span class="icon-bar"></span>                                                               <!--used when screen size is too small-->
+            <button type= "button" class= "navbar-toggle" data-toggle="collapse" data-target="#Navigation"><!-- enables a responsive nav bar for mobiles -->
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
@@ -50,11 +50,11 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav><!-- end of nav -->
 
 
 
-<div class="content">
+<div class="content"><!-- start of content/ enables page styling -->
     <h1>Log In</h1>
 
     <form action="LogIn" method="post">
@@ -76,8 +76,7 @@
         <button type="submit" class="btn btn-default">Login</button>
     </form>
 
-</div>
-
+</div><!--end of content -->
 
 </body>
 </html>

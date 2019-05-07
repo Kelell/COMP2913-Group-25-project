@@ -88,6 +88,7 @@
         </div>
         <button id="sub" style = 'Display : none;' type="submit" class="btn btn-default">Register</button>
     </form>
+    <p>${param.message}</p>
     <script>
         function myfunction(){
             var fname = document.getElementById("fname");

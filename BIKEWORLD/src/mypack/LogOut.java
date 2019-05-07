@@ -18,12 +18,10 @@ public class LogOut extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        out.println("Successful Log out");
 
         HttpSession session = request.getSession();
-        session.invalidate();
-        response.sendRedirect("LogIn.jsp");
+        session.invalidate();//invalidates session
+        response.sendRedirect("LogIn.jsp");//redirects to login
 
     }
 }
