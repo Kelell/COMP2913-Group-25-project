@@ -22,7 +22,15 @@ public class BookABike extends HttpServlet {
     {
 
         HttpSession session =  request.getSession(false);
-        if (session.getAttribute("uname") == null) {
+        //Checks to see if session is still active by seeing if session Attribute is false
+        //Session obtained through getSession
+        try {
+
+            //If session attribute is false then the session is false. Therefore you are redirected to index.jsp page
+            if (session.getAttribute("uname") == null) {
+                response.sendRedirect("index.jsp");
+            }
+        } catch (NullPointerException name) {
             response.sendRedirect("index.jsp");
         }
 
@@ -135,10 +143,12 @@ public class BookABike extends HttpServlet {
                                 //Cannot be booked
                                 bookable = false;
                             }
+                            //If requested date is before end date and after start date it is not bookable
                             else if (reqdate.before(edd) && reqdate.after(std))
                             {
                                 bookable = false;
                             }
+                            //If requested end date is before end date and after start date it is not bookable
                             else if (reqend.before(edd) && reqend.after(std))
                             {
                                 bookable = false;
@@ -151,17 +161,19 @@ public class BookABike extends HttpServlet {
                             {
                                 bookable = false;
                             }
+                            //If end date is equal to requested start date it is bookable
                             if ( (reqdate.get(Calendar.MONTH ) == edd.get(Calendar.MONTH)) && (reqdate.get(Calendar.YEAR ) == edd.get(Calendar.YEAR)) && (reqdate.get(Calendar.DAY_OF_MONTH ) == edd.get(Calendar.DAY_OF_MONTH)))
                             {
                                 bookable =true;
                             }
+                            //If start date is equal to end date then the bike is not bookable at that date
                             if((std.get(Calendar.MONTH ) == edd.get(Calendar.MONTH)) && (std.get(Calendar.YEAR ) == edd.get(Calendar.YEAR)) && (std.get(Calendar.DAY_OF_MONTH ) == edd.get(Calendar.DAY_OF_MONTH)) && (reqdate.get(Calendar.MONTH ) == edd.get(Calendar.MONTH)) && (reqdate.get(Calendar.YEAR ) == edd.get(Calendar.YEAR)) && (reqdate.get(Calendar.DAY_OF_MONTH ) == edd.get(Calendar.DAY_OF_MONTH)))
                             {
                                 bookable = false;
                             }
                         }
                     }
-
+                    //If the bike is bookable and the location of the bike is equal to the location parameter from Available bikes add its details to the array lists
                     if (bookable == true && l.equals(location))
                     {
                         bikes.add(id);
@@ -178,7 +190,9 @@ public class BookABike extends HttpServlet {
                 stmt.close();
                 conn.close();
 
+                //No of bikes
                 int listsize = bikes.size();
+                //If there are no bike details in array lists
                 if (listsize == 0)
                 {
                     String size = Integer.toString(listsize);
@@ -189,6 +203,19 @@ public class BookABike extends HttpServlet {
                             "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
                             "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>"+  //<!-- Drop down button script-->
                             "<link rel=stylesheet href=style.css type=text/css>"+
+                            "<style>.btn {\n" +
+                            "  background-color: #f4511e;\n" +
+                            "  border: none;\n" +
+                            "  color: white;\n" +
+                            "  padding: 16px 32px;\n" +
+                            "  text-align: center;\n" +
+                            "  font-size: 16px;\n" +
+                            "  margin: 4px 2px;\n" +
+                            "  opacity: 1;\n" +
+                            "  transition: 0.3s;\n" +
+                            "}" +
+                            ".btn:hover {opacity: 0.6}"+
+                            "</style>"+
 
                             "</head>"
                     );
@@ -262,7 +289,7 @@ public class BookABike extends HttpServlet {
                     );
 
 
-
+                    //Print No bikes available
                     out.println(
                             "<br>" +
                                     "<h2>No bikes available for selected times at that location. <br></h2>"+
@@ -271,16 +298,17 @@ public class BookABike extends HttpServlet {
 
                     out.println(
 
-                            "<form id = 'form1' action= 'Checkout.jsp' method = 'post' >\n" +
+                            "<form id = 'form1' action= 'Available' method = 'post' >\n" +
                                     "<input type='text' style = 'display: none;' name='term' value = "+term+">"+
                                     "<br><br>\n" +
                                     "<input type='text' style = 'display: none;' name='bikeids'>"+
-                                    "<input type='text' style = 'display: none;' name='location' value = " + location + ">"+
+                                    "<input type='text' style = 'display: none;' name='Location' value = " + location + ">"+
                                     "<input type='text' style = 'display: none;' name='days' value = "+ duration +">"+
                                     "<input type='text' style = 'display: none;' name='cost'>"+
                                     "<input type='text' style = 'display: none;' name='startd' value = "+ date + ">"+
                                     "<input type='text' style = 'display: none;' name='endd' value = "+ endparameter + ">"+
-                                    "<input id = 'submit' style = 'display: none;' type=submit value= 'Book' >\n" +
+                                    //Return to last page
+                                    "<input id = 'submit' type=submit value = 'Return' >\n" +
                                     "</form>\n" +
                                     "<script>\n" +
                                     "function openFunction() {\n" +
@@ -388,16 +416,18 @@ public class BookABike extends HttpServlet {
 
                     );
 
+                    out.println("<h2>SELECT A BIKE</h2>");
 
+                    //If listsize is greater than 0 all bikes are displayed
                     for (int i = 0; i < listsize; i++)
                     {
 
                         out.println(
-                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                        "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " style = 'border: 1px solid black;' class = 'bike btn'>\n" +
+                                        "<img src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Mountainbike.jpg/1920px-Mountainbike.jpg' alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
                                         "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
                                         "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                        "    <p class = "+ status.get(i)+ ">stat: Available </p>\n");
+                                        "    <p>stat: Available </p>\n");
                         out.println(
                                 "\n" +
                                         "</div>"
@@ -410,6 +440,7 @@ public class BookABike extends HttpServlet {
                             "<form id = 'form1' action= 'Checkout.jsp' method = 'post' >\n" +
                                     "<input type='text' style = 'display: none;' name='term' value = "+term+">"+
                                     "<br><br>\n" +
+                                    //Hidden variables to store data
                                     "<input type='text' style = 'display: none;' name='bikeids'>"+
                                     "<input type='text' style = 'display: none;' name='location' value = " + location + ">"+
                                     "<input type='text' style = 'display: none;' name='days' value = "+ duration +">"+
@@ -429,7 +460,7 @@ public class BookABike extends HttpServlet {
                                     //bike id
                                     "var a = document.getElementsByName('bikeids');\n" +
                                     "a[0].value = obj.id;"+
-                                    //cost
+                                    //cost calculation
                                     "var b = document.getElementsByName('cost');\n" +
                                     "var num = obj.children[1].id * "+ duration+" ; "+
                                     "b[0].value =  (obj.children[1].id * "+ duration+" * 12)  ; "+
@@ -460,7 +491,7 @@ public class BookABike extends HttpServlet {
 
 
 
-        ////Short termmmm
+        ////Short term case
         else
         {
             String date = request.getParameter("date");
@@ -468,6 +499,7 @@ public class BookABike extends HttpServlet {
             String location = request.getParameter("Location");
             String timelabel = request.getParameter("time0");
             String time = request.getParameter(timelabel);
+            //This section deals with time as oppsed to just dates
             int starttime = Integer.parseInt(time.substring(0,2));
             int endtime = Integer.parseInt(time.substring(3,5));
 
@@ -484,7 +516,7 @@ public class BookABike extends HttpServlet {
                 sql2 = "SELECT Hire_Id, Bike_Id, Start_Time, End_Time, Date FROM Short_Hires";
                 sql3 = "SELECT hire_id, BIKE_ID, START_DATE, END_DATE FROM hires";
 
-
+                //Array lists to stor temporary database values
                 ArrayList<Integer> bikes = new ArrayList<Integer>();
                 ArrayList<String> loca = new ArrayList<String>();
                 ArrayList<Float> cost = new ArrayList<Float>();
@@ -533,6 +565,7 @@ public class BookABike extends HttpServlet {
                 ResultSet rs = stmt.executeQuery(sql);
                 boolean bookable = true;
                 List<Integer> count = new ArrayList<Integer>();
+                //If statements for deciding which bikes are bookable
                 while(rs.next()){
                     bookable = true;
                     //Retrieve by column name
@@ -621,6 +654,7 @@ public class BookABike extends HttpServlet {
                 conn.close();
 
                 int listsize = bikes.size();
+                //If there are no bikes
                 if (listsize == 0)
                 {
                     String size = Integer.toString(listsize);
@@ -714,7 +748,7 @@ public class BookABike extends HttpServlet {
 
                     out.println(
 
-                            "<form id = 'form1' action= 'Checkout.jsp' method = 'post' >\n" +
+                            "<form id = 'form1' action= 'Available' method = 'post' >\n" +
                                     "<input type='text'  style = 'display: none;' name='term' value = "+term+">"+
                                     "<br><br>\n" +
                                     "<input type='text' style = 'display: none;' name='bikeids'>"+
@@ -724,7 +758,7 @@ public class BookABike extends HttpServlet {
                                     "<input type='text' style = 'display: none;' name='startt' value = "+ starttime + ">"+
                                     "<input type='text' style = 'display: none;' name='endt' value = "+ endtime + ">"+
                                     "<input type='text' style = 'display: none;' name='theday' value = "+ date + ">"+
-                                    "<input id = 'submit' style = 'display: none;' type=submit value= 'Book' >\n" +
+                                    "<input id = 'submit' type=submit value= 'Return' >\n" +
                                     "</form>\n" +
                                     "<script>\n" +
                                     "function openFunction() {\n" +
@@ -830,22 +864,26 @@ public class BookABike extends HttpServlet {
                                     "</nav>"+
                                     "<div class='content'>"
 
+
                     );
 
+                    out.println("<h2>SELECT A BIKE</h2>");
 
                     for (int i = 0; i < listsize; i++)
                     {
                         out.println(
-                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                        "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = 'bike btn'>\n" +
+                                        "<img src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Mountainbike.jpg/1920px-Mountainbike.jpg' alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
                                         "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
                                         "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                        "    <p class = "+ status.get(i)+ ">stat: Available </p>\n" +
+                                        "    <p>stat: Available </p>\n" +
                                 "</div>");
                     }
 
 
                     out.println(
+
+
 
                             "<form id = 'form1' action= 'Checkout.jsp' method = 'post' >\n" +
                                     "<input type='text'  style = 'display: none;' name='term' value = "+term+">"+
@@ -908,11 +946,28 @@ public class BookABike extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //Redirects to index if session is expired and to Views page if this page is refreshed
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html");
+        jdbc test = new jdbc();
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String term = request.getParameter("term");
+        String location = request.getParameter("Location");
+
         HttpSession session =  request.getSession(false);
-        if (session.getAttribute("uname") == null) {
+        //Checks to see if session is still active by seeing if session Attribute is false
+        //Session obtained through getSession
+        out.println("<input type='text' style = 'display: none;' name='location' value = " + location + ">");
+        try {
+
+            //If session attribute is false then the session is false. Therefore you are redirected to index.jsp page
+            if (session.getAttribute("uname") == null) {
+                response.sendRedirect("index.jsp");
+            }
+        } catch (NullPointerException name) {
             response.sendRedirect("index.jsp");
         }
-        response.sendRedirect("Views");
+        response.sendRedirect("Available");
 
     }
 

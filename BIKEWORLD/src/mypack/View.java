@@ -34,14 +34,19 @@ public class View extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session =  request.getSession(false);
         //Checks to see if session is still active by seeing if session Attribute is false
         //Session obtained through getSession
-        HttpSession session =  request.getSession(false);
-        //If session attribute is false then the session is false. Therefore you are redirected to index.jsp page
-        if (session.getAttribute("uname") == null) {
+        try {
+
+            //If session attribute is false then the session is false. Therefore you are redirected to index.jsp page
+            if (session.getAttribute("uname") == null) {
+                response.sendRedirect("index.jsp");
+            }
+        } catch (NullPointerException name) {
             response.sendRedirect("index.jsp");
         }
+
 
         //Print writter variable out is set and used to write to response.
         PrintWriter out = response.getWriter();
@@ -274,6 +279,8 @@ public class View extends HttpServlet {
                             "       <div id=\"imgtext\">Beverly</div>" +
                             "    </div>"+
                             "  </div>\n" +
+                            " </div>\n" +
+                            "<div class=\"row\"  style = \"\">\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
                             "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Bournemouth_pier.jpg/1280px-Bournemouth_pier.jpg\" alt=\"Bournemouth\" width=\"390\" height=\"300\">\n" +
@@ -288,10 +295,12 @@ public class View extends HttpServlet {
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://cdn.pixabay.com/photo/2015/09/19/15/46/bristol-947391_960_720.jpg\" alt=\"Bristol\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Bristol_city_centre_from_bottom_of_park_street_arp.jpg/800px-Bristol_city_centre_from_bottom_of_park_street_arp.jpg\" alt=\"Bristol\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Bristol</div>" +
                             "    </div>"+
                             "  </div>\n" +
+                            "</div>\n" +
+                            "<div class=\"row\"  style = \"\">\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
                             "       <img  src= \"https://s0.geograph.org.uk/geophotos/04/47/26/4472608_b7b60ad1_1024x1024.jpg\" alt=\"Buckingham\" width=\"390\" height=\"300\">\n" +
@@ -300,16 +309,18 @@ public class View extends HttpServlet {
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://cdn.pixabay.com/photo/2016/07/02/14/45/madrid-1493002_960_720.jpg\" alt=\"Crystal\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/2005-03-30_-_London_-_Crystal_Palace_-_Stairs_and_Crystal_Palace_Transmitter_4887765452.jpg/800px-2005-03-30_-_London_-_Crystal_Palace_-_Stairs_and_Crystal_Palace_Transmitter_4887765452.jpg\" alt=\"Crystal\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Crystal</div>" +
                             "    </div>"+
                             "  </div>\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
-                            "       <img src= \"https://cdn.pixabay.com/photo/2017/01/11/17/04/halifax-1972314_960_720.jpg\" alt=\"Halifax\" width=\"390\" height=\"300\">\n" +
+                            "       <img src= \"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Halifax_bank%2C_Halifax.jpg/800px-Halifax_bank%2C_Halifax.jpg\" alt=\"Halifax\" width=\"390\" height=\"300\">\n" +
                             "       <div id=\"imgtext\">Halifax</div>" +
                             "    </div>"+
                             "  </div>\n" +
+                            "</div>\n" +
+                            "<div class=\"row\"  style = \"\">\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
                             "       <img src= \"http://res.freestockphotos.biz/pictures/5/5699-traffic-lights-at-night-in-a-city-pv.jpg\" alt=\"Harrogate\" width=\"390\" height=\"300\">\n" +
@@ -328,6 +339,8 @@ public class View extends HttpServlet {
                             "       <div id=\"imgtext\">Hexham</div>" +
                             "    </div>"+
                             "  </div>\n" +
+                            "</div>\n" +
+                            "<div class=\"row\"  style = \"\">\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
                             "       <img src= \"https://s2.geograph.org.uk/geophotos/04/97/93/4979322_06774607_1024x1024.jpg\" alt=\"Leeds\" width=\"390\" height=\"300\">\n" +
@@ -346,6 +359,8 @@ public class View extends HttpServlet {
                             "       <div id=\"imgtext\">Rotherham</div>" +
                             "    </div>"+
                             "  </div>\n" +
+                            "</div>\n" +
+                            "<div class=\"row\"  style = \"\">\n" +
                             "  <div class=\"column\">\n" +
                             "    <div class=\"container\" onclick=\"myFunction(this)\" >"+
                             "       <img src= \"https://s0.geograph.org.uk/geophotos/05/48/81/5488166_2b917b16_original.jpg\" alt=\"Shipley\" width=\"390\" height=\"300\">\n" +
@@ -372,7 +387,7 @@ public class View extends HttpServlet {
                             "       val.value = tag.innerHTML;"+
                             "    }"+
                             "  }"+
-                            //Submits
+                            //Submits form automatically on click
                             "  var x = document.getElementById('form2').submit();" +
                             "}"+
 

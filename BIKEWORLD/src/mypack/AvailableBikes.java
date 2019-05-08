@@ -19,14 +19,26 @@ public class AvailableBikes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session =  request.getSession(false);
-        if (session.getAttribute("uname") == null) {
+        //Checks to see if session is still active by seeing if session Attribute is false
+        //Session obtained through getSession
+        try {
+
+            //If session attribute is false then the session is false. Therefore you are redirected to index.jsp page
+            if (session.getAttribute("uname") == null) {
+                response.sendRedirect("index.jsp");
+            }
+        } catch (NullPointerException name) {
             response.sendRedirect("index.jsp");
         }
 
 
+        //Print writter variable out is set and used to write to response.
         PrintWriter out = response.getWriter();
+        //Response is set to a HTML page
         response.setContentType("text/html");
+        //JDBC object created from class
         jdbc test = new jdbc();
+        //String driver created for mysql database
         String driver = "com.mysql.cj.jdbc.Driver";
 
         try {
@@ -34,12 +46,16 @@ public class AvailableBikes extends HttpServlet {
             Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
             Statement stmt = conn.createStatement();
             String sql;
+            //SQL string selects bike ids, location,price and status from the bike table in a mysql database
             sql = "SELECT BIKE_ID, LOCATION, price, STATUS FROM bike";
+            //The result set is saved to rs variable
             ResultSet rs = stmt.executeQuery(sql);
+            //Set of array lists created to store the data
             ArrayList<Integer> bikes = new ArrayList<Integer>();
             ArrayList<String> loca = new ArrayList<String>();
             ArrayList<Float> cost = new ArrayList<Float>();
             ArrayList<Integer> status = new ArrayList<Integer>();
+            //String loc is the location parameter sent by the Views page post method
             String loc = request.getParameter("Location");
 
 
@@ -57,6 +73,7 @@ public class AvailableBikes extends HttpServlet {
                 }
 
             }
+            //Close database connections
             rs.close();
             stmt.close();
             conn.close();
@@ -66,13 +83,15 @@ public class AvailableBikes extends HttpServlet {
             int listsize = bikes.size();
             String size = Integer.toString(listsize);
 
+            //HTML enclosed in out.println statement
             out.println("<head onload=\"openFunction()\" >" +
-                    "<title id = prick >Available bikes</title>" +
+                    "<title id = prick >Available bikes</title>" +//Title
                     "<meta name=viewport content=width=device-width, initial-scale=1>"+
                     "<link rel=stylesheet href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css'>"+ //<!-- Bootstrap style link  -->
                     "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
                     "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>"+  //<!-- Drop down button script-->
                     "<link rel=stylesheet href=style.css type=text/css>"+
+                    //Style
                     "<style>" +
                     ".section {\n" +
                     "  list-style-type: none;\n" +
@@ -104,6 +123,7 @@ public class AvailableBikes extends HttpServlet {
 
             out.println("<body id = 'bod2' onload=\"openFunction()\"  >");
             out.println(
+                    //Navbar
                     "<nav class='navbar navbar-inverse'>"+ //<!-- Bootstrap nav bar -->
                             "<div class='container-fluid'>"+ "<div class='navbar-header'>"+
 
@@ -178,7 +198,7 @@ public class AvailableBikes extends HttpServlet {
             out.println(
                     "<p>There are(is) "+ listsize +" bike(s) in this location.</p>" );
 
-
+            //Google maps displayed based on location chosen in View.java
             if(loc.equals("Alnmouth"))
             {
                 out.println("<iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d36279.987310143624!2d-1.6253423327709322!3d55.366744091928254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487e0472db35c6d3%3A0x2a39153ad77fb156!2sAlnmouth%2C+Alnwick!5e0!3m2!1sen!2suk!4v1557101499273!5m2!1sen!2suk' width='600' height='450' frameborder='0' style='border:0' allowfullscreen></iframe>");
@@ -229,35 +249,44 @@ public class AvailableBikes extends HttpServlet {
                 out.println("<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18837.49851814451!2d-1.7988262137881466!3d53.830638325322845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487be25520ab12b9%3A0x9af31619017257e0!2sShipley!5e0!3m2!1sen!2suk!4v1557102922643!5m2!1sen!2suk\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>");
             }
 
+            //Bikes displayed based on the ones who are present in that location. This value is counted and is equal to variable list size
             for (int i = 0; i < listsize; i++)
             {
-
+                //Bike id and cost are displayed
                 out.println(
-                        "<div id = " + bikes.get(i)+ " class = \"bike\">\n" +
-                                "<img src = \"https://www.cahabacycles.com/merchant/189/images/site/chc-rental-img7.jpg\" alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
+                        "<div style = 'border: 1px solid black;' margin-top: 100px;\n" +
+                                "  margin-bottom: 10px;\n" +
+                                "  margin-right: 15px;\n" +
+                                "  margin-left: 8px;' id = " + bikes.get(i)+ " class = \"bike\">\n" +
+                                "<img src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Mountainbike.jpg/1920px-Mountainbike.jpg' alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
                                 "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
                                 "    <p>id: "+ bikes.get(i)+"</p>\n" +
-                                "    <p class = "+ status.get(i)+ ">stat: Available </p>\n" +
-                                " <button style=\"display:none;\" type=\"button\" onclick=\"alert('Simulation of booking')\">Book</button>"+
                                 "</div>");
             }
+
             out.println(
+                    //Form for selecting availabillity conditions.
                     "<form id = 'form1' action= 'book' method = 'post' >\n" +
                             "<div class = 'holder' style = 'display : block; width: 100%;' >"+
                             "<br><br>"+
                             "<br><br>"+"<br><br>"+
+                            //Location is set to request parameter from Views class
                             "<input style = 'display: none;' name = 'Location' value = "+ request.getParameter("Location") +">\n" +
 
-
+                            //Availabillity by time button to open parameters
                             "<button type=\"button\" onclick=\"myFunction0()\">Availabillity by time</button>"+
+                            //myFunction0 allows clicking availabillity to display term option
                             "\n" +
+                            //Clicking on term i.e short or long decides wethere it will in days or hours
                             "<p style='display:none;' name = 'term' >Would you like the bike for short term or long term?</p>\n" +
                             "<select style='display:none;' name = 'term' required onchange='myFunction5()'>\n" +
                             "<option selected value= 0>Please select</option>\n" +
                             "<option value=2>Long term (Discount)</option>\n" +
                             "<option value=1>Short term</option>\n" +
                             "</select>\n" +
+                            //myfunction5() displays Dur in hours if short term is chosen but displays day durations if long term is chosen
                             "\n" +
+                            //Duration in hours if short term is chosen
                             "<p style='display:none;' name = 'Dur' >How long would you like the bike</p>\n" +
                             "<select style='display:none;' name = 'Dur' required onchange='myFunction2()'>\n" +
                             "<option selected value= 0>Please select</option>\n" +
@@ -267,6 +296,7 @@ public class AvailableBikes extends HttpServlet {
                             "<option value=1>1 hours</option>\n" +
                             "</select>\n" +
                             "\n" +
+                            //Duration in days if short term is chosen
                             "<p style='display:none;' name = 'Daydur' >How long would you like the bike</p>\n" +
                             "<select style='display:none;' name = 'Daydur' required onchange='myFunction6()'>\n" +
                             "<option selected value= 0>Please select</option>\n" +
@@ -277,13 +307,16 @@ public class AvailableBikes extends HttpServlet {
                             "<option value=1>1 day</option>\n" +
                             "</select>\n" +
                             "\n" +
+                            //Date value for booking
                             "<p style='display:none;' name='date' >Enter Date: </p>\n" +
                             "<input onchange='myFunction3()' required style='display:none;'  type='date' name='date'>\n" +
                             "\n" +
+                            //Error value
                             "<p style='display:none;color:red;' id ='error'> Error buddy</p>\n" +
                             "\n" +
                             "\n" +
                             "\n" +
+                            //Time values depending on short term duration i.e Time one is split in 1 hour periods. Time2 in 2 hour periods ect
                             "<p style='display:none;' name = 'Time1' >Select a Time to book</p>\n" +
                             "<select onclick ='myFunction4(this)' style='display:none;' name = Time1 required >\n" +
                             "<option value= 0>Please select</option>\n" +
@@ -348,6 +381,7 @@ public class AvailableBikes extends HttpServlet {
                             "\n" +
                             "\n" +
                             "\n" +
+                            //Error values and the submit button
                             "<p style='display:none;color:red;' id ='error2'> tooo lattee</p>\n" +
                             "\n" +
                             "<p style='display:none;color:red;' id ='error3'> No more bookings today</p>\n" +
@@ -365,7 +399,7 @@ public class AvailableBikes extends HttpServlet {
                             "</form>\n" +
                             "</div>"+
 
-
+                            //Script that displays different parameters based on predecessor parameters chosen
                             "<script>"  + "\n" +
 
 
@@ -377,9 +411,10 @@ public class AvailableBikes extends HttpServlet {
                             "}" + "\n" +
 
                             "function myFunction0() {"   + "\n" +
-                            "document.getElementsByName('term')[0].style.display = 'block';" +
+                            "document.getElementsByName('term')[0].style.display = 'block';\n" +
                             "document.getElementsByName('term')[1].style.display = 'block';" +
-                            "}" + "\n" +
+                            "}" +
+
 
                             "function myFunctionx() {\n" +
                             "var a = document.getElementsByName('Location');\n" +
@@ -881,6 +916,7 @@ public class AvailableBikes extends HttpServlet {
 
 
 
+            //Error handling
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -896,10 +932,20 @@ public class AvailableBikes extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        //Redirects to index if session is expired and to Views page if this page is refreshed
         HttpSession session =  request.getSession(false);
-        if (session.getAttribute("uname") == null) {
+        //Checks to see if session is still active by seeing if session Attribute is false
+        //Session obtained through getSession
+        try {
+
+            //If session attribute is false then the session is false. Therefore you are redirected to index.jsp page
+            if (session.getAttribute("uname") == null) {
+                response.sendRedirect("index.jsp");
+            }
+        } catch (NullPointerException name) {
             response.sendRedirect("index.jsp");
         }
+        //Sends back to views page if page is refreshed
         response.sendRedirect("Views");
 
 

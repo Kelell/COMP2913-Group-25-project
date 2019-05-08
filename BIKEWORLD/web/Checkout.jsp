@@ -10,8 +10,16 @@
 
 <html>
 <head>
-        <% HttpSession session1 =  request.getSession(false);
-            if (session1.getAttribute("uname") == null) {
+        <% session =  request.getSession(false);
+            //Checks to see if session is still active by seeing if session Attribute is false
+            //Session obtained through getSession
+            try {
+
+                //If session attribute is false then the session is false. Therefore you are redirected to index.jsp page
+                if (session.getAttribute("uname") == null) {
+                    response.sendRedirect("index.jsp");
+                }
+            } catch (NullPointerException name) {
                 response.sendRedirect("index.jsp");
             }
         if (request.getParameter("term") == null){
@@ -232,6 +240,7 @@
 
 <% double a = Double.parseDouble(request.getParameter("cost"))- (0.20 * Double.parseDouble(request.getParameter("cost"))); %>
 
+    <!-- Printing reciepts for long term -->
 <%String term = request.getParameter("term"); %>
 <h2>RECEIPT</h2>
 <%if ((term.equals("2"))){
@@ -243,6 +252,7 @@
     out.print( "<p>Start day : " + request.getParameter("startd")+ "</p>");
     out.print( "<p>Return date : " + request.getParameter("endd")+ "</p>");
 }%>
+    <!-- Printing reciepts for short term -->
 <%if (term.equals("1")){
     out.print( "<p> Name : " + session.getAttribute("uCusname") + "</p>");
     out.print( "<p>Location : " + request.getParameter("location")+ "</p>");
@@ -259,7 +269,7 @@
 
 <div id="myModal" class="modal">
 
-    <!-- Modal content -->
+    <!-- Modal page pop up for payment -->
     <div class="modal-content">
         <span class="close">&times;</span>
         <div class="row">
@@ -322,7 +332,6 @@
                             else{
                                 out.print( "<input type='text' style = 'display: none;' name='cost' value = " + Double.parseDouble(request.getParameter("cost")) + ">");
                             }%>
-                            >
                             <input type='text' style = 'display: none;' name='startd' value = <%=request.getParameter("startd")%>>
                             <input type='text' style = 'display: none;' name='endd' value = <%=request.getParameter("endd")%>>
                             <input type='text' style = 'display: none;' name='startt' value = <%=request.getParameter("startt")%>>
