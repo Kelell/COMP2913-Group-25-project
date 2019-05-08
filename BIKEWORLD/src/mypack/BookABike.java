@@ -752,7 +752,7 @@ public class BookABike extends HttpServlet {
                                     "<input type='text'  style = 'display: none;' name='term' value = "+term+">"+
                                     "<br><br>\n" +
                                     "<input type='text' style = 'display: none;' name='bikeids'>"+
-                                    "<input type='text' style = 'display: none;' name='location' value = " + location + ">"+
+                                    "<input type='text' style = 'display: none;' name='Location' value = " + location + ">"+
                                     "<input type='text' style = 'display: none;' name='hours' value = "+ duration +">"+
                                     "<input type='text' style = 'display: none;' name='cost'>"+
                                     "<input type='text' style = 'display: none;' name='startt' value = "+ starttime + ">"+
@@ -872,7 +872,7 @@ public class BookABike extends HttpServlet {
                     for (int i = 0; i < listsize; i++)
                     {
                         out.println(
-                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " class = 'bike btn'>\n" +
+                                "<div onclick = 'myfunction(this)' id = " + bikes.get(i)+ " style = 'border: 1px solid black;' class = 'bike btn'>\n" +
                                         "<img src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Mountainbike.jpg/1920px-Mountainbike.jpg' alt = \"bike\" width = \"390px\" height = \"300px\">\n" +
                                         "    <p id = "+ cost.get(i) +">price: "+ cost.get(i) +"</p>\n" +
                                         "    <p>id: "+ bikes.get(i)+"</p>\n" +
