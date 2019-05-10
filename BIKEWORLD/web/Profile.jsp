@@ -41,6 +41,15 @@
                 %>
                 <li><a href="AboutUs.jsp">About Us</a></li>
                 <li><a href="ContactUs.jsp">Contact Us</a></li>
+                <%
+                    if(session.getAttribute("uname")!=null){//if in session show book a bike option
+
+                %>
+                <li><a href="history">History</a></li>
+                <%
+                    }
+
+                %>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <%

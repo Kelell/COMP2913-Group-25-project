@@ -80,12 +80,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>hist</servlet-name>
+        <servlet-name>Check</servlet-name>
         <servlet-class>mypack.Check</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>hist</servlet-name>
+        <servlet-name>Check</servlet-name>
         <url-pattern>/history</url-pattern>
     </servlet-mapping>
 

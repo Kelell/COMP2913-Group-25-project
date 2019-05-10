@@ -48,8 +48,13 @@ public class View extends HttpServlet {
         }
 
 
+
+
+
         //Print writter variable out is set and used to write to response.
         PrintWriter out = response.getWriter();
+
+
         //Response is set to a HTML page
         response.setContentType("text/html");
         //JDBC object created from class
@@ -233,6 +238,9 @@ public class View extends HttpServlet {
 
 
             );
+            if (request.getParameter("message") != null){
+                out.println("<p>" + request.getParameter("message") + "</p>");
+            }
 
             //Displays Different locations
             out.println(

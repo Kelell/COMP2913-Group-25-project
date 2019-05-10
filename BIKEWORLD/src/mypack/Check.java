@@ -21,7 +21,10 @@ public class Check extends HttpServlet {
                 HttpSession session = request.getSession(false);
                 //Checks to see if session is still active by seeing if session Attribute is false
                 //Session obtained through getSession
-
+        //If session attribute is false then the session is false. Therefore you are redirected to index.jsp page
+        if (session.getAttribute("uname") == null) {
+            response.sendRedirect("index.jsp");
+            }
                 PrintWriter out = response.getWriter();
                 jdbc test = new jdbc();
                 ArrayList<Integer> bikes = new ArrayList<Integer>();
@@ -39,7 +42,7 @@ public class Check extends HttpServlet {
                     String sql = "SELECT * FROM hires WHERE CUSTOMER_ID =? ";//sql query for checking Customer table for existing username and password
                     Connection conn = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//creates connection to my sql database
                     PreparedStatement ps = conn.prepareStatement(sql);
-                    String uname = session.getAttribute("uid").toString();
+                    String uname = session.getAttribute("uId").toString();
                     ps.setString(1, uname); // checks name field for instances of a suername
                     ResultSet rs = ps.executeQuery();
                     //Loops through the result set to find user name the assigns it to variable Username
@@ -49,6 +52,7 @@ public class Check extends HttpServlet {
                         String sql2 = "SELECT LOCATION FROM bike WHERE BIKE_ID =? ";
                         Connection conn2 = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//creates connection to my sql database
                         PreparedStatement ps2 = conn2.prepareStatement(sql2);
+                        ps2.setString(1, uname);
                         ResultSet rs2 = ps2.executeQuery();
                         while (rs2.next()) {
                             String loc2 = rs2.getString("LOCATION");
@@ -81,14 +85,15 @@ public class Check extends HttpServlet {
                     String sql3 = "SELECT * FROM Short_Hires WHERE CUSTOMER_ID =? ";
                     Connection conn3 = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");
                     PreparedStatement ps3 = conn3.prepareStatement(sql3);
-                    ps.setString(1, uname);
+                    ps3.setString(1, uname);
                     ResultSet rs3 = ps3.executeQuery();
                     while (rs3.next()) {
-                        int BIKE_ID = rs.getInt("BIKE_ID");
+                        int BIKE_ID = rs3.getInt("BIKE_ID");
                         String loc = "";
                         String sql4 = "SELECT LOCATION FROM bike WHERE BIKE_ID =? ";
                         Connection conn4 = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");//creates connection to my sql database
                         PreparedStatement ps4 = conn4.prepareStatement(sql4);
+                        ps4.setString(1, uname);
                         ResultSet rs4 = ps4.executeQuery();
                         while (rs4.next()) {
                             String loc4 = rs4.getString("LOCATION");
@@ -98,8 +103,8 @@ public class Check extends HttpServlet {
                         rs4.close();
                         ps4.close();
                         conn4.close();
-                        double pay = rs.getDouble("cash");
-                        String ter = "Long";
+                        double pay = rs3.getDouble("cash");
+                        String ter = "Short";
                         Date s = rs3.getDate("Date");
                         int st = rs3.getInt("Start_Time");
                         int et = rs3.getInt("End_Time");
@@ -113,6 +118,9 @@ public class Check extends HttpServlet {
                         STime.add(st);
                         ETime.add(et);
                     }
+                    rs3.close();
+                    ps3.close();
+                    conn3.close();
 
                     int listsize = bikes.size();
                     //If there are no bikes
@@ -127,7 +135,23 @@ public class Check extends HttpServlet {
                                 "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
                                 "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>"+  //<!-- Drop down button script-->
                                 "<link rel=stylesheet href=style.css type=text/css>"+
-
+                                "<style>\n" +
+                                "table {\n" +
+                                "  font-family: arial, sans-serif;\n" +
+                                "  border-collapse: collapse;\n" +
+                                "  width: 100%;\n" +
+                                "}\n" +
+                                "\n" +
+                                "td, th {\n" +
+                                "  border: 1px solid #dddddd;\n" +
+                                "  text-align: left;\n" +
+                                "  padding: 8px;\n" +
+                                "}\n" +
+                                "\n" +
+                                "tr:nth-child(even) {\n" +
+                                "  background-color: #dddddd;\n" +
+                                "}\n" +
+                                "</style>"+
                                 "</head>"
                         );
                         out.println("<body  id = 'bod' onload=\"openFunction()\">");
@@ -230,7 +254,26 @@ public class Check extends HttpServlet {
                                 "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js'></script>"+ //<!-- Drop down button script-->
                                 "<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js'></script>"+  //<!-- Drop down button script-->
                                 "<link rel=stylesheet href=style.css type=text/css>"+
-
+                                "<style>\n" +
+                                "table {\n" +
+                                "  font-family: arial, sans-serif;\n" +
+                                "  border-collapse: collapse;\n" +
+                                "  width: 100%;\n" +
+                                "}\n" +
+                                "\n" +
+                                "td, th {\n" +
+                                "  border: 1px solid #dddddd;\n" +
+                                "  text-align: left;\n" +
+                                "  padding: 8px;\n" +
+                                "}\n" +
+                                "\n" +
+                                "tr:nth-child(even) {\n" +
+                                "  background-color: black;\n" +
+                                "}\n" +
+                                "tr:nth-child(odd) {\n" +
+                                "  background-color: red;\n" +
+                                "}\n" +
+                                "</style>"+
                                 "</head>"
                         );
                         out.println("<body  id = 'bod' onload=\"openFunction()\">");
@@ -307,7 +350,9 @@ public class Check extends HttpServlet {
                         out.println("<h2>Your Purchase history</h2>");
 
 
-                        out.println("<table>\n" +
+                        out.println("<table style = 'font-family: arial, sans-serif;\n" +
+                                "  border-collapse: collapse;\n" +
+                                "  width: 100%;'>\n" +
                                 "  <tr>\n" +
                                 "    <th>No</th>\n" +
                                 "    <th>Location</th>\n" +
@@ -325,15 +370,33 @@ public class Check extends HttpServlet {
                         {
                             out.println(
                                     "  <tr>\n" +
-                                            "    <td>"+ (i + 1) +"</td>\n" +
-                                            "    <td>"+ loca.get(i) +"</td>\n" +
-                                            "    <td>"+ bikes.get(i) +"</td>\n" +
-                                            "    <td> "+ SDate.get(i) + "</td>\n" +
-                                            "    <td>M"+ EDate.get(i) +"</td>\n" +
-                                            "    <td>"+ STime.get(i) +"</td>\n" +
-                                            "    <td>"+ ETime.get(i) + "</td>\n" +
-                                            "    <td>"+cost.get(i)+"</td>\n" +
-                                            "    <td>" + term.get(i) +"</td>\n" +
+                                            "    <td style = 'border: 1px solid #dddddd;\n" +
+                                            "  text-align: left;\n" +
+                                            "  padding: 8px;'>"+ (i + 1) +"</td>\n" +
+                                            "    <td style = 'border: 1px solid #dddddd;\\n\" +\n" +
+                                            "                                            \"  text-align: left;\\n\" +\n" +
+                                            "                                            \"  padding: 8px;' >"+ loca.get(i) +"</td>\n" +
+                                            "    <td style = 'border: 1px solid #dddddd;\\n\" +\n" +
+                                            "                                            \"  text-align: left;\\n\" +\n" +
+                                            "                                            \"  padding: 8px;' >"+ bikes.get(i) +"</td>\n" +
+                                            "    <td style = 'border: 1px solid #dddddd;\\n\" +\n" +
+                                            "                                            \"  text-align: left;\\n\" +\n" +
+                                            "                                            \"  padding: 8px;' > "+ SDate.get(i) + "</td>\n" +
+                                            "    <td style = 'border: 1px solid #dddddd;\\n\" +\n" +
+                                            "                                            \"  text-align: left;\\n\" +\n" +
+                                            "                                            \"  padding: 8px;' >"+ EDate.get(i) +"</td>\n" +
+                                            "    <td style = 'border: 1px solid #dddddd;\\n\" +\n" +
+                                            "                                            \"  text-align: left;\\n\" +\n" +
+                                            "                                            \"  padding: 8px;' >"+ STime.get(i) +"</td>\n" +
+                                            "    <td style = 'border: 1px solid #dddddd;\\n\" +\n" +
+                                            "                                            \"  text-align: left;\\n\" +\n" +
+                                            "                                            \"  padding: 8px;' >"+ ETime.get(i) + "</td>\n" +
+                                            "    <td style = 'border: 1px solid #dddddd;\\n\" +\n" +
+                                            "                                            \"  text-align: left;\\n\" +\n" +
+                                            "                                            \"  padding: 8px;' >"+cost.get(i)+"</td>\n" +
+                                            "    <td style = 'border: 1px solid #dddddd;\\n\" +\n" +
+                                            "                                            \"  text-align: left;\\n\" +\n" +
+                                            "                                            \"  padding: 8px;' >" + term.get(i) +"</td>\n" +
                                             "  </tr>\n");
                         }
                         out.println("</table>");
@@ -359,7 +422,7 @@ public class Check extends HttpServlet {
                 } catch (SQLException e) {
                     e.printStackTrace();
                 } catch (Exception e) {
-                    System.err.println(e);
+                    e.printStackTrace();
                 }
 
 

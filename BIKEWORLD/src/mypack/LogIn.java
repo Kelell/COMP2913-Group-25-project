@@ -62,6 +62,8 @@ public class LogIn extends HttpServlet {
             }
             if(name.equals(Uname)&&password.equals(Upass)){//if username and password exist in database continue to log in
 
+
+
                 HttpSession session = request.getSession();// creates session and redirects to index page
                 session.setAttribute("uname", name);
                 session.setAttribute("uemail", email);

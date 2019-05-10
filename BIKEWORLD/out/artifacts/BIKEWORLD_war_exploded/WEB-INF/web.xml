@@ -79,6 +79,14 @@
         <url-pattern>/Views</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Check</servlet-name>
+        <servlet-class>mypack.Check</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>Check</servlet-name>
+        <url-pattern>/history</url-pattern>
+    </servlet-mapping>
 
 </web-app>

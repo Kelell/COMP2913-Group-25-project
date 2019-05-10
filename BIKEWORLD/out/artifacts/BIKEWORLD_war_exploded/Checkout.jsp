@@ -6,7 +6,20 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import = "javax.servlet.ServletException" %>
+<%@ page import = "javax.servlet.ServletException"
+         import = "javax.servlet.ServletException"
+        import= "javax.servlet.annotation.WebServlet"
+        import= "javax.servlet.http.HttpServlet"
+        import= "javax.servlet.http.HttpServletRequest"
+        import= "javax.servlet.http.HttpServletResponse"
+        import= "javax.servlet.http.HttpSession"
+        import= "java.io.IOException"
+        import= "java.io.PrintWriter"%>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.util.ArrayList" %>
 
 <html>
 <head>
@@ -240,7 +253,9 @@
 <div class="content"><!-- start of content/ enables page styling -->
 
 <% double a = Double.parseDouble(request.getParameter("cost"))- (0.20 * Double.parseDouble(request.getParameter("cost"))); %>
-
+<%ArrayList<Long> CARD_NO = new ArrayList<Long>();
+    ArrayList<Integer> EXPMONTH = new ArrayList<Integer>();
+    ArrayList<Integer> EXPYEAR = new ArrayList<Integer>();%>
     <!-- Printing reciepts for long term -->
 <%String term = request.getParameter("term"); %>
 <h2>RECEIPT</h2>
@@ -252,6 +267,54 @@
     out.print( "<p>Total cost : £" + request.getParameter("cost")+ "</p>");
     out.print( "<p>Start day : " + request.getParameter("startd")+ "</p>");
     out.print( "<p>Return date : " + request.getParameter("endd")+ "</p>");
+
+    final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    final String DB_URL = "jdbc:mysql://remotemysql.com:3306/EEsET82tG5";
+    String driver = "com.mysql.cj.jdbc.Driver";
+    Class.forName(driver);
+    Connection conn = DriverManager.getConnection(DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
+    Statement stmt = conn.createStatement();
+    String sql;
+    //SQL string selects bike ids, location,price and status from the bike table in a mysql database
+    sql = "SELECT * FROM card";
+    ResultSet rs = stmt.executeQuery(sql);
+    //Set of array lists created to store the data
+
+    while(rs.next()){
+        //Retrieve by column name
+        long id  = rs.getLong("CUSTOMER_CARD_NO");
+        int bid = rs.getInt("CUSTOMER_ID");
+        int price = rs.getInt("EXPM");
+        int x = rs.getInt("EXPY");
+        if (Integer.parseInt(session.getAttribute("uId").toString()) == bid ){
+            CARD_NO.add(id);
+            EXPMONTH.add(price);
+            EXPYEAR.add(x);
+        }
+
+    }
+    //Close database connections
+    rs.close();
+    stmt.close();
+    conn.close();
+
+    if(CARD_NO.size() ==0 )
+    {
+
+    }
+    else {
+
+        for (int i = 0;  i < CARD_NO.size(); i++)
+        {
+            out.println("<h2>SELECT A CARD</h2>");
+            out.println("<input type=\"radio\" name=\"sc\" id = "+CARD_NO.get(i)+" value="+CARD_NO.get(i)+"> ************"+ CARD_NO.get(i).toString().substring(CARD_NO.get(i).toString().length() -4) +"<br>");
+        }
+
+    }
+
+
+
+
 }%>
     <!-- Printing reciepts for short term -->
 <%if (term.equals("1")){
@@ -264,9 +327,54 @@
     out.print( "<p>Return time : " + request.getParameter("endt")+ "</p>");
     out.print( "<p>Date : " + request.getParameter("theday")+ "</p>");
 
+    String driver = "com.mysql.cj.jdbc.Driver";
+    String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    final String DB_URL = "jdbc:mysql://remotemysql.com:3306/EEsET82tG5";
+    Class.forName(driver);
+    Connection conn = DriverManager.getConnection(DB_URL, "EEsET82tG5" ,"UhgQalxiVw");
+    Statement stmt = conn.createStatement();
+    String sql;
+    //SQL string selects bike ids, location,price and status from the bike table in a mysql database
+    sql = "SELECT * FROM card";
+    ResultSet rs = stmt.executeQuery(sql);
+    //Set of array lists created to store the data
+
+    while(rs.next()){
+        //Retrieve by column name
+        long id  = rs.getLong("CUSTOMER_CARD_NO");
+        int bid = rs.getInt("CUSTOMER_ID");
+        int price = rs.getInt("EXPM");
+        int x = rs.getInt("EXPY");
+        if (Integer.parseInt(session.getAttribute("uId").toString()) == bid ){
+            CARD_NO.add(id);
+            EXPMONTH.add(price);
+            EXPYEAR.add(x);
+        }
+
+    }
+    //Close database connections
+    rs.close();
+    stmt.close();
+    conn.close();
+
+    if(CARD_NO.size() ==0 )
+    {
+
+    }
+    else {
+
+        for (int i = 0;  i < CARD_NO.size(); i++)
+        {
+            out.println("<h2>SELECT A CARD</h2>");
+            out.println("<input type=\"radio\" name=\"sc\" id = "+CARD_NO.get(i).toString() +" value="+CARD_NO.get(i).toString() +"> ************"+ CARD_NO.get(i).toString().substring(CARD_NO.get(i).toString().length() -4) +"<br>");
+        }
+
+    }
+
+
 }%>
 
-<button id="myBtn" type="submit" >Pay</button>
+<button id="myBtn" onclick = "myfunction()" type="submit" >Pay</button>
 
 <div id="myModal" class="modal">
 
@@ -276,7 +384,7 @@
         <div class="row">
             <div class="col-75">
                 <div class="container">
-                    <form action="complete" method = 'post'>
+                    <form onsubmit = "myfunction()" action="complete" method = 'post'>
 
                         <div class="row">
                             <div class="col-50">
@@ -310,11 +418,11 @@
                                 <div class="row">
                                     <div class="col-50">
                                         <label for="expyear">Exp Year</label>
-                                        <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                        <input type="text" id="expyear" pattern="[0-9]{4}" name="expyear" placeholder="2018">
                                     </div>
                                     <div class="col-50">
                                         <label for="cvv">CVV</label>
-                                        <input type="text" id="cvv" name="cvv" placeholder="352">
+                                        <input type="text" id="cvv" name="cvv" placeholder="352" pattern="[0-9]{3}">
                                     </div>
                                 </div>
                             </div>
@@ -327,6 +435,7 @@
                             <input type='text' style = 'display: none;' name='location' value = <%=request.getParameter("location")%>>
                             <input type='text' style = 'display: none;' name='days' value = <%=request.getParameter("days")%>>
                             <input type='text' style = 'display: none;' name='hours' value = <%=request.getParameter("hours")%>>
+                            <input type='text' style = 'display: none;' name="card">
                             <%if (term.equals("2")){
                                 out.print( "<input type='text' style = 'display: none;' name='cost' value = " + Double.toString(a) + ">");
                             }
@@ -338,9 +447,9 @@
                             <input type='text' style = 'display: none;' name='startt' value = <%=request.getParameter("startt")%>>
                             <input type='text' style = 'display: none;' name='endt' value = <%=request.getParameter("endt")%>>
                             <input type='text' style = 'display: none;' name='theday' value = <%=request.getParameter("theday")%>>
-                            <input type="checkbox" checked="checked" name="s1"> Shipping address same as billing
+                            <input id = 'rc' type="checkbox" onsubmit = "if(this.checked){myFunction()}" checked="checked" name="s1"> Remember card
                         </label>
-                        <input type="submit" value="Continue to checkout" class="btn">
+                        <input type="submit"  value="Continue to checkout" class="btn">
                     </form>
                 </div>
             </div>
@@ -367,6 +476,24 @@
 </div>
 
 <script>
+
+    function myfunction() {
+        document.getElementsByName("card")[0].value = "yoo";
+    }
+
+    function myFunction()
+    {
+        var x = document.getElementsByName("sc");
+        var i;
+        for(i = 0; i < x.length; i++)
+        {
+            if (x[i].checked == true)
+            {
+                document.getElementById("ccnum").value = x[i].value;
+            }
+        }
+    }
+
     // Get the modal
     var modal = document.getElementById('myModal');
 
