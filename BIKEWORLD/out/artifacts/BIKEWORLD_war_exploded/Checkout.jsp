@@ -337,10 +337,7 @@
                             <input type='text' style = 'display: none;' name='startt' value = <%=request.getParameter("startt")%>>
                             <input type='text' style = 'display: none;' name='endt' value = <%=request.getParameter("endt")%>>
                             <input type='text' style = 'display: none;' name='theday' value = <%=request.getParameter("theday")%>>
-                            <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-                        </label>
-                        <label>
-                            <input type="checkbox"  name="sameadr"> Remember card
+                            <input type="checkbox" checked="checked" name="s1"> Shipping address same as billing
                         </label>
                         <input type="submit" value="Continue to checkout" class="btn">
                     </form>
