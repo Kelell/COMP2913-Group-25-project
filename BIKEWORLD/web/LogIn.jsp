@@ -15,6 +15,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  <!-- Drop down button script-->
     <link rel="stylesheet" href="style.css" type="text/css">
+    <style>
+        .content{
+            -webkit-animation-name: fadeIn; /* Safari 4.0 - 8.0 */
+            -webkit-animation-duration: 6s; /* Safari 4.0 - 8.0 */
+            animation-name: fadeIn;
+            animation-duration: 6s;
+        }
+        @-webkit-keyframes fadeIn {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+
+        @keyframes fadeIn {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+
+        .fadeIn {
+            -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+        }
+    </style>
 </head>
 <body>
 

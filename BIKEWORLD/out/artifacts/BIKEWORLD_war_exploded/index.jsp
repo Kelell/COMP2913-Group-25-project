@@ -15,9 +15,53 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  <!-- Drop down button script-->
   <link rel="stylesheet" href="style.css" type="text/css"> <!-- link to style sheet -->
-</head>
-<body>
+  <style>
+    h5{
+      -webkit-animation-name: fadeIn; /* Safari 4.0 - 8.0 */
+      -webkit-animation-duration: 6s; /* Safari 4.0 - 8.0 */
+      animation-name: fadeIn;
+      animation-duration: 6s;
+    }
+    h6{
+      -webkit-animation-name: fadeIn; /* Safari 4.0 - 8.0 */
+      -webkit-animation-duration: 20s; /* Safari 4.0 - 8.0 */
+      animation-name: fadeIn;
+      animation-duration: 20s;
+    }
+    @-webkit-keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
 
+    @keyframes fadeIn {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    .fadeIn {
+      -webkit-animation-name: fadeIn;
+      animation-name: fadeIn;
+    }
+  </style>
+</head>
+<%
+  if(session.getAttribute("uname")==null){//displays sign up and log in options only when not in session/when not logged in
+
+%>
+<body style = "background-color: black;" >
+<%
+  }
+
+%>
+  <%
+  if(session.getAttribute("uname")!=null){//displays sign up and log in options only when not in session/when not logged in
+
+%>
+<body  >
+<%
+  }
+
+%>
 <nav class="navbar navbar-inverse"><!-- Bootstrap nav bar -->
 
   <div class="container-fluid">
@@ -82,54 +126,113 @@
   </div>
 </nav><!-- end of nav -->
 
+<%
+  if(session.getAttribute("uname")==null){//displays sign up and log in options only when not in session/when not logged in
+
+%>
+
 <div class="content">
-  <h1>Welcome To B!KEWORLD</h1>
-  To book a bike please first Log in or register. <br>
-  TESTING ACCOUNT :<br>
-  USERNAME : kelellt<br>
-  PASSWORD : Password123<br>
-  <div class="row">
-    <div class="col-sm-5" >
-      <h5>The standard Lorem Ipsum passage, used since the 1500s</h5>
-      <h5>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum."</h5>
-
-      <h5>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum."</h5>
-
-      <h5>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum."</h5>
-      <h5>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum."</h5>
-    </div>
-    <div class="col-5">
-      <h5>Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</h5>
-      <h5>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-        corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
-        qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-        distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-        placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut
-        officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
-        Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis
-        doloribus asperiores repellat."</h5>
+  <h1 style = "color: white; text-align: center;">Welcome To B!KEWORLD</h1>
 
 
-    </div>
+  <div class="row" >
+    <div class="col" >
+      <h5 style = " text-align: center; font-size: 25px; font-family: Courier New" >OUR PATH!!!</h5>
+      <h5 style = " text-align: center; font-size: 25px; font-family: Courier New">"The area is mostly wooded but there are several places that offer spectacular views. Use some caution in the corners here. Out here you will find the most legal features including log rides, jumps and rock rolls in South Tahoe including the new jumps, berms, rollers and hips TAMBA and SBTS built in 2014. The trail tread is mostly packed dirt mixed with rocks. A full suspension bike with 3+ inches of travel will greatly enhance your experience!"</h5>
+
+      <h5 style = " text-align: center; font-size: 25px; font-family: Courier New">"From there the trail stretches out and travels pretty fast into a big berm with a view out into the valley. Well built jump line with wooden lips built into each jump. Counterclockwise the descent is shorter but steeper in spots. Parking at the bottom is near mile 12 of Palmer Fishhook Road, while the top of the trailhead starts near mile 16 of Palmer Fishhook Road. Large group of trees down on northern section of trail, between buckhorn and club gap."</h5>
+      <br><br>
+      <h5 style = " text-align: center; font-size: 25px"; >"EXPERIENCE THE JOURNEY"</h5>
+    </div >
+
   </div>
+
+  <h6>
+    To book a bike please first Log in or register. <br>
+    TESTING ACCOUNT :<br>
+    USERNAME : kelellt<br>
+    PASSWORD : Password123<br>
+  </h6>
+
 </div><!--end of content -->
 
+<%
+  }
+
+%>
+
+<%
+  if(session.getAttribute("uname")!=null){//displays drop down nav only when in session
+
+%>
+
+<div class="content" style="color: black; font-size: 22px ">
+  <h1>Welcome ${uname}</h1>
+  <br><br>
+
+
+  <div class = 'row' >
+
+    <div class="col" >
+      <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="https://www.publicdomainpictures.net/pictures/220000/velka/mountain-biking-14915876029bb.jpg" alt="Mountain Biking" style="width:100%;">
+          </div>
+
+          <div class="item">
+            <img src="https://www.publicdomainpictures.net/pictures/230000/velka/biking-15015084891IL.jpg" alt="Sunset biking" style="width:100%;">
+          </div>
+
+          <div class="item">
+            <img src="https://www.publicdomainpictures.net/pictures/230000/velka/bicyclists.jpg" alt="New york" style="width:100%;">
+          </div>
+        </div>
+
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <br><br>
+
+  <div class="row" style = "background-color: white">
+    <h5 style = " text-align: center; font-size: 25px; font-family: Lucida Console" >How does it work</h5>
+    <br><br><br><br>
+    <img src="Drawing.png" alt="Explain" >
+
+
+
+
+
+
+
+
+  </div>
+  <div class="row" style="align-content: center;  text-align: center;">
+    <br><br>
+    <button><a href="Views">LETS GO!!</a></button>
+    <br><br><br><br>
+  </div>
+  <br><br>
+</div><!--end of content -->
+
+<%
+  }
+
+%>
 
 </body>
 </html>
