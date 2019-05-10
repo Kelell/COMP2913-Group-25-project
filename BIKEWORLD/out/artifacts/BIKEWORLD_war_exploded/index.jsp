@@ -15,6 +15,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- Drop down button script-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>  <!-- Drop down button script-->
   <link rel="stylesheet" href="style.css" type="text/css"> <!-- link to style sheet -->
+
   <style>
     h5{
       -webkit-animation-name: fadeIn; /* Safari 4.0 - 8.0 */
@@ -88,6 +89,16 @@
         %>
         <li><a href="AboutUs.jsp">About Us</a></li>
         <li><a href="ContactUs.jsp">Contact Us</a></li>
+
+        <%
+          if(session.getAttribute("uname")!=null){//if in session show book a bike option
+
+        %>
+        <li><a href="history">History</a></li>
+        <%
+          }
+
+        %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 

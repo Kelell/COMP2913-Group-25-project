@@ -193,6 +193,7 @@ public class View extends HttpServlet {
             out.println(
                     "<li><a href=AboutUs.jsp>About Us</a></li>"+
                             "<li><a href=ContactUs.jsp>Contact Us</a></li>"+
+                            "<li><a href=\"history\">History</a></li>"+
                             "</ul>"+
                             "<ul class='nav navbar-nav navbar-right'>");
 
