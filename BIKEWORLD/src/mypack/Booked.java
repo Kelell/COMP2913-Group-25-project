@@ -111,7 +111,6 @@ public class Booked extends HttpServlet {
 
                         if (x == false)
                         {
-                            System.out.println("out");
                             String sql5 = "insert into card(CUSTOMER_CARD_NO,CUSTOMER_ID,EXPM,EXPY) values(?,?,?,?)";
                             Connection conn5 = DriverManager.getConnection(test.DB_URL, "EEsET82tG5", "UhgQalxiVw");
                             String userid = session.getAttribute("uId").toString();

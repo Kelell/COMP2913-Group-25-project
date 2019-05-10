@@ -34,8 +34,8 @@
       <file leaf-file-name="AvailableBikes.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="45" column="12" lean-forward="true" selection-start-line="45" selection-start-column="12" selection-end-line="74" selection-end-column="13" />
+            <state relative-caret-position="495">
+              <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="74" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,11 +46,13 @@
       <file leaf-file-name="Booked.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/mypack/Booked.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="105" column="51" selection-start-line="105" selection-start-column="51" selection-end-line="105" selection-end-column="51" />
+            <state relative-caret-position="344">
+              <caret line="114" column="49" selection-start-line="114" selection-start-column="49" selection-end-line="114" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4320#4326#0" expanded="true" />
+                <element signature="e#4321#4327#0" expanded="true" />
+                <element signature="e#9232#9241#0" expanded="true" />
+                <element signature="e#18366#18375#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -169,8 +171,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -245,7 +248,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -474,15 +476,16 @@
       <workItem from="1557261276643" duration="1088000" />
       <workItem from="1557262409349" duration="16919000" />
       <workItem from="1557453474839" duration="606000" />
-      <workItem from="1557478240559" duration="24843000" />
+      <workItem from="1557478240559" duration="24965000" />
+      <workItem from="1557504336599" duration="906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="369440000" />
+    <option name="totallyTimeSpent" value="370468000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="0" y="28" width="1920" height="1018" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -504,10 +507,10 @@
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.28434506" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4953125" visible="true" weight="0.28392246" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7604167" visible="true" weight="0.3402778" />
-      <window_info id="Web" order="6" sideWeight="0.23958333" side_tool="true" visible="true" weight="0.3402778" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7579618" visible="true" weight="0.3445513" />
+      <window_info id="Web" order="6" sideWeight="0.24203822" side_tool="true" visible="true" weight="0.3445513" />
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -626,20 +629,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/history.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/web/history.jsp" />
     <entry file="file://$PROJECT_DIR$/src/mypack/Registration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1318">
           <caret line="113" column="8" lean-forward="true" selection-start-line="113" selection-start-column="8" selection-end-line="123" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -650,9 +644,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mypack/History.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mypack/History.java" />
     <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="433">
@@ -707,12 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3345">
           <caret line="241" column="71" lean-forward="true" selection-start-line="241" selection-start-column="71" selection-end-line="241" selection-end-column="71" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2762#2771#0" expanded="true" />
-            <element signature="e#2825#2833#0" expanded="true" />
-            <element signature="e#2886#2893#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -741,9 +727,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="79" column="51" lean-forward="true" selection-start-line="79" selection-start-column="51" selection-end-line="79" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -769,8 +752,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/AvailableBikes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="45" column="12" lean-forward="true" selection-start-line="45" selection-start-column="12" selection-end-line="74" selection-end-column="13" />
+        <state relative-caret-position="495">
+          <caret line="45" column="12" selection-start-line="45" selection-start-column="12" selection-end-line="74" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -779,11 +762,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/mypack/Booked.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="105" column="51" selection-start-line="105" selection-start-column="51" selection-end-line="105" selection-end-column="51" />
+        <state relative-caret-position="344">
+          <caret line="114" column="49" selection-start-line="114" selection-start-column="49" selection-end-line="114" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4320#4326#0" expanded="true" />
+            <element signature="e#4321#4327#0" expanded="true" />
+            <element signature="e#9232#9241#0" expanded="true" />
+            <element signature="e#18366#18375#0" expanded="true" />
           </folding>
         </state>
       </provider>
